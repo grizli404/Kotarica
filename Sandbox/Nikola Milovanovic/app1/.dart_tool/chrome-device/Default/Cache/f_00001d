@@ -1,0 +1,280 @@
+define(['dart_sdk', 'packages/stream_channel/src/stream_channel_controller.dart', 'packages/json_rpc_2/src/utils.dart', 'packages/json_rpc_2/src/exception.dart', 'packages/json_rpc_2/src/parameters.dart', 'packages/stack_trace/src/stack_zone_specification.dart'], (function load__packages__json_rpc_2__src__server_dart(dart_sdk, packages__stream_channel__src__stream_channel_controller$46dart, packages__json_rpc_2__src__utils$46dart, packages__json_rpc_2__src__exception$46dart, packages__json_rpc_2__src__parameters$46dart, packages__stack_trace__src__stack_zone_specification$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _js_helper = dart_sdk._js_helper;
+  const collection = dart_sdk.collection;
+  const async = dart_sdk.async;
+  const convert = dart_sdk.convert;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const json_document_transformer = packages__stream_channel__src__stream_channel_controller$46dart.src__json_document_transformer;
+  const stream_channel = packages__stream_channel__src__stream_channel_controller$46dart.stream_channel;
+  const utils = packages__json_rpc_2__src__utils$46dart.src__utils;
+  const exception = packages__json_rpc_2__src__exception$46dart.src__exception;
+  const parameters = packages__json_rpc_2__src__parameters$46dart.src__parameters;
+  const chain$ = packages__stack_trace__src__stack_zone_specification$46dart.src__chain;
+  var server = Object.create(dart.library);
+  var $containsKey = dartx.containsKey;
+  var $_set = dartx._set;
+  var $isEmpty = dartx.isEmpty;
+  var $map = dartx.map;
+  var $where = dartx.where;
+  var $toList = dartx.toList;
+  var $_get = dartx._get;
+  var $iterator = dartx.iterator;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    FunctionL: () => (T.FunctionL = dart.constFn(dart.legacy(core.Function)))(),
+    IdentityMapOfStringL$FunctionL: () => (T.IdentityMapOfStringL$FunctionL = dart.constFn(_js_helper.IdentityMap$(T.StringL(), T.FunctionL())))(),
+    ListQueueOfFunctionL: () => (T.ListQueueOfFunctionL = dart.constFn(collection.ListQueue$(T.FunctionL())))(),
+    CompleterOfvoid: () => (T.CompleterOfvoid = dart.constFn(async.Completer$(dart.void)))(),
+    StackTraceL: () => (T.StackTraceL = dart.constFn(dart.legacy(core.StackTrace)))(),
+    dynamicAnddynamicToNull: () => (T.dynamicAnddynamicToNull = dart.constFn(dart.fnType(core.Null, [dart.dynamic, dart.dynamic])))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    ListL: () => (T.ListL = dart.constFn(dart.legacy(core.List)))(),
+    FutureL: () => (T.FutureL = dart.constFn(dart.legacy(async.Future)))(),
+    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
+    dynamicToboolL: () => (T.dynamicToboolL = dart.constFn(dart.fnType(T.boolL(), [dart.dynamic])))(),
+    VoidTodynamic: () => (T.VoidTodynamic = dart.constFn(dart.fnType(dart.dynamic, [])))(),
+    VoidToLdynamic: () => (T.VoidToLdynamic = dart.constFn(dart.legacy(T.VoidTodynamic())))(),
+    IdentityMapOfStringL$dynamic: () => (T.IdentityMapOfStringL$dynamic = dart.constFn(_js_helper.IdentityMap$(T.StringL(), dart.dynamic)))(),
+    RpcExceptionL: () => (T.RpcExceptionL = dart.constFn(dart.legacy(exception.RpcException)))(),
+    IdentityMapOfStringL$StringL: () => (T.IdentityMapOfStringL$StringL = dart.constFn(_js_helper.IdentityMap$(T.StringL(), T.StringL())))(),
+    MapL: () => (T.MapL = dart.constFn(dart.legacy(core.Map)))(),
+    numL: () => (T.numL = dart.constFn(dart.legacy(core.num)))(),
+    VoidToFutureL: () => (T.VoidToFutureL = dart.constFn(dart.fnType(T.FutureL(), [])))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  var C = [];
+  var I = ["package:json_rpc_2/src/server.dart"];
+  var onUnhandledError$ = dart.privateName(server, "Server.onUnhandledError");
+  var strictProtocolChecks$ = dart.privateName(server, "Server.strictProtocolChecks");
+  var _methods = dart.privateName(server, "_methods");
+  var _fallbacks = dart.privateName(server, "_fallbacks");
+  var _done = dart.privateName(server, "_done");
+  var _channel$ = dart.privateName(server, "_channel");
+  var _handleRequest = dart.privateName(server, "_handleRequest");
+  var _handleSingleRequest = dart.privateName(server, "_handleSingleRequest");
+  var _validateRequest = dart.privateName(server, "_validateRequest");
+  var _tryFallbacks = dart.privateName(server, "_tryFallbacks");
+  server.Server = class Server extends core.Object {
+    get onUnhandledError() {
+      return this[onUnhandledError$];
+    }
+    set onUnhandledError(value) {
+      super.onUnhandledError = value;
+    }
+    get strictProtocolChecks() {
+      return this[strictProtocolChecks$];
+    }
+    set strictProtocolChecks(value) {
+      super.strictProtocolChecks = value;
+    }
+    get done() {
+      return this[_done].future;
+    }
+    get isClosed() {
+      return this[_done].isCompleted;
+    }
+    listen() {
+      this[_channel$].stream.listen(dart.bind(this, _handleRequest), {onError: dart.fn((error, stackTrace) => {
+          this[_done].completeError(error, T.StackTraceL().as(stackTrace));
+          this[_channel$].sink.close();
+        }, T.dynamicAnddynamicToNull()), onDone: dart.fn(() => {
+          if (!dart.test(this[_done].isCompleted)) this[_done].complete();
+        }, T.VoidToNull())});
+      return this.done;
+    }
+    close() {
+      this[_channel$].sink.close();
+      if (!dart.test(this[_done].isCompleted)) this[_done].complete();
+      return this.done;
+    }
+    registerMethod(name, callback) {
+      if (dart.test(this[_methods][$containsKey](name))) {
+        dart.throw(new core.ArgumentError.new("There's already a method named \"" + dart.str(name) + "\"."));
+      }
+      this[_methods][$_set](name, callback);
+    }
+    registerFallback(callback) {
+      this[_fallbacks].add(callback);
+    }
+    [_handleRequest](request) {
+      return async.async(dart.dynamic, (function* _handleRequest() {
+        let response = null;
+        if (T.ListL().is(request)) {
+          if (dart.test(request[$isEmpty])) {
+            response = new exception.RpcException.new(-32600, "A batch must contain at least one request.").serialize(request);
+          } else {
+            let results = (yield async.Future.wait(dart.dynamic, request[$map](T.FutureL(), dart.bind(this, _handleSingleRequest))));
+            let nonNull = results[$where](dart.fn(result => result != null, T.dynamicToboolL()));
+            if (dart.test(nonNull[$isEmpty])) return;
+            response = nonNull[$toList]();
+          }
+        } else {
+          response = (yield this[_handleSingleRequest](request));
+          if (response == null) return;
+        }
+        if (!dart.test(this.isClosed)) this[_channel$].sink.add(response);
+      }).bind(this));
+    }
+    [_handleSingleRequest](request) {
+      return async.async(dart.dynamic, (function* _handleSingleRequest() {
+        let t1, t1$;
+        try {
+          this[_validateRequest](request);
+          let name = dart.dsend(request, '_get', ["method"]);
+          let method = this[_methods][$_get](name);
+          method == null ? method = dart.bind(this, _tryFallbacks) : null;
+          let result = null;
+          if (T.VoidToLdynamic().is(method)) {
+            if (dart.dtest(dart.dsend(request, 'containsKey', ["params"]))) {
+              dart.throw(new exception.RpcException.invalidParams("No parameters are allowed for " + "method \"" + dart.str(name) + "\"."));
+            }
+            result = (yield method());
+          } else {
+            result = (yield dart.dcall(method, [new parameters.Parameters.new(T.StringL().as(name), dart.dsend(request, '_get', ["params"]))]));
+          }
+          if (!dart.dtest(dart.dsend(request, 'containsKey', ["id"]))) return null;
+          return new (T.IdentityMapOfStringL$dynamic()).from(["jsonrpc", "2.0", "result", result, "id", dart.dsend(request, '_get', ["id"])]);
+        } catch (e) {
+          let error = dart.getThrown(e);
+          let stackTrace = dart.stackTrace(e);
+          if (T.RpcExceptionL().is(error)) {
+            if (error.code === -32600 || dart.dtest(dart.dsend(request, 'containsKey', ["id"]))) {
+              return error.serialize(request);
+            } else {
+              t1 = this.onUnhandledError;
+              t1 == null ? null : t1(error, stackTrace);
+              return null;
+            }
+          } else if (!dart.dtest(dart.dsend(request, 'containsKey', ["id"]))) {
+            t1$ = this.onUnhandledError;
+            t1$ == null ? null : t1$(error, stackTrace);
+            return null;
+          }
+          let chain = chain$.Chain.forTrace(stackTrace);
+          return new exception.RpcException.new(-32000, utils.getErrorMessage(error), {data: new (T.IdentityMapOfStringL$StringL()).from(["full", dart.str(error), "stack", dart.str(chain)])}).serialize(request);
+        }
+      }).bind(this));
+    }
+    [_validateRequest](request) {
+      if (!T.MapL().is(request)) {
+        dart.throw(new exception.RpcException.new(-32600, "Request must be " + "an Array or an Object."));
+      }
+      if (dart.test(this.strictProtocolChecks) && !dart.dtest(dart.dsend(request, 'containsKey', ["jsonrpc"]))) {
+        dart.throw(new exception.RpcException.new(-32600, "Request must " + "contain a \"jsonrpc\" key."));
+      }
+      if ((dart.test(this.strictProtocolChecks) || dart.dtest(dart.dsend(request, 'containsKey', ["jsonrpc"]))) && !dart.equals(dart.dsend(request, '_get', ["jsonrpc"]), "2.0")) {
+        dart.throw(new exception.RpcException.new(-32600, "Invalid JSON-RPC " + "version " + dart.str(convert.jsonEncode(dart.dsend(request, '_get', ["jsonrpc"]))) + ", expected \"2.0\"."));
+      }
+      if (!dart.dtest(dart.dsend(request, 'containsKey', ["method"]))) {
+        dart.throw(new exception.RpcException.new(-32600, "Request must " + "contain a \"method\" key."));
+      }
+      let method = dart.dsend(request, '_get', ["method"]);
+      if (!T.StringL().is(dart.dsend(request, '_get', ["method"]))) {
+        dart.throw(new exception.RpcException.new(-32600, "Request method must " + "be a string, but was " + dart.str(convert.jsonEncode(method)) + "."));
+      }
+      if (dart.dtest(dart.dsend(request, 'containsKey', ["params"]))) {
+        let params = dart.dsend(request, '_get', ["params"]);
+        if (!T.ListL().is(params) && !T.MapL().is(params)) {
+          dart.throw(new exception.RpcException.new(-32600, "Request params must " + "be an Array or an Object, but was " + dart.str(convert.jsonEncode(params)) + "."));
+        }
+      }
+      let id = dart.dsend(request, '_get', ["id"]);
+      if (id != null && !T.StringL().is(id) && !T.numL().is(id)) {
+        dart.throw(new exception.RpcException.new(-32600, "Request id must be a " + "string, number, or null, but was " + dart.str(convert.jsonEncode(id)) + "."));
+      }
+    }
+    [_tryFallbacks](params) {
+      let iterator = this[_fallbacks][$toList]()[$iterator];
+      function _tryNext() {
+        return async.async(dart.dynamic, function* _tryNext$() {
+          let t2, t1;
+          if (!dart.test(iterator.moveNext())) {
+            dart.throw(new exception.RpcException.methodNotFound(params.method));
+          }
+          try {
+            return yield (t1 = iterator, t2 = params, t1.current(t2));
+          } catch (e) {
+            let error = dart.getThrown(e);
+            if (T.RpcExceptionL().is(error)) {
+              if (!T.RpcExceptionL().is(error)) dart.rethrow(e);
+              if (error.code !== -32601) dart.rethrow(e);
+              return _tryNext();
+            } else
+              throw e;
+          }
+        });
+      }
+      dart.fn(_tryNext, T.VoidToFutureL());
+      return _tryNext();
+    }
+  };
+  (server.Server.new = function(channel, opts) {
+    let onUnhandledError = opts && 'onUnhandledError' in opts ? opts.onUnhandledError : null;
+    let strictProtocolChecks = opts && 'strictProtocolChecks' in opts ? opts.strictProtocolChecks : true;
+    server.Server.withoutJson.call(this, json_document_transformer.jsonDocument.bind(channel).transform(dart.dynamic, utils.respondToFormatExceptions), {onUnhandledError: onUnhandledError, strictProtocolChecks: strictProtocolChecks});
+  }).prototype = server.Server.prototype;
+  (server.Server.withoutJson = function(_channel, opts) {
+    let onUnhandledError = opts && 'onUnhandledError' in opts ? opts.onUnhandledError : null;
+    let strictProtocolChecks = opts && 'strictProtocolChecks' in opts ? opts.strictProtocolChecks : true;
+    this[_methods] = new (T.IdentityMapOfStringL$FunctionL()).new();
+    this[_fallbacks] = new (T.ListQueueOfFunctionL()).new();
+    this[_done] = T.CompleterOfvoid().new();
+    this[_channel$] = _channel;
+    this[onUnhandledError$] = onUnhandledError;
+    this[strictProtocolChecks$] = strictProtocolChecks;
+    ;
+  }).prototype = server.Server.prototype;
+  dart.addTypeTests(server.Server);
+  dart.addTypeCaches(server.Server);
+  dart.setMethodSignature(server.Server, () => ({
+    __proto__: dart.getMethods(server.Server.__proto__),
+    listen: dart.fnType(dart.legacy(async.Future), []),
+    close: dart.fnType(dart.legacy(async.Future), []),
+    registerMethod: dart.fnType(dart.void, [dart.legacy(core.String), dart.legacy(core.Function)]),
+    registerFallback: dart.fnType(dart.void, [dart.legacy(dart.fnType(dart.dynamic, [dart.legacy(parameters.Parameters)]))]),
+    [_handleRequest]: dart.fnType(dart.legacy(async.Future), [dart.dynamic]),
+    [_handleSingleRequest]: dart.fnType(dart.legacy(async.Future), [dart.dynamic]),
+    [_validateRequest]: dart.fnType(dart.void, [dart.dynamic]),
+    [_tryFallbacks]: dart.fnType(dart.legacy(async.Future), [dart.legacy(parameters.Parameters)])
+  }));
+  dart.setGetterSignature(server.Server, () => ({
+    __proto__: dart.getGetters(server.Server.__proto__),
+    done: dart.legacy(async.Future),
+    isClosed: dart.legacy(core.bool)
+  }));
+  dart.setLibraryUri(server.Server, I[0]);
+  dart.setFieldSignature(server.Server, () => ({
+    __proto__: dart.getFields(server.Server.__proto__),
+    [_channel$]: dart.finalFieldType(dart.legacy(stream_channel.StreamChannel)),
+    [_methods]: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.Function)))),
+    [_fallbacks]: dart.finalFieldType(dart.legacy(collection.Queue$(dart.legacy(core.Function)))),
+    [_done]: dart.finalFieldType(dart.legacy(async.Completer$(dart.void))),
+    onUnhandledError: dart.finalFieldType(dart.legacy(dart.fnType(dart.void, [dart.dynamic, dart.dynamic]))),
+    strictProtocolChecks: dart.finalFieldType(dart.legacy(core.bool))
+  }));
+  dart.trackLibraries("packages/json_rpc_2/src/server.dart", {
+    "package:json_rpc_2/src/server.dart": server
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["server.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../../packages/json_rpc_2/src/server.dart.lib.js"}');
+  // Exports:
+  return {
+    src__server: server
+  };
+}));
+
+//# sourceMappingURL=server.dart.lib.js.map

@@ -1,0 +1,326 @@
+define(['dart_sdk', 'packages/isolate/src/util.dart'], (function load__packages__isolate__ports_dart(dart_sdk, packages__isolate__src__util$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const isolate = dart_sdk.isolate;
+  const async = dart_sdk.async;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const util = packages__isolate__src__util$46dart.src__util;
+  var ports = Object.create(dart.library);
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    dynamicToNull: () => (T.dynamicToNull = dart.constFn(dart.fnType(core.Null, [dart.dynamic])))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    ObjectLToNull: () => (T.ObjectLToNull = dart.constFn(dart.fnType(core.Null, [T.ObjectL()])))(),
+    dynamicAnddynamicToNull: () => (T.dynamicAnddynamicToNull = dart.constFn(dart.fnType(core.Null, [dart.dynamic, dart.dynamic])))(),
+    ListOfObjectL: () => (T.ListOfObjectL = dart.constFn(core.List$(T.ObjectL())))(),
+    ListLOfObjectL: () => (T.ListLOfObjectL = dart.constFn(dart.legacy(T.ListOfObjectL())))(),
+    ListLOfObjectLToFutureLOfRL: () => (T.ListLOfObjectLToFutureLOfRL = dart.constFn(dart.gFnType(R => {
+      var RL = () => (RL = dart.constFn(dart.legacy(R)))();
+      var FutureOfRL = () => (FutureOfRL = dart.constFn(async.Future$(RL())))();
+      var FutureLOfRL = () => (FutureLOfRL = dart.constFn(dart.legacy(FutureOfRL())))();
+      return [FutureLOfRL(), [T.ListLOfObjectL()]];
+    })))(),
+    FutureOfObjectL: () => (T.FutureOfObjectL = dart.constFn(async.Future$(T.ObjectL())))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.fn(ports.receiveFutureResult, T.ListLOfObjectLToFutureLOfRL());
+    }
+  }, false);
+  var C = [void 0];
+  var I = ["package:isolate/ports.dart"];
+  var _timer = dart.privateName(ports, "_timer");
+  var _receivePort = dart.privateName(ports, "_receivePort");
+  var _completer = dart.privateName(ports, "_completer");
+  var _callback = dart.privateName(ports, "_callback");
+  var _zone = dart.privateName(ports, "_zone");
+  var _handleResponse = dart.privateName(ports, "_handleResponse");
+  var _cancelTimer = dart.privateName(ports, "_cancelTimer");
+  const _is_SingleResponseChannel_default = Symbol('_is_SingleResponseChannel_default');
+  ports.SingleResponseChannel$ = dart.generic(R => {
+    var RL = () => (RL = dart.constFn(dart.legacy(R)))();
+    var CompleterOfRL = () => (CompleterOfRL = dart.constFn(async.Completer$(RL())))();
+    var FutureOfRL = () => (FutureOfRL = dart.constFn(async.Future$(RL())))();
+    var VoidToRL = () => (VoidToRL = dart.constFn(dart.fnType(RL(), [])))();
+    var FutureOrOfRL = () => (FutureOrOfRL = dart.constFn(async.FutureOr$(RL())))();
+    var FutureOrLOfRL = () => (FutureOrLOfRL = dart.constFn(dart.legacy(FutureOrOfRL())))();
+    var VoidToFutureOrLOfRL = () => (VoidToFutureOrLOfRL = dart.constFn(dart.fnType(FutureOrLOfRL(), [])))();
+    class SingleResponseChannel extends core.Object {
+      get port() {
+        return this[_receivePort].sendPort;
+      }
+      get result() {
+        return this[_completer].future;
+      }
+      interrupt(result = null) {
+        RL().as(result);
+        this[_receivePort].close();
+        this[_cancelTimer]();
+        if (!dart.test(this[_completer].isCompleted)) {
+          this[_completer].complete(FutureOfRL().microtask(dart.fn(() => result, VoidToRL())));
+        }
+      }
+      [_cancelTimer]() {
+        if (this[_timer] != null) {
+          this[_timer].cancel();
+          this[_timer] = null;
+        }
+      }
+      [_handleResponse](v) {
+        this[_receivePort].close();
+        this[_cancelTimer]();
+        if (this[_callback] == null) {
+          try {
+            this[_completer].complete(RL().as(v));
+          } catch (e$) {
+            let e = dart.getThrown(e$);
+            let s = dart.stackTrace(e$);
+            this[_completer].completeError(e, s);
+          }
+        } else {
+          this[_zone].run(core.Null, dart.fn(() => {
+            this[_completer].complete(FutureOfRL().sync(dart.fn(() => {
+              let t1;
+              return FutureOrLOfRL().as((t1 = v, dart.dsend(this, _callback, [t1])));
+            }, VoidToFutureOrLOfRL())));
+          }, T.VoidToNull()));
+        }
+      }
+    }
+    (SingleResponseChannel.new = function(opts) {
+      let callback = opts && 'callback' in opts ? opts.callback : null;
+      let timeout = opts && 'timeout' in opts ? opts.timeout : null;
+      let throwOnTimeout = opts && 'throwOnTimeout' in opts ? opts.throwOnTimeout : false;
+      let onTimeout = opts && 'onTimeout' in opts ? opts.onTimeout : null;
+      let timeoutValue = opts && 'timeoutValue' in opts ? opts.timeoutValue : null;
+      this[_timer] = null;
+      this[_receivePort] = isolate.RawReceivePort.new();
+      this[_completer] = CompleterOfRL().sync();
+      this[_callback] = callback;
+      this[_zone] = async.Zone.current;
+      this[_receivePort].handler = dart.bind(this, _handleResponse);
+      if (timeout != null) {
+        this[_timer] = async.Timer.new(timeout, dart.fn(() => {
+          this[_receivePort].close();
+          if (!dart.test(this[_completer].isCompleted)) {
+            if (dart.test(throwOnTimeout)) {
+              this[_completer].completeError(new async.TimeoutException.new("Timeout waiting for response", timeout));
+            } else if (onTimeout != null) {
+              this[_completer].complete(FutureOfRL().sync(onTimeout));
+            } else {
+              this[_completer].complete(timeoutValue);
+            }
+          }
+        }, T.VoidToNull()));
+      }
+    }).prototype = SingleResponseChannel.prototype;
+    dart.addTypeTests(SingleResponseChannel);
+    SingleResponseChannel.prototype[_is_SingleResponseChannel_default] = true;
+    dart.addTypeCaches(SingleResponseChannel);
+    dart.setMethodSignature(SingleResponseChannel, () => ({
+      __proto__: dart.getMethods(SingleResponseChannel.__proto__),
+      interrupt: dart.fnType(dart.void, [], [dart.legacy(core.Object)]),
+      [_cancelTimer]: dart.fnType(dart.void, []),
+      [_handleResponse]: dart.fnType(dart.void, [dart.dynamic])
+    }));
+    dart.setGetterSignature(SingleResponseChannel, () => ({
+      __proto__: dart.getGetters(SingleResponseChannel.__proto__),
+      port: dart.legacy(isolate.SendPort),
+      result: dart.legacy(async.Future$(dart.legacy(R)))
+    }));
+    dart.setLibraryUri(SingleResponseChannel, I[0]);
+    dart.setFieldSignature(SingleResponseChannel, () => ({
+      __proto__: dart.getFields(SingleResponseChannel.__proto__),
+      [_zone]: dart.finalFieldType(dart.legacy(async.Zone)),
+      [_receivePort]: dart.finalFieldType(dart.legacy(isolate.RawReceivePort)),
+      [_completer]: dart.finalFieldType(dart.legacy(async.Completer$(dart.legacy(R)))),
+      [_callback]: dart.finalFieldType(dart.legacy(core.Function)),
+      [_timer]: dart.fieldType(dart.legacy(async.Timer))
+    }));
+    return SingleResponseChannel;
+  });
+  ports.SingleResponseChannel = ports.SingleResponseChannel$();
+  dart.addTypeTests(ports.SingleResponseChannel, _is_SingleResponseChannel_default);
+  ports.singleCallbackPort = function singleCallbackPort(P, callback, opts) {
+    let timeout = opts && 'timeout' in opts ? opts.timeout : null;
+    let timeoutValue = opts && 'timeoutValue' in opts ? opts.timeoutValue : null;
+    let responsePort = isolate.RawReceivePort.new();
+    let zone = async.Zone.current;
+    callback = zone.registerUnaryCallback(dart.void, dart.legacy(P), callback);
+    let timer = null;
+    responsePort.handler = dart.fn(response => {
+      let t1;
+      responsePort.close();
+      t1 = timer;
+      t1 == null ? null : t1.cancel();
+      zone.runUnary(dart.void, dart.legacy(P), callback, dart.legacy(P).as(response));
+    }, T.dynamicToNull());
+    if (timeout != null) {
+      timer = async.Timer.new(timeout, dart.fn(() => {
+        responsePort.close();
+        callback(timeoutValue);
+      }, T.VoidToNull()));
+    }
+    return responsePort.sendPort;
+  };
+  ports.singleCompletePort = function singleCompletePort(R, P, completer, opts) {
+    let callback = opts && 'callback' in opts ? opts.callback : null;
+    let timeout = opts && 'timeout' in opts ? opts.timeout : null;
+    let onTimeout = opts && 'onTimeout' in opts ? opts.onTimeout : null;
+    if (callback == null && timeout == null) {
+      return ports.singleCallbackPort(T.ObjectL(), dart.fn(response => {
+        ports._castComplete(dart.legacy(R), completer, response);
+      }, T.ObjectLToNull()));
+    }
+    let responsePort = isolate.RawReceivePort.new();
+    let timer = null;
+    if (callback == null) {
+      responsePort.handler = dart.fn(response => {
+        let t1;
+        responsePort.close();
+        t1 = timer;
+        t1 == null ? null : t1.cancel();
+        ports._castComplete(dart.legacy(R), completer, response);
+      }, T.dynamicToNull());
+    } else {
+      let zone = async.Zone.current;
+      let action = zone.registerUnaryCallback(core.Null, dart.dynamic, dart.fn(response => {
+        try {
+          completer.complete(callback(dart.legacy(P).as(response)));
+        } catch (e) {
+          let error = dart.getThrown(e);
+          let stack = dart.stackTrace(e);
+          completer.completeError(error, stack);
+        }
+      }, T.dynamicToNull()));
+      responsePort.handler = dart.fn(response => {
+        let t2;
+        responsePort.close();
+        t2 = timer;
+        t2 == null ? null : t2.cancel();
+        zone.runUnary(core.Null, dart.legacy(P), action, dart.legacy(P).as(response));
+      }, T.dynamicToNull());
+    }
+    if (timeout != null) {
+      timer = async.Timer.new(timeout, dart.fn(() => {
+        responsePort.close();
+        if (onTimeout != null) {
+          completer.complete(async.Future$(dart.legacy(R)).sync(onTimeout));
+        } else {
+          completer.completeError(new async.TimeoutException.new("Future not completed", timeout));
+        }
+      }, T.VoidToNull()));
+    }
+    return responsePort.sendPort;
+  };
+  ports.singleResponseFuture = function singleResponseFuture(R, action, opts) {
+    let t3;
+    let timeout = opts && 'timeout' in opts ? opts.timeout : null;
+    let timeoutValue = opts && 'timeoutValue' in opts ? opts.timeoutValue : null;
+    let completer = async.Completer$(dart.legacy(R)).sync();
+    let responsePort = isolate.RawReceivePort.new();
+    let timer = null;
+    let zone = async.Zone.current;
+    responsePort.handler = dart.fn(response => {
+      let t2;
+      responsePort.close();
+      t2 = timer;
+      t2 == null ? null : t2.cancel();
+      zone.run(core.Null, dart.fn(() => {
+        ports._castComplete(dart.legacy(R), completer, response);
+      }, T.VoidToNull()));
+    }, T.ObjectLToNull());
+    if (timeout != null) {
+      timer = async.Timer.new(timeout, dart.fn(() => {
+        responsePort.close();
+        completer.complete(timeoutValue);
+      }, T.VoidToNull()));
+    }
+    try {
+      action(responsePort.sendPort);
+    } catch (e) {
+      let error = dart.getThrown(e);
+      let stack = dart.stackTrace(e);
+      responsePort.close();
+      t3 = timer;
+      t3 == null ? null : t3.cancel();
+      async.scheduleMicrotask(dart.fn(() => {
+        completer.completeError(error, stack);
+      }, T.VoidToNull()));
+    }
+    return completer.future;
+  };
+  ports.sendFutureResult = function sendFutureResult(future, resultPort) {
+    future.then(core.Null, dart.fn(value => {
+      resultPort.send(util.list1(value));
+    }, T.ObjectLToNull()), {onError: dart.fn((error, stack) => {
+        resultPort.send(util.list2(dart.str(error), dart.str(stack)));
+      }, T.dynamicAnddynamicToNull())});
+  };
+  ports.singleResultFuture = function singleResultFuture(R, action, opts) {
+    let timeout = opts && 'timeout' in opts ? opts.timeout : null;
+    let onTimeout = opts && 'onTimeout' in opts ? opts.onTimeout : null;
+    let completer = async.Completer$(dart.legacy(R)).sync();
+    let port = ports.singleCompletePort(dart.legacy(R), T.ListLOfObjectL(), completer, {callback: dart.gbind(C[0] || CT.C0, dart.legacy(R)), timeout: timeout, onTimeout: onTimeout});
+    try {
+      action(port);
+    } catch (e$) {
+      let e = dart.getThrown(e$);
+      let s = dart.stackTrace(e$);
+      ports.sendFutureResult(T.FutureOfObjectL().error(e, s), port);
+    }
+    return completer.future;
+  };
+  ports.completeFutureResult = function completeFutureResult(R, response, completer) {
+    if (response[$length] === 2) {
+      let error = new isolate.RemoteError.new(core.String.as(response[$_get](0)), core.String.as(response[$_get](1)));
+      completer.completeError(error, error.stackTrace);
+    } else {
+      let result = dart.legacy(R).as(response[$_get](0));
+      completer.complete(result);
+    }
+  };
+  ports.receiveFutureResult = function receiveFutureResult(R, response) {
+    if (response[$length] === 2) {
+      let error = new isolate.RemoteError.new(core.String.as(response[$_get](0)), core.String.as(response[$_get](1)));
+      return async.Future$(dart.legacy(R)).error(error, error.stackTrace);
+    }
+    let result = dart.legacy(R).as(response[$_get](0));
+    return async.Future$(dart.legacy(R)).value(result);
+  };
+  ports._castComplete = function _castComplete(R, completer, value) {
+    try {
+      completer.complete(dart.legacy(R).as(value));
+    } catch (e) {
+      let error = dart.getThrown(e);
+      let stack = dart.stackTrace(e);
+      completer.completeError(error, stack);
+    }
+  };
+  dart.trackLibraries("packages/isolate/ports.dart", {
+    "package:isolate/ports.dart": ports
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["ports.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/isolate/ports.dart.lib.js"}');
+  // Exports:
+  return {
+    ports: ports
+  };
+}));
+
+//# sourceMappingURL=ports.dart.lib.js.map
