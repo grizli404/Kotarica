@@ -5,13 +5,13 @@ class RoundedButton extends StatelessWidget {
   final String text;
   final Function press;
   final Color color, textColor;
-  const RoundedButton({
+  RoundedButton({
     Key key,
     this.size,
     this.text,
-    this.press,
     this.color = kPrimaryColor,
     this.textColor = Colors.white,
+    this.press,
   }) : super(key: key);
 
   final Size size;

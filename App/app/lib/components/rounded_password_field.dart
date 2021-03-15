@@ -4,22 +4,33 @@ import 'package:flutter/material.dart';
 
 class RoundedPasswordField extends StatefulWidget {
   final ValueChanged<String> onChanged;
+  final validator;
   const RoundedPasswordField({
     Key key,
     this.onChanged,
+    this.validator,
   }) : super(key: key);
 
   @override
-  _RoundedPasswordFieldState createState() => _RoundedPasswordFieldState();
+  _RoundedPasswordFieldState createState() =>
+      _RoundedPasswordFieldState(onChanged: onChanged, validator: validator);
 }
 
 class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
   bool _isHidden = true;
+  final onChanged;
+  final validator;
 
+  _RoundedPasswordFieldState({
+    this.validator,
+    this.onChanged,
+  });
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      child: TextField(
+      child: TextFormField(
+        validator: validator,
+        onChanged: onChanged,
         obscureText: _isHidden,
         decoration: InputDecoration(
           hintText: "Password",

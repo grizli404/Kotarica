@@ -17,11 +17,13 @@ class Background extends StatelessWidget {
         alignment: Alignment.center,
         children: <Widget>[
           Positioned(
-            top: 0,
-            left: 0,
+            top: 0.0,
+            left: 0.0,
             child: Image.asset(
               "assets/images/main_top.png",
-              width: MediaQuery.of(context).size.width * 0.35,
+              width: (size.width / size.height > 1)
+                  ? size.width * 0.1
+                  : size.width * 0.35,
             ),
           ),
           Positioned(
@@ -29,7 +31,9 @@ class Background extends StatelessWidget {
             left: 0,
             child: Image.asset(
               "assets/images/main_bottom.png",
-              width: MediaQuery.of(context).size.width * 0.3,
+              width: (size.width / size.height > 1)
+                  ? size.width * 0.05
+                  : size.width * 0.35,
             ),
           ),
           child,
