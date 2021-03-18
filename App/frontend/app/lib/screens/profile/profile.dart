@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: Profile(),
-  ));
-}
 
 class Profile extends StatelessWidget {
-  var fName = "Pera";
-  var lName = "Peric";
-  var description = "test";
+  final fName;
+  final lName;
+  final description;
+
+  const Profile({
+    Key key,
+    this.fName = "Carl",
+    this.lName = "Johnson",
+    this.description = "AH S@!T HERE WE GO AGAIN!",
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
