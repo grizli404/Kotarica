@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Profile extends StatelessWidget {
+class ProfileScreen extends StatelessWidget {
   final fName;
   final lName;
   final description;
 
-  const Profile({
+  const ProfileScreen({
     Key key,
     this.fName = "Carl",
     this.lName = "Johnson",
