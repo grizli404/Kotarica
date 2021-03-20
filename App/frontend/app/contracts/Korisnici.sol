@@ -41,4 +41,14 @@ contract Korisnici{
         korisnici[brojKorisnika] = k;
         brojKorisnika--;
     }
+
+    function izmeniUsername (uint _id, string memory _username) public
+    {
+        korisnici[_id].username = _username;
+    }
+
+    function izmeniPassword (uint _id, string memory _password) public
+    {
+        korisnici[_id].password = _password;
+    }
 }
