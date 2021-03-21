@@ -55,15 +55,12 @@ class HomeScreen extends StatelessWidget {
                 );
               }, // strana za profil
             ),
-<<<<<<< HEAD
             IconButton(
               icon: Icon(
                 Icons.shopping_cart_outlined,
               ),
               onPressed: () {}, // korpa
             ),
-=======
->>>>>>> 2ef4c09f107e2e28241f6bbd5d22ff5e1f235d19
           ],
         ),
       ],
