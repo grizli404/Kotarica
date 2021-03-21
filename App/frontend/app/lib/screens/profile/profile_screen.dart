@@ -1,73 +1,192 @@
+import 'dart:html';
+import 'package:app/components/product_card.dart';
+
+import '../../constants.dart';
+
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
   final fName;
   final lName;
-  final description;
+  final address;
+  final reputationScore;
 
   const ProfileScreen({
     Key key,
     this.fName = "Carl",
     this.lName = "Johnson",
-    this.description = "AH S@!T HERE WE GO AGAIN!",
+    this.address = "Grove Street",
+    this.reputationScore = "NA",
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.maybeOf(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile page'),
+        title: Text("Profile"),
         centerTitle: true,
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: kPrimaryColor,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(36),
+        )),
       ),
-      body: Container(
-        color: Colors.grey[400],
-        margin: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
             Row(
-              children: <Widget>[
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Container(
-                    width: 200.0,
-                    height: 200.0,
-                    decoration: new BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image: new NetworkImage(
-                                "https://i.imgur.com/BoN9kdC.png")))),
-                Container(
-                  child: Text(
-                    "First name: " + fName,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  margin: EdgeInsets.all(30),
+                  width: 210,
+                  height: 210,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: kPrimaryColor,
                   ),
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  child: Container(
+                    margin: EdgeInsets.all(10),
+                    width: 200,
+                    height: 200,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(
+                                "https://i.imgur.com/BoN9kdC.png"))),
+                  ),
                 ),
-                Container(
-                    child: Text(
-                      "Last name: " + lName,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 30.0),
+                    Text(
+                      "IME",
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        letterSpacing: 2.0,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 0)),
+                    SizedBox(height: 10.0),
+                    Text(
+                      fName,
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        letterSpacing: 2.0,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(height: 30.0),
+                    Text(
+                      "PREZIME",
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        letterSpacing: 2.0,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10.0),
+                    Text(
+                      lName,
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        letterSpacing: 2.0,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(height: 30.0),
+                    Text(
+                      "ADRESA",
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        letterSpacing: 2.0,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10.0),
+                    Text(
+                      address,
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        letterSpacing: 2.0,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(height: 30.0),
+                    Text(
+                      "REPUTACIJA",
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        letterSpacing: 2.0,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10.0),
+                    Text(
+                      // star system
+                      reputationScore,
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        letterSpacing: 2.0,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(height: 30.0),
+                  ],
+                )
               ],
             ),
             Row(
               children: [
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-                  child: Text("Description: " + description),
-                )
+                ProductCard(
+                    name: "proizvod",
+                    price: "100din",
+                    imgPath: "assets/images/cookiechoco.jpg",
+                    added: true,
+                    isFavorite: false,
+                    context: "context"),
+                ProductCard(
+                    name: "proizvod",
+                    price: "100din",
+                    imgPath: "assets/images/cookiechoco.jpg",
+                    added: true,
+                    isFavorite: false,
+                    context: "context"),
+                ProductCard(
+                    name: "proizvod",
+                    price: "100din",
+                    imgPath: "assets/images/cookiechoco.jpg",
+                    added: true,
+                    isFavorite: false,
+                    context: "context"),
               ],
+            ),
+            SizedBox(height: 30.0),
+            RaisedButton(
+              child: Text(
+                "Prikazi sve produkte",
+                style: TextStyle(color: Colors.white),
+              ),
+              color: kPrimaryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: (size.width / 2) - 85),
+              onPressed: () {},
             )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.blueGrey,
-        child: Text('click'),
       ),
     );
   }
