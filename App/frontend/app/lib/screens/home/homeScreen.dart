@@ -1,3 +1,4 @@
+import 'package:app/screens/profile/my_profile_screen.dart';
 import 'package:app/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -49,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return ProfileScreen();
+                      return MyProfileScreen();
                     },
                   ),
                 );

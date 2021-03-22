@@ -1,18 +1,19 @@
 import 'dart:html';
 import 'package:app/components/product_card.dart';
 import 'package:app/screens/products/products.dart';
+import 'package:app/screens/profile/update_profile.dart';
 
 import '../../constants.dart';
 
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatelessWidget {
+class MyProfileScreen extends StatelessWidget {
   final fName;
   final lName;
   final address;
   final reputationScore;
 
-  const ProfileScreen({
+  const MyProfileScreen({
     Key key,
     this.fName = "Carl",
     this.lName = "Johnson",
@@ -43,25 +44,52 @@ class ProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  margin: EdgeInsets.all(30),
-                  width: 210,
-                  height: 210,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: kPrimaryColor,
-                  ),
-                  child: Container(
-                    margin: EdgeInsets.all(10),
-                    width: 200,
-                    height: 200,
-                    decoration: BoxDecoration(
+                Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(30),
+                      width: 210,
+                      height: 210,
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(
-                                "https://i.imgur.com/BoN9kdC.png"))),
-                  ),
+                        color: kPrimaryColor,
+                      ),
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        width: 200,
+                        height: 200,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: NetworkImage(
+                                    "https://i.imgur.com/BoN9kdC.png"))),
+                      ),
+                    ),
+                    RaisedButton(
+                      color: kPrimaryColor,
+                      child: Text(
+                        "Izmeniti profil",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return UpdateProfileForm(
+                                fName: fName,
+                                lName: lName,
+                                address: address,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
