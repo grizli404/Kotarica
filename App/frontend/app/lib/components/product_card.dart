@@ -1,4 +1,5 @@
 import 'package:app/constants.dart';
+import 'package:app/screens/products/productDetail.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
@@ -25,7 +26,20 @@ class ProductCard extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
         child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ProductDetail(
+                      assetPath: imgPath,
+                      name: name,
+                      price: price,
+                    );
+                  },
+                ),
+              );
+            },
             child: Container(
                 width: 150,
                 height: 200,
