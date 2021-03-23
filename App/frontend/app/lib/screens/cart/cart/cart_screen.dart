@@ -1,7 +1,6 @@
 import 'package:app/components/rounded_button.dart';
 import 'package:app/constants.dart';
 import 'package:app/model/cart.dart';
-import 'package:app/screens/cart/components/body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -47,7 +46,7 @@ class _CartScreenState extends State<CartScreen> {
                 setState(() {
                   demoCarts.removeAt(index);
                   demoCarts.forEach((element) {
-                    print(element.product.name);
+                    print(element.product.naziv);
                   });
                 });
               },
@@ -163,7 +162,7 @@ class CheckOutCard extends StatelessWidget {
   double sumTotal(List<Cart> demoCarts) {
     double total = 0;
     demoCarts.forEach((Cart cart) {
-      total += cart.product.price * cart.numOfItems;
+      total += cart.product.cena * cart.numOfItems;
     });
     return total;
   }

@@ -33,7 +33,7 @@ class CartItemCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              cart.product.name,
+              cart.product.naziv,
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.black,
@@ -43,7 +43,7 @@ class CartItemCard extends StatelessWidget {
             const SizedBox(height: 10),
             Text.rich(
               TextSpan(
-                text: "\$${cart.product.price}",
+                text: "\$${cart.product.cena}",
                 style: TextStyle(color: kPrimaryColor),
                 children: [
                   TextSpan(
