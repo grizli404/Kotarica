@@ -1,3 +1,4 @@
+import 'package:app/screens/cart/cart/cart_screen.dart';
 import 'package:app/screens/home/homeScreen.dart';
 import 'package:app/screens/profile/profile_screen.dart';
 import 'package:flutter/gestures.dart';
@@ -63,7 +64,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               icon: Icon(
                 Icons.shopping_cart_outlined,
               ),
-              onPressed: () {}, // korpa
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CartScreen();
+                    },
+                  ),
+                );
+              }, // korpa
             ),
           ],
         ),

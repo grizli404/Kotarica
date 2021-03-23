@@ -25,43 +25,18 @@ class ProductView extends StatelessWidget {
           crossAxisSpacing: 10.0,
           mainAxisSpacing: 15.0,
           childAspectRatio: 0.8,
-          children: <Widget>[
-            ProductCard(
-                name: 'Proizvod 1',
-                price: '150din',
-                imgPath: 'assets/images/cookiechoco.jpg',
-                added: false,
-                isFavorite: false,
-                context: context),
-            ProductCard(
-                name: 'Proizvod 1',
-                price: '150din',
-                imgPath: 'assets/images/cookiechoco.jpg',
-                added: false,
-                isFavorite: true,
-                context: context),
-            ProductCard(
-                name: 'Proizvod 1',
-                price: '150din',
-                imgPath: 'assets/images/cookiechoco.jpg',
-                added: false,
-                isFavorite: false,
-                context: context),
-            ProductCard(
-                name: 'Proizvod 1',
-                price: '150din',
-                imgPath: 'assets/images/cookiechoco.jpg',
-                added: false,
-                isFavorite: false,
-                context: context),
-            ProductCard(
-                name: 'Proizvod 1',
-                price: '150din',
-                imgPath: 'assets/images/cookiechoco.jpg',
-                added: false,
-                isFavorite: false,
-                context: context),
-          ],
+          children: List.generate(
+            5,
+            (index) {
+              return ProductCard(
+                  name: 'Proizvod 1',
+                  price: '150din',
+                  imgPath: 'assets/images/cookiechoco.jpg',
+                  added: false,
+                  isFavorite: false,
+                  context: context);
+            },
+          ),
         ),
 
         //   SizedBox(height: 15.0)
