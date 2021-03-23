@@ -1,4 +1,6 @@
 // ignore: unused_import
+import 'package:app/model/kategorijeModel.dart';
+import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/home/homeScreen.dart';
 import 'package:app/screens/login/login_screen.dart';
 import 'package:app/screens/profile/profile_screen.dart';
@@ -19,7 +21,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var k = KorisniciModel();
+    //var korisnici = KorisniciModel();
+    //var kategorije = KategorijeModel();
+    //var proizvodi = ProizvodiModel();
     return MaterialApp(
       routes: {
         '/login': (context) => LoginScreen(),

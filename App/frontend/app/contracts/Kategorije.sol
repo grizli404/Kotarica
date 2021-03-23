@@ -5,17 +5,17 @@ contract Kategorije {
     
     struct Kategorija
     {
-        uint id;
+        int id;
+        int idRoditelja;
         string naziv;
     }
 
-    uint public brojKategorija = 0;
+    int public brojKategorija = 0;
 
-    mapping(uint => Kategorija) public kategorije;
+    mapping(int => Kategorija) public kategorije;
 
-    function dodajKategoriju(string memory _naziv) public
-    {
+    function dodajKategoriju(int _idRoditelja, string memory _naziv) public {
         brojKategorija++;
-        kategorije[brojKategorija] = Kategorija(brojKategorija, _naziv);
+        kategorije[brojKategorija] = Kategorija(brojKategorija, _idRoditelja, _naziv);
     }
 }

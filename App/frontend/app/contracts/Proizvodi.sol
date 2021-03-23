@@ -5,40 +5,31 @@ pragma experimental ABIEncoderV2;
 contract Proizvodi{
 
     struct Proizvod{
-        uint id;
-        uint idKorisnika;
-        uint idKategorije;
+        int id;
+        int idKorisnika;
+        int idKategorije;
         string naziv;
         uint kolicina;
+        uint cena;
     }
 
-    uint public brojProizvoda = 0;
+    int public brojProizvoda = 0;
 
-    mapping (uint => Proizvod) public proizvodi;
+    mapping (int => Proizvod) public proizvodi;
+    mapping (int => int[]) proizvodiKorisnika;
 
-    function dodajProizvod(uint _idKorisnika, uint _idKategorije, string memory _naziv, uint _kolicina) public
+    function dodajProizvod(int _idKorisnika, int _idKategorije, string memory _naziv, uint _kolicina, uint _cena) public
     {
         brojProizvoda++;
-        proizvodi[brojProizvoda] = Proizvod(brojProizvoda, _idKorisnika, _idKategorije, _naziv, _kolicina);
+        proizvodi[brojProizvoda] = Proizvod(brojProizvoda, _idKorisnika, _idKategorije, _naziv, _kolicina, _cena);
+        proizvodiKorisnika[_idKorisnika].push(brojProizvoda);
     }
 
-    function dajProizvod (uint _id) public view returns (Proizvod memory)
-    {
-        return proizvodi[_id];
+    function dajProizvodeZaKorisnika(int korisnikID) view public returns(int[] memory) {
+        return proizvodiKorisnika[korisnikID];
     }
 
-    function dajProizvode () public view returns (Proizvod[] memory)
-    {
-        Proizvod[] memory sviProizvodi = new Proizvod[](brojProizvoda);
-        for(uint i = 0; i < brojProizvoda; i++)
-        {
-            Proizvod storage proizvod = proizvodi[i];
-            sviProizvodi[i] = proizvod;
-        }
-        return sviProizvodi;
-    }
-
-    function izmeniKolicinu(uint _id, uint _promenaKolicine) public
+    function izmeniKolicinu(int _id, uint _promenaKolicine) public
     {
         proizvodi[_id].kolicina += _promenaKolicine;
     }

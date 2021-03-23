@@ -45,10 +45,10 @@ class KorisniciModel extends ChangeNotifier{
     await getDeployedCotract();
     
     //await dodavanjeNovogKorisnika("mika@mikic", "mika", "Mika", "Mikic", "mika.mikic@gmail.com", "060987654321", "2/2");
-    int broj = await login("mika@mikic", "mika");
+    /*int broj = await login("mika@mikic", "mika");
     if(broj > 0) {
       print(ulogovaniKorisnik.ime + " " + ulogovaniKorisnik.prezime);
-    }
+    }*/
     
   }
 
