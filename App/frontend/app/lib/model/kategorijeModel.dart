@@ -6,8 +6,7 @@ import 'package:http/http.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
 
-class KategorijeModel extends ChangeNotifier{
-
+class KategorijeModel extends ChangeNotifier {
   List<Kategorija> listaKategorija = [];
   List<Kategorija> trenutnaKategorija = [];
 
@@ -19,7 +18,7 @@ class KategorijeModel extends ChangeNotifier{
   var abiCode;
   EthereumAddress adresaUgovora;
   DeployedContract ugovor;
-  
+
   //F-je u Kategorije.sol
   ContractFunction brojKategorija;
   ContractFunction kategorije;
@@ -36,29 +35,34 @@ class KategorijeModel extends ChangeNotifier{
     await getAbi();
     await getDeployedCotract();
     await dajSveKategorije();
+    print(listaKategorija.length);
     /*if(listaKategorija.length > 0) {
       print(listaKategorija[0].naziv);
     }*/
   }
 
   Future<void> getAbi() async {
-    String abiStringFile = await rootBundle.loadString("src/abis/Kategorije.json");
+    String abiStringFile =
+        await rootBundle.loadString("src/abis/Kategorije.json");
     var jsonAbi = jsonDecode(abiStringFile);
     abiCode = jsonEncode(jsonAbi["abi"]);
 
-    adresaUgovora = EthereumAddress.fromHex(jsonAbi["networks"]["5777"]["address"]);
+    adresaUgovora =
+        EthereumAddress.fromHex(jsonAbi["networks"]["5777"]["address"]);
   }
 
   Future<void> getDeployedCotract() async {
-    ugovor = DeployedContract(ContractAbi.fromJson(abiCode, "kategorije"), adresaUgovora);
-    
+    ugovor = DeployedContract(
+        ContractAbi.fromJson(abiCode, "kategorije"), adresaUgovora);
+
     brojKategorija = ugovor.function("brojKategorija");
     kategorije = ugovor.function("kategorije");
   }
 
   //dajSveKategorije
   Future<void> dajSveKategorije() async {
-    var temp = await client.call(contract: ugovor, function: brojKategorija, params: []);
+    var temp = await client
+        .call(contract: ugovor, function: brojKategorija, params: []);
 
     BigInt tempInt = temp[0];
     int bk = tempInt.toInt(); //ukupan broj kategorija
@@ -67,15 +71,17 @@ class KategorijeModel extends ChangeNotifier{
     int roditelj = 0;
     for (int i = 1; i <= bk; i++) {
       BigInt _id = BigInt.from(i);
-      var kategorija = await client.call(contract: ugovor, function: kategorije, params: [_id]);
+      var kategorija = await client
+          .call(contract: ugovor, function: kategorije, params: [_id]);
 
       tempInt = kategorija[0];
       kat = tempInt.toInt(); //idKategorije
       tempInt = kategorija[1];
       roditelj = tempInt.toInt(); //idRoditelja
-      
-      listaKategorija.add(Kategorija(id: i, idRoditelja: roditelj, naziv: kategorija[2]));
 
+      listaKategorija
+          .add(Kategorija(id: i, idRoditelja: roditelj, naziv: kategorija[2]));
+      notifyListeners();
       //print(kat);
       //print(roditelj);
       //print("-------------");
@@ -85,15 +91,14 @@ class KategorijeModel extends ChangeNotifier{
   void dajKategoriju(int _roditeljKategorija) {
     trenutnaKategorija.clear();
     for (var i = 0; i < listaKategorija.length; i++) {
-      if(listaKategorija[i].idRoditelja == _roditeljKategorija) {
+      if (listaKategorija[i].idRoditelja == _roditeljKategorija) {
         trenutnaKategorija.add(listaKategorija[i]);
       }
     }
   }
-
 }
 
-class Kategorija{
+class Kategorija {
   int id;
   int idRoditelja;
   String naziv;
