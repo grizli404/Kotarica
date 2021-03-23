@@ -1,23 +1,25 @@
-import 'package:app/api/api_login.dart';
+//import 'package:app/api/api_login.dart';
 import 'package:app/components/already_have_an_account_check.dart';
 import 'package:app/components/progress_hud.dart';
 import 'package:app/components/rounded_button.dart';
 import 'package:app/components/rounded_input_field.dart';
 import 'package:app/components/rounded_password_field.dart';
+import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/login_model.dart';
 import 'package:app/screens/home/homeScreen.dart';
 import 'package:app/screens/login/components/background.dart';
 import 'package:app/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:crypt/crypt.dart';
+//import 'package:crypt/crypt.dart';
+import 'package:provider/provider.dart';
 
 class _BodyState extends State<Body> {
   GlobalKey<FormState> globalFormKey = new GlobalKey<FormState>();
   LoginRequestModel requestModel;
   bool isApiCallProcess = false;
   final scaffoldKey;
-
+  var _email, _password;
   _BodyState({this.scaffoldKey});
 
   @override
@@ -36,6 +38,7 @@ class _BodyState extends State<Body> {
   }
 
   Widget _loginSetup(BuildContext context) {
+    KorisniciModel korisnik = Provider.of<KorisniciModel>(context);
     Size size = MediaQuery.of(context).size;
     return Background(
       child: Form(
@@ -59,46 +62,40 @@ class _BodyState extends State<Body> {
             ),
             RoundedInputField(
               hintText: "Your email",
-              onChanged: (input) => requestModel.email = input,
-              validator: (input) => !input.contains("@") ? "Missing @" : null,
+              onChanged: (input) => _email = input,
+              // validator: (input) => !input.contains("@") ? "Missing @" : null,
             ),
             RoundedPasswordField(
-              onChanged: (input) => requestModel.password = input,
+              onChanged: (input) => _password = input,
               validator: (input) => input.length < 3 ? "Too short!" : null,
             ),
             RoundedButton(
               text: "LOGIN",
-              press: () {
+              press: () async {
                 if (validateAndSave()) {
-                  requestModel.password =
-                      Crypt.sha256(requestModel.password).toString();
-                  print(requestModel.password);
+                  //    Crypt.sha256(requestModel.password).toString();
                   setState(() {
                     isApiCallProcess = true;
                   });
-                  APILogin apiService = new APILogin();
-                  apiService.login(requestModel).then((value) {
+                  int id = await korisnik.login(_email, _password);
+                  if (id != 0) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return HomeScreen();
+                      }),
+                    );
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text("uspesno!")));
+                  } else {
                     setState(() {
                       isApiCallProcess = false;
                     });
-                    if (value.token.isNotEmpty) {
-                      final snackBar = SnackBar(
-                        content: Text("Login success!"),
-                      );
-                      scaffoldKey.currentState.showSnackBar(snackBar);
-                    } else {
-                      final snackBar = SnackBar(
-                        content: Text(value.error),
-                      );
-                      scaffoldKey.currentState.showSnackBar(snackBar);
-                    }
-                  });
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return HomeScreen();
-                    }),
-                  );
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text("neuspesno!")));
+                    print("Neuspesan login!");
+                  }
+
                   //print(requestModel.toJson());
                 }
               },
