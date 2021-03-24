@@ -14,6 +14,7 @@ class ProizvodiModel extends ChangeNotifier {
 
   Web3Client client;
 
+  bool isLoading = true;
   var abiCode;
   EthereumAddress adresaUgovora;
   DeployedContract ugovor;
@@ -65,7 +66,7 @@ class ProizvodiModel extends ChangeNotifier {
     int _idKategorije = 0;
     int _kolicina = 0;
     int _cena = 0;
-    for (var i = 1; i <= brojP; i++) {
+    for (var i = brojP; i >= 1; i--) {
       var proizvod = await client.call(contract: ugovor, function: proizvodi, params: [BigInt.from(i)]);
       
       tempInt = proizvod[1];
@@ -82,6 +83,9 @@ class ProizvodiModel extends ChangeNotifier {
         //print(proizvod[3]);
       }
     }
+
+    isLoading = false;
+    notifyListeners();
   }
 }
 

@@ -7,6 +7,7 @@ import 'package:app/screens/profile/profile_screen.dart';
 import 'package:app/screens/signup/signup_screen.dart';
 import 'package:app/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 // ignore: unused_import
 //import 'package:google_fonts/google_fonts.dart';
 
@@ -24,24 +25,31 @@ class MyApp extends StatelessWidget {
     //var korisnici = KorisniciModel();
     //var kategorije = KategorijeModel();
     //var proizvodi = ProizvodiModel();
-    return MaterialApp(
-      routes: {
-        '/login': (context) => LoginScreen(),
-        '/welcome': (context) => WelcomeScreen(),
-        '/signup': (context) => SignUpScreen(),
-        '/home': (context) => HomeScreen(),
-        '/profile': (context) => ProfileScreen(),
-      },
-      debugShowCheckedModeBanner: false,
-      title: 'Kotarica',
-      theme: ThemeData(
-        scaffoldBackgroundColor: kBackgroundColor,
-        primaryColor: kPrimaryColor,
-        accentColor: kPrimaryLightColor,
-        // textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ProizvodiModel()),
+        ChangeNotifierProvider(create: (context) => KategorijeModel()),
+     ],
+      child:
+          MaterialApp(
+        routes: {
+          '/login': (context) => LoginScreen(),
+          '/welcome': (context) => WelcomeScreen(),
+          '/signup': (context) => SignUpScreen(),
+          '/home': (context) => HomeScreen(),
+          '/profile': (context) => ProfileScreen(),
+        },
+        debugShowCheckedModeBanner: false,
+        title: 'Kotarica',
+        theme: ThemeData(
+          scaffoldBackgroundColor: kBackgroundColor,
+          primaryColor: kPrimaryColor,
+          accentColor: kPrimaryLightColor,
+          // textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: WelcomeScreen(),
       ),
-      home: WelcomeScreen(),
     );
   }
 }

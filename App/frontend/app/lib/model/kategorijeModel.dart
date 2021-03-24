@@ -15,6 +15,7 @@ class KategorijeModel extends ChangeNotifier {
 
   Web3Client client;
 
+  bool isLoading = true;
   var abiCode;
   EthereumAddress adresaUgovora;
   DeployedContract ugovor;
@@ -81,10 +82,9 @@ class KategorijeModel extends ChangeNotifier {
 
       listaKategorija
           .add(Kategorija(id: i, idRoditelja: roditelj, naziv: kategorija[2]));
+
+      isLoading = false;
       notifyListeners();
-      //print(kat);
-      //print(roditelj);
-      //print("-------------");
     }
   }
 

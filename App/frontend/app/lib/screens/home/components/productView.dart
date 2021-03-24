@@ -1,11 +1,14 @@
 import 'package:app/components/product_card.dart';
 import 'package:app/constants.dart';
+import 'package:app/model/proizvodiModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
 class ProductView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ProizvodiModel proizvodi = Provider.of<ProizvodiModel>(context);
     return Container(
       //backgroundColor: Color(0xFFFCFAF8),
       //child: ListView(
@@ -26,11 +29,11 @@ class ProductView extends StatelessWidget {
           mainAxisSpacing: 15.0,
           childAspectRatio: 0.8,
           children: List.generate(
-            5,
+            proizvodi.listaProizvoda.length,
             (index) {
               return ProductCard(
-                  name: 'Proizvod 1',
-                  price: '150din',
+                  name: proizvodi.listaProizvoda[index].naziv,
+                  price: proizvodi.listaProizvoda[index].cena.toString(),
                   imgPath: 'assets/images/cookiechoco.jpg',
                   added: false,
                   isFavorite: false,
