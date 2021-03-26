@@ -29,9 +29,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => ProizvodiModel()),
         ChangeNotifierProvider(create: (context) => KategorijeModel()),
-     ],
-      child:
-          MaterialApp(
+      ],
+      child: MaterialApp(
         routes: {
           '/login': (context) => LoginScreen(),
           '/welcome': (context) => WelcomeScreen(),

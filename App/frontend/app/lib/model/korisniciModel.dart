@@ -144,7 +144,7 @@ class KorisniciModel extends ChangeNotifier {
                 _adresa
               ]));
 
-      await login(_username,
+      return await login(_username,
           _password); // kada se uspesno registrovao, odma prijavimo tog korisnika
     }
   }
