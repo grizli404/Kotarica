@@ -1,22 +1,25 @@
+import 'dart:html';
+
 import 'package:app/api/api_signup.dart';
 import 'package:app/components/already_have_an_account_check.dart';
 import 'package:app/components/progress_hud.dart';
 import 'package:app/components/rounded_button.dart';
 import 'package:app/components/rounded_input_field.dart';
 import 'package:app/components/rounded_password_field.dart';
+import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/signup_model.dart';
+import 'package:app/screens/home/homeScreen.dart';
 import 'package:app/screens/login/login_screen.dart';
 import 'package:app/screens/signup/components/background.dart';
 // ignore: unused_import
 import 'package:app/screens/signup/components/or_divider.dart';
 // ignore: unused_import
 import 'package:app/screens/signup/components/social_icon.dart';
-import 'package:app/screens/welcome/welcome_screen.dart';
-import 'package:crypt/crypt.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class Body extends StatefulWidget {
   final scaffoldKey;
@@ -30,16 +33,16 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   GlobalKey<FormState> globalFormKey = new GlobalKey<FormState>();
-  SignupRequestModel requestModel;
   bool isApiCallProcess = false;
   final scaffoldKey;
+
+  String _email, _password, _ime, _prezime, _kontakt, _adresa, _username;
 
   _BodyState({this.scaffoldKey});
 
   @override
   void initState() {
     super.initState();
-    requestModel = new SignupRequestModel();
   }
 
   @override
@@ -52,107 +55,143 @@ class _BodyState extends State<Body> {
   }
 
   Widget _signupSetup(BuildContext context) {
+    KorisniciModel korisnik = Provider.of<KorisniciModel>(context);
     Size size = MediaQuery.of(context).size;
     return Background(
-      child: Form(
-        key: globalFormKey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "SIGN UP",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: size.height * 0.03,
-            ),
-            SvgPicture.asset(
-              "assets/icons/shopping-basket.svg",
-              height: size.height * 0.35,
-            ),
-            SizedBox(
-              height: size.height * 0.03,
-            ),
-            RoundedInputField(
-              hintText: "Your Email",
-              onChanged: (input) => requestModel.email = input,
-              validator: (input) => !input.contains("@") ? "Missing @" : null,
-            ),
-            RoundedPasswordField(
-              onChanged: (input) => requestModel.password = input,
-              validator: (input) => input.length < 3 ? "Too short!" : null,
-            ),
-            RoundedButton(
-              text: "SIGN UP",
-              press: () {
-                if (validateAndSave()) {
-                  requestModel.password =
-                      Crypt.sha256(requestModel.password).toString();
-                  print(requestModel.password);
-                  setState(() {
-                    isApiCallProcess = true;
-                  });
-                  APISignup apiService = new APISignup();
-                  apiService.signup(requestModel).then((value) {
+      child: SingleChildScrollView(
+        child: Form(
+          key: globalFormKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: size.height * 0.03,
+              ),
+              Text(
+                "SIGN UP",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: size.height * 0.03,
+              ),
+              SvgPicture.asset(
+                "assets/icons/shopping-basket.svg",
+                height: size.height * 0.35,
+              ),
+              SizedBox(
+                height: size.height * 0.03,
+              ),
+              RoundedInputField(
+                hintText: "Your Email",
+                onChanged: (input) => _email = input,
+                validator: (input) => !input.contains("@") ? "Missing @" : null,
+              ),
+              RoundedPasswordField(
+                onChanged: (input) => _password = input,
+                validator: (input) => input.length < 3 ? "Too short!" : null,
+              ),
+              RoundedInputField(
+                hintText: "Ime",
+                onChanged: (input) => _ime = input,
+                validator: (input) => !(input.contains(RegExp(
+                        r"([^0-9\.\,\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+)")))
+                    ? "Unesite regularno ime"
+                    : null,
+              ),
+              RoundedInputField(
+                hintText: "Prezime",
+                onChanged: (input) => _prezime = input,
+                validator: (input) => !(input.contains(RegExp(
+                        r"([^0-9\.\,\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+)")))
+                    ? "Unesite regularno prezime"
+                    : null,
+              ),
+              RoundedInputField(
+                hintText: "Kontakt telefon",
+                onChanged: (input) => _kontakt = input,
+                validator: (input) => !(input.contains(RegExp(
+                        r"(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})")))
+                    ? "Unesite regularan kontakt telefon"
+                    : null,
+              ),
+              RoundedInputField(
+                hintText: "Adresa i postanski broj",
+                onChanged: (input) => _adresa = input,
+              ),
+              RoundedButton(
+                text: "SIGN UP",
+                press: () async {
+                  if (validateAndSave()) {
+                    setState(() {
+                      isApiCallProcess = true;
+                    });
+                    _username = _email;
+                    var response = await korisnik.dodavanjeNovogKorisnika(
+                        _username,
+                        _password,
+                        _ime,
+                        _prezime,
+                        _email,
+                        _kontakt,
+                        _adresa);
                     setState(() {
                       isApiCallProcess = false;
                     });
-                    if (value.name.isNotEmpty) {
-                      final snackBar = SnackBar(
-                        content: Text("Signup success!"),
+                    if (response != 0) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return HomeScreen();
+                          },
+                        ),
                       );
-                      scaffoldKey.currentState.showSnackBar(snackBar);
                     } else {
-                      final snackBar = SnackBar(
-                        content: Text("SIGNUP ERROR!"),
-                      );
-                      scaffoldKey.currentState.showSnackBar(snackBar);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Korisnik vec postoji!")));
                     }
-                  });
-                  print(requestModel.toJson());
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return WelcomeScreen();
-                    },
-                  ));
-                }
-              },
-            ),
-            SizedBox(
-              height: size.height * 0.03,
-            ),
-            AlreadyHaveAnAccountCheck(
-              login: false,
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginScreen();
-                    },
+                  }
+                },
+              ),
+              SizedBox(
+                height: size.height * 0.03,
+              ),
+              AlreadyHaveAnAccountCheck(
+                login: false,
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return LoginScreen();
+                      },
+                    ),
+                  );
+                },
+              ),
+              /*OrDivider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SocialIcon(
+                    iconSrc: "assets\icons\facebook.svg",
+                    press: () {},
                   ),
-                );
-              },
-            ),
-            /*OrDivider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SocialIcon(
-                  iconSrc: "assets\icons\facebook.svg",
-                  press: () {},
-                ),
-                SocialIcon(
-                  iconSrc: "assets/icons/twitter.svg",
-                  press: () {},
-                ),
-                SocialIcon(
-                  iconSrc: "assets/icons/google-plus.svg",
-                  press: () {},
-                ),
-              ],
-            ),*/
-          ],
+                  SocialIcon(
+                    iconSrc: "assets/icons/twitter.svg",
+                    press: () {},
+                  ),
+                  SocialIcon(
+                    iconSrc: "assets/icons/google-plus.svg",
+                    press: () {},
+                  ),
+                ],
+              ),*/
+              SizedBox(
+                height: size.height * 0.03,
+              ),
+            ],
+          ),
         ),
       ),
     );
