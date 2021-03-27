@@ -1,5 +1,5 @@
-import 'package:app/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
@@ -9,19 +9,24 @@ class ListenToDrawerEvent extends StatefulWidget {
   @override
   ListenToDrawerEventState createState() {
     return new ListenToDrawerEventState(
-      items: List<String>.generate(5, (i) => "Item $i"),
-    );
+        // items: List<String>.generate(5, (i) => "Item $i"),
+        );
   }
 }
 
 class ListenToDrawerEventState extends State<ListenToDrawerEvent> {
-  final List<String> items;
-  
-  ListenToDrawerEventState({Key key, @required this.items});
+  //final List<String> items;
+
+  //dynamic token = FlutterSession().get('email');
+  zatvoriSesiju() async {
+    await FlutterSession().set('email', '');
+  }
+
+  ListenToDrawerEventState({Key key});
   @override
   Widget build(BuildContext context) {
     KategorijeModel kategorije = Provider.of<KategorijeModel>(context);
-    if(kategorije.isLoading == false){
+    if (kategorije.isLoading == false) {
       kategorije.dajKategoriju(0);
     }
     return Drawer(
@@ -77,6 +82,31 @@ class ListenToDrawerEventState extends State<ListenToDrawerEvent> {
                   ),
                 );
               },
+            ),
+            Padding(
+                padding: EdgeInsets.only(bottom: 5.0),
+                child: Container(color: Color(0xFFEBEBEB), height: 1.0)),
+            Container(
+              height: 80,
+              padding: EdgeInsets.only(left: 15.0),
+              child: InkWell(
+                hoverColor: Colors.grey,
+                //focusColor: Colors.grey,
+                onTap: () {
+                  zatvoriSesiju();
+                  Navigator.pushNamed(context, '/home');
+                },
+                child: Row(
+                  children: [
+                    Text(
+                      'Log out',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ],
+                ),
+              ),
+              //color: Colors.white,
+              alignment: Alignment.centerLeft,
             ),
           ],
         ),

@@ -1,13 +1,22 @@
 import 'package:app/screens/cart/cart/cart_screen.dart';
-import 'package:app/screens/home/homeScreen.dart';
-import 'package:app/screens/profile/profile_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
+    Future procitajPodatke() async {
+      var token = await FlutterSession().get('email');
+      return token.toString();
+    }
+
+    var token;
+    procitajPodatke().then((value) {
+      token = value;
+    });
+
     return AppBar(
       elevation: 0,
       leading: Builder(
@@ -35,31 +44,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   text: 'Kotarica',
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return HomeScreen();
-                          },
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/home');
                     }),
             ),
             IconButton(
-              icon: Icon(
-                Icons.person,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return ProfileScreen();
-                    },
-                  ),
-                );
-              }, // strana za profil
-            ),
+                icon: Icon(
+                  Icons.person,
+                ),
+                onPressed: () {
+                  if (token.toString() != '') {
+                    Navigator.pushNamed(context, '/profile');
+                  } else {
+                    Navigator.pushNamed(context, '/login');
+                  }
+                }),
+            // strana za profil
+
             IconButton(
               icon: Icon(
                 Icons.shopping_cart_outlined,
