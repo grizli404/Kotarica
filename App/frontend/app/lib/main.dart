@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
           // textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: WelcomeScreen(),
+        home: HomeScreen(),
       ),
     );
   }

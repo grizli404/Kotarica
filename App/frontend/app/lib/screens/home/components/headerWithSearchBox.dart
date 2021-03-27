@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants.dart';
@@ -34,13 +35,19 @@ class HeaderWithSearchBox extends StatelessWidget {
             ),
             child: Row(
               children: <Widget>[
-                Text(
-                  'Hello', // dodati ime korisnika
-                  style: Theme.of(context).textTheme.headline5.copyWith(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                FutureBuilder(
+                  future: FlutterSession().get('email'),
+                  builder: (context, snapshot) {
+                    return Text(
+                      snapshot.hasData && snapshot.data != ''
+                          ? 'Hello, ${snapshot.data.toString()}'
+                          : 'Hello',
+                      style: Theme.of(context).textTheme.headline5.copyWith(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    );
+                  },
                 ),
                 Spacer(),
-                // dodati sliku korisnika
               ],
             ),
           ),

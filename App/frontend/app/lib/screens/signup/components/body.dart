@@ -17,6 +17,7 @@ import 'package:app/screens/signup/components/or_divider.dart';
 import 'package:app/screens/signup/components/social_icon.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_session/flutter_session.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -126,6 +127,7 @@ class _BodyState extends State<Body> {
                       isApiCallProcess = true;
                     });
                     _username = _email;
+                    await FlutterSession().set('email', _email);
                     var response = await korisnik.dodavanjeNovogKorisnika(
                         _username,
                         _password,
