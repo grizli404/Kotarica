@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    //var korisnici = KorisniciModel();
+    var korisnici = KorisniciModel();
     //var kategorije = KategorijeModel();
     //var proizvodi = ProizvodiModel();
     return MultiProvider(
