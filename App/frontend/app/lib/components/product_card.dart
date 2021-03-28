@@ -1,5 +1,5 @@
 import 'package:app/constants.dart';
-import 'package:app/screens/products/productDetail.dart';
+import 'package:app/model/cart.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
@@ -11,6 +11,7 @@ class ProductCard extends StatelessWidget {
     @required this.added,
     @required this.isFavorite,
     @required this.context,
+    this.proizvod,
   }) : super(key: key);
 
   final String name;
@@ -19,6 +20,7 @@ class ProductCard extends StatelessWidget {
   final bool added;
   final bool isFavorite;
   final context;
+  final Proizvod proizvod;
 
   @override
   Widget build(BuildContext context) {
@@ -26,20 +28,7 @@ class ProductCard extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
         child: InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return ProductDetail(
-                      assetPath: imgPath,
-                      name: name,
-                      price: price,
-                    );
-                  },
-                ),
-              );
-            },
+            onTap: () {},
             child: Container(
                 width: 150,
                 height: 200,
@@ -95,11 +84,15 @@ class ProductCard extends StatelessWidget {
                           //if (!added) ...[
                           Icon(Icons.shopping_basket,
                               color: kPrimaryColor, size: 12.0),
-                          Text('Dodati u korpu',
-                              style: TextStyle(
-                                  fontFamily: 'Varela',
-                                  color: kPrimaryColor,
-                                  fontSize: 14.0))
+                          FlatButton(
+                              onPressed: () {
+                                dodajJedanProizvodUKorpu(proizvod);
+                              },
+                              child: Text('Dodati u korpu',
+                                  style: TextStyle(
+                                      fontFamily: 'Varela',
+                                      color: kPrimaryColor,
+                                      fontSize: 14.0)))
                           //  ],
                           // if (added) ...[
                           //   Icon(Icons.remove_circle_outline,
