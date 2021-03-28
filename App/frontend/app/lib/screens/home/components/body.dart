@@ -1,4 +1,4 @@
-import 'package:app/screens/home/components/productView.dart';
+import 'package:app/screens/home/components/productContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -17,12 +17,19 @@ class _Body extends State<Body> {
     return Container(
       //height: constraints.maxHeight,
       child: SingleChildScrollView(
+        //padding: EdgeInsets.symmetric(horizontal: 200.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             HeaderWithSearchBox(size: size),
             //SizedBox(height: kDefaultPadding),
-            ProductView(),
+            //ProductView(),
+            ProductContainer(naziv: 'Najnoviji proizvodi'),
+            ProductContainer(naziv: 'Popularni proizvodi'),
+            ProductContainer(naziv: 'Preporuka'),
+            SizedBox(
+              height: 30.0,
+            )
           ],
         ),
       ),
