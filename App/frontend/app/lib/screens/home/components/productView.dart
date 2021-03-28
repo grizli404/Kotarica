@@ -37,7 +37,8 @@ class ProductView extends StatelessWidget {
                   imgPath: 'assets/images/cookiechoco.jpg',
                   added: false,
                   isFavorite: false,
-                  context: context);
+                  context: context,
+                  proizvod: proizvodi.listaProizvoda[index]);
             },
           ),
         ),

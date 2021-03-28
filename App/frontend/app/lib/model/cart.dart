@@ -3,19 +3,23 @@ import 'package:flutter/cupertino.dart';
 
 class Cart {
   final Proizvod product;
-  final int numOfItems;
+  int numOfItems;
 
   Cart({@required this.product, @required this.numOfItems});
 }
 
-List<Cart> demoCarts = [
-  Cart(
-      product: Proizvod(
-          cena: 2,
-          id: 1,
-          idKategorije: 1,
-          idKorisnika: 1,
-          kolicina: 1,
-          naziv: "asdf"),
-      numOfItems: 1)
-];
+List<Cart> demoCarts = [];
+
+void dodajJedanProizvodUKorpu(Proizvod proizvod) {
+  bool ind = true;
+  for (int i = 0; i < demoCarts.length; i++) {
+    if (demoCarts[i].product.id == proizvod.id) {
+      demoCarts[i].numOfItems++;
+      ind = false;
+      break;
+    }
+    if (ind) {
+      demoCarts.add(Cart(numOfItems: 1, product: proizvod));
+    }
+  }
+}
