@@ -45,22 +45,17 @@ contract Korisnici{
         return 0;
     }
 
-    function obrisiKorisnika (int _id) public
-    {
-        korisnici[brojKorisnika].id = korisnici[_id].id;
-        korisnici[_id] = korisnici[brojKorisnika];
-        Korisnik memory k = Korisnik(0, "", "", "", "", "", "");
-        korisnici[brojKorisnika] = k;
-        brojKorisnika--;
-    }
-
-    function izmeniUsername (int _id, string memory _username) public
-    {
-        korisnici[_id].mejl = _username;
-    }
-
-    function izmeniPassword (int _id, string memory _password) public
+    //da se zavrsi
+    /*function izmeniPassword (int _id, string memory _stariPassword, string memory _noviPassword) public
     {
         korisnici[_id].password = _password;
+    }*/
+
+    function izmeniKorisnika (int _id, string memory _ime, string memory _prezime, string memory _broj, string memory _adresa) public
+    {
+        korisnici[_id].ime = _ime;
+        korisnici[_id].prezime = _prezime;
+        korisnici[_id].brojTelefona = _broj;
+        korisnici[_id].adresa = _adresa;
     }
 }
