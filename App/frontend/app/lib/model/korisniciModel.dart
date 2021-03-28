@@ -26,6 +26,7 @@ class KorisniciModel extends ChangeNotifier {
   //F-je na ethereumu
   ContractFunction brojKorisnika;
   ContractFunction korisnici;
+  ContractFunction korisniciMail;
   ContractFunction logovanje;
   ContractFunction proveriUsername;
   ContractFunction dodajKorisnika;
@@ -44,6 +45,8 @@ class KorisniciModel extends ChangeNotifier {
     await getAbi();
     await getCredentials();
     await getDeployedCotract();
+    //Korisnik k = await vratiKorisnikaMail("mika.mikic@gmail.com");
+    //print(k.ime);
 
     //await dodavanjeNovogKorisnika("mika@mikic", "mika", "Mika", "Mikic", "mika.mikic@gmail.com", "060987654321", "2/2");
     /*int broj = await login("mika@mikic", "mika");
@@ -78,6 +81,7 @@ class KorisniciModel extends ChangeNotifier {
 
     brojKorisnika = ugovor.function("brojKorisnika");
     korisnici = ugovor.function("korisnici");
+    korisniciMail = ugovor.function("korisniciMail");
     logovanje = ugovor.function("prijavljivanje");
     proveriUsername = ugovor.function("proveriUsername");
     dodajKorisnika = ugovor.function("dodajKorisnika");
@@ -110,21 +114,20 @@ class KorisniciModel extends ChangeNotifier {
 
       ulogovaniKorisnik = Korisnik(
           id: _id,
-          username: k[1],
+          mail: k[1],
           password: k[2],
           ime: k[3],
           prezime: k[4],
-          mail: k[5],
-          brojTelefona: k[6],
-          adresa: k[7]);
+          brojTelefona: k[5],
+          adresa: k[6]);
     }
   }
 
   //Registracija
   //dodavanjeNovogKorisnika(String)
-  dodavanjeNovogKorisnika(String _username, String _password, String _ime,
-      String _prezime, String _mail, String _broj, String _adresa) async {
-    int posotoji = await proveraDaLiPostojiUsername(_username);
+  dodavanjeNovogKorisnika(String _mail, String _password, String _ime,
+      String _prezime, String _broj, String _adresa) async {
+    int posotoji = await proveraDaLiPostojiUsername(_mail);
 
     if (posotoji == 1) {
       // znaci da ne postoji taj username
@@ -135,16 +138,15 @@ class KorisniciModel extends ChangeNotifier {
               contract: ugovor,
               function: dodajKorisnika,
               parameters: [
-                _username,
+                _mail,
                 _password,
                 _ime,
                 _prezime,
-                _mail,
                 _broj,
                 _adresa
               ]));
 
-      return await login(_username,
+      return await login(_mail,
           _password); // kada se uspesno registrovao, odma prijavimo tog korisnika
     }
   }
@@ -156,25 +158,46 @@ class KorisniciModel extends ChangeNotifier {
     BigInt tempInt = k[0];
     return tempInt.toInt();
   }
+
+  
+  Future<Korisnik> vratiKorisnikaMail(String mail) async {
+    if (mail != "") {
+      var k = await client.call(
+          contract: ugovor, function: korisniciMail, params: [mail]);
+
+      BigInt bigId = k[0];
+      int _id = bigId.toInt();
+      if(_id != 0) {
+        return Korisnik(
+          id: _id,
+          mail: k[1],
+          password: k[2],
+          ime: k[3],
+          prezime: k[4],
+          brojTelefona: k[5],
+          adresa: k[6]);
+      }
+    }
+  }
+  
 }
 
 class Korisnik {
   int id;
-  String username;
+  String mail;
   String password;
   String ime;
   String prezime;
-  String mail;
   String brojTelefona;
   String adresa;
 
   Korisnik(
       {this.id,
-      this.username,
+      this.mail,
       this.password,
       this.ime,
       this.prezime,
-      this.mail,
       this.brojTelefona,
-      this.adresa});
+      this.adresa
+    });
 }

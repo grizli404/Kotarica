@@ -129,11 +129,10 @@ class _BodyState extends State<Body> {
                     _username = _email;
                     await FlutterSession().set('email', _email);
                     var response = await korisnik.dodavanjeNovogKorisnika(
-                        _username,
+                        _email,
                         _password,
                         _ime,
                         _prezime,
-                        _email,
                         _kontakt,
                         _adresa);
                     setState(() {
