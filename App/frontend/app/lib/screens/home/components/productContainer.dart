@@ -51,7 +51,7 @@ Widget labelContainer(String labelVal) {
 
 Widget appsContainer(ProizvodiModel proizvodi, BuildContext context) {
   return Container(
-    height: 190.0,
+    height: 220.0,
     //200.0,
     child: ListView.builder(
       scrollDirection: Axis.horizontal,
@@ -64,7 +64,8 @@ Widget appsContainer(ProizvodiModel proizvodi, BuildContext context) {
             imgPath: 'assets/images/cookiechoco.jpg',
             added: false,
             isFavorite: false,
-            context: context);
+            context: context,
+            proizvod: proizvodi.listaProizvoda[index]);
       },
     ),
   );
