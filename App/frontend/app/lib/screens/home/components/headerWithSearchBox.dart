@@ -1,3 +1,5 @@
+import 'package:app/model/proizvodiModel.dart';
+import 'package:app/model/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,10 +10,14 @@ class HeaderWithSearchBox extends StatelessWidget {
   const HeaderWithSearchBox({
     Key key,
     @required this.size,
+    this.displayProducts,
+    this.searchController,
+    this.proizvodi,
   }) : super(key: key);
-
+  final displayProducts;
   final Size size;
-
+  final TextEditingController searchController;
+  final List<Proizvod> proizvodi;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -86,7 +92,14 @@ class HeaderWithSearchBox extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SvgPicture.asset('assets/icons/search.svg'),
+                  GestureDetector(
+                    child: SvgPicture.asset('assets/icons/search.svg'),
+                    onTap: () {
+                      List<Proizvod> lista =
+                          searchFunction(searchController.text, proizvodi);
+                      displayProducts(lista);
+                    },
+                  )
                 ],
               ),
             ),

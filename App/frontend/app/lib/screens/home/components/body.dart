@@ -1,18 +1,24 @@
+import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/home/components/productContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
 //import '../../../constants.dart';
 import 'headerWithSearchBox.dart';
 
 class Body extends StatefulWidget {
+  final proizvodi = ProizvodiModel().listaProizvoda;
   @override
-  _Body createState() => _Body();
+  _Body createState() => _Body(listaProizvoda: proizvodi);
 }
 
 class _Body extends State<Body> {
+  _Body({this.listaProizvoda});
+  List<Proizvod> listaProizvoda;
   @override
   Widget build(BuildContext context) {
+    var proizvodi = Provider.of<ProizvodiModel>(context);
     Size size = MediaQuery.maybeOf(context).size;
     return Container(
       //height: constraints.maxHeight,
@@ -21,7 +27,12 @@ class _Body extends State<Body> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            HeaderWithSearchBox(size: size),
+            HeaderWithSearchBox(
+              size: size,
+              displayProducts: displayProducts,
+              searchController: TextEditingController(),
+              proizvodi: proizvodi.listaProizvoda,
+            ),
             //SizedBox(height: kDefaultPadding),
             //ProductView(),
             ProductContainer(naziv: 'Najnoviji proizvodi'),
@@ -34,5 +45,11 @@ class _Body extends State<Body> {
         ),
       ),
     );
+  }
+
+  void displayProducts(List<Proizvod> displayLista) {
+    setState(() {
+      this.listaProizvoda = displayLista;
+    });
   }
 }

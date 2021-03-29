@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
     //var proizvodi = ProizvodiModel();
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => KorisniciModel()),
         ChangeNotifierProvider(create: (context) => ProizvodiModel()),
         ChangeNotifierProvider(create: (context) => KategorijeModel()),
       ],
