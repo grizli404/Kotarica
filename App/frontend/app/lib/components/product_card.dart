@@ -1,5 +1,7 @@
 import 'package:app/constants.dart';
 import 'package:app/model/cart.dart';
+import 'package:app/model/proizvodiModel.dart';
+import 'package:app/screens/products/productDetail.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
@@ -28,7 +30,20 @@ class ProductCard extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
         child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ProductDetail(
+                      assetPath: imgPath,
+                      name: name,
+                      price: price,
+                    );
+                  },
+                ),
+              );
+            },
             child: Container(
                 width: 150,
                 height: 200,
@@ -84,28 +99,40 @@ class ProductCard extends StatelessWidget {
                           //if (!added) ...[
                           Icon(Icons.shopping_basket,
                               color: kPrimaryColor, size: 12.0),
-                          FlatButton(
-                              onPressed: () {
-                                dodajJedanProizvodUKorpu(proizvod);
-                              },
-                              child: Text('Dodati u korpu',
-                                  style: TextStyle(
-                                      fontFamily: 'Varela',
-                                      color: kPrimaryColor,
-                                      fontSize: 14.0)))
+                          MaterialButton(
+                            onPressed: () {
+                              dodajJedanProizvodUKorpu(proizvod);
+                            },
+                            child: Text('Dodati u korpu',
+                                style: TextStyle(
+                                    fontFamily: 'Varela',
+                                    color: kPrimaryColor,
+                                    fontSize: 14.0)),
+                          ),
                           //  ],
                           // if (added) ...[
-                          //   Icon(Icons.remove_circle_outline,
-                          //       color: kPrimaryColor, size: 12.0),
-                          //   Text('3',
-                          //       style: TextStyle(
-                          //           fontFamily: 'Varela',
-                          //           color: kPrimaryColor,
-                          //           fontWeight: FontWeight.bold,
-                          //           fontSize: 12.0)),
-                          //   Icon(Icons.add_circle_outline,
-                          //       color: kPrimaryColor, size: 12.0),
+
                           // ]
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(Icons.remove_circle_outline,
+                              color: kPrimaryColor, size: 12.0),
+                          Text('3',
+                              style: TextStyle(
+                                  fontFamily: 'Varela',
+                                  color: kPrimaryColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12.0)),
+                          Icon(Icons.add_circle_outline,
+                              color: kPrimaryColor, size: 12.0),
                         ],
                       ),
                     ),
