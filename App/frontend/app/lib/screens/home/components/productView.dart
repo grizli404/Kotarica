@@ -1,4 +1,5 @@
 import 'package:app/components/product_card.dart';
+import 'package:app/components/responsive_layout.dart';
 import 'package:app/constants.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:flutter/material.dart';
@@ -26,11 +27,13 @@ class ProductView extends StatelessWidget {
       child: Container(
         child: GridView.count(
           physics: NeverScrollableScrollPhysics(),
-          crossAxisCount: (MediaQuery.of(context).size.width / 180.0).round(),
+          crossAxisCount: ResponsiveLayout.isIphone(context)
+              ? (MediaQuery.of(context).size.width / 180).round()
+              : (MediaQuery.of(context).size.width / 250).round(),
           primary: false,
-          crossAxisSpacing: 10.0,
-          mainAxisSpacing: 15.0,
-          childAspectRatio: 0.8,
+          crossAxisSpacing: 5.0,
+          mainAxisSpacing: 10.0,
+          childAspectRatio: ResponsiveLayout.isIphone(context) ? 0.7 : 0.8,
           children: List.generate(
             listaProizvoda.length,
             (index) {

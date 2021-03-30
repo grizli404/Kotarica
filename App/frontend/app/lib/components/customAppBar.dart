@@ -1,3 +1,4 @@
+import 'package:app/components/responsive_layout.dart';
 import 'package:app/screens/cart/cart/cart_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -19,17 +20,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       elevation: 0,
-      leading: Builder(
-        builder: (BuildContext context) {
-          return IconButton(
-            icon: SvgPicture.asset('assets/icons/menu.svg'),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-          );
-        },
-      ),
+      leading: ResponsiveLayout.isIphone(context)
+          ? Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: SvgPicture.asset('assets/icons/menu.svg'),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  tooltip:
+                      MaterialLocalizations.of(context).openAppDrawerTooltip,
+                );
+              },
+            )
+          : null,
       actions: [
         Row(
           children: [

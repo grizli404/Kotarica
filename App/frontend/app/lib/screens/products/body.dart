@@ -74,7 +74,7 @@ class _BodyState extends State<Body> {
                   },
                   child: Center(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
+                      width: MediaQuery.of(context).size.width * 0.3,
                       height: 50.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25.0),
@@ -117,7 +117,7 @@ class _BodyState extends State<Body> {
                   },
                   child: Center(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
+                      width: MediaQuery.of(context).size.width * 0.3,
                       height: 50.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25.0),
