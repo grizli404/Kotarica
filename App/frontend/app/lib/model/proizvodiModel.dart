@@ -22,7 +22,7 @@ class ProizvodiModel extends ChangeNotifier {
   ContractFunction brojProizvoda;
   ContractFunction proizvodi;
   ContractFunction dodajProizvod;
-  ContractFunction dajProizvodeZaKorisnika;
+  ContractFunction proizvodiKorisnika;
 
   ProizvodiModel() {
     inicijalnoSetovanje();
@@ -53,7 +53,7 @@ class ProizvodiModel extends ChangeNotifier {
     brojProizvoda = ugovor.function("brojProizvoda");
     proizvodi = ugovor.function("proizvodi");
     dodajProizvod = ugovor.function("dodajProizvod");
-    dajProizvodeZaKorisnika = ugovor.function("dajProizvodeZaKorisnika");
+    proizvodiKorisnika = ugovor.function("dajProizvodeZaKorisnika");
   }
 
   Future<void> dajSveProizvode() async {
@@ -86,6 +86,68 @@ class ProizvodiModel extends ChangeNotifier {
 
     isLoading = false;
     notifyListeners();
+  }
+
+  List<Proizvod> dajProizvodeZaKorisnika(int _idKorisnika) {
+    List<Proizvod> proizvodiKor = [];
+
+    if(listaProizvoda.length > 0) {
+      for (var i = 0; i < listaProizvoda.length; i++) {
+        if(listaProizvoda[i].idKorisnika == _idKorisnika) {
+          proizvodiKor.add(listaProizvoda[i]);
+        }
+      }
+    }
+    /*
+    List<dynamic> idPr = await client.call(contract: ugovor, function: proizvodiKorisnika, params: [BigInt.from(idKorisnika)]);
+    print(idPr[0][2]);
+
+    if(idPr[0].length > 0) { //Ako taj korisnik ima neki proizvd
+      BigInt big;
+      int _idKat;
+      int _kol;
+      int _cena;
+      proizvodiKor.clear();
+      for (var i = 0; i < idPr[0].length; i++) {
+        var proizvod = await client.call(contract: ugovor, function: proizvodi, params: [BigInt.from(idPr[0][i])]);
+
+        big = proizvod[2];
+        _idKat = big.toInt();
+        big = proizvod[4];
+        _kol = big.toInt();
+        big = proizvod[5];
+        _cena = big.toInt();
+
+        proizvodiKor.add(
+          Proizvod(
+            id: idPr[i],
+            idKorisnika: idKorisnika,
+            idKategorije: _idKat,
+            naziv: proizvod[3],
+            kolicina: _kol,
+            cena: _cena
+          )
+        );
+
+        print(proizvod[3]);
+      } //Dodali smo sve proizvode datog korisnika u listu
+    }
+    */
+    return proizvodiKor;
+  }
+
+  List<Proizvod> dajProizvodeZaKategoriju(int _idKategorije) {
+    List<Proizvod> proizvodiKat = [];
+
+    if(listaProizvoda.length > 0) {
+      for (var i = 0; i < listaProizvoda.length; i++) {
+        if(listaProizvoda[i].idKategorije == _idKategorije) {
+          proizvodiKat.add(listaProizvoda[i]);
+          print(proizvodiKat[proizvodiKat.length - 1].naziv);
+        }
+      }
+    }
+    return proizvodiKat;
   }
 }
 
