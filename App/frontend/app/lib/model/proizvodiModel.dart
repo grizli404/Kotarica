@@ -39,17 +39,20 @@ class ProizvodiModel extends ChangeNotifier {
   }
 
   Future<void> getAbi() async {
-    String abiStringFile = await rootBundle.loadString("src/abis/Proizvodi.json");
+    String abiStringFile =
+        await rootBundle.loadString("src/abis/Proizvodi.json");
     var jsonAbi = jsonDecode(abiStringFile);
     abiCode = jsonEncode(jsonAbi["abi"]);
 
-    adresaUgovora = EthereumAddress.fromHex(jsonAbi["networks"]["5777"]["address"]);
+    adresaUgovora =
+        EthereumAddress.fromHex(jsonAbi["networks"]["5777"]["address"]);
     //print(adresaUgovora);
   }
 
   Future<void> getDeployedCotract() async {
-    ugovor = DeployedContract(ContractAbi.fromJson(abiCode, "Proizvodi"), adresaUgovora);
-    
+    ugovor = DeployedContract(
+        ContractAbi.fromJson(abiCode, "Proizvodi"), adresaUgovora);
+
     brojProizvoda = ugovor.function("brojProizvoda");
     proizvodi = ugovor.function("proizvodi");
     dodajProizvod = ugovor.function("dodajProizvod");
@@ -57,7 +60,8 @@ class ProizvodiModel extends ChangeNotifier {
   }
 
   Future<void> dajSveProizvode() async {
-    var temp = await client.call(contract: ugovor, function: brojProizvoda, params: []);
+    var temp = await client
+        .call(contract: ugovor, function: brojProizvoda, params: []);
 
     BigInt tempInt = temp[0];
     int brojP = tempInt.toInt();
@@ -67,8 +71,9 @@ class ProizvodiModel extends ChangeNotifier {
     int _kolicina = 0;
     int _cena = 0;
     for (var i = brojP; i >= 1; i--) {
-      var proizvod = await client.call(contract: ugovor, function: proizvodi, params: [BigInt.from(i)]);
-      
+      var proizvod = await client.call(
+          contract: ugovor, function: proizvodi, params: [BigInt.from(i)]);
+
       tempInt = proizvod[1];
       _idKorisnika = tempInt.toInt();
       tempInt = proizvod[2];
@@ -77,9 +82,15 @@ class ProizvodiModel extends ChangeNotifier {
       _kolicina = tempInt.toInt();
       tempInt = proizvod[5];
       _cena = tempInt.toInt();
-      
-      if(_idKorisnika > 0) {
-        listaProizvoda.add(Proizvod(id: i, idKorisnika: _idKorisnika, idKategorije: _idKategorije, naziv: proizvod[3], kolicina: _kolicina, cena: _cena));
+
+      if (_idKorisnika > 0) {
+        listaProizvoda.add(Proizvod(
+            id: i,
+            idKorisnika: _idKorisnika,
+            idKategorije: _idKategorije,
+            naziv: proizvod[3],
+            kolicina: _kolicina,
+            cena: _cena));
         //print(proizvod[3]);
       }
     }
@@ -91,9 +102,9 @@ class ProizvodiModel extends ChangeNotifier {
   List<Proizvod> dajProizvodeZaKorisnika(int _idKorisnika) {
     List<Proizvod> proizvodiKor = [];
 
-    if(listaProizvoda.length > 0) {
+    if (listaProizvoda.length > 0) {
       for (var i = 0; i < listaProizvoda.length; i++) {
-        if(listaProizvoda[i].idKorisnika == _idKorisnika) {
+        if (listaProizvoda[i].idKorisnika == _idKorisnika) {
           proizvodiKor.add(listaProizvoda[i]);
         }
       }
@@ -139,9 +150,9 @@ class ProizvodiModel extends ChangeNotifier {
   List<Proizvod> dajProizvodeZaKategoriju(int _idKategorije) {
     List<Proizvod> proizvodiKat = [];
 
-    if(listaProizvoda.length > 0) {
+    if (listaProizvoda.length > 0) {
       for (var i = 0; i < listaProizvoda.length; i++) {
-        if(listaProizvoda[i].idKategorije == _idKategorije) {
+        if (listaProizvoda[i].idKategorije == _idKategorije) {
           proizvodiKat.add(listaProizvoda[i]);
           print(proizvodiKat[proizvodiKat.length - 1].naziv);
         }
@@ -159,6 +170,11 @@ class Proizvod {
   int kolicina;
   int cena;
 
-  Proizvod({this.id, this.idKorisnika, this.idKategorije, this.naziv, this.kolicina, this.cena});
+  Proizvod(
+      {this.id,
+      this.idKorisnika,
+      this.idKategorije,
+      this.naziv,
+      this.kolicina,
+      this.cena});
 }
-

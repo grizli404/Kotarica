@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 
 import 'constants.dart';
 import 'model/korisniciModel.dart';
+import 'screens/profile/my_profile_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
           '/welcome': (context) => WelcomeScreen(),
           '/signup': (context) => SignUpScreen(),
           '/home': (context) => HomeScreen(),
-          '/profile': (context) => ProfileScreen(),
+          '/profile': (context) => MyProfileScreen(),
         },
         debugShowCheckedModeBanner: false,
         title: 'Kotarica',

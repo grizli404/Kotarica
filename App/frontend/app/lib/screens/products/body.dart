@@ -3,12 +3,15 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
+import '../../model/cart.dart';
+import '../../model/proizvodiModel.dart';
 import 'components/rating.dart';
 
 class Body extends StatefulWidget {
   final assetPath, price, name;
+  final Proizvod proizvod;
 
-  Body({this.assetPath, this.price, this.name});
+  Body({this.assetPath, this.price, this.name, @required this.proizvod});
 
   @override
   _BodyState createState() => _BodyState();
@@ -67,14 +70,7 @@ class _BodyState extends State<Body> {
                 InkWell(
                   // dodaj u korpu
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return null;
-                        },
-                      ),
-                    );
+                    dodajJedanProizvodUKorpu(widget.proizvod);
                   },
                   child: Center(
                     child: Container(
