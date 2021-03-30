@@ -1,4 +1,5 @@
 import 'package:app/components/product_card.dart';
+import 'package:app/components/responsive_layout.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,9 @@ class ProductContainer extends StatelessWidget {
     return Material(
       color: kBackgroundColor,
       child: ListView(
+        padding: !ResponsiveLayout.isMacbook(context)
+            ? EdgeInsets.symmetric(horizontal: 0.0)
+            : EdgeInsets.only(left: 40.0, right: 350.0),
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         children: <Widget>[
@@ -52,7 +56,6 @@ Widget labelContainer(String labelVal) {
 Widget appsContainer(ProizvodiModel proizvodi, BuildContext context) {
   return Container(
     height: 220.0,
-    //200.0,
     child: ListView.builder(
       scrollDirection: Axis.horizontal,
       shrinkWrap: true,

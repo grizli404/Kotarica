@@ -1,3 +1,4 @@
+import 'package:app/components/responsive_layout.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/model/search.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,9 @@ class HeaderWithSearchBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: kDefaultPadding * 2.5),
-      height: size.height * 0.2,
+      height: ResponsiveLayout.isIphone(context)
+          ? size.height * 0.2
+          : size.height * 0.09,
       child: Stack(
         children: <Widget>[
           Container(
@@ -35,30 +38,40 @@ class HeaderWithSearchBox extends StatelessWidget {
             decoration: BoxDecoration(
               color: kPrimaryColor,
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(36),
-                bottomRight: Radius.circular(36),
+                bottomLeft: ResponsiveLayout.isIphone(context)
+                    ? Radius.circular(36)
+                    : Radius.zero,
+                bottomRight: ResponsiveLayout.isIphone(context)
+                    ? Radius.circular(36)
+                    : Radius.zero,
               ),
             ),
             child: Row(
               children: <Widget>[
-                FutureBuilder(
-                  future: FlutterSession().get('email'),
-                  builder: (context, snapshot) {
-                    return Text(
-                      snapshot.hasData && snapshot.data != ''
-                          ? 'Hello, ${snapshot.data.toString()}'
-                          : 'Hello',
-                      style: Theme.of(context).textTheme.headline5.copyWith(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    );
-                  },
-                ),
+                ResponsiveLayout.isIphone(context)
+                    ? FutureBuilder(
+                        future: FlutterSession().get('email'),
+                        builder: (context, snapshot) {
+                          return Text(
+                            snapshot.hasData && snapshot.data != ''
+                                ? 'Hello, ${snapshot.data.toString()}'
+                                : 'Hello',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5
+                                .copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                          );
+                        },
+                      )
+                    : Text(''),
                 Spacer(),
               ],
             ),
           ),
           Positioned(
-            bottom: 0,
+            bottom: ResponsiveLayout.isIphone(context) ? 0 : null,
             left: 0,
             right: 0,
             child: Container(
@@ -82,7 +95,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                   Expanded(
                     child: TextField(
                       controller: searchController,
-                      onChanged: (value) {}, // funkcija za pretragu
+                      onChanged: (value) {},
                       decoration: InputDecoration(
                         hintText: 'Pretraga',
                         hintStyle: TextStyle(
