@@ -81,6 +81,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
+                      controller: searchController,
                       onChanged: (value) {}, // funkcija za pretragu
                       decoration: InputDecoration(
                         hintText: 'Pretraga',

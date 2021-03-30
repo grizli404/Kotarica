@@ -1,5 +1,6 @@
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/home/components/productContainer.dart';
+import 'package:app/screens/home/components/productView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ class Body extends StatefulWidget {
 class _Body extends State<Body> {
   _Body({this.listaProizvoda});
   List<Proizvod> listaProizvoda;
+  bool _isSearchState = false;
   @override
   Widget build(BuildContext context) {
     var proizvodi = Provider.of<ProizvodiModel>(context);
@@ -27,20 +29,32 @@ class _Body extends State<Body> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            HeaderWithSearchBox(
-              size: size,
-              displayProducts: displayProducts,
-              searchController: TextEditingController(),
-              proizvodi: proizvodi.listaProizvoda,
-            ),
-            //SizedBox(height: kDefaultPadding),
-            //ProductView(),
-            ProductContainer(naziv: 'Najnoviji proizvodi'),
-            ProductContainer(naziv: 'Popularni proizvodi'),
-            ProductContainer(naziv: 'Preporuka'),
-            SizedBox(
-              height: 30.0,
-            )
+            if (_isSearchState == false) ...[
+              HeaderWithSearchBox(
+                size: size,
+                displayProducts: displayProducts,
+                searchController: TextEditingController(),
+                proizvodi: proizvodi.listaProizvoda,
+              ),
+              //SizedBox(height: kDefaultPadding),
+              //ProductView(),
+              ProductContainer(naziv: 'Najnoviji proizvodi'),
+              ProductContainer(naziv: 'Popularni proizvodi'),
+              ProductContainer(naziv: 'Preporuka'),
+              SizedBox(
+                height: 30.0,
+              ),
+            ] else if (_isSearchState == true) ...[
+              HeaderWithSearchBox(
+                size: size,
+                displayProducts: displayProducts,
+                searchController: TextEditingController(),
+                proizvodi: proizvodi.listaProizvoda,
+              ),
+              ProductView(
+                listaProizvoda: listaProizvoda,
+              ),
+            ],
           ],
         ),
       ),
@@ -49,6 +63,7 @@ class _Body extends State<Body> {
 
   void displayProducts(List<Proizvod> displayLista) {
     setState(() {
+      _isSearchState = true;
       this.listaProizvoda = displayLista;
     });
   }
