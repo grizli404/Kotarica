@@ -6,6 +6,9 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 class ProductView extends StatelessWidget {
+  const ProductView({this.listaProizvoda});
+  final List<Proizvod> listaProizvoda;
+
   @override
   Widget build(BuildContext context) {
     ProizvodiModel proizvodi = Provider.of<ProizvodiModel>(context);
@@ -29,16 +32,16 @@ class ProductView extends StatelessWidget {
           mainAxisSpacing: 15.0,
           childAspectRatio: 0.8,
           children: List.generate(
-            proizvodi.listaProizvoda.length,
+            listaProizvoda.length,
             (index) {
               return ProductCard(
-                  name: proizvodi.listaProizvoda[index].naziv,
-                  price: proizvodi.listaProizvoda[index].cena.toString(),
+                  name: listaProizvoda[index].naziv,
+                  price: listaProizvoda[index].cena.toString(),
                   imgPath: 'assets/images/cookiechoco.jpg',
                   added: false,
                   isFavorite: false,
                   context: context,
-                  proizvod: proizvodi.listaProizvoda[index]);
+                  proizvod: listaProizvoda[index]);
             },
           ),
         ),
