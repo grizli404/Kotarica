@@ -86,6 +86,7 @@ class _BodyState extends State<Body> {
                 hintText: "Your Email",
                 onChanged: (input) => _email = input,
                 validator: (input) => !input.contains("@") ? "Missing @" : null,
+                icon: Icons.mail_rounded,
               ),
               RoundedPasswordField(
                 onChanged: (input) => _password = input,
@@ -114,10 +115,12 @@ class _BodyState extends State<Body> {
                         r"(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})")))
                     ? "Unesite regularan kontakt telefon"
                     : null,
+                icon: Icons.phone,
               ),
               RoundedInputField(
                 hintText: "Adresa i postanski broj",
                 onChanged: (input) => _adresa = input,
+                icon: Icons.location_city_rounded,
               ),
               RoundedButton(
                 text: "SIGN UP",
@@ -129,12 +132,7 @@ class _BodyState extends State<Body> {
                     _username = _email;
                     await FlutterSession().set('email', _email);
                     var response = await korisnik.dodavanjeNovogKorisnika(
-                        _email,
-                        _password,
-                        _ime,
-                        _prezime,
-                        _kontakt,
-                        _adresa);
+                        _email, _password, _ime, _prezime, _kontakt, _adresa);
                     setState(() {
                       isApiCallProcess = false;
                     });
