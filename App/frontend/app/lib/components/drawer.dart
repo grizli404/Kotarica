@@ -1,4 +1,5 @@
 import 'package:app/components/responsive_layout.dart';
+import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/products/products_by_category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
@@ -23,6 +24,7 @@ class ListenToDrawerEventState extends State<ListenToDrawerEvent> {
   @override
   Widget build(BuildContext context) {
     KategorijeModel kategorije = Provider.of<KategorijeModel>(context);
+
     if (kategorije.isLoading == false) {
       kategorije.dajKategoriju(0);
     }
@@ -38,6 +40,7 @@ class ListenToDrawerEventState extends State<ListenToDrawerEvent> {
 }
 
 Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
+  ProizvodiModel proizvodi = ProizvodiModel();
   return Container(
     color:
         ResponsiveLayout.isIphone(context) ? kBackgroundColor : kPrimaryColor,
@@ -91,8 +94,11 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                     MaterialPageRoute(
                       builder: (context) {
                         return ProductByCategory(
-                            category:
-                                '${kategorije.trenutnaKategorija[index].naziv}');
+                          listaProizvoda: proizvodi.dajProizvodeZaKategoriju(
+                              kategorije.trenutnaKategorija[index].id),
+                          category:
+                              '${kategorije.trenutnaKategorija[index].naziv}',
+                        );
                       },
                     ),
                   );
