@@ -1,13 +1,19 @@
+import 'package:app/model/proizvodiModel.dart';
+import 'package:app/screens/home/components/productContainer.dart';
+import 'package:app/screens/home/components/productView.dart';
+
 import '../../constants.dart';
 
 import 'package:flutter/material.dart';
 
 class ProductByCategory extends StatelessWidget {
   final String category;
+  final List<Proizvod> listaProizvoda;
 
   const ProductByCategory({
     Key key,
     @required this.category,
+    this.listaProizvoda,
   }) : super(key: key);
 
   @override
@@ -24,7 +30,14 @@ class ProductByCategory extends StatelessWidget {
       body: Container(
         margin: EdgeInsets.all(30),
         child: Row(
-          children: [],
+          children: [
+            // ProductContainer(
+            //   proizvodi: listaProizvoda,
+            // )
+            ProductView(
+              listaProizvoda: listaProizvoda,
+            )
+          ],
         ),
       ),
     );
