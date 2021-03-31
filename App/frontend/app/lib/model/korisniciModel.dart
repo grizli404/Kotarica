@@ -13,7 +13,7 @@ class KorisniciModel extends ChangeNotifier {
   final String wsUrl = "ws://127.0.0.1:7545/";
 
   final String privatniKljuc =
-      "d896ec869580b5da9f00731fc755d749b3299d6c7df519bb3dda03ae441509ae";
+      "7c95adc131db0e26e4197d454dd829f493b64d69be2105cb31dcb8569b10f521";
   var abiCode; //ovde ce da bude smesten json file iz src/abis/korisnici.json
   EthereumAddress adresaUgovora;
 
