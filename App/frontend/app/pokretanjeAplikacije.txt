@@ -1,0 +1,9 @@
+- u Ganache SERVER promeniti HOSTNAME na adresu za WiFi ili Ethernet
+- u projektu u svakom fajlu za model promeniti rpcUrl i wsUrl 
+	na gore promenjenu adresu, port ostaje isti
+- u truffle_config.js zameniti host na izabranu adresu
+	(networks -> development -> host)
+- u android -> .gradle -> app -> src -> debug -> AndroidManifest.xml dodati
+	<application android:usesCleartextTraffic="true"/>
+
+- sada aplikacija moze da se pokrene i preko weba i na emulatoru/telefonu
