@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\beslac_lazar\\Desktop\\backend\\netCore\\netCore\\netCore.csproj": {}
+    "C:\\Users\\beslac_lazar\\Desktop\\project dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\beslac_lazar\\Desktop\\backend\\netCore\\netCore\\netCore.csproj": {
+    "C:\\Users\\beslac_lazar\\Desktop\\project dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\beslac_lazar\\Desktop\\backend\\netCore\\netCore\\netCore.csproj",
+        "projectUniqueName": "C:\\Users\\beslac_lazar\\Desktop\\project dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
         "projectName": "netCore",
-        "projectPath": "C:\\Users\\beslac_lazar\\Desktop\\backend\\netCore\\netCore\\netCore.csproj",
+        "projectPath": "C:\\Users\\beslac_lazar\\Desktop\\project dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
         "packagesPath": "C:\\Users\\beslac_lazar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\beslac_lazar\\Desktop\\backend\\netCore\\netCore\\obj\\",
+        "outputPath": "C:\\Users\\beslac_lazar\\Desktop\\project dev\\ChainTech\\App\\backend\\netCore\\netCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
