@@ -130,9 +130,9 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
                       value: widget.online,
                       onChanged: (value) {
                         setState(() {
-                          widget.setPaymentMethod(value, false);
+                          widget.setPaymentMethod(value, !value);
                           widget.online = value;
-                          widget.onArrival = false;
+                          widget.onArrival = !value;
                         });
                       },
                     ),
@@ -143,8 +143,8 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
                       checkColor: kPrimaryColor,
                       onChanged: (value) {
                         setState(() {
-                          widget.setPaymentMethod(false, value);
-                          widget.online = false;
+                          widget.setPaymentMethod(!value, value);
+                          widget.online = !value;
                           widget.onArrival = value;
                         });
                       },
@@ -161,6 +161,9 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
                   hintText: 'Kljuc Ethereum naloga',
                   icon: Icons.payment,
                 )
+              ],
+              if (widget.onArrival == true) ...[
+                Text('Placa se pouzecu'),
               ]
             ],
           ),
