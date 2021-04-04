@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yfUih2zhnoSBPmrJPRFk/upO5Ob1k7Fm3/fF1bG1SzHkIE2xWU+W/mkQiS8kyjNrH1Vj79rl7wsaPUAYQEsv3w==",
+  "dgSpecHash": "n8jtbG/FdmLBOe5dEzlp2JTt/twnglG8zNwOlDJUsirttBD8UubfumtZ45nBmeqOoG7HTlJE6O3igLpCM+rY8g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\beslac_lazar\\Desktop\\backend\\netCore\\netCore\\netCore.csproj",
+  "projectFilePath": "C:\\Users\\beslac_lazar\\Desktop\\project dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\beslac_lazar\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.4\\microsoft.data.sqlite.core.5.0.4.nupkg.sha512",
     "C:\\Users\\beslac_lazar\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\3.1.6\\microsoft.dotnet.platformabstractions.3.1.6.nupkg.sha512",
