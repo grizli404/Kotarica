@@ -4,6 +4,8 @@ import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/products/productDetail.dart';
 import 'package:flutter/material.dart';
 
+import 'number_selector.dart';
+
 class ProductCard extends StatelessWidget {
   const ProductCard({
     Key key,
@@ -26,6 +28,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    NumberSelector numberSelector = new NumberSelector();
     Size size = MediaQuery.of(context).size;
     return Padding(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
@@ -57,87 +60,46 @@ class ProductCard extends StatelessWidget {
                           blurRadius: 5.0)
                     ],
                     color: Colors.white),
-                child: Column(children: [
-                  Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            isFavorite
-                                ? Icon(Icons.favorite, color: kPrimaryColor)
-                                : Icon(Icons.favorite_border,
-                                    color: kPrimaryColor)
-                          ])),
-                  Hero(
-                      tag: imgPath,
-                      child: Container(
-                          height: 75.0,
-                          width: 75.0,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(imgPath),
-                                  fit: BoxFit.contain)))),
-                  SizedBox(height: 7.0),
-                  Text(price,
-                      style: TextStyle(
-                          color: kPrimaryColor,
-                          fontFamily: 'Varela',
-                          fontSize: 14.0)),
-                  Text(name,
-                      style: TextStyle(
-                          color: Color(0xFF575E67),
-                          fontFamily: 'Varela',
-                          fontSize: 14.0)),
-                  Padding(
-                      padding: EdgeInsets.only(bottom: 5.0),
-                      child: Container(color: Color(0xFFEBEBEB), height: 1.0)),
-                  Padding(
-                    padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          //if (!added) ...[
-                          Icon(Icons.shopping_basket,
-                              color: kPrimaryColor, size: 12.0),
-                          MaterialButton(
-                            onPressed: () {
-                              dodajJedanProizvodUKorpu(proizvod);
-                            },
-                            child: Text('Dodati u korpu',
-                                style: TextStyle(
-                                    fontFamily: 'Varela',
-                                    color: kPrimaryColor,
-                                    fontSize: 14.0)),
-                          ),
-                          //  ],
-                          // if (added) ...[
-
-                          // ]
-                        ],
-                      ),
+                child: Column(
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              isFavorite
+                                  ? Icon(Icons.favorite, color: kPrimaryColor)
+                                  : Icon(Icons.favorite_border,
+                                      color: kPrimaryColor)
+                            ])),
+                    Hero(
+                        tag: imgPath,
+                        child: Container(
+                            height: 75.0,
+                            width: 75.0,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(imgPath),
+                                    fit: BoxFit.contain)))),
+                    SizedBox(height: 7.0),
+                    Text(price,
+                        style: TextStyle(
+                            color: kPrimaryColor,
+                            fontFamily: 'Varela',
+                            fontSize: 14.0)),
+                    Text(name,
+                        style: TextStyle(
+                            color: Color(0xFF575E67),
+                            fontFamily: 'Varela',
+                            fontSize: 14.0)),
+                    Padding(
+                        padding: EdgeInsets.only(bottom: 5.0),
+                        child:
+                            Container(color: Color(0xFFEBEBEB), height: 1.0)),
+                    NumberSelector(
+                      proizvod: proizvod,
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(Icons.remove_circle_outline,
-                              color: kPrimaryColor, size: 12.0),
-                          Text('3',
-                              style: TextStyle(
-                                  fontFamily: 'Varela',
-                                  color: kPrimaryColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12.0)),
-                          Icon(Icons.add_circle_outline,
-                              color: kPrimaryColor, size: 12.0),
-                        ],
-                      ),
-                    ),
-                  )
-                ]))));
+                  ],
+                ))));
   }
 }
