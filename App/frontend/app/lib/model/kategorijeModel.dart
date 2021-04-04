@@ -10,8 +10,8 @@ class KategorijeModel extends ChangeNotifier {
   List<Kategorija> listaKategorija = [];
   List<Kategorija> trenutnaKategorija = [];
 
-  final String rpcUrl = "http://127.0.0.1:7545";
-  final String wsUrl = "ws://127.0.0.1:7545/";
+  final String rpcUrl = "http://192.168.1.107:7545";
+  final String wsUrl = "ws://192.168.1.107:7545/";
 
   Web3Client client;
 

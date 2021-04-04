@@ -137,14 +137,7 @@ class _BodyState extends State<Body> {
                       isApiCallProcess = false;
                     });
                     if (response != 0) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return HomeScreen();
-                          },
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/home', arguments: {});
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text("Korisnik vec postoji!")));
@@ -158,14 +151,7 @@ class _BodyState extends State<Body> {
               AlreadyHaveAnAccountCheck(
                 login: false,
                 press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return LoginScreen();
-                      },
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/login', arguments: {});
                 },
               ),
               /*OrDivider(),

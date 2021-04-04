@@ -1,9 +1,10 @@
 // ignore: unused_import
 import 'package:app/model/kategorijeModel.dart';
 import 'package:app/model/proizvodiModel.dart';
+import 'package:app/screens/cart/cart_screen.dart';
+import 'package:app/screens/checkout/checkout_screen.dart';
 import 'package:app/screens/home/homeScreen.dart';
 import 'package:app/screens/login/login_screen.dart';
-import 'package:app/screens/profile/profile_screen.dart';
 import 'package:app/screens/signup/signup_screen.dart';
 import 'package:app/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,8 @@ class MyApp extends StatelessWidget {
           '/signup': (context) => SignUpScreen(),
           '/home': (context) => HomeScreen(),
           '/profile': (context) => MyProfileScreen(),
+          '/checkout': (context) => CheckoutScreen(),
+          '/cart': (context) => CartScreen(),
         },
         debugShowCheckedModeBanner: false,
         title: 'Kotarica',
