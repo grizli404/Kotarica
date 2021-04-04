@@ -1,5 +1,4 @@
 import 'package:app/components/responsive_layout.dart';
-import 'package:app/screens/cart/cart/cart_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
@@ -69,14 +68,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Icons.shopping_cart_outlined,
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return CartScreen();
-                    },
-                  ),
-                );
+                Navigator.pushNamed(context, '/cart', arguments: {});
               }, // korpa
             ),
           ],

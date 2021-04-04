@@ -9,11 +9,11 @@ import 'package:web_socket_channel/io.dart';
 class KorisniciModel extends ChangeNotifier {
   Korisnik ulogovaniKorisnik;
 
-  final String rpcUrl = "http://127.0.0.1:7545";
-  final String wsUrl = "ws://127.0.0.1:7545/";
+  final String rpcUrl = "http://192.168.1.107:7545";
+  final String wsUrl = "ws://192.168.1.107:7545/";
 
   final String privatniKljuc =
-      "7c95adc131db0e26e4197d454dd829f493b64d69be2105cb31dcb8569b10f521";
+      "d896ec869580b5da9f00731fc755d749b3299d6c7df519bb3dda03ae441509ae";
   var abiCode; //ovde ce da bude smesten json file iz src/abis/korisnici.json
   EthereumAddress adresaUgovora;
 
@@ -137,14 +137,7 @@ class KorisniciModel extends ChangeNotifier {
               maxGas: 6721975,
               contract: ugovor,
               function: dodajKorisnika,
-              parameters: [
-                _mail,
-                _password,
-                _ime,
-                _prezime,
-                _broj,
-                _adresa
-              ]));
+              parameters: [_mail, _password, _ime, _prezime, _broj, _adresa]));
 
       return await login(_mail,
           _password); // kada se uspesno registrovao, odma prijavimo tog korisnika
@@ -159,27 +152,25 @@ class KorisniciModel extends ChangeNotifier {
     return tempInt.toInt();
   }
 
-  
   Future<Korisnik> vratiKorisnikaMail(String mail) async {
     if (mail != "") {
-      var k = await client.call(
-          contract: ugovor, function: korisniciMail, params: [mail]);
+      var k = await client
+          .call(contract: ugovor, function: korisniciMail, params: [mail]);
 
       BigInt bigId = k[0];
       int _id = bigId.toInt();
-      if(_id != 0) {
+      if (_id != 0) {
         return Korisnik(
-          id: _id,
-          mail: k[1],
-          password: k[2],
-          ime: k[3],
-          prezime: k[4],
-          brojTelefona: k[5],
-          adresa: k[6]);
+            id: _id,
+            mail: k[1],
+            password: k[2],
+            ime: k[3],
+            prezime: k[4],
+            brojTelefona: k[5],
+            adresa: k[6]);
       }
     }
   }
-  
 }
 
 class Korisnik {
@@ -198,6 +189,5 @@ class Korisnik {
       this.ime,
       this.prezime,
       this.brojTelefona,
-      this.adresa
-    });
+      this.adresa});
 }

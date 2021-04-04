@@ -145,13 +145,13 @@ class CheckOutCard extends StatelessWidget {
               height: 30,
               width: size.width,
             ),
-            Container(
-              child: RoundedButton(
-                text: "Checkout",
-                press: () {},
-                textColor: kPrimaryColor,
-                color: Colors.yellowAccent,
-              ),
+            RoundedButton(
+              text: "Checkout",
+              press: () {
+                Navigator.pushNamed(context, '/checkout', arguments: {});
+              },
+              textColor: kPrimaryColor,
+              color: Colors.yellowAccent,
             ),
           ],
         ),

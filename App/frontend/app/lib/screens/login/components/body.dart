@@ -84,12 +84,7 @@ class _BodyState extends State<Body> {
 
                     if (id != 0) {
                       await FlutterSession().set('email', _email);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) {
-                          return HomeScreen();
-                        }),
-                      );
+                      Navigator.pushNamed(context, '/home', arguments: {});
                       ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text("uspesno!")));
                     } else {
@@ -110,14 +105,7 @@ class _BodyState extends State<Body> {
               ),
               AlreadyHaveAnAccountCheck(
                 press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return SignUpScreen();
-                      },
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/signup', arguments: {});
                 },
               ),
               SizedBox(
