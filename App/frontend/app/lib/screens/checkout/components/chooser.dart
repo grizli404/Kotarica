@@ -21,55 +21,58 @@ class Chooser extends StatefulWidget {
 class ChooserState extends State<Chooser> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-              padding: EdgeInsets.all(10),
-              child: Container(
-                  child: GestureDetector(
-                onTap: () {
-                  widget.paymentSetter(false);
-                  widget.confirmSetter(false);
-                  widget.shippingSetter(true);
-                },
-                child: Icon(
-                  Icons.location_on,
-                  color: widget.shipping ? kPrimaryColor : Colors.grey,
-                ),
-              ))),
-          Padding(
-              padding: EdgeInsets.all(10),
-              child: Container(
-                  child: GestureDetector(
-                onTap: () {
-                  widget.shippingSetter(false);
-                  widget.confirmSetter(false);
+    return Padding(
+      padding: EdgeInsets.only(top: 10, bottom: 30),
+      child: Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+                padding: EdgeInsets.all(10),
+                child: Container(
+                    child: GestureDetector(
+                  onTap: () {
+                    widget.paymentSetter(false);
+                    widget.confirmSetter(false);
+                    widget.shippingSetter(true);
+                  },
+                  child: Icon(
+                    Icons.location_on,
+                    color: widget.shipping ? kPrimaryColor : Colors.grey,
+                  ),
+                ))),
+            Padding(
+                padding: EdgeInsets.all(10),
+                child: Container(
+                    child: GestureDetector(
+                  onTap: () {
+                    widget.shippingSetter(false);
+                    widget.confirmSetter(false);
 
-                  widget.paymentSetter(true);
-                },
-                child: Icon(
-                  Icons.payment,
-                  color: widget.payment ? kPrimaryColor : Colors.grey,
-                ),
-              ))),
-          Padding(
-              padding: EdgeInsets.all(10),
-              child: Container(
-                  child: GestureDetector(
-                onTap: () {
-                  widget.shippingSetter(false);
-                  widget.paymentSetter(false);
-                  widget.confirmSetter(true);
-                },
-                child: Icon(
-                  Icons.check,
-                  color: widget.confirm ? kPrimaryColor : Colors.grey,
-                ),
-              ))),
-        ],
+                    widget.paymentSetter(true);
+                  },
+                  child: Icon(
+                    Icons.payment,
+                    color: widget.payment ? kPrimaryColor : Colors.grey,
+                  ),
+                ))),
+            Padding(
+                padding: EdgeInsets.all(10),
+                child: Container(
+                    child: GestureDetector(
+                  onTap: () {
+                    widget.shippingSetter(false);
+                    widget.paymentSetter(false);
+                    widget.confirmSetter(true);
+                  },
+                  child: Icon(
+                    Icons.check,
+                    color: widget.confirm ? kPrimaryColor : Colors.grey,
+                  ),
+                ))),
+          ],
+        ),
       ),
     );
   }

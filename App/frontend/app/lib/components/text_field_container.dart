@@ -9,7 +9,7 @@ class TextFieldContainer extends StatelessWidget {
     Key key,
     this.child,
     this.color = kPrimaryLightColor,
-    this.sizeQ,
+    this.sizeQ = 0.8,
   }) : super(key: key);
 
   @override

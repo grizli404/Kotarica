@@ -17,7 +17,7 @@ class RoundedInputField extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.color = kPrimaryLightColor,
-    this.value,
+    this.value = '',
     this.sizeQ = 0.8,
   }) : super(key: key);
 
