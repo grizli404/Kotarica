@@ -1,6 +1,7 @@
 import 'package:app/components/rounded_button.dart';
 import 'package:app/constants.dart';
 import 'package:app/model/cart.dart';
+import 'package:app/screens/checkout/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -148,7 +149,8 @@ class CheckOutCard extends StatelessWidget {
             RoundedButton(
               text: "Checkout",
               press: () {
-                Navigator.pushNamed(context, '/checkout', arguments: {});
+                Navigator.pushNamed(context, '/checkout',
+                    arguments: {'ime': "Nikola"});
               },
               textColor: kPrimaryColor,
               color: Colors.yellowAccent,
