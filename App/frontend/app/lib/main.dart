@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:app/model/kategorijeModel.dart';
+import 'package:app/model/personal_data.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/cart/cart_screen.dart';
 import 'package:app/screens/checkout/checkout_screen.dart';

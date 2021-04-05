@@ -160,12 +160,4 @@ class CheckOutCard extends StatelessWidget {
       ),
     );
   }
-
-  double sumTotal(List<Cart> demoCarts) {
-    double total = 0;
-    demoCarts.forEach((Cart cart) {
-      total += cart.product.cena * cart.numOfItems;
-    });
-    return total;
-  }
 }

@@ -1,24 +1,19 @@
 import 'package:app/components/customAppBar.dart';
+import 'package:app/components/progress_hud.dart';
 import 'package:app/components/rounded_button.dart';
 import 'package:app/components/rounded_input_field.dart';
 import 'package:app/constants.dart';
+import 'package:app/model/cart.dart';
+import 'package:app/model/personal_data.dart';
+import 'package:app/screens/checkout/components/confirm_configuration.dart';
+import 'package:app/screens/checkout/components/payment_configuration.dart';
+import 'package:app/screens/checkout/components/shipping_configuration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:web3dart/contracts.dart';
 
 import 'components/chooser.dart';
-
-class PersonalData {
-  PersonalData(
-      {@required this.ime,
-      @required this.kontakt,
-      @required this.adresa,
-      @required this.postanskiBroj,
-      @required this.opis,
-      @required this.privateKey});
-  String ime, kontakt, adresa, postanskiBroj, opis, privateKey;
-}
 
 class CheckoutScreen extends StatefulWidget {
   CheckoutScreen({
@@ -35,6 +30,7 @@ class CheckoutScreen extends StatefulWidget {
   bool paymentConfig;
   bool confirmConfig;
   PersonalData personalData;
+  bool isApiCallProcess = false;
 
   @override
   _CheckoutScreenState createState() => _CheckoutScreenState();
@@ -42,8 +38,14 @@ class CheckoutScreen extends StatefulWidget {
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
   Widget build(BuildContext context) {
-    print(
-        "${widget.personalData.ime}\n${widget.personalData.kontakt}\n${widget.personalData.adresa}\n${widget.personalData.postanskiBroj}\n${widget.personalData.opis}");
+    return ProgressHUD(
+      child: _build(context),
+      inAsyncCall: widget.isApiCallProcess,
+      opacity: 0.3,
+    );
+  }
+
+  Widget _build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
       body: Container(
@@ -71,6 +73,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               onArrival: widget.onArrival,
               online: widget.online,
               setConfirm: setConfirm,
+              setShipping: setShipping,
               setPaymentMethod: setPaymentMethod,
               personalData: widget.personalData,
             )
@@ -78,6 +81,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           if (widget.confirmConfig == true) ...[
             ConfirmConfiguration(
               personalData: widget.personalData,
+              setPayment: setPayment,
+              setProgressHud: setProgressHud,
             )
           ]
         ],
@@ -85,12 +90,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     );
   }
 
-  void shippingInfo(
-      {String ime = '',
-      String kontakt = '',
-      String adresa = '',
-      String postanskiBroj = '',
-      String opis = ''}) {
+  void shippingInfo({
+    String ime = '',
+    String kontakt = '',
+    String adresa = '',
+    String postanskiBroj = '',
+    String opis = '',
+    String privateKey = '',
+  }) {
     setState(() {
       if (ime != '') widget.personalData.ime = ime;
       if (kontakt != '') widget.personalData.kontakt = kontakt;
@@ -98,6 +105,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       if (postanskiBroj != '')
         widget.personalData.postanskiBroj = postanskiBroj;
       if (opis != '') widget.personalData.opis = opis;
+      if (privateKey != '') widget.personalData.privateKey = privateKey;
     });
   }
 
@@ -131,277 +139,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       widget.onArrival = onArrival;
     });
   }
-}
 
-class ConfirmConfiguration extends StatelessWidget {
-  ConfirmConfiguration({this.personalData});
-  PersonalData personalData;
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width * 0.8,
-      decoration: BoxDecoration(
-          border: Border(
-              top: BorderSide(color: kPrimaryColor),
-              bottom: BorderSide(color: kPrimaryColor),
-              left: BorderSide(color: kPrimaryColor),
-              right: BorderSide(color: kPrimaryColor)),
-          borderRadius: BorderRadius.all(Radius.circular(15))),
-      child: Padding(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          children: [
-            if (personalData.ime != '') ...[
-              Text("Ime i prezime: ${personalData.ime}")
-            ],
-            if (personalData.kontakt != '') ...[
-              Text("Kontakt telefon: ${personalData.kontakt}")
-            ],
-            if (personalData.postanskiBroj != '') ...[
-              Text("Postanski broj: ${personalData.postanskiBroj}")
-            ],
-            if (personalData.adresa != '') ...[
-              Text("Adresa: ${personalData.adresa}")
-            ],
-            if (personalData.opis != '') ...[
-              Text("Opis: ${personalData.opis}")
-            ],
-            if (personalData.privateKey != '') ...[
-              Text("Personal Key: ${personalData.privateKey}")
-            ]
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class PaymentConfiguration extends StatefulWidget {
-  PaymentConfiguration(
-      {this.online = true,
-      this.onArrival = false,
-      this.setPaymentMethod,
-      this.setConfirm,
-      this.personalData});
-  bool online;
-  bool onArrival;
-  bool value = true;
-  PersonalData personalData;
-  Function setPaymentMethod;
-  Function setConfirm;
-  @override
-  _PaymentConfigurationState createState() => _PaymentConfigurationState();
-}
-
-class _PaymentConfigurationState extends State<PaymentConfiguration> {
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      decoration: BoxDecoration(
-          border: Border(
-              top: BorderSide(color: kPrimaryColor),
-              bottom: BorderSide(color: kPrimaryColor),
-              left: BorderSide(color: kPrimaryColor),
-              right: BorderSide(color: kPrimaryColor)),
-          borderRadius: BorderRadius.all(Radius.circular(15))),
-      child: Padding(
-        padding: EdgeInsets.all(20),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('Plati online'),
-                    Checkbox(
-                      checkColor: kPrimaryColor,
-                      value: widget.online,
-                      onChanged: (value) {
-                        setState(() {
-                          widget.setPaymentMethod(value, !value);
-                          widget.online = value;
-                          widget.onArrival = !value;
-                        });
-                      },
-                    ),
-                    SizedBox(width: 20),
-                    Text('Plati pouzecem'),
-                    Checkbox(
-                      value: widget.onArrival,
-                      checkColor: kPrimaryColor,
-                      onChanged: (value) {
-                        setState(() {
-                          widget.setPaymentMethod(!value, value);
-                          widget.online = !value;
-                          widget.onArrival = value;
-                        });
-                      },
-                    )
-                  ]),
-              if (widget.online == true) ...[
-                RoundedInputField(
-                  color: Colors.white,
-                  hintText: 'Adresa Ethereum naloga',
-                  icon: Icons.payment,
-                ),
-                RoundedInputField(
-                  color: Colors.white,
-                  hintText: 'Kljuc Ethereum naloga',
-                  value: widget.personalData.privateKey,
-                  icon: Icons.payment,
-                )
-              ],
-              if (widget.onArrival == true) ...[
-                Text('Placa se pouzecem'),
-              ],
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  FlatButton(
-                    onPressed: () {},
-                    child: Text("< Nazad"),
-                    color: Colors.purple,
-                    textColor: Colors.white,
-                  ),
-                  SizedBox(
-                    width: size.width * 0.5,
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      widget.setConfirm(true);
-                    },
-                    child: Text("Dalje >"),
-                    color: Colors.purple,
-                    textColor: Colors.white,
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ShippingConfiguration extends StatelessWidget {
-  ShippingConfiguration({this.setInfo, this.setPayment, this.personalData});
-  final _formKey = GlobalKey<FormState>();
-  final Function setInfo;
-  final Function setPayment;
-  PersonalData personalData;
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      decoration: BoxDecoration(
-          border: Border(
-              top: BorderSide(color: kPrimaryColor),
-              bottom: BorderSide(color: kPrimaryColor),
-              left: BorderSide(color: kPrimaryColor),
-              right: BorderSide(color: kPrimaryColor)),
-          borderRadius: BorderRadius.all(Radius.circular(15))),
-      child: Padding(
-        padding: EdgeInsets.all(20),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              RoundedInputField(
-                color: Colors.white,
-                icon: Icons.person,
-                hintText: 'Ime i prezime',
-                value: personalData.ime,
-                onChanged: (value) => {personalData.ime = value},
-              ),
-              RoundedInputField(
-                color: Colors.white,
-                icon: Icons.phone,
-                hintText: 'Kontakt Telefon',
-                value: personalData.kontakt,
-                onChanged: (value) => {personalData.kontakt = value},
-              ),
-              Container(
-                width: size.width * 0.8,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: RoundedInputField(
-                        color: Colors.white,
-                        icon: Icons.location_city_rounded,
-                        hintText: 'Grad i postanski broj',
-                        value: personalData.postanskiBroj,
-                        onChanged: (value) =>
-                            {personalData.postanskiBroj = value},
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: RoundedInputField(
-                        color: Colors.white,
-                        icon: Icons.location_on,
-                        hintText: 'Adresa i broj',
-                        value: personalData.adresa,
-                        onChanged: (value) => {personalData.adresa = value},
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              RoundedInputField(
-                color: Colors.white,
-                icon: Icons.superscript,
-                hintText: 'Nesto fali, ne znam sta',
-                value: personalData.opis,
-                onChanged: (value) => {personalData.opis = value},
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  FlatButton(
-                    onPressed: () {},
-                    child: Text("< Nazad"),
-                    color: Colors.purple,
-                    textColor: Colors.white,
-                  ),
-                  SizedBox(
-                    width: size.width * 0.5,
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      setInfo(
-                        ime: personalData.ime,
-                        kontakt: personalData.kontakt,
-                        adresa: personalData.adresa,
-                        postanskiBroj: personalData.postanskiBroj,
-                        opis: personalData.opis,
-                      );
-                      setPayment(true);
-                    },
-                    child: Text("Dalje >"),
-                    color: Colors.purple,
-                    textColor: Colors.white,
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+  void setProgressHud(bool value) {
+    setState(() {
+      widget.isApiCallProcess = value;
+    });
   }
 }

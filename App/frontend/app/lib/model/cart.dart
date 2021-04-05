@@ -22,6 +22,14 @@ List<Cart> demoCarts = [
           naziv: "jaje"))
 ];
 
+double sumTotal(List<Cart> demoCarts) {
+  double total = 0;
+  demoCarts.forEach((Cart cart) {
+    total += cart.product.cena * cart.numOfItems;
+  });
+  return total;
+}
+
 void dodajJedanProizvodUKorpu(Proizvod proizvod) {
   bool ind = true;
   for (int i = 0; i < demoCarts.length; i++) {
