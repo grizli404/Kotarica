@@ -28,7 +28,6 @@ class ProductByCategory extends StatelessWidget {
         )),
       ),
       body: Container(
-        margin: EdgeInsets.all(30),
         child: Row(
           children: [
             // ProductContainer(
