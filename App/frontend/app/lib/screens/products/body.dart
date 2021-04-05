@@ -1,3 +1,4 @@
+import 'package:app/components/responsive_layout.dart';
 import 'package:app/screens/home/homeScreen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +75,9 @@ class _BodyState extends State<Body> {
                   },
                   child: Center(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.3,
+                      width: ResponsiveLayout.isIphone(context)
+                          ? MediaQuery.of(context).size.width * 0.4
+                          : MediaQuery.of(context).size.width * 0.3,
                       height: 50.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25.0),
@@ -117,7 +120,9 @@ class _BodyState extends State<Body> {
                   },
                   child: Center(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.3,
+                      width: ResponsiveLayout.isIphone(context)
+                          ? MediaQuery.of(context).size.width * 0.4
+                          : MediaQuery.of(context).size.width * 0.3,
                       height: 50.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25.0),
