@@ -50,7 +50,7 @@ class ProductCard extends StatelessWidget {
             },
             child: Container(
                 width: 150,
-                height: 200,
+                height: 250,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
                     boxShadow: [
