@@ -10,7 +10,25 @@ class Cart {
   Cart({@required this.product, @required this.numOfItems});
 }
 
-List<Cart> demoCarts = [];
+List<Cart> demoCarts = [
+  Cart(
+      numOfItems: 1,
+      product: new Proizvod(
+          cena: 10,
+          id: 1,
+          idKategorije: 1,
+          idKorisnika: 1,
+          kolicina: 1,
+          naziv: "jaje"))
+];
+
+double sumTotal(List<Cart> demoCarts) {
+  double total = 0;
+  demoCarts.forEach((Cart cart) {
+    total += cart.product.cena * cart.numOfItems;
+  });
+  return total;
+}
 
 void dodajJedanProizvodUKorpu(Proizvod proizvod) {
   bool ind = true;

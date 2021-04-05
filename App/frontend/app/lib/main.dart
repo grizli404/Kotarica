@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:app/model/kategorijeModel.dart';
+import 'package:app/model/personal_data.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/cart/cart_screen.dart';
 import 'package:app/screens/checkout/checkout_screen.dart';
@@ -48,7 +49,14 @@ class MyApp extends StatelessWidget {
           '/signup': (context) => SignUpScreen(),
           '/home': (context) => HomeScreen(),
           '/profile': (context) => MyProfileScreen(),
-          '/checkout': (context) => CheckoutScreen(),
+          '/checkout': (context) => CheckoutScreen(
+              personalData: PersonalData(
+                  adresa: "Novosadska",
+                  ime: "Nikola",
+                  kontakt: "0629756150",
+                  opis: "opis",
+                  postanskiBroj: "Kragujevac 34000",
+                  privateKey: "089ywegrxzch-qw9ytpbhgpwe9")),
           '/cart': (context) => CartScreen(),
         },
         debugShowCheckedModeBanner: false,
