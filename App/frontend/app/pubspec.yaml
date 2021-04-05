@@ -59,6 +59,8 @@ flutter:
     - src/abis/Korisnici.json
     - src/abis/Kategorije.json
     - src/abis/Proizvodi.json
+    - src/abis/Ocene.json
+    - src/abis/Kupovine.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
