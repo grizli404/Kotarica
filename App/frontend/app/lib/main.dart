@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => KorisniciModel()),
         ChangeNotifierProvider(create: (context) => ProizvodiModel()),
         ChangeNotifierProvider(create: (context) => KategorijeModel()),
+        ChangeNotifierProvider(create: (context) => OceneModel()),
       ],
       child: MaterialApp(
         routes: {
