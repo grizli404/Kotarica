@@ -23,5 +23,15 @@ contract Kupovine{
         kupovine[brojKupovina] = Kupovina(brojKupovina, _idProdavca, _idKupca, _idProizvoda, _kolicina);
     }
 
+    //Ukoliko postoji kupovina, tek onda se moze dati ocena za neki proizvod
+    function daLiPostojiKupovina (int _idKupca, int _idProdavca, int _idProizvoda) public view returns (int)
+    {
+        for (int i = 1; i <= brojKupovina; i++) {
+            if(_idKupca == kupovine[i].idKupca && _idProdavca == kupovine[i].idProdavca && _idProizvoda == kupovine[i].idProizvoda)
+                return i;
+        }
+        return 0;
+    }
+
 
 }
