@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:app/model/kategorijeModel.dart';
+import 'package:app/model/oceneModel.dart';
 import 'package:app/model/personal_data.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/cart/cart_screen.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
     //var korisnici = KorisniciModel();
     //var kategorije = KategorijeModel();
     //var proizvodi = ProizvodiModel();
+    //var ocene = OceneModel();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => KorisniciModel()),
