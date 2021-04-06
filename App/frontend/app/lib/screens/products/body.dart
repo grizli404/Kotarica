@@ -1,7 +1,11 @@
 import 'package:app/components/responsive_layout.dart';
+import 'package:app/model/korisniciModel.dart';
+import 'package:app/model/oceneModel.dart';
 import 'package:app/screens/home/homeScreen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_session/flutter_session.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants.dart';
 import '../../model/cart.dart';
@@ -22,6 +26,26 @@ class _BodyState extends State<Body> {
   int _rating;
   @override
   Widget build(BuildContext context) {
+    KorisniciModel k = Provider.of<KorisniciModel>(context);
+    Future<Korisnik> uzmiPodatke() async {
+      var token = await FlutterSession().get('email');
+      print("token " + token);
+      if (token != '') {
+        // print(token);
+        Korisnik korisnik = await k.vratiKorisnikaMail(token);
+
+        print("korisnik " + korisnik.ime);
+        return korisnik;
+      } else
+        return null;
+    }
+
+    OceneModel ocene = Provider.of<OceneModel>(context);
+    unesiOcenu(Korisnik korisnik, Proizvod proizvod, int ocena) async {
+      await ocene.oceniProizvod(korisnik.id, proizvod.idKategorije, proizvod.id,
+          ocena, "komentar...");
+    }
+
     return ListView(
       children: [
         SizedBox(height: 15.0),
@@ -160,8 +184,20 @@ class _BodyState extends State<Body> {
           ),
         ),
         Rating((rating) {
-          setState(() {
+          setState(() async {
             _rating = rating;
+            Korisnik k = await uzmiPodatke();
+            if (k != null) {
+              // unesi ocenu
+              unesiOcenu(k, widget.proizvod, _rating);
+              print('uneta ocena ' + _rating.toString());
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text("Uneli ste ocenu!")));
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                      "Morate biti ulogovani da biste ocenili proizvod!")));
+            }
           });
         }, 5),
         SizedBox(height: 30),

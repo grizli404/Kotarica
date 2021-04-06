@@ -1,4 +1,5 @@
 import 'package:app/components/product_card.dart';
+import 'package:app/components/responsive_layout.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +52,7 @@ Widget labelContainer(String labelVal) {
 
 Widget appsContainer(ProizvodiModel proizvodi, BuildContext context) {
   return Container(
-    height: 250.0,
+    height: ResponsiveLayout.isIphone(context) ? 270 : 250.0,
     //200.0,
     child: ListView.builder(
       scrollDirection: Axis.horizontal,

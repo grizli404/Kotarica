@@ -16,10 +16,6 @@ class ListenToDrawerEvent extends StatefulWidget {
 }
 
 class ListenToDrawerEventState extends State<ListenToDrawerEvent> {
-  zatvoriSesiju() async {
-    await FlutterSession().set('email', '');
-  }
-
   ListenToDrawerEventState({Key key});
   @override
   Widget build(BuildContext context) {
@@ -40,6 +36,10 @@ class ListenToDrawerEventState extends State<ListenToDrawerEvent> {
 }
 
 Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
+  zatvoriSesiju() async {
+    await FlutterSession().set('email', '');
+  }
+
   ProizvodiModel proizvodi = ProizvodiModel();
   return Container(
     color:
@@ -126,7 +126,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
             hoverColor: Colors.grey,
             //focusColor: Colors.grey,
             onTap: () {
-              //  zatvoriSesiju();
+              zatvoriSesiju();
               Navigator.pushNamed(context, '/home');
             },
             child: Row(

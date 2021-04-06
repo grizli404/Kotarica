@@ -1,3 +1,4 @@
+import 'package:app/components/responsive_layout.dart';
 import 'package:app/constants.dart';
 import 'package:app/model/cart.dart';
 import 'package:app/model/proizvodiModel.dart';
@@ -50,7 +51,7 @@ class ProductCard extends StatelessWidget {
             },
             child: Container(
                 width: 150,
-                height: 250,
+                height: ResponsiveLayout.isIphone(context) ? 200 : 250,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
                     boxShadow: [
@@ -92,10 +93,10 @@ class ProductCard extends StatelessWidget {
                             color: Color(0xFF575E67),
                             fontFamily: 'Varela',
                             fontSize: 14.0)),
-                    Padding(
-                        padding: EdgeInsets.only(bottom: 5.0),
-                        child:
-                            Container(color: Color(0xFFEBEBEB), height: 1.0)),
+                    // Padding(
+                    //     padding: EdgeInsets.only(bottom: 5.0),
+                    //     child:
+                    //         Container(color: Color(0xFFEBEBEB), height: 1.0)),
                     NumberSelector(
                       proizvod: proizvod,
                     ),
