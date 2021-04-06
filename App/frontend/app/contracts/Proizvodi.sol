@@ -5,32 +5,67 @@ pragma experimental ABIEncoderV2;
 contract Proizvodi{
 
     struct Proizvod{
-        int id;
-        int idKorisnika;
-        int idKategorije;
+        uint id;
+        uint idKorisnika;
+        uint idKategorije;
         string naziv;
         uint kolicina;
         uint cena;
     }
 
-    int public brojProizvoda = 0;
+    uint public brojProizvoda = 0;
 
-    mapping (int => Proizvod) public proizvodi;
-    mapping (int => int[]) proizvodiKorisnika;
+    mapping (uint => Proizvod) public proizvodi;
+    mapping (uint => uint[]) proizvodiKorisnika;
 
-    function dodajProizvod(int _idKorisnika, int _idKategorije, string memory _naziv, uint _kolicina, uint _cena) public
+    function dodajProizvod(uint _idKorisnika, uint _idKategorije, string memory _naziv, uint _kolicina, uint _cena) public
     {
         brojProizvoda++;
         proizvodi[brojProizvoda] = Proizvod(brojProizvoda, _idKorisnika, _idKategorije, _naziv, _kolicina, _cena);
         proizvodiKorisnika[_idKorisnika].push(brojProizvoda);
     }
 
-    function dajProizvodeZaKorisnika(int korisnikID) view public returns(int[] memory) {
+    function dajProizvodeZaKorisnika(uint korisnikID) view public returns(uint[] memory) {
         return proizvodiKorisnika[korisnikID];
     }
 
-    function izmeniKolicinu(int _id, uint _promenaKolicine) public
+    function izmeniKolicinu(uint _id, uint _promenaKolicine) public
     {
         proizvodi[_id].kolicina += _promenaKolicine;
+    }
+
+    uint[] arr;
+
+    function search(string memory substring) public returns(uint[] memory) {
+
+        bytes memory whatBytes = bytes (substring);
+
+        for (uint i = 1; i <= brojProizvoda; i++) {
+            bytes memory whereBytes = bytes (proizvodi[i].naziv);
+
+            bool found = false;
+            for (uint j = 0; j < (whereBytes.length - whatBytes.length); j++) {
+                bool flag = true;
+                for (uint k = 0; k < whatBytes.length; k++)
+                    if(whereBytes [j + k] != whatBytes[k]) {
+                        flag = false;
+                        break;
+                    }
+                
+                if(flag) {
+                    found = true;
+                    uint pomId = proizvodi[i].id;
+                    arr.push(pomId); 
+                    break;
+                }
+            }
+        }
+        if(arr.length != 0)
+            return arr;
+        else
+        {
+            arr.push(0);
+            return arr;
+        }
     }
 }
