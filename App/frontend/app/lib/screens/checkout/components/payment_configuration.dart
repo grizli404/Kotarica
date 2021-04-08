@@ -5,19 +5,10 @@ import 'package:flutter/material.dart';
 
 class PaymentConfiguration extends StatefulWidget {
   PaymentConfiguration(
-      {this.online = true,
-      this.onArrival = false,
-      this.setPaymentMethod,
-      this.setConfirm,
-      this.setShipping,
-      this.personalData});
+      {this.online = true, this.onArrival = false, this.personalData});
   bool online;
   bool onArrival;
-  bool value = true;
   PersonalData personalData;
-  Function setPaymentMethod;
-  Function setConfirm;
-  Function setShipping;
   @override
   _PaymentConfigurationState createState() => _PaymentConfigurationState();
 }
@@ -27,16 +18,7 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
-      width: size.width * 0.8,
-      decoration: BoxDecoration(
-          border: Border(
-              top: BorderSide(color: kPrimaryColor),
-              bottom: BorderSide(color: kPrimaryColor),
-              left: BorderSide(color: kPrimaryColor),
-              right: BorderSide(color: kPrimaryColor)),
-          borderRadius: BorderRadius.all(Radius.circular(15))),
       child: Padding(
         padding: EdgeInsets.all(20),
         child: Form(
@@ -44,35 +26,34 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
           child: Column(
             children: <Widget>[
               Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('Plati online'),
-                    Checkbox(
-                      checkColor: kPrimaryColor,
-                      value: widget.online,
-                      onChanged: (value) {
-                        setState(() {
-                          widget.setPaymentMethod(value, !value);
-                          widget.online = value;
-                          widget.onArrival = !value;
-                        });
-                      },
-                    ),
-                    SizedBox(width: 20),
-                    Text('Plati pouzecem'),
-                    Checkbox(
-                      value: widget.onArrival,
-                      checkColor: kPrimaryColor,
-                      onChanged: (value) {
-                        setState(() {
-                          widget.setPaymentMethod(!value, value);
-                          widget.online = !value;
-                          widget.onArrival = value;
-                        });
-                      },
-                    )
-                  ]),
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('Plati online'),
+                  Checkbox(
+                    checkColor: kPrimaryColor,
+                    value: widget.online,
+                    onChanged: (value) {
+                      setState(() {
+                        widget.online = value;
+                        widget.onArrival = !value;
+                      });
+                    },
+                  ),
+                  SizedBox(width: 20),
+                  Text('Plati pouzecem'),
+                  Checkbox(
+                    value: widget.onArrival,
+                    checkColor: kPrimaryColor,
+                    onChanged: (value) {
+                      setState(() {
+                        widget.online = !value;
+                        widget.onArrival = value;
+                      });
+                    },
+                  )
+                ],
+              ),
               if (widget.online == true) ...[
                 RoundedInputField(
                   color: Colors.white,
@@ -84,6 +65,9 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
                   hintText: 'Kljuc Ethereum naloga',
                   value: widget.personalData.privateKey,
                   icon: Icons.payment,
+                  onChanged: (value) {
+                    widget.personalData.privateKey = value;
+                  },
                 )
               ],
               if (widget.onArrival == true) ...[
@@ -91,33 +75,6 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
                     padding: EdgeInsets.symmetric(vertical: 20),
                     child: Text('Placa se pouzecem')),
               ],
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FlatButton(
-                    onPressed: () {
-                      widget.setShipping(true);
-                    },
-                    child: Row(children: [
-                      Icon(Icons.arrow_back_rounded),
-                      Text("Nazad")
-                    ]),
-                    color: Colors.purple,
-                    textColor: Colors.white,
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      widget.setConfirm(true);
-                    },
-                    child: Row(children: [
-                      Text("Dalje"),
-                      Icon(Icons.arrow_forward_rounded),
-                    ]),
-                    color: Colors.purple,
-                    textColor: Colors.white,
-                  )
-                ],
-              ),
             ],
           ),
         ),

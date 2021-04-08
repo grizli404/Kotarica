@@ -4,80 +4,121 @@ import 'package:app/model/personal_data.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmConfiguration extends StatelessWidget {
-  ConfirmConfiguration(
-      {this.personalData, this.setPayment, this.setProgressHud});
-  Function setProgressHud;
+  ConfirmConfiguration({
+    this.personalData,
+  });
   PersonalData personalData;
-  Function setPayment;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
-      width: size.width * 0.8,
-      decoration: BoxDecoration(
-          border: Border(
-              top: BorderSide(color: kPrimaryColor),
-              bottom: BorderSide(color: kPrimaryColor),
-              left: BorderSide(color: kPrimaryColor),
-              right: BorderSide(color: kPrimaryColor)),
-          borderRadius: BorderRadius.all(Radius.circular(15))),
-      child: Padding(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            if (personalData.ime != '') ...[
-              Text("Ime i prezime: ${personalData.ime}")
-            ],
-            if (personalData.kontakt != '') ...[
-              Text("Kontakt telefon: ${personalData.kontakt}")
-            ],
-            if (personalData.postanskiBroj != '') ...[
-              Text("Postanski broj: ${personalData.postanskiBroj}")
-            ],
-            if (personalData.adresa != '') ...[
-              Text("Adresa: ${personalData.adresa}")
-            ],
-            if (personalData.opis != '') ...[
-              Text("Opis: ${personalData.opis}")
-            ],
-            if (personalData.privateKey != '') ...[
-              Text("Personal Key: ${personalData.privateKey}")
-            ],
-            SizedBox(
-              height: 30,
+      child: Column(
+        children: [
+          Container(
+            height: 60,
+            child: Row(
+              children: [
+                _Atribut(text: "Ime: "),
+                _Vrednost(text: personalData.ime)
+              ],
             ),
-            for (var index in demoCarts) ...[
-              Text("Artikli: ${index.product.naziv} x ${index.numOfItems}"),
-            ],
-            Text("TOTAL: ${sumTotal(demoCarts)} RSD",
-                style: TextStyle(fontWeight: FontWeight.w800)),
+          ),
+          Container(
+            height: 60,
+            child: Row(
+              children: [
+                _Atribut(text: "Kontakt: "),
+                _Vrednost(text: personalData.kontakt)
+              ],
+            ),
+          ),
+          Container(
+            height: 60,
+            child: Row(
+              children: [
+                _Atribut(text: "Postanski broj: "),
+                _Vrednost(text: personalData.postanskiBroj),
+              ],
+            ),
+          ),
+          Container(
+            height: 60,
+            child: Row(
+              children: [
+                _Atribut(text: "Adresa: "),
+                _Vrednost(text: personalData.adresa)
+              ],
+            ),
+          ),
+          Container(
+            height: 60,
+            child: Row(
+              children: [
+                _Atribut(text: "opis: "),
+                _Vrednost(text: personalData.opis)
+              ],
+            ),
+          ),
+          Container(
+            height: 60,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _Atribut(text: "Privatni kljuc: "),
+                _Vrednost(text: personalData.privateKey)
+              ],
+            ),
+          ),
+          _Atribut(
+            text: "Korpa: ",
+          ),
+          for (Cart item in demoCarts) ...{
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                FlatButton(
-                  onPressed: () {
-                    setPayment(true);
-                  },
-                  color: Colors.purple,
-                  textColor: Colors.white,
-                  child: Row(
-                    children: [Icon(Icons.arrow_back_rounded), Text("Nazad")],
-                  ),
-                ),
-                FlatButton(
-                    onPressed: () {
-                      setProgressHud(true);
-                    },
-                    color: Colors.purple,
-                    textColor: Colors.white,
-                    child: Row(
-                      children: [Text("Poruci"), Icon(Icons.check)],
-                    ))
+                _Atribut(
+                    text:
+                        "${demoCarts.indexOf(item) + 1}. ${item.product.naziv}: "),
+                _Vrednost(text: "${item.numOfItems} x ${item.product.cena}\$")
               ],
             )
-          ],
+          },
+          SizedBox(
+            height: 10,
+          ),
+          _Atribut(
+            text: "Total: ${sumTotal(demoCarts)}",
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _Atribut extends StatelessWidget {
+  _Atribut({@required this.text});
+  final text;
+  Widget build(BuildContext context) {
+    return Text(
+      "${text}",
+      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+      maxLines: 2,
+    );
+  }
+}
+
+class _Vrednost extends StatelessWidget {
+  _Vrednost({@required this.text});
+
+  final text;
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Text(
+        "${text}",
+        style: TextStyle(
+          fontSize: 16,
         ),
+        maxLines: 2,
+        textDirection: TextDirection.ltr,
       ),
     );
   }
