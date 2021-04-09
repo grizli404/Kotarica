@@ -15,6 +15,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 //import 'package:crypt/crypt.dart';
 import 'package:provider/provider.dart';
 
+import '../../../main.dart';
+
 class _BodyState extends State<Body> {
   GlobalKey<FormState> globalFormKey = new GlobalKey<FormState>();
   bool isApiCallProcess = false;
@@ -84,6 +86,7 @@ class _BodyState extends State<Body> {
 
                     if (id != 0) {
                       await FlutterSession().set('email', _email);
+                      korisnikInfo = await korisnik.vratiKorisnikaMail(_email);
                       Navigator.pushNamed(context, '/home', arguments: {});
                       ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text("uspesno!")));
