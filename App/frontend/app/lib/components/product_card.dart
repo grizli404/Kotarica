@@ -54,13 +54,15 @@ class ProductCard extends StatelessWidget {
                 height: ResponsiveLayout.isIphone(context) ? 200 : 250,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(
+                        width: 2, color: Theme.of(context).dividerColor),
                     boxShadow: [
                       BoxShadow(
                           color: Colors.grey.withOpacity(0.2),
                           spreadRadius: 3.0,
                           blurRadius: 5.0)
                     ],
-                    color: Colors.white),
+                    color: Theme.of(context).cardColor),
                 child: Column(
                   children: [
                     Padding(
@@ -71,7 +73,7 @@ class ProductCard extends StatelessWidget {
                               isFavorite
                                   ? Icon(Icons.favorite, color: kPrimaryColor)
                                   : Icon(Icons.favorite_border,
-                                      color: kPrimaryColor)
+                                      color: Theme.of(context).iconTheme.color)
                             ])),
                     Hero(
                         tag: imgPath,
@@ -85,12 +87,12 @@ class ProductCard extends StatelessWidget {
                     SizedBox(height: 7.0),
                     Text(price,
                         style: TextStyle(
-                            color: kPrimaryColor,
+                            color: Theme.of(context).iconTheme.color,
                             fontFamily: 'Varela',
                             fontSize: 14.0)),
                     Text(name,
                         style: TextStyle(
-                            color: Color(0xFF575E67),
+                            color: Theme.of(context).hintColor,
                             fontFamily: 'Varela',
                             fontSize: 14.0)),
                     // Padding(
