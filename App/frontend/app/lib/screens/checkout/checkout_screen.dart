@@ -1,17 +1,11 @@
 import 'package:app/components/customAppBar.dart';
 import 'package:app/components/progress_hud.dart';
-import 'package:app/components/rounded_button.dart';
-import 'package:app/components/rounded_input_field.dart';
-import 'package:app/constants.dart';
-import 'package:app/model/cart.dart';
 import 'package:app/model/personal_data.dart';
 import 'package:app/screens/checkout/components/confirm_configuration.dart';
 import 'package:app/screens/checkout/components/payment_configuration.dart';
 import 'package:app/screens/checkout/components/shipping_configuration.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:web3dart/contracts.dart';
 
 import 'components/chooser.dart';
 
@@ -20,12 +14,8 @@ class CheckoutScreen extends StatefulWidget {
     this.shippingConfig = true,
     this.paymentConfig = false,
     this.confirmConfig = false,
-    this.onArrival = false,
-    this.online = true,
     this.personalData,
   });
-  bool onArrival;
-  bool online;
   bool shippingConfig;
   bool paymentConfig;
   bool confirmConfig;
@@ -46,98 +36,115 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   }
 
   Widget _build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: CustomAppBar(),
-      body: Container(
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          height: size.height * 0.8,
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Chooser(
-            shippingSetter: setShipping,
-            paymentSetter: setPayment,
-            confirmSetter: setConfirm,
-            shipping: widget.shippingConfig,
-            payment: widget.paymentConfig,
-            confirm: widget.confirmConfig,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Chooser(
+                shipping: widget.shippingConfig,
+                payment: widget.paymentConfig,
+                confirm: widget.confirmConfig,
+              ),
+              if (widget.shippingConfig == true) ...[
+                ShippingConfiguration(
+                  personalData: widget.personalData,
+                ),
+              ],
+              if (widget.paymentConfig == true) ...[
+                PaymentConfiguration(
+                  personalData: widget.personalData,
+                )
+              ],
+              if (widget.confirmConfig == true) ...[
+                ConfirmConfiguration(
+                  personalData: widget.personalData,
+                )
+              ],
+              Expanded(
+                child: SizedBox(),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FlatButton(
+                    onPressed: widget.shippingConfig ? null : setPrevious,
+                    disabledColor: Colors.grey,
+                    child: Row(children: [
+                      Icon(Icons.arrow_back_rounded),
+                      Text("Nazad")
+                    ]),
+                    color: Colors.purple,
+                    textColor: Colors.white,
+                  ),
+                  if (!widget.confirmConfig) ...[
+                    FlatButton(
+                      onPressed: () {
+                        setNext();
+                      },
+                      child: Row(children: [
+                        Text("Dalje"),
+                        Icon(Icons.arrow_forward_rounded)
+                      ]),
+                      color: Colors.purple,
+                      textColor: Colors.white,
+                    )
+                  ] else ...[
+                    FlatButton(
+                      onPressed: () {},
+                      child: Row(children: [
+                        Text("Naruci!"),
+                        Icon(Icons.check_rounded)
+                      ]),
+                      color: Colors.purple,
+                      textColor: Colors.white,
+                    )
+                  ],
+                ],
+              ),
+            ],
           ),
-          if (widget.shippingConfig == true) ...[
-            ShippingConfiguration(
-              personalData: widget.personalData,
-              setInfo: shippingInfo,
-              setPayment: setPayment,
-            )
-          ],
-          if (widget.paymentConfig == true) ...[
-            PaymentConfiguration(
-              onArrival: widget.onArrival,
-              online: widget.online,
-              setConfirm: setConfirm,
-              setShipping: setShipping,
-              setPaymentMethod: setPaymentMethod,
-              personalData: widget.personalData,
-            )
-          ],
-          if (widget.confirmConfig == true) ...[
-            ConfirmConfiguration(
-              personalData: widget.personalData,
-              setPayment: setPayment,
-              setProgressHud: setProgressHud,
-            )
-          ]
-        ],
-      )),
+        ),
+      ),
     );
   }
 
-  void shippingInfo({
-    String ime = '',
-    String kontakt = '',
-    String adresa = '',
-    String postanskiBroj = '',
-    String opis = '',
-    String privateKey = '',
-  }) {
-    setState(() {
-      if (ime != '') widget.personalData.ime = ime;
-      if (kontakt != '') widget.personalData.kontakt = kontakt;
-      if (adresa != '') widget.personalData.adresa = adresa;
-      if (postanskiBroj != '')
-        widget.personalData.postanskiBroj = postanskiBroj;
-      if (opis != '') widget.personalData.opis = opis;
-      if (privateKey != '') widget.personalData.privateKey = privateKey;
-    });
+  setPrevious() {
+    if (widget.paymentConfig == true) {
+      setState(() {
+        widget.shippingConfig = true;
+        widget.paymentConfig = false;
+        widget.confirmConfig = false;
+      });
+    } else if (widget.confirmConfig == true) {
+      setState(() {
+        widget.confirmConfig = false;
+        widget.paymentConfig = true;
+        widget.shippingConfig = false;
+      });
+    }
   }
 
-  void setShipping(bool value) {
-    setState(() {
-      widget.shippingConfig = value;
-      widget.paymentConfig = !value;
-      widget.confirmConfig = !value;
-    });
-  }
-
-  void setPayment(bool value) {
-    setState(() {
-      widget.paymentConfig = value;
-      widget.shippingConfig = !value;
-      widget.confirmConfig = !value;
-    });
-  }
-
-  void setConfirm(bool value) {
-    setState(() {
-      widget.confirmConfig = value;
-      widget.paymentConfig = !value;
-      widget.shippingConfig = !value;
-    });
-  }
-
-  void setPaymentMethod(bool online, bool onArrival) {
-    setState(() {
-      widget.online = online;
-      widget.onArrival = onArrival;
-    });
+  setNext() {
+    if (widget.shippingConfig == true) {
+      setState(() {
+        widget.paymentConfig = true;
+        widget.shippingConfig = false;
+        widget.confirmConfig = false;
+      });
+    } else if (widget.paymentConfig == true) {
+      setState(() {
+        widget.confirmConfig = true;
+        widget.paymentConfig = false;
+        widget.shippingConfig = false;
+      });
+    }
   }
 
   void setProgressHud(bool value) {

@@ -44,7 +44,7 @@ class TestState extends State<NumberSelector> {
                             counter.toString() +
                             " proizvoda u korpu")));
                   },
-                  child: Text('Dodati u korpu',
+                  child: Text('Dodaj u korpu',
                       style: TextStyle(
                           fontFamily: 'Varela',
                           color: kPrimaryColor,
@@ -62,14 +62,16 @@ class TestState extends State<NumberSelector> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
-              onPressed: () {
-                setState(() {
-                  counter--;
-                });
-              },
+              color: counter > 1 ? kPrimaryColor : Colors.grey,
+              onPressed: counter > 1
+                  ? () {
+                      setState(() {
+                        --counter;
+                      });
+                    }
+                  : () {},
               icon: Icon(
-                Icons.add_circle_outline,
-                color: kPrimaryColor,
+                Icons.remove_circle_outline,
                 size: 12.0,
               ),
             ),
@@ -82,14 +84,14 @@ class TestState extends State<NumberSelector> {
                   fontSize: 12.0),
             ),
             IconButton(
+              color: kPrimaryColor,
               onPressed: () {
                 setState(() {
-                  counter++;
+                  ++counter;
                 });
               },
               icon: Icon(
                 Icons.add_circle_outline,
-                color: kPrimaryColor,
                 size: 12.0,
               ),
             ),
