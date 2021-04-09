@@ -23,11 +23,13 @@ void main() {
   runApp(MyApp());
 }
 
+Korisnik korisnikInfo;
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   Future setujSesiju() async {
     var token = await FlutterSession().get('email');
-    if (token != '') await FlutterSession().set('email', '');
+    if (token == '') await FlutterSession().set('email', '');
   }
 
   @override

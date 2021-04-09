@@ -6,6 +6,7 @@ import 'package:flutter_session/flutter_session.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
+import '../main.dart';
 import '../model/kategorijeModel.dart';
 
 class ListenToDrawerEvent extends StatefulWidget {
@@ -37,6 +38,7 @@ class ListenToDrawerEventState extends State<ListenToDrawerEvent> {
 
 Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
   zatvoriSesiju() async {
+    korisnikInfo = null;
     await FlutterSession().set('email', '');
   }
 
@@ -60,25 +62,24 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                   )
                 : BoxDecoration(color: kPrimaryColor),
             child: !ResponsiveLayout.isIphone(context)
-                ? (FutureBuilder(
-                    future: FlutterSession().get('email'),
-                    builder: (context, snapshot) {
-                      return Text(
-                        snapshot.hasData && snapshot.data != ''
-                            ? 'Hello, ${snapshot.data.toString()}'
-                            : 'Hello',
+                ? (korisnikInfo != null
+                    ? Text(
+                        'Hello, ${korisnikInfo.ime}',
                         style: Theme.of(context).textTheme.headline5.copyWith(
                             color: Colors.white, fontWeight: FontWeight.bold),
-                      );
-                    },
-                  ))
-                : (Text(
+                      )
+                    : Text(
+                        'Hello',
+                        style: Theme.of(context).textTheme.headline5.copyWith(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ))
+                : Text(
                     'Kotarica',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         fontSize: 30),
-                  )),
+                  ),
           ),
         ),
         ListView.builder(
