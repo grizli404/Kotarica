@@ -22,6 +22,8 @@ import 'package:flutter_session/flutter_session.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../../main.dart';
+
 class Body extends StatefulWidget {
   final scaffoldKey;
   Body({
@@ -131,6 +133,7 @@ class _BodyState extends State<Body> {
                     });
                     _username = _email;
                     await FlutterSession().set('email', _email);
+                    korisnikInfo = await korisnik.vratiKorisnikaMail(_email);
                     var response = await korisnik.dodavanjeNovogKorisnika(
                         _email, _password, _ime, _prezime, _kontakt, _adresa);
                     setState(() {

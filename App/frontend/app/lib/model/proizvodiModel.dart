@@ -5,12 +5,10 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
+import 'ether_setup.dart';
 
 class ProizvodiModel extends ChangeNotifier {
   List<Proizvod> listaProizvoda = [];
-
-  final String rpcUrl = "http://192.168.0.24:7545";
-  final String wsUrl = "ws://192.168.0.24:7545/";
 
   Web3Client client;
 
@@ -159,6 +157,13 @@ class ProizvodiModel extends ChangeNotifier {
       }
     }
     return proizvodiKat;
+  }
+
+  List<Proizvod> search(String input) {
+    List<Proizvod> result;
+    result.clear();
+
+    return result;
   }
 }
 

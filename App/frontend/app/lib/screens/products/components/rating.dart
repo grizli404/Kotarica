@@ -16,7 +16,7 @@ class _Rating extends State<Rating> {
 
   Widget _buildRatingStar(int index) {
     if (index < _currentRating) {
-      return Icon(Icons.star, color: kPrimaryColor);
+      return Icon(Icons.star, color: Theme.of(context).iconTheme.color);
     } else {
       return Icon(Icons.star_border_outlined);
     }

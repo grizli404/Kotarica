@@ -6,14 +6,11 @@ import 'package:http/http.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
 
+import 'ether_setup.dart';
+
 class KorisniciModel extends ChangeNotifier {
   Korisnik ulogovaniKorisnik;
 
-  final String rpcUrl = "http://192.168.0.24:7545";
-  final String wsUrl = "ws://192.168.0.24:7545/";
-
-  final String privatniKljuc =
-      "7c95adc131db0e26e4197d454dd829f493b64d69be2105cb31dcb8569b10f521";
   var abiCode; //ovde ce da bude smesten json file iz src/abis/korisnici.json
   EthereumAddress adresaUgovora;
 

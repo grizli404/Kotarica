@@ -53,6 +53,7 @@ class _CartScreenState extends State<CartScreen> {
               },
               child: CartItemCard(
                 cart: demoCarts[index],
+                rebuild: setState,
               ),
             ),
           ),

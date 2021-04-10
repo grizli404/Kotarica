@@ -98,25 +98,25 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"brojOcena\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_idKupovine\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idKategorije\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idProizvoda\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_ocena\",\"type\":\"int256\"},{\"internalType\":\"string\",\"name\":\"_komentar\",\"type\":\"string\"}],\"name\":\"dodajOcenu\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"name\":\"ocene\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"id\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idKupovine\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idKategorije\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idProizvoda\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"ocena\",\"type\":\"int256\"},{\"internalType\":\"string\",\"name\":\"komentar\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Ocene.sol\":\"Ocene\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Ocene.sol\":{\"keccak256\":\"0x6ea3eb0f6072be453c1ca4f95e0e374634e161c4c8ebc8cdba227d667985d133\",\"urls\":[\"bzz-raw://2a5250c8bade86b704e24c437f515ad5901f62195bcc4128615410d063211df2\",\"dweb:/ipfs/QmRybAghqy2xke81Z23Rf3JdsU1x6rgPcpQppwVMQYdoSt\"]}},\"version\":1}",
-  "bytecode": "0x60806040526000805534801561001457600080fd5b50610472806100246000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80633855dc8e146100465780637be2401014610064578063fba93ba514610147575b600080fd5b61004e610211565b6040518082815260200191505060405180910390f35b610145600480360360a081101561007a57600080fd5b8101908080359060200190929190803590602001909291908035906020019092919080359060200190929190803590602001906401000000008111156100bf57600080fd5b8201836020820111156100d157600080fd5b803590602001918460018302840111640100000000831117156100f357600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610217565b005b6101736004803603602081101561015d57600080fd5b81019080803590602001909291905050506102c4565b6040518087815260200186815260200185815260200184815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101d15780820151818401526020810190506101b6565b50505050905090810190601f1680156101fe5780820380516001836020036101000a031916815260200191505b5097505050505050505060405180910390f35b60005481565b60008081548092919060010191905055506040518060c001604052806000548152602001868152602001858152602001848152602001838152602001828152506001600080548152602001908152602001600020600082015181600001556020820151816001015560408201518160020155606082015181600301556080820151816004015560a08201518160050190805190602001906102b9929190610398565b509050505050505050565b6001602052806000526040600020600091509050806000015490806001015490806002015490806003015490806004015490806005018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561038e5780601f106103635761010080835404028352916020019161038e565b820191906000526020600020905b81548152906001019060200180831161037157829003601f168201915b5050505050905086565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106103d957805160ff1916838001178555610407565b82800160010185558215610407579182015b828111156104065782518255916020019190600101906103eb565b5b5090506104149190610418565b5090565b61043a91905b8082111561043657600081600090555060010161041e565b5090565b9056fea265627a7a72315820db9887effbad06e226b6a8d0a99987c71c376a3167ceadd3f0e97a1ae9566ad864736f6c63430005100032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80633855dc8e146100465780637be2401014610064578063fba93ba514610147575b600080fd5b61004e610211565b6040518082815260200191505060405180910390f35b610145600480360360a081101561007a57600080fd5b8101908080359060200190929190803590602001909291908035906020019092919080359060200190929190803590602001906401000000008111156100bf57600080fd5b8201836020820111156100d157600080fd5b803590602001918460018302840111640100000000831117156100f357600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610217565b005b6101736004803603602081101561015d57600080fd5b81019080803590602001909291905050506102c4565b6040518087815260200186815260200185815260200184815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101d15780820151818401526020810190506101b6565b50505050905090810190601f1680156101fe5780820380516001836020036101000a031916815260200191505b5097505050505050505060405180910390f35b60005481565b60008081548092919060010191905055506040518060c001604052806000548152602001868152602001858152602001848152602001838152602001828152506001600080548152602001908152602001600020600082015181600001556020820151816001015560408201518160020155606082015181600301556080820151816004015560a08201518160050190805190602001906102b9929190610398565b509050505050505050565b6001602052806000526040600020600091509050806000015490806001015490806002015490806003015490806004015490806005018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561038e5780601f106103635761010080835404028352916020019161038e565b820191906000526020600020905b81548152906001019060200180831161037157829003601f168201915b5050505050905086565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106103d957805160ff1916838001178555610407565b82800160010185558215610407579182015b828111156104065782518255916020019190600101906103eb565b5b5090506104149190610418565b5090565b61043a91905b8082111561043657600081600090555060010161041e565b5090565b9056fea265627a7a72315820db9887effbad06e226b6a8d0a99987c71c376a3167ceadd3f0e97a1ae9566ad864736f6c63430005100032",
-  "sourceMap": "69:710:4:-;;;458:1;435:24;;69:710;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:710:4;;;;;;;",
-  "deployedSourceMap": "69:710:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:710:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;435:24;;;:::i;:::-;;;;;;;;;;;;;;;;;;;512:262;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;512:262:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;512:262:4;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;512:262:4;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;512:262:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;512:262:4;;;;;;;;;;;;;;;:::i;:::-;;468:35;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;468:35:4;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;468:35:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;435:24;;;;:::o;512:262::-;648:9;;:11;;;;;;;;;;;;;689:77;;;;;;;;695:9;;689:77;;;;706:11;689:77;;;;719:13;689:77;;;;734:12;689:77;;;;748:6;689:77;;;;756:9;689:77;;;670:5;:16;676:9;;670:16;;;;;;;;;;;:96;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;512:262;;;;;:::o;468:35::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;69:710::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
-  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract Ocene{\r\n\r\n    struct Ocena\r\n    {\r\n        int id;\r\n        int idKupovine;\r\n        int idKategorije; //ovi podaci o proizvodu se ponavljaju zbog toga sto trenutno trebaju Maji \r\n        int idProizvoda;  //da bi pocela svoj rad na vreme, bice reseno drugacije kada vidimo koji je najbolji nacin\r\n        int ocena;\r\n        string komentar;\r\n    }\r\n\r\n    int public brojOcena = 0;\r\n\r\n    mapping (int => Ocena) public ocene;\r\n\r\n    function dodajOcenu (int _idKupovine, int _idKategorije, int _idProizvoda, int _ocena, string memory _komentar) public \r\n    {\r\n        brojOcena++;\r\n        ocene[brojOcena] = Ocena(brojOcena, _idKupovine, _idKategorije, _idProizvoda, _ocena, _komentar);\r\n    }\r\n\r\n}",
-  "sourcePath": "C:/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Ocene.sol",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"brojOcena\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_idKupovine\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idKategorije\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idProizvoda\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_ocena\",\"type\":\"int256\"},{\"internalType\":\"string\",\"name\":\"_komentar\",\"type\":\"string\"}],\"name\":\"dodajOcenu\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"name\":\"ocene\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"id\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idKupovine\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idKategorije\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idProizvoda\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"ocena\",\"type\":\"int256\"},{\"internalType\":\"string\",\"name\":\"komentar\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/E/ChainTech/App/frontend/app/contracts/Ocene.sol\":\"Ocene\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/ChainTech/App/frontend/app/contracts/Ocene.sol\":{\"keccak256\":\"0xff77e241fda1df4a53eed0b574c6e589d90b330166f22421d9746a5f123dc569\",\"urls\":[\"bzz-raw://714127f494fdfa589433b16fdbdfcb251e93d142368b08bba95d152050860bad\",\"dweb:/ipfs/QmdcoprnYCxq2Cq5fNVxMXeFkH57JV6WdfKFXY6f3yWnk2\"]}},\"version\":1}",
+  "bytecode": "0x60806040526000805534801561001457600080fd5b50610472806100246000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80633855dc8e146100465780637be2401014610064578063fba93ba514610147575b600080fd5b61004e610211565b6040518082815260200191505060405180910390f35b610145600480360360a081101561007a57600080fd5b8101908080359060200190929190803590602001909291908035906020019092919080359060200190929190803590602001906401000000008111156100bf57600080fd5b8201836020820111156100d157600080fd5b803590602001918460018302840111640100000000831117156100f357600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610217565b005b6101736004803603602081101561015d57600080fd5b81019080803590602001909291905050506102c4565b6040518087815260200186815260200185815260200184815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101d15780820151818401526020810190506101b6565b50505050905090810190601f1680156101fe5780820380516001836020036101000a031916815260200191505b5097505050505050505060405180910390f35b60005481565b60008081548092919060010191905055506040518060c001604052806000548152602001868152602001858152602001848152602001838152602001828152506001600080548152602001908152602001600020600082015181600001556020820151816001015560408201518160020155606082015181600301556080820151816004015560a08201518160050190805190602001906102b9929190610398565b509050505050505050565b6001602052806000526040600020600091509050806000015490806001015490806002015490806003015490806004015490806005018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561038e5780601f106103635761010080835404028352916020019161038e565b820191906000526020600020905b81548152906001019060200180831161037157829003601f168201915b5050505050905086565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106103d957805160ff1916838001178555610407565b82800160010185558215610407579182015b828111156104065782518255916020019190600101906103eb565b5b5090506104149190610418565b5090565b61043a91905b8082111561043657600081600090555060010161041e565b5090565b9056fea265627a7a72315820f28de6ca134071de760caa940995878cd8f77db02e9beb91bad70b9bc4b59f2664736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80633855dc8e146100465780637be2401014610064578063fba93ba514610147575b600080fd5b61004e610211565b6040518082815260200191505060405180910390f35b610145600480360360a081101561007a57600080fd5b8101908080359060200190929190803590602001909291908035906020019092919080359060200190929190803590602001906401000000008111156100bf57600080fd5b8201836020820111156100d157600080fd5b803590602001918460018302840111640100000000831117156100f357600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610217565b005b6101736004803603602081101561015d57600080fd5b81019080803590602001909291905050506102c4565b6040518087815260200186815260200185815260200184815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101d15780820151818401526020810190506101b6565b50505050905090810190601f1680156101fe5780820380516001836020036101000a031916815260200191505b5097505050505050505060405180910390f35b60005481565b60008081548092919060010191905055506040518060c001604052806000548152602001868152602001858152602001848152602001838152602001828152506001600080548152602001908152602001600020600082015181600001556020820151816001015560408201518160020155606082015181600301556080820151816004015560a08201518160050190805190602001906102b9929190610398565b509050505050505050565b6001602052806000526040600020600091509050806000015490806001015490806002015490806003015490806004015490806005018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561038e5780601f106103635761010080835404028352916020019161038e565b820191906000526020600020905b81548152906001019060200180831161037157829003601f168201915b5050505050905086565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106103d957805160ff1916838001178555610407565b82800160010185558215610407579182015b828111156104065782518255916020019190600101906103eb565b5b5090506104149190610418565b5090565b61043a91905b8082111561043657600081600090555060010161041e565b5090565b9056fea265627a7a72315820f28de6ca134071de760caa940995878cd8f77db02e9beb91bad70b9bc4b59f2664736f6c63430005100032",
+  "sourceMap": "66:688:4:-;;;443:1;420:24;;66:688;8:9:-1;5:2;;;30:1;27;20:12;5:2;66:688:4;;;;;;;",
+  "deployedSourceMap": "66:688:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;66:688:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;420:24;;;:::i;:::-;;;;;;;;;;;;;;;;;;;493:258;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;493:258:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;493:258:4;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;493:258:4;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;493:258:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;493:258:4;;;;;;;;;;;;;;;:::i;:::-;;451:35;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;451:35:4;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;451:35:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;420:24;;;;:::o;493:258::-;627:9;;:11;;;;;;;;;;;;;667:77;;;;;;;;673:9;;667:77;;;;684:11;667:77;;;;697:13;667:77;;;;712:12;667:77;;;;726:6;667:77;;;;734:9;667:77;;;648:5;:16;654:9;;648:16;;;;;;;;;;;:96;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;493:258;;;;;:::o;451:35::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;66:688::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.9.0;\n\ncontract Ocene{\n\n    struct Ocena\n    {\n        int id;\n        int idKupovine;\n        int idKategorije; //ovi podaci o proizvodu se ponavljaju zbog toga sto trenutno trebaju Maji \n        int idProizvoda;  //da bi pocela svoj rad na vreme, bice reseno drugacije kada vidimo koji je najbolji nacin\n        int ocena;\n        string komentar;\n    }\n\n    int public brojOcena = 0;\n\n    mapping (int => Ocena) public ocene;\n\n    function dodajOcenu (int _idKupovine, int _idKategorije, int _idProizvoda, int _ocena, string memory _komentar) public \n    {\n        brojOcena++;\n        ocene[brojOcena] = Ocena(brojOcena, _idKupovine, _idKategorije, _idProizvoda, _ocena, _komentar);\n    }\n\n}",
+  "sourcePath": "E:/ChainTech/App/frontend/app/contracts/Ocene.sol",
   "ast": {
-    "absolutePath": "/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Ocene.sol",
+    "absolutePath": "/E/ChainTech/App/frontend/app/contracts/Ocene.sol",
     "exportedSymbols": {
       "Ocene": [
-        395
+        444
       ]
     },
-    "id": 396,
+    "id": 445,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 344,
+        "id": 393,
         "literals": [
           "solidity",
           ">=",
@@ -127,7 +127,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "33:32:4"
+        "src": "32:32:4"
       },
       {
         "baseContracts": [],
@@ -135,24 +135,24 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 395,
+        "id": 444,
         "linearizedBaseContracts": [
-          395
+          444
         ],
         "name": "Ocene",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "Ocene.Ocena",
-            "id": 357,
+            "id": 406,
             "members": [
               {
                 "constant": false,
-                "id": 346,
+                "id": 395,
                 "name": "id",
                 "nodeType": "VariableDeclaration",
-                "scope": 357,
-                "src": "121:6:4",
+                "scope": 406,
+                "src": "114:6:4",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -160,10 +160,10 @@
                   "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 345,
+                  "id": 394,
                   "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "121:3:4",
+                  "src": "114:3:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_int256",
                     "typeString": "int256"
@@ -174,11 +174,11 @@
               },
               {
                 "constant": false,
-                "id": 348,
+                "id": 397,
                 "name": "idKupovine",
                 "nodeType": "VariableDeclaration",
-                "scope": 357,
-                "src": "138:14:4",
+                "scope": 406,
+                "src": "130:14:4",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -186,10 +186,10 @@
                   "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 347,
+                  "id": 396,
                   "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "138:3:4",
+                  "src": "130:3:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_int256",
                     "typeString": "int256"
@@ -200,11 +200,11 @@
               },
               {
                 "constant": false,
-                "id": 350,
+                "id": 399,
                 "name": "idKategorije",
                 "nodeType": "VariableDeclaration",
-                "scope": 357,
-                "src": "163:16:4",
+                "scope": 406,
+                "src": "154:16:4",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -212,10 +212,10 @@
                   "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 349,
+                  "id": 398,
                   "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "163:3:4",
+                  "src": "154:3:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_int256",
                     "typeString": "int256"
@@ -226,11 +226,11 @@
               },
               {
                 "constant": false,
-                "id": 352,
+                "id": 401,
                 "name": "idProizvoda",
                 "nodeType": "VariableDeclaration",
-                "scope": 357,
-                "src": "266:15:4",
+                "scope": 406,
+                "src": "256:15:4",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -238,10 +238,10 @@
                   "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 351,
+                  "id": 400,
                   "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "266:3:4",
+                  "src": "256:3:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_int256",
                     "typeString": "int256"
@@ -252,11 +252,11 @@
               },
               {
                 "constant": false,
-                "id": 354,
+                "id": 403,
                 "name": "ocena",
                 "nodeType": "VariableDeclaration",
-                "scope": 357,
-                "src": "384:9:4",
+                "scope": 406,
+                "src": "373:9:4",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -264,10 +264,10 @@
                   "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 353,
+                  "id": 402,
                   "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "384:3:4",
+                  "src": "373:3:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_int256",
                     "typeString": "int256"
@@ -278,11 +278,11 @@
               },
               {
                 "constant": false,
-                "id": 356,
+                "id": 405,
                 "name": "komentar",
                 "nodeType": "VariableDeclaration",
-                "scope": 357,
-                "src": "404:15:4",
+                "scope": 406,
+                "src": "392:15:4",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -290,10 +290,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 355,
+                  "id": 404,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "404:6:4",
+                  "src": "392:6:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -305,17 +305,17 @@
             ],
             "name": "Ocena",
             "nodeType": "StructDefinition",
-            "scope": 395,
-            "src": "92:335:4",
+            "scope": 444,
+            "src": "87:327:4",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 360,
+            "id": 409,
             "name": "brojOcena",
             "nodeType": "VariableDeclaration",
-            "scope": 395,
-            "src": "435:24:4",
+            "scope": 444,
+            "src": "420:24:4",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -323,10 +323,10 @@
               "typeString": "int256"
             },
             "typeName": {
-              "id": 358,
+              "id": 407,
               "name": "int",
               "nodeType": "ElementaryTypeName",
-              "src": "435:3:4",
+              "src": "420:3:4",
               "typeDescriptions": {
                 "typeIdentifier": "t_int256",
                 "typeString": "int256"
@@ -335,14 +335,14 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "30",
-              "id": 359,
+              "id": 408,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "458:1:4",
+              "src": "443:1:4",
               "subdenomination": null,
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_0_by_1",
@@ -354,44 +354,44 @@
           },
           {
             "constant": false,
-            "id": 364,
+            "id": 413,
             "name": "ocene",
             "nodeType": "VariableDeclaration",
-            "scope": 395,
-            "src": "468:35:4",
+            "scope": 444,
+            "src": "451:35:4",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Ocena_$357_storage_$",
+              "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Ocena_$406_storage_$",
               "typeString": "mapping(int256 => struct Ocene.Ocena)"
             },
             "typeName": {
-              "id": 363,
+              "id": 412,
               "keyType": {
-                "id": 361,
+                "id": 410,
                 "name": "int",
                 "nodeType": "ElementaryTypeName",
-                "src": "477:3:4",
+                "src": "460:3:4",
                 "typeDescriptions": {
                   "typeIdentifier": "t_int256",
                   "typeString": "int256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "468:22:4",
+              "src": "451:22:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Ocena_$357_storage_$",
+                "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Ocena_$406_storage_$",
                 "typeString": "mapping(int256 => struct Ocene.Ocena)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 362,
+                "id": 411,
                 "name": "Ocena",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 357,
-                "src": "484:5:4",
+                "referencedDeclaration": 406,
+                "src": "467:5:4",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Ocena_$357_storage_ptr",
+                  "typeIdentifier": "t_struct$_Ocena_$406_storage_ptr",
                   "typeString": "struct Ocene.Ocena"
                 }
               }
@@ -401,14 +401,14 @@
           },
           {
             "body": {
-              "id": 393,
+              "id": 442,
               "nodeType": "Block",
-              "src": "637:137:4",
+              "src": "617:134:4",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 378,
+                    "id": 427,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -416,15 +416,15 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "648:11:4",
+                    "src": "627:11:4",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 377,
+                      "id": 426,
                       "name": "brojOcena",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 360,
-                      "src": "648:9:4",
+                      "referencedDeclaration": 409,
+                      "src": "627:9:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
                         "typeString": "int256"
@@ -435,14 +435,14 @@
                       "typeString": "int256"
                     }
                   },
-                  "id": 379,
+                  "id": 428,
                   "nodeType": "ExpressionStatement",
-                  "src": "648:11:4"
+                  "src": "627:11:4"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 391,
+                    "id": 440,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -451,26 +451,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 380,
+                        "id": 429,
                         "name": "ocene",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 364,
-                        "src": "670:5:4",
+                        "referencedDeclaration": 413,
+                        "src": "648:5:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Ocena_$357_storage_$",
+                          "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Ocena_$406_storage_$",
                           "typeString": "mapping(int256 => struct Ocene.Ocena storage ref)"
                         }
                       },
-                      "id": 382,
+                      "id": 431,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 381,
+                        "id": 430,
                         "name": "brojOcena",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 360,
-                        "src": "676:9:4",
+                        "referencedDeclaration": 409,
+                        "src": "654:9:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
                           "typeString": "int256"
@@ -481,9 +481,9 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "670:16:4",
+                      "src": "648:16:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Ocena_$357_storage",
+                        "typeIdentifier": "t_struct$_Ocena_$406_storage",
                         "typeString": "struct Ocene.Ocena storage ref"
                       }
                     },
@@ -494,12 +494,12 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 384,
+                          "id": 433,
                           "name": "brojOcena",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 360,
-                          "src": "695:9:4",
+                          "referencedDeclaration": 409,
+                          "src": "673:9:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -507,12 +507,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 385,
+                          "id": 434,
                           "name": "_idKupovine",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 366,
-                          "src": "706:11:4",
+                          "referencedDeclaration": 415,
+                          "src": "684:11:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -520,12 +520,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 386,
+                          "id": 435,
                           "name": "_idKategorije",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 368,
-                          "src": "719:13:4",
+                          "referencedDeclaration": 417,
+                          "src": "697:13:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -533,12 +533,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 387,
+                          "id": 436,
                           "name": "_idProizvoda",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 370,
-                          "src": "734:12:4",
+                          "referencedDeclaration": 419,
+                          "src": "712:12:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -546,12 +546,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 388,
+                          "id": 437,
                           "name": "_ocena",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 372,
-                          "src": "748:6:4",
+                          "referencedDeclaration": 421,
+                          "src": "726:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -559,12 +559,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 389,
+                          "id": 438,
                           "name": "_komentar",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 374,
-                          "src": "756:9:4",
+                          "referencedDeclaration": 423,
+                          "src": "734:9:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
                             "typeString": "string memory"
@@ -598,18 +598,18 @@
                             "typeString": "string memory"
                           }
                         ],
-                        "id": 383,
+                        "id": 432,
                         "name": "Ocena",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 357,
-                        "src": "689:5:4",
+                        "referencedDeclaration": 406,
+                        "src": "667:5:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_Ocena_$357_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_Ocena_$406_storage_ptr_$",
                           "typeString": "type(struct Ocene.Ocena storage pointer)"
                         }
                       },
-                      "id": 390,
+                      "id": 439,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -617,42 +617,42 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "689:77:4",
+                      "src": "667:77:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Ocena_$357_memory",
+                        "typeIdentifier": "t_struct$_Ocena_$406_memory",
                         "typeString": "struct Ocene.Ocena memory"
                       }
                     },
-                    "src": "670:96:4",
+                    "src": "648:96:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Ocena_$357_storage",
+                      "typeIdentifier": "t_struct$_Ocena_$406_storage",
                       "typeString": "struct Ocene.Ocena storage ref"
                     }
                   },
-                  "id": 392,
+                  "id": 441,
                   "nodeType": "ExpressionStatement",
-                  "src": "670:96:4"
+                  "src": "648:96:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 394,
+            "id": 443,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "dodajOcenu",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 375,
+              "id": 424,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 366,
+                  "id": 415,
                   "name": "_idKupovine",
                   "nodeType": "VariableDeclaration",
-                  "scope": 394,
-                  "src": "533:15:4",
+                  "scope": 443,
+                  "src": "514:15:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -660,10 +660,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 365,
+                    "id": 414,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "533:3:4",
+                    "src": "514:3:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -674,11 +674,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 368,
+                  "id": 417,
                   "name": "_idKategorije",
                   "nodeType": "VariableDeclaration",
-                  "scope": 394,
-                  "src": "550:17:4",
+                  "scope": 443,
+                  "src": "531:17:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -686,7 +686,33 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 367,
+                    "id": 416,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "531:3:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 419,
+                  "name": "_idProizvoda",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 443,
+                  "src": "550:16:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 418,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
                     "src": "550:3:4",
@@ -700,37 +726,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 370,
-                  "name": "_idProizvoda",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 394,
-                  "src": "569:16:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_int256",
-                    "typeString": "int256"
-                  },
-                  "typeName": {
-                    "id": 369,
-                    "name": "int",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "569:3:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_int256",
-                      "typeString": "int256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 372,
+                  "id": 421,
                   "name": "_ocena",
                   "nodeType": "VariableDeclaration",
-                  "scope": 394,
-                  "src": "587:10:4",
+                  "scope": 443,
+                  "src": "568:10:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -738,10 +738,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 371,
+                    "id": 420,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "587:3:4",
+                    "src": "568:3:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -752,11 +752,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 374,
+                  "id": 423,
                   "name": "_komentar",
                   "nodeType": "VariableDeclaration",
-                  "scope": 394,
-                  "src": "599:23:4",
+                  "scope": 443,
+                  "src": "580:23:4",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -764,10 +764,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 373,
+                    "id": 422,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "599:6:4",
+                    "src": "580:6:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -777,33 +777,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "532:91:4"
+              "src": "513:91:4"
             },
             "returnParameters": {
-              "id": 376,
+              "id": 425,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "637:0:4"
+              "src": "617:0:4"
             },
-            "scope": 395,
-            "src": "512:262:4",
+            "scope": 444,
+            "src": "493:258:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 396,
-        "src": "69:710:4"
+        "scope": 445,
+        "src": "66:688:4"
       }
     ],
-    "src": "33:746:4"
+    "src": "32:722:4"
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Ocene.sol",
+      "absolutePath": "/E/ChainTech/App/frontend/app/contracts/Ocene.sol",
       "exportedSymbols": {
         "Ocene": [
-          395
+          444
         ]
       }
     },
@@ -820,9 +820,9 @@
             ".0"
           ]
         },
-        "id": 344,
+        "id": 393,
         "name": "PragmaDirective",
-        "src": "33:32:4"
+        "src": "32:32:4"
       },
       {
         "attributes": {
@@ -836,17 +836,17 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            395
+            444
           ],
           "name": "Ocene",
-          "scope": 396
+          "scope": 445
         },
         "children": [
           {
             "attributes": {
               "canonicalName": "Ocene.Ocena",
               "name": "Ocena",
-              "scope": 395,
+              "scope": 444,
               "visibility": "public"
             },
             "children": [
@@ -854,7 +854,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "id",
-                  "scope": 357,
+                  "scope": 406,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -867,20 +867,20 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 345,
+                    "id": 394,
                     "name": "ElementaryTypeName",
-                    "src": "121:3:4"
+                    "src": "114:3:4"
                   }
                 ],
-                "id": 346,
+                "id": 395,
                 "name": "VariableDeclaration",
-                "src": "121:6:4"
+                "src": "114:6:4"
               },
               {
                 "attributes": {
                   "constant": false,
                   "name": "idKupovine",
-                  "scope": 357,
+                  "scope": 406,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -893,20 +893,20 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 347,
+                    "id": 396,
                     "name": "ElementaryTypeName",
-                    "src": "138:3:4"
+                    "src": "130:3:4"
                   }
                 ],
-                "id": 348,
+                "id": 397,
                 "name": "VariableDeclaration",
-                "src": "138:14:4"
+                "src": "130:14:4"
               },
               {
                 "attributes": {
                   "constant": false,
                   "name": "idKategorije",
-                  "scope": 357,
+                  "scope": 406,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -919,20 +919,20 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 349,
+                    "id": 398,
                     "name": "ElementaryTypeName",
-                    "src": "163:3:4"
+                    "src": "154:3:4"
                   }
                 ],
-                "id": 350,
+                "id": 399,
                 "name": "VariableDeclaration",
-                "src": "163:16:4"
+                "src": "154:16:4"
               },
               {
                 "attributes": {
                   "constant": false,
                   "name": "idProizvoda",
-                  "scope": 357,
+                  "scope": 406,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -945,20 +945,20 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 351,
+                    "id": 400,
                     "name": "ElementaryTypeName",
-                    "src": "266:3:4"
+                    "src": "256:3:4"
                   }
                 ],
-                "id": 352,
+                "id": 401,
                 "name": "VariableDeclaration",
-                "src": "266:15:4"
+                "src": "256:15:4"
               },
               {
                 "attributes": {
                   "constant": false,
                   "name": "ocena",
-                  "scope": 357,
+                  "scope": 406,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -971,20 +971,20 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 353,
+                    "id": 402,
                     "name": "ElementaryTypeName",
-                    "src": "384:3:4"
+                    "src": "373:3:4"
                   }
                 ],
-                "id": 354,
+                "id": 403,
                 "name": "VariableDeclaration",
-                "src": "384:9:4"
+                "src": "373:9:4"
               },
               {
                 "attributes": {
                   "constant": false,
                   "name": "komentar",
-                  "scope": 357,
+                  "scope": 406,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "string",
@@ -997,25 +997,25 @@
                       "name": "string",
                       "type": "string"
                     },
-                    "id": 355,
+                    "id": 404,
                     "name": "ElementaryTypeName",
-                    "src": "404:6:4"
+                    "src": "392:6:4"
                   }
                 ],
-                "id": 356,
+                "id": 405,
                 "name": "VariableDeclaration",
-                "src": "404:15:4"
+                "src": "392:15:4"
               }
             ],
-            "id": 357,
+            "id": 406,
             "name": "StructDefinition",
-            "src": "92:335:4"
+            "src": "87:327:4"
           },
           {
             "attributes": {
               "constant": false,
               "name": "brojOcena",
-              "scope": 395,
+              "scope": 444,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "int256",
@@ -1027,9 +1027,9 @@
                   "name": "int",
                   "type": "int256"
                 },
-                "id": 358,
+                "id": 407,
                 "name": "ElementaryTypeName",
-                "src": "435:3:4"
+                "src": "420:3:4"
               },
               {
                 "attributes": {
@@ -1044,20 +1044,20 @@
                   "type": "int_const 0",
                   "value": "0"
                 },
-                "id": 359,
+                "id": 408,
                 "name": "Literal",
-                "src": "458:1:4"
+                "src": "443:1:4"
               }
             ],
-            "id": 360,
+            "id": 409,
             "name": "VariableDeclaration",
-            "src": "435:24:4"
+            "src": "420:24:4"
           },
           {
             "attributes": {
               "constant": false,
               "name": "ocene",
-              "scope": 395,
+              "scope": 444,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(int256 => struct Ocene.Ocena)",
@@ -1075,30 +1075,30 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 361,
+                    "id": 410,
                     "name": "ElementaryTypeName",
-                    "src": "477:3:4"
+                    "src": "460:3:4"
                   },
                   {
                     "attributes": {
                       "contractScope": null,
                       "name": "Ocena",
-                      "referencedDeclaration": 357,
+                      "referencedDeclaration": 406,
                       "type": "struct Ocene.Ocena"
                     },
-                    "id": 362,
+                    "id": 411,
                     "name": "UserDefinedTypeName",
-                    "src": "484:5:4"
+                    "src": "467:5:4"
                   }
                 ],
-                "id": 363,
+                "id": 412,
                 "name": "Mapping",
-                "src": "468:22:4"
+                "src": "451:22:4"
               }
             ],
-            "id": 364,
+            "id": 413,
             "name": "VariableDeclaration",
-            "src": "468:35:4"
+            "src": "451:35:4"
           },
           {
             "attributes": {
@@ -1110,7 +1110,7 @@
                 null
               ],
               "name": "dodajOcenu",
-              "scope": 395,
+              "scope": 444,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -1122,7 +1122,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_idKupovine",
-                      "scope": 394,
+                      "scope": 443,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -1135,20 +1135,20 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 365,
+                        "id": 414,
                         "name": "ElementaryTypeName",
-                        "src": "533:3:4"
+                        "src": "514:3:4"
                       }
                     ],
-                    "id": 366,
+                    "id": 415,
                     "name": "VariableDeclaration",
-                    "src": "533:15:4"
+                    "src": "514:15:4"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_idKategorije",
-                      "scope": 394,
+                      "scope": 443,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -1161,20 +1161,20 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 367,
+                        "id": 416,
                         "name": "ElementaryTypeName",
-                        "src": "550:3:4"
+                        "src": "531:3:4"
                       }
                     ],
-                    "id": 368,
+                    "id": 417,
                     "name": "VariableDeclaration",
-                    "src": "550:17:4"
+                    "src": "531:17:4"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_idProizvoda",
-                      "scope": 394,
+                      "scope": 443,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -1187,20 +1187,20 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 369,
+                        "id": 418,
                         "name": "ElementaryTypeName",
-                        "src": "569:3:4"
+                        "src": "550:3:4"
                       }
                     ],
-                    "id": 370,
+                    "id": 419,
                     "name": "VariableDeclaration",
-                    "src": "569:16:4"
+                    "src": "550:16:4"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_ocena",
-                      "scope": 394,
+                      "scope": 443,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -1213,20 +1213,20 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 371,
+                        "id": 420,
                         "name": "ElementaryTypeName",
-                        "src": "587:3:4"
+                        "src": "568:3:4"
                       }
                     ],
-                    "id": 372,
+                    "id": 421,
                     "name": "VariableDeclaration",
-                    "src": "587:10:4"
+                    "src": "568:10:4"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_komentar",
-                      "scope": 394,
+                      "scope": 443,
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "string",
@@ -1239,19 +1239,19 @@
                           "name": "string",
                           "type": "string"
                         },
-                        "id": 373,
+                        "id": 422,
                         "name": "ElementaryTypeName",
-                        "src": "599:6:4"
+                        "src": "580:6:4"
                       }
                     ],
-                    "id": 374,
+                    "id": 423,
                     "name": "VariableDeclaration",
-                    "src": "599:23:4"
+                    "src": "580:23:4"
                   }
                 ],
-                "id": 375,
+                "id": 424,
                 "name": "ParameterList",
-                "src": "532:91:4"
+                "src": "513:91:4"
               },
               {
                 "attributes": {
@@ -1260,9 +1260,9 @@
                   ]
                 },
                 "children": [],
-                "id": 376,
+                "id": 425,
                 "name": "ParameterList",
-                "src": "637:0:4"
+                "src": "617:0:4"
               },
               {
                 "children": [
@@ -1286,23 +1286,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 360,
+                              "referencedDeclaration": 409,
                               "type": "int256",
                               "value": "brojOcena"
                             },
-                            "id": 377,
+                            "id": 426,
                             "name": "Identifier",
-                            "src": "648:9:4"
+                            "src": "627:9:4"
                           }
                         ],
-                        "id": 378,
+                        "id": 427,
                         "name": "UnaryOperation",
-                        "src": "648:11:4"
+                        "src": "627:11:4"
                       }
                     ],
-                    "id": 379,
+                    "id": 428,
                     "name": "ExpressionStatement",
-                    "src": "648:11:4"
+                    "src": "627:11:4"
                   },
                   {
                     "children": [
@@ -1333,13 +1333,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 364,
+                                  "referencedDeclaration": 413,
                                   "type": "mapping(int256 => struct Ocene.Ocena storage ref)",
                                   "value": "ocene"
                                 },
-                                "id": 380,
+                                "id": 429,
                                 "name": "Identifier",
-                                "src": "670:5:4"
+                                "src": "648:5:4"
                               },
                               {
                                 "attributes": {
@@ -1347,18 +1347,18 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 360,
+                                  "referencedDeclaration": 409,
                                   "type": "int256",
                                   "value": "brojOcena"
                                 },
-                                "id": 381,
+                                "id": 430,
                                 "name": "Identifier",
-                                "src": "676:9:4"
+                                "src": "654:9:4"
                               }
                             ],
-                            "id": 382,
+                            "id": 431,
                             "name": "IndexAccess",
-                            "src": "670:16:4"
+                            "src": "648:16:4"
                           },
                           {
                             "attributes": {
@@ -1406,13 +1406,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 357,
+                                  "referencedDeclaration": 406,
                                   "type": "type(struct Ocene.Ocena storage pointer)",
                                   "value": "Ocena"
                                 },
-                                "id": 383,
+                                "id": 432,
                                 "name": "Identifier",
-                                "src": "689:5:4"
+                                "src": "667:5:4"
                               },
                               {
                                 "attributes": {
@@ -1420,13 +1420,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 360,
+                                  "referencedDeclaration": 409,
                                   "type": "int256",
                                   "value": "brojOcena"
                                 },
-                                "id": 384,
+                                "id": 433,
                                 "name": "Identifier",
-                                "src": "695:9:4"
+                                "src": "673:9:4"
                               },
                               {
                                 "attributes": {
@@ -1434,13 +1434,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 366,
+                                  "referencedDeclaration": 415,
                                   "type": "int256",
                                   "value": "_idKupovine"
                                 },
-                                "id": 385,
+                                "id": 434,
                                 "name": "Identifier",
-                                "src": "706:11:4"
+                                "src": "684:11:4"
                               },
                               {
                                 "attributes": {
@@ -1448,13 +1448,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 368,
+                                  "referencedDeclaration": 417,
                                   "type": "int256",
                                   "value": "_idKategorije"
                                 },
-                                "id": 386,
+                                "id": 435,
                                 "name": "Identifier",
-                                "src": "719:13:4"
+                                "src": "697:13:4"
                               },
                               {
                                 "attributes": {
@@ -1462,13 +1462,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 370,
+                                  "referencedDeclaration": 419,
                                   "type": "int256",
                                   "value": "_idProizvoda"
                                 },
-                                "id": 387,
+                                "id": 436,
                                 "name": "Identifier",
-                                "src": "734:12:4"
+                                "src": "712:12:4"
                               },
                               {
                                 "attributes": {
@@ -1476,13 +1476,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 372,
+                                  "referencedDeclaration": 421,
                                   "type": "int256",
                                   "value": "_ocena"
                                 },
-                                "id": 388,
+                                "id": 437,
                                 "name": "Identifier",
-                                "src": "748:6:4"
+                                "src": "726:6:4"
                               },
                               {
                                 "attributes": {
@@ -1490,48 +1490,48 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 374,
+                                  "referencedDeclaration": 423,
                                   "type": "string memory",
                                   "value": "_komentar"
                                 },
-                                "id": 389,
+                                "id": 438,
                                 "name": "Identifier",
-                                "src": "756:9:4"
+                                "src": "734:9:4"
                               }
                             ],
-                            "id": 390,
+                            "id": 439,
                             "name": "FunctionCall",
-                            "src": "689:77:4"
+                            "src": "667:77:4"
                           }
                         ],
-                        "id": 391,
+                        "id": 440,
                         "name": "Assignment",
-                        "src": "670:96:4"
+                        "src": "648:96:4"
                       }
                     ],
-                    "id": 392,
+                    "id": 441,
                     "name": "ExpressionStatement",
-                    "src": "670:96:4"
+                    "src": "648:96:4"
                   }
                 ],
-                "id": 393,
+                "id": 442,
                 "name": "Block",
-                "src": "637:137:4"
+                "src": "617:134:4"
               }
             ],
-            "id": 394,
+            "id": 443,
             "name": "FunctionDefinition",
-            "src": "512:262:4"
+            "src": "493:258:4"
           }
         ],
-        "id": 395,
+        "id": 444,
         "name": "ContractDefinition",
-        "src": "69:710:4"
+        "src": "66:688:4"
       }
     ],
-    "id": 396,
+    "id": 445,
     "name": "SourceUnit",
-    "src": "33:746:4"
+    "src": "32:722:4"
   },
   "compiler": {
     "name": "solc",
@@ -1541,12 +1541,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x875b1524d1C2819ACbd307b91e50fEF6BaefE6b7",
-      "transactionHash": "0xb8539b88564f9994534f6fec89565c68d64c3e150d159208176fa33f74abc4fa"
+      "address": "0x40C2A7574a6CbBDE6900A7356e20323395BEFD66",
+      "transactionHash": "0x4e09d0101890b6c595c0fdfefd30058136313af9ea081a1c76a81acf8ffde78c"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-04-05T22:37:05.610Z",
+  "updatedAt": "2021-04-08T14:15:45.642Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
