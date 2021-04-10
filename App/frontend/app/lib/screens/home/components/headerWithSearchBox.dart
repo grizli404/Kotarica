@@ -1,4 +1,5 @@
 import 'package:app/components/responsive_layout.dart';
+import 'package:app/main.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/model/search.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class HeaderWithSearchBox extends StatelessWidget {
             ),
             height: size.height * 0.2 - 27,
             decoration: BoxDecoration(
-              color: kPrimaryColor,
+              color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.only(
                 bottomLeft: ResponsiveLayout.isIphone(context)
                     ? Radius.circular(36)
@@ -49,22 +50,25 @@ class HeaderWithSearchBox extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 ResponsiveLayout.isIphone(context)
-                    ? FutureBuilder(
-                        future: FlutterSession().get('email'),
-                        builder: (context, snapshot) {
-                          return Text(
-                            snapshot.hasData && snapshot.data != ''
-                                ? 'Hello, ${snapshot.data.toString()}'
-                                : 'Hello',
+                    ? (korisnikInfo != null
+                        ? Text(
+                            'Hello, ${korisnikInfo.ime}',
                             style: Theme.of(context)
                                 .textTheme
                                 .headline5
                                 .copyWith(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
-                          );
-                        },
-                      )
+                          )
+                        : Text(
+                            'Hello',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5
+                                .copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                          ))
                     : Text(''),
                 Spacer(),
               ],
@@ -86,7 +90,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                   BoxShadow(
                     offset: Offset(0, 10),
                     blurRadius: 50,
-                    color: kPrimaryColor.withOpacity(0.23),
+                    color: Theme.of(context).primaryColor.withOpacity(0.23),
                   ),
                 ],
               ),
@@ -98,9 +102,8 @@ class HeaderWithSearchBox extends StatelessWidget {
                       onChanged: (value) {},
                       decoration: InputDecoration(
                         hintText: 'Pretraga',
-                        hintStyle: TextStyle(
-                          color: kPrimaryColor.withOpacity(0.5),
-                        ),
+                        hintStyle:
+                            TextStyle(color: Theme.of(context).indicatorColor),
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
                       ),

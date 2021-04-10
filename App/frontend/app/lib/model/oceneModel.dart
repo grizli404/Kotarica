@@ -6,20 +6,13 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
+import 'ether_setup.dart';
 
 class OceneModel extends ChangeNotifier {
   List<Ocena> listaOcena = [];
 
-  final String rpcUrl = "http://192.168.0.24:7545";
-  final String wsUrl = "ws://192.168.0.24:7545/";
-
-
-  //Ovo je potrebno za transakciju
-  final String privatniKljuc =
-      "7c95adc131db0e26e4197d454dd829f493b64d69be2105cb31dcb8569b10f521";
   Credentials credentials;
   EthereumAddress nasaAdresa;
-
 
   Web3Client client;
 
@@ -53,7 +46,8 @@ class OceneModel extends ChangeNotifier {
     var jsonAbi = jsonDecode(abiStringFile);
     abiCode = jsonEncode(jsonAbi["abi"]);
 
-    adresaUgovora = EthereumAddress.fromHex(jsonAbi["networks"]["5777"]["address"]);
+    adresaUgovora =
+        EthereumAddress.fromHex(jsonAbi["networks"]["5777"]["address"]);
     //print(adresaUgovora);
   }
 
@@ -64,23 +58,29 @@ class OceneModel extends ChangeNotifier {
   }
 
   Future<void> getDeployedCotract() async {
-    ugovor = DeployedContract(ContractAbi.fromJson(abiCode, "Ocene"), adresaUgovora);
+    ugovor =
+        DeployedContract(ContractAbi.fromJson(abiCode, "Ocene"), adresaUgovora);
 
     brojOcena = ugovor.function("brojOcena");
     ocene = ugovor.function("ocene");
     dodajOcenu = ugovor.function("dodajOcenu");
   }
 
-  Future<void> oceniProizvod(int _idKupca, int _idKategorije, int _idProizvoda, int _ocena, String _komentar) async {
+  Future<void> oceniProizvod(int _idKupca, int _idKategorije, int _idProizvoda,
+      int _ocena, String _komentar) async {
     await client.sendTransaction(
-      credentials,
-      Transaction.callContract(
-        maxGas: 6721975,
-        contract: ugovor,
-        function: dodajOcenu,
-        parameters: [BigInt.from(_idKupca), BigInt.from(_idKategorije), BigInt.from(_idProizvoda), BigInt.from(_ocena), _komentar]
-      )
-    );
+        credentials,
+        Transaction.callContract(
+            maxGas: 6721975,
+            contract: ugovor,
+            function: dodajOcenu,
+            parameters: [
+              BigInt.from(_idKupca),
+              BigInt.from(_idKategorije),
+              BigInt.from(_idProizvoda),
+              BigInt.from(_ocena),
+              _komentar
+            ]));
   }
 
   /*
@@ -166,5 +166,11 @@ class Ocena {
   int ocena;
   String komentar;
 
-  Ocena({this.id, this.idKupovine, this.idKategorije, this.idProizvoda, this.ocena, this.komentar});
+  Ocena(
+      {this.id,
+      this.idKupovine,
+      this.idKategorije,
+      this.idProizvoda,
+      this.ocena,
+      this.komentar});
 }

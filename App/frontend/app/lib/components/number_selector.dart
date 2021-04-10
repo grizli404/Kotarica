@@ -35,7 +35,7 @@ class TestState extends State<NumberSelector> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 //if (!added) ...[
-                Icon(Icons.shopping_basket, color: kPrimaryColor, size: 12.0),
+                Icon(Icons.shopping_basket, color: Theme.of(context).iconTheme.color, size: 12.0),
                 MaterialButton(
                   onPressed: () {
                     dodajProizvod(proizvod, counter);
@@ -44,10 +44,10 @@ class TestState extends State<NumberSelector> {
                             counter.toString() +
                             " proizvoda u korpu")));
                   },
-                  child: Text('Dodati u korpu',
+                  child: Text('Dodaj u korpu',
                       style: TextStyle(
                           fontFamily: 'Varela',
-                          color: kPrimaryColor,
+                          color: Theme.of(context).iconTheme.color,
                           fontSize: 14.0)),
                 ),
                 //  ],
@@ -62,14 +62,16 @@ class TestState extends State<NumberSelector> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
-              onPressed: () {
-                setState(() {
-                  counter--;
-                });
-              },
+              color: counter > 1 ? Theme.of(context).iconTheme.color : Colors.grey,
+              onPressed: counter > 1
+                  ? () {
+                      setState(() {
+                        --counter;
+                      });
+                    }
+                  : () {},
               icon: Icon(
-                Icons.add_circle_outline,
-                color: kPrimaryColor,
+                Icons.remove_circle_outline,
                 size: 12.0,
               ),
             ),
@@ -77,19 +79,19 @@ class TestState extends State<NumberSelector> {
               counter.toString(),
               style: TextStyle(
                   fontFamily: 'Varela',
-                  color: kPrimaryColor,
+                  color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.bold,
                   fontSize: 12.0),
             ),
             IconButton(
+              color: Theme.of(context).iconTheme.color,
               onPressed: () {
                 setState(() {
-                  counter++;
+                  ++counter;
                 });
               },
               icon: Icon(
                 Icons.add_circle_outline,
-                color: kPrimaryColor,
                 size: 12.0,
               ),
             ),
