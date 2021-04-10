@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../constants.dart';
 import '../main.dart';
 import '../model/kategorijeModel.dart';
+import 'changeThemeButton.dart';
 
 class ListenToDrawerEvent extends StatefulWidget {
   @override
@@ -44,8 +45,9 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
 
   ProizvodiModel proizvodi = ProizvodiModel();
   return Container(
-    color:
-        ResponsiveLayout.isIphone(context) ? kBackgroundColor : kPrimaryColor,
+    color: ResponsiveLayout.isIphone(context)
+        ? Theme.of(context).scaffoldBackgroundColor
+        : Theme.of(context).primaryColor,
     child: ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[
@@ -54,13 +56,13 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
           child: DrawerHeader(
             decoration: ResponsiveLayout.isIphone(context)
                 ? BoxDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(36),
                       bottomRight: Radius.circular(36),
                     ),
                   )
-                : BoxDecoration(color: kPrimaryColor),
+                : BoxDecoration(color: Theme.of(context).primaryColor),
             child: !ResponsiveLayout.isIphone(context)
                 ? (korisnikInfo != null
                     ? Text(
@@ -108,9 +110,9 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                   '${kategorije.trenutnaKategorija[index].naziv}',
                   style: TextStyle(
                     fontSize: 20,
-                    color: ResponsiveLayout.isIphone(context)
-                        ? Colors.black
-                        : Colors.white,
+                    // color: ResponsiveLayout.isIphone(context)
+                    //     ? Theme.of(context).primaryColor
+                    //     : Colors.white,
                   ),
                 ),
               ),
@@ -118,8 +120,10 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
           },
         ),
         Padding(
-            padding: EdgeInsets.only(bottom: 5.0),
-            child: Container(color: Color(0xFFEBEBEB), height: 1.0)),
+          padding: EdgeInsets.only(bottom: 5.0),
+          //   child: Container(color: Color(0xFFEBEBEB)
+          //  height: 1.0)
+        ),
         Container(
           height: 80,
           padding: EdgeInsets.only(left: 15.0),
@@ -136,9 +140,9 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                   'Log out',
                   style: TextStyle(
                     fontSize: 20,
-                    color: ResponsiveLayout.isIphone(context)
-                        ? Colors.black
-                        : Colors.white,
+                    // color: ResponsiveLayout.isIphone(context)
+                    //     ? Colors.black
+                    //     : Colors.white,
                   ),
                 ),
               ],
@@ -147,6 +151,19 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
           //color: Colors.white,
           alignment: Alignment.centerLeft,
         ),
+        Container(
+          padding: EdgeInsets.only(left: 15.0),
+          alignment: Alignment.centerLeft,
+          child: Row(
+            children: [
+              Text('Light/Dark mode',
+                  style: TextStyle(
+                    fontSize: 20,
+                  )),
+              ChangeThemeButton(),
+            ],
+          ),
+        )
       ],
     ),
   );

@@ -16,7 +16,7 @@ class ProductContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     ProizvodiModel proizvodi = Provider.of<ProizvodiModel>(context);
     return Material(
-      color: kBackgroundColor,
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: ListView(
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,

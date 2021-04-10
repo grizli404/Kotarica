@@ -35,7 +35,7 @@ class TestState extends State<NumberSelector> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 //if (!added) ...[
-                Icon(Icons.shopping_basket, color: kPrimaryColor, size: 12.0),
+                Icon(Icons.shopping_basket, color: Theme.of(context).iconTheme.color, size: 12.0),
                 MaterialButton(
                   onPressed: () {
                     dodajProizvod(proizvod, counter);
@@ -47,7 +47,7 @@ class TestState extends State<NumberSelector> {
                   child: Text('Dodaj u korpu',
                       style: TextStyle(
                           fontFamily: 'Varela',
-                          color: kPrimaryColor,
+                          color: Theme.of(context).iconTheme.color,
                           fontSize: 14.0)),
                 ),
                 //  ],
@@ -62,7 +62,7 @@ class TestState extends State<NumberSelector> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
-              color: counter > 1 ? kPrimaryColor : Colors.grey,
+              color: counter > 1 ? Theme.of(context).iconTheme.color : Colors.grey,
               onPressed: counter > 1
                   ? () {
                       setState(() {
@@ -79,12 +79,12 @@ class TestState extends State<NumberSelector> {
               counter.toString(),
               style: TextStyle(
                   fontFamily: 'Varela',
-                  color: kPrimaryColor,
+                  color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.bold,
                   fontSize: 12.0),
             ),
             IconButton(
-              color: kPrimaryColor,
+              color: Theme.of(context).iconTheme.color,
               onPressed: () {
                 setState(() {
                   ++counter;
