@@ -10,8 +10,8 @@ import 'package:web_socket_channel/io.dart';
 class OceneModel extends ChangeNotifier {
   List<Ocena> listaOcena = [];
 
-  final String rpcUrl = "http://127.0.0.1:7545";
-  final String wsUrl = "ws://127.0.0.1:7545/";
+  final String rpcUrl = "http://192.168.0.24:7545";
+  final String wsUrl = "ws://192.168.0.24:7545/";
 
 
   //Ovo je potrebno za transakciju
@@ -81,7 +81,6 @@ class OceneModel extends ChangeNotifier {
         parameters: [BigInt.from(_idKupca), BigInt.from(_idKategorije), BigInt.from(_idProizvoda), BigInt.from(_ocena), _komentar]
       )
     );
-
   }
 
   /*
