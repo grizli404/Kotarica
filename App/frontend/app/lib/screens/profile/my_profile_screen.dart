@@ -1,5 +1,6 @@
 //import 'dart:html';
 import 'package:app/components/product_card.dart';
+import 'package:app/screens/notifications/notification_screen.dart';
 import 'package:app/screens/products/products.dart';
 import 'package:app/screens/profile/update_profile.dart';
 
@@ -7,6 +8,7 @@ import '../../constants.dart';
 
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
 import '../../constants.dart';
 
 class MyProfileScreen extends StatelessWidget {
@@ -617,6 +619,26 @@ class WideProfileBody extends StatelessWidget {
                         );
                       },
                     ),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 15),
+                      child: IconButton(
+                        onPressed: () {
+                          print("To NotificationScreen");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return NotificationScreen();
+                              },
+                            ),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.notifications,
+                          color: kPrimaryColor,
+                        ),
+                      ),
+                    )
                   ],
                 ),
                 Column(
