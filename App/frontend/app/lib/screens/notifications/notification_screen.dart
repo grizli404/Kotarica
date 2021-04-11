@@ -28,42 +28,44 @@ class NotificationScreenState extends State<NotificationScreen> {
         ),
       ),
       body: Container(
+        margin: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
         child: ListView.builder(
           itemCount: notificationList.length,
           itemBuilder: (context, index) {
-            return Container(
-                child: NotificationBar(
-              message: '${notificationList[index].message}',
-            ));
+            final notification = notificationList[index];
+            return Dismissible(
+              key: Key(notification.message),
+              child: NotificationBar(
+                message: notification.message,
+                proizvod: notification.proizvod,
+              ),
+              onDismissed: (direction) {
+                setState(() {
+                  notificationList.removeAt(index);
+                });
+                //removeFromBlock();
+                //ili
+                //removeCookie();
+              },
+            );
           },
         ),
       ),
-      bottomNavigationBar: DismissAllNotifications(),
-    );
-  }
-}
-
-class DismissAllNotifications extends StatelessWidget {
-  final int token;
-
-  const DismissAllNotifications({
-    Key key,
-    this.token,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      padding: EdgeInsets.only(top: 16),
-      child: SizedBox.expand(
-        child: RaisedButton(
-          onPressed: () {},
-          child: Text(
-            "Dismiss All Notifications",
-            style: TextStyle(color: kBackgroundColor),
+      bottomNavigationBar: Container(
+        height: 100,
+        padding: EdgeInsets.only(top: 16),
+        child: SizedBox.expand(
+          child: RaisedButton(
+            onPressed: () {
+              dismissAllNotifications();
+              setState(() {});
+            },
+            child: Text(
+              "Dismiss All Notifications",
+              style: TextStyle(color: kBackgroundColor),
+            ),
+            color: kPrimaryColor,
           ),
-          color: kPrimaryColor,
         ),
       ),
     );
