@@ -1,4 +1,5 @@
 import 'package:app/components/customAppBar.dart';
+import 'package:app/components/navigationBar.dart';
 import 'package:app/components/responsive_layout.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class HomeScreenLayout extends StatelessWidget {
         appBar: CustomAppBar(),
         body: Body(),
         drawer: ListenToDrawerEvent(),
+        bottomNavigationBar: NavigationBarWidget(),
       );
     } else {
       return Scaffold(
