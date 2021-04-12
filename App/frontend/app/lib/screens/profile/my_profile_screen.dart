@@ -9,9 +9,6 @@ import '../../constants.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-import '../../constants.dart';
-
 class MyProfileScreen extends StatelessWidget {
   final fName;
   final lName;
@@ -167,6 +164,12 @@ class ThinProfileBody extends StatelessWidget {
                         );
                       },
                     ),
+                    FloatingActionButton(onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return AddProduct();
+                      }));
+                    }),
                     SizedBox(height: 30.0),
                     Text(
                       "IME",
@@ -391,6 +394,12 @@ class MediumProfileBody extends StatelessWidget {
                         );
                       },
                     ),
+                    FloatingActionButton(onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return AddProduct();
+                      }));
+                    }),
                   ],
                 ),
                 Column(
@@ -624,7 +633,6 @@ class WideProfileBody extends StatelessWidget {
                       margin: EdgeInsets.symmetric(vertical: 15),
                       child: IconButton(
                         onPressed: () {
-                          print("To NotificationScreen");
                           Navigator.push(
                             context,
                             MaterialPageRoute(
