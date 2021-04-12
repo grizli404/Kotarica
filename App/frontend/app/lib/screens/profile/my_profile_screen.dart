@@ -1,5 +1,6 @@
 //import 'dart:html';
 import 'package:app/components/product_card.dart';
+import 'package:app/screens/add_product/add_product.dart';
 import 'package:app/screens/notifications/notification_screen.dart';
 import 'package:app/screens/products/products.dart';
 import 'package:app/screens/profile/update_profile.dart';
@@ -638,7 +639,13 @@ class WideProfileBody extends StatelessWidget {
                           color: kPrimaryColor,
                         ),
                       ),
-                    )
+                    ),
+                    FloatingActionButton(onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return AddProduct();
+                      }));
+                    }),
                   ],
                 ),
                 Column(
