@@ -1,10 +1,10 @@
 {
-  "contractName": "Kategorije",
+  "contractName": "ListaZelja",
   "abi": [
     {
       "constant": true,
       "inputs": [],
-      "name": "brojKategorija",
+      "name": "brojZelja",
       "outputs": [
         {
           "internalType": "int256",
@@ -25,7 +25,7 @@
           "type": "int256"
         }
       ],
-      "name": "kategorije",
+      "name": "zelje",
       "outputs": [
         {
           "internalType": "int256",
@@ -34,13 +34,13 @@
         },
         {
           "internalType": "int256",
-          "name": "idRoditelja",
+          "name": "idPotencijalnogKupca",
           "type": "int256"
         },
         {
-          "internalType": "string",
-          "name": "naziv",
-          "type": "string"
+          "internalType": "int256",
+          "name": "idProizvoda",
+          "type": "int256"
         }
       ],
       "payable": false,
@@ -52,41 +52,41 @@
       "inputs": [
         {
           "internalType": "int256",
-          "name": "_idRoditelja",
+          "name": "_idPotencijalnogKupca",
           "type": "int256"
         },
         {
-          "internalType": "string",
-          "name": "_naziv",
-          "type": "string"
+          "internalType": "int256",
+          "name": "_idProizvoda",
+          "type": "int256"
         }
       ],
-      "name": "dodajKategoriju",
+      "name": "dodajZelju",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"brojKategorija\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_idRoditelja\",\"type\":\"int256\"},{\"internalType\":\"string\",\"name\":\"_naziv\",\"type\":\"string\"}],\"name\":\"dodajKategoriju\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"name\":\"kategorije\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"id\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idRoditelja\",\"type\":\"int256\"},{\"internalType\":\"string\",\"name\":\"naziv\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Kategorije.sol\":\"Kategorije\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Kategorije.sol\":{\"keccak256\":\"0xbe174a56e6b40598c9039e8a6c3b94e0fc31b9a8557ae4bbe7e1734d09313ebb\",\"urls\":[\"bzz-raw://cb6abf1407748885c78604f03d24b0f7376a92c6aa83675cafacd473d70042d1\",\"dweb:/ipfs/QmP4wfEkdGqaXtBgkJDsDmnsRruXvhzZU7RqNfrsyo22kC\"]}},\"version\":1}",
-  "bytecode": "0x60806040526000805534801561001457600080fd5b506103fa806100246000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806315648fc014610046578063e9012c6e146100fb578063fc1f8827146101c0575b600080fd5b6100726004803603602081101561005c57600080fd5b81019080803590602001909291905050506101de565b6040518084815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156100be5780820151818401526020810190506100a3565b50505050905090810190601f1680156100eb5780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b6101be6004803603604081101561011157600080fd5b81019080803590602001909291908035906020019064010000000081111561013857600080fd5b82018360208201111561014a57600080fd5b8035906020019184600183028401116401000000008311171561016c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506102a0565b005b6101c861031a565b6040518082815260200191505060405180910390f35b6001602052806000526040600020600091509050806000015490806001015490806002018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102965780601f1061026b57610100808354040283529160200191610296565b820191906000526020600020905b81548152906001019060200180831161027957829003601f168201915b5050505050905083565b60008081548092919060010191905055506040518060600160405280600054815260200183815260200182815250600160008054815260200190815260200160002060008201518160000155602082015181600101556040820151816002019080519060200190610312929190610320565b509050505050565b60005481565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061036157805160ff191683800117855561038f565b8280016001018555821561038f579182015b8281111561038e578251825591602001919060010190610373565b5b50905061039c91906103a0565b5090565b6103c291905b808211156103be5760008160009055506001016103a6565b5090565b9056fea265627a7a72315820bd6ed641be11f3729ce00a07a790eb6d51a1fe62e5283d4530cebb7f708547a564736f6c63430005100032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806315648fc014610046578063e9012c6e146100fb578063fc1f8827146101c0575b600080fd5b6100726004803603602081101561005c57600080fd5b81019080803590602001909291905050506101de565b6040518084815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156100be5780820151818401526020810190506100a3565b50505050905090810190601f1680156100eb5780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b6101be6004803603604081101561011157600080fd5b81019080803590602001909291908035906020019064010000000081111561013857600080fd5b82018360208201111561014a57600080fd5b8035906020019184600183028401116401000000008311171561016c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506102a0565b005b6101c861031a565b6040518082815260200191505060405180910390f35b6001602052806000526040600020600091509050806000015490806001015490806002018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102965780601f1061026b57610100808354040283529160200191610296565b820191906000526020600020905b81548152906001019060200180831161027957829003601f168201915b5050505050905083565b60008081548092919060010191905055506040518060600160405280600054815260200183815260200182815250600160008054815260200190815260200160002060008201518160000155602082015181600101556040820151816002019080519060200190610312929190610320565b509050505050565b60005481565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061036157805160ff191683800117855561038f565b8280016001018555821561038f579182015b8281111561038e578251825591602001919060010190610373565b5b50905061039c91906103a0565b5090565b6103c291905b808211156103be5760008160009055506001016103a6565b5090565b9056fea265627a7a72315820bd6ed641be11f3729ce00a07a790eb6d51a1fe62e5283d4530cebb7f708547a564736f6c63430005100032",
-  "sourceMap": "69:427:0:-;;;235:1;207:29;;69:427;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:427:0;;;;;;;",
-  "deployedSourceMap": "69:427:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:427:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;245:44;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;245:44:0;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;245:44:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;298:195;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;298:195:0;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;298:195:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;298:195:0;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;298:195:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;298:195:0;;;;;;;;;;;;;;;:::i;:::-;;207:29;;;:::i;:::-;;;;;;;;;;;;;;;;;;;245:44;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;298:195::-;381:14;;:16;;;;;;;;;;;;;437:48;;;;;;;;448:14;;437:48;;;;464:12;437:48;;;;478:6;437:48;;;408:10;:26;419:14;;408:26;;;;;;;;;;;:77;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;298:195;;:::o;207:29::-;;;;:::o;69:427::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
-  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract Kategorije {\r\n    \r\n    struct Kategorija\r\n    {\r\n        int id;\r\n        int idRoditelja;\r\n        string naziv;\r\n    }\r\n\r\n    int public brojKategorija = 0;\r\n\r\n    mapping(int => Kategorija) public kategorije;\r\n\r\n    function dodajKategoriju(int _idRoditelja, string memory _naziv) public {\r\n        brojKategorija++;\r\n        kategorije[brojKategorija] = Kategorija(brojKategorija, _idRoditelja, _naziv);\r\n    }\r\n}",
-  "sourcePath": "C:/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Kategorije.sol",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"brojZelja\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_idPotencijalnogKupca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idProizvoda\",\"type\":\"int256\"}],\"name\":\"dodajZelju\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"name\":\"zelje\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"id\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idPotencijalnogKupca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idProizvoda\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/ListaZelja.sol\":\"ListaZelja\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/ListaZelja.sol\":{\"keccak256\":\"0x79eb5875ab6050bf0c341d90738d87cf815739981271db3c35e15513093c6c6f\",\"urls\":[\"bzz-raw://c95a74452eab85f635913fa0f460edde84463bc726c3b10bd7dd5b0b61490cc9\",\"dweb:/ipfs/QmTPPcPrZ6PjZ9zoG5yhVBQPF7e2ZGrgMqqzaP5PhHyZJW\"]}},\"version\":1}",
+  "bytecode": "0x60806040526000805534801561001457600080fd5b506101b8806100246000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806316f0ab8d1461004657806341bcdcb214610064578063e65cfc43146100b4575b600080fd5b61004e6100ec565b6040518082815260200191505060405180910390f35b6100906004803603602081101561007a57600080fd5b81019080803590602001909291905050506100f2565b60405180848152602001838152602001828152602001935050505060405180910390f35b6100ea600480360360408110156100ca57600080fd5b81019080803590602001909291908035906020019092919050505061011c565b005b60005481565b60016020528060005260406000206000915090508060000154908060010154908060020154905083565b600080815480929190600101919050555060405180606001604052806000548152602001838152602001828152506001600080548152602001908152602001600020600082015181600001556020820151816001015560408201518160020155905050505056fea265627a7a7231582014f86983c4adf23369784664bf254b94a7c75f0e4ff8de5af455da6dbdd6073b64736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806316f0ab8d1461004657806341bcdcb214610064578063e65cfc43146100b4575b600080fd5b61004e6100ec565b6040518082815260200191505060405180910390f35b6100906004803603602081101561007a57600080fd5b81019080803590602001909291905050506100f2565b60405180848152602001838152602001828152602001935050505060405180910390f35b6100ea600480360360408110156100ca57600080fd5b81019080803590602001909291908035906020019092919050505061011c565b005b60005481565b60016020528060005260406000206000915090508060000154908060010154908060020154905083565b600080815480929190600101919050555060405180606001604052806000548152602001838152602001828152506001600080548152602001908152602001600020600082015181600001556020820151816001015560408201518160020155905050505056fea265627a7a7231582014f86983c4adf23369784664bf254b94a7c75f0e4ff8de5af455da6dbdd6073b64736f6c63430005100032",
+  "sourceMap": "69:409:3:-;;;237:1;214:24;;69:409;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:409:3;;;;;;;",
+  "deployedSourceMap": "69:409:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:409:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;214:24;;;:::i;:::-;;;;;;;;;;;;;;;;;;;247:34;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;247:34:3;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;290:185;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;290:185:3;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;214:24;;;;:::o;247:34::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;290:185::-;373:9;;:11;;;;;;;;;;;;;414:53;;;;;;;;420:9;;414:53;;;;431:21;414:53;;;;454:12;414:53;;;395:5;:16;401:9;;395:16;;;;;;;;;;;:72;;;;;;;;;;;;;;;;;;;;;;;;;;;290:185;;:::o",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract ListaZelja {\r\n    \r\n    struct Zelja\r\n    {\r\n        int id;\r\n        int idPotencijalnogKupca;\r\n        int idProizvoda;\r\n    }\r\n\r\n    int public brojZelja = 0;\r\n\r\n    mapping(int => Zelja) public zelje;\r\n\r\n    function dodajZelju(int _idPotencijalnogKupca, int _idProizvoda) public {\r\n        brojZelja++;\r\n        zelje[brojZelja] = Zelja(brojZelja, _idPotencijalnogKupca, _idProizvoda);\r\n    }\r\n}",
+  "sourcePath": "C:/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/ListaZelja.sol",
   "ast": {
-    "absolutePath": "/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Kategorije.sol",
+    "absolutePath": "/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/ListaZelja.sol",
     "exportedSymbols": {
-      "Kategorije": [
-        37
+      "ListaZelja": [
+        396
       ]
     },
-    "id": 38,
+    "id": 397,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1,
+        "id": 360,
         "literals": [
           "solidity",
           ">=",
@@ -97,7 +97,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "33:32:0"
+        "src": "33:32:3"
       },
       {
         "baseContracts": [],
@@ -105,24 +105,24 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 37,
+        "id": 396,
         "linearizedBaseContracts": [
-          37
+          396
         ],
-        "name": "Kategorije",
+        "name": "ListaZelja",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "canonicalName": "Kategorije.Kategorija",
-            "id": 8,
+            "canonicalName": "ListaZelja.Zelja",
+            "id": 367,
             "members": [
               {
                 "constant": false,
-                "id": 3,
+                "id": 362,
                 "name": "id",
                 "nodeType": "VariableDeclaration",
-                "scope": 8,
-                "src": "136:6:0",
+                "scope": 367,
+                "src": "131:6:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -130,10 +130,10 @@
                   "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 2,
+                  "id": 361,
                   "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "136:3:0",
+                  "src": "131:3:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_int256",
                     "typeString": "int256"
@@ -144,11 +144,11 @@
               },
               {
                 "constant": false,
-                "id": 5,
-                "name": "idRoditelja",
+                "id": 364,
+                "name": "idPotencijalnogKupca",
                 "nodeType": "VariableDeclaration",
-                "scope": 8,
-                "src": "153:15:0",
+                "scope": 367,
+                "src": "148:24:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -156,10 +156,10 @@
                   "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 4,
+                  "id": 363,
                   "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "153:3:0",
+                  "src": "148:3:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_int256",
                     "typeString": "int256"
@@ -170,44 +170,44 @@
               },
               {
                 "constant": false,
-                "id": 7,
-                "name": "naziv",
+                "id": 366,
+                "name": "idProizvoda",
                 "nodeType": "VariableDeclaration",
-                "scope": 8,
-                "src": "179:12:0",
+                "scope": 367,
+                "src": "183:15:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_int256",
+                  "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 6,
-                  "name": "string",
+                  "id": 365,
+                  "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "179:6:0",
+                  "src": "183:3:3",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
                   }
                 },
                 "value": null,
                 "visibility": "internal"
               }
             ],
-            "name": "Kategorija",
+            "name": "Zelja",
             "nodeType": "StructDefinition",
-            "scope": 37,
-            "src": "102:97:0",
+            "scope": 396,
+            "src": "102:104:3",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 11,
-            "name": "brojKategorija",
+            "id": 370,
+            "name": "brojZelja",
             "nodeType": "VariableDeclaration",
-            "scope": 37,
-            "src": "207:29:0",
+            "scope": 396,
+            "src": "214:24:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -215,10 +215,10 @@
               "typeString": "int256"
             },
             "typeName": {
-              "id": 9,
+              "id": 368,
               "name": "int",
               "nodeType": "ElementaryTypeName",
-              "src": "207:3:0",
+              "src": "214:3:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_int256",
                 "typeString": "int256"
@@ -227,14 +227,14 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "30",
-              "id": 10,
+              "id": 369,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "235:1:0",
+              "src": "237:1:3",
               "subdenomination": null,
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_0_by_1",
@@ -246,45 +246,45 @@
           },
           {
             "constant": false,
-            "id": 15,
-            "name": "kategorije",
+            "id": 374,
+            "name": "zelje",
             "nodeType": "VariableDeclaration",
-            "scope": 37,
-            "src": "245:44:0",
+            "scope": 396,
+            "src": "247:34:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kategorija_$8_storage_$",
-              "typeString": "mapping(int256 => struct Kategorije.Kategorija)"
+              "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Zelja_$367_storage_$",
+              "typeString": "mapping(int256 => struct ListaZelja.Zelja)"
             },
             "typeName": {
-              "id": 14,
+              "id": 373,
               "keyType": {
-                "id": 12,
+                "id": 371,
                 "name": "int",
                 "nodeType": "ElementaryTypeName",
-                "src": "253:3:0",
+                "src": "255:3:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_int256",
                   "typeString": "int256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "245:26:0",
+              "src": "247:21:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kategorija_$8_storage_$",
-                "typeString": "mapping(int256 => struct Kategorije.Kategorija)"
+                "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Zelja_$367_storage_$",
+                "typeString": "mapping(int256 => struct ListaZelja.Zelja)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 13,
-                "name": "Kategorija",
+                "id": 372,
+                "name": "Zelja",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 8,
-                "src": "260:10:0",
+                "referencedDeclaration": 367,
+                "src": "262:5:3",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Kategorija_$8_storage_ptr",
-                  "typeString": "struct Kategorije.Kategorija"
+                  "typeIdentifier": "t_struct$_Zelja_$367_storage_ptr",
+                  "typeString": "struct ListaZelja.Zelja"
                 }
               }
             },
@@ -293,14 +293,14 @@
           },
           {
             "body": {
-              "id": 35,
+              "id": 394,
               "nodeType": "Block",
-              "src": "370:123:0",
+              "src": "362:113:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 23,
+                    "id": 382,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -308,15 +308,15 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "381:16:0",
+                    "src": "373:11:3",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 22,
-                      "name": "brojKategorija",
+                      "id": 381,
+                      "name": "brojZelja",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 11,
-                      "src": "381:14:0",
+                      "referencedDeclaration": 370,
+                      "src": "373:9:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
                         "typeString": "int256"
@@ -327,14 +327,14 @@
                       "typeString": "int256"
                     }
                   },
-                  "id": 24,
+                  "id": 383,
                   "nodeType": "ExpressionStatement",
-                  "src": "381:16:0"
+                  "src": "373:11:3"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 33,
+                    "id": 392,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -343,26 +343,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 25,
-                        "name": "kategorije",
+                        "id": 384,
+                        "name": "zelje",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15,
-                        "src": "408:10:0",
+                        "referencedDeclaration": 374,
+                        "src": "395:5:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kategorija_$8_storage_$",
-                          "typeString": "mapping(int256 => struct Kategorije.Kategorija storage ref)"
+                          "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Zelja_$367_storage_$",
+                          "typeString": "mapping(int256 => struct ListaZelja.Zelja storage ref)"
                         }
                       },
-                      "id": 27,
+                      "id": 386,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 26,
-                        "name": "brojKategorija",
+                        "id": 385,
+                        "name": "brojZelja",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 11,
-                        "src": "419:14:0",
+                        "referencedDeclaration": 370,
+                        "src": "401:9:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
                           "typeString": "int256"
@@ -373,10 +373,10 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "408:26:0",
+                      "src": "395:16:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Kategorija_$8_storage",
-                        "typeString": "struct Kategorije.Kategorija storage ref"
+                        "typeIdentifier": "t_struct$_Zelja_$367_storage",
+                        "typeString": "struct ListaZelja.Zelja storage ref"
                       }
                     },
                     "nodeType": "Assignment",
@@ -386,12 +386,12 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 29,
-                          "name": "brojKategorija",
+                          "id": 388,
+                          "name": "brojZelja",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 11,
-                          "src": "448:14:0",
+                          "referencedDeclaration": 370,
+                          "src": "420:9:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -399,12 +399,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 30,
-                          "name": "_idRoditelja",
+                          "id": 389,
+                          "name": "_idPotencijalnogKupca",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 17,
-                          "src": "464:12:0",
+                          "referencedDeclaration": 376,
+                          "src": "431:21:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -412,15 +412,15 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 31,
-                          "name": "_naziv",
+                          "id": 390,
+                          "name": "_idProizvoda",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 19,
-                          "src": "478:6:0",
+                          "referencedDeclaration": 378,
+                          "src": "454:12:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_string_memory_ptr",
-                            "typeString": "string memory"
+                            "typeIdentifier": "t_int256",
+                            "typeString": "int256"
                           }
                         }
                       ],
@@ -435,22 +435,22 @@
                             "typeString": "int256"
                           },
                           {
-                            "typeIdentifier": "t_string_memory_ptr",
-                            "typeString": "string memory"
+                            "typeIdentifier": "t_int256",
+                            "typeString": "int256"
                           }
                         ],
-                        "id": 28,
-                        "name": "Kategorija",
+                        "id": 387,
+                        "name": "Zelja",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 8,
-                        "src": "437:10:0",
+                        "referencedDeclaration": 367,
+                        "src": "414:5:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_Kategorija_$8_storage_ptr_$",
-                          "typeString": "type(struct Kategorije.Kategorija storage pointer)"
+                          "typeIdentifier": "t_type$_t_struct$_Zelja_$367_storage_ptr_$",
+                          "typeString": "type(struct ListaZelja.Zelja storage pointer)"
                         }
                       },
-                      "id": 32,
+                      "id": 391,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -458,42 +458,42 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "437:48:0",
+                      "src": "414:53:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Kategorija_$8_memory",
-                        "typeString": "struct Kategorije.Kategorija memory"
+                        "typeIdentifier": "t_struct$_Zelja_$367_memory",
+                        "typeString": "struct ListaZelja.Zelja memory"
                       }
                     },
-                    "src": "408:77:0",
+                    "src": "395:72:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Kategorija_$8_storage",
-                      "typeString": "struct Kategorije.Kategorija storage ref"
+                      "typeIdentifier": "t_struct$_Zelja_$367_storage",
+                      "typeString": "struct ListaZelja.Zelja storage ref"
                     }
                   },
-                  "id": 34,
+                  "id": 393,
                   "nodeType": "ExpressionStatement",
-                  "src": "408:77:0"
+                  "src": "395:72:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 36,
+            "id": 395,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "dodajKategoriju",
+            "name": "dodajZelju",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 20,
+              "id": 379,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 17,
-                  "name": "_idRoditelja",
+                  "id": 376,
+                  "name": "_idPotencijalnogKupca",
                   "nodeType": "VariableDeclaration",
-                  "scope": 36,
-                  "src": "323:16:0",
+                  "scope": 395,
+                  "src": "310:25:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -501,10 +501,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 16,
+                    "id": 375,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "323:3:0",
+                    "src": "310:3:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -515,58 +515,58 @@
                 },
                 {
                   "constant": false,
-                  "id": 19,
-                  "name": "_naziv",
+                  "id": 378,
+                  "name": "_idProizvoda",
                   "nodeType": "VariableDeclaration",
-                  "scope": 36,
-                  "src": "341:20:0",
+                  "scope": 395,
+                  "src": "337:16:3",
                   "stateVariable": false,
-                  "storageLocation": "memory",
+                  "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 18,
-                    "name": "string",
+                    "id": 377,
+                    "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "341:6:0",
+                    "src": "337:3:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string"
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "322:40:0"
+              "src": "309:45:3"
             },
             "returnParameters": {
-              "id": 21,
+              "id": 380,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "370:0:0"
+              "src": "362:0:3"
             },
-            "scope": 37,
-            "src": "298:195:0",
+            "scope": 396,
+            "src": "290:185:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 38,
-        "src": "69:427:0"
+        "scope": 397,
+        "src": "69:409:3"
       }
     ],
-    "src": "33:463:0"
+    "src": "33:445:3"
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Kategorije.sol",
+      "absolutePath": "/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/ListaZelja.sol",
       "exportedSymbols": {
-        "Kategorije": [
-          37
+        "ListaZelja": [
+          396
         ]
       }
     },
@@ -583,9 +583,9 @@
             ".0"
           ]
         },
-        "id": 1,
+        "id": 360,
         "name": "PragmaDirective",
-        "src": "33:32:0"
+        "src": "33:32:3"
       },
       {
         "attributes": {
@@ -599,17 +599,17 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            37
+            396
           ],
-          "name": "Kategorije",
-          "scope": 38
+          "name": "ListaZelja",
+          "scope": 397
         },
         "children": [
           {
             "attributes": {
-              "canonicalName": "Kategorije.Kategorija",
-              "name": "Kategorija",
-              "scope": 37,
+              "canonicalName": "ListaZelja.Zelja",
+              "name": "Zelja",
+              "scope": 396,
               "visibility": "public"
             },
             "children": [
@@ -617,7 +617,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "id",
-                  "scope": 8,
+                  "scope": 367,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -630,20 +630,20 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 2,
+                    "id": 361,
                     "name": "ElementaryTypeName",
-                    "src": "136:3:0"
+                    "src": "131:3:3"
                   }
                 ],
-                "id": 3,
+                "id": 362,
                 "name": "VariableDeclaration",
-                "src": "136:6:0"
+                "src": "131:6:3"
               },
               {
                 "attributes": {
                   "constant": false,
-                  "name": "idRoditelja",
-                  "scope": 8,
+                  "name": "idPotencijalnogKupca",
+                  "scope": 367,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -656,51 +656,51 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 4,
+                    "id": 363,
                     "name": "ElementaryTypeName",
-                    "src": "153:3:0"
+                    "src": "148:3:3"
                   }
                 ],
-                "id": 5,
+                "id": 364,
                 "name": "VariableDeclaration",
-                "src": "153:15:0"
+                "src": "148:24:3"
               },
               {
                 "attributes": {
                   "constant": false,
-                  "name": "naziv",
-                  "scope": 8,
+                  "name": "idProizvoda",
+                  "scope": 367,
                   "stateVariable": false,
                   "storageLocation": "default",
-                  "type": "string",
+                  "type": "int256",
                   "value": null,
                   "visibility": "internal"
                 },
                 "children": [
                   {
                     "attributes": {
-                      "name": "string",
-                      "type": "string"
+                      "name": "int",
+                      "type": "int256"
                     },
-                    "id": 6,
+                    "id": 365,
                     "name": "ElementaryTypeName",
-                    "src": "179:6:0"
+                    "src": "183:3:3"
                   }
                 ],
-                "id": 7,
+                "id": 366,
                 "name": "VariableDeclaration",
-                "src": "179:12:0"
+                "src": "183:15:3"
               }
             ],
-            "id": 8,
+            "id": 367,
             "name": "StructDefinition",
-            "src": "102:97:0"
+            "src": "102:104:3"
           },
           {
             "attributes": {
               "constant": false,
-              "name": "brojKategorija",
-              "scope": 37,
+              "name": "brojZelja",
+              "scope": 396,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "int256",
@@ -712,9 +712,9 @@
                   "name": "int",
                   "type": "int256"
                 },
-                "id": 9,
+                "id": 368,
                 "name": "ElementaryTypeName",
-                "src": "207:3:0"
+                "src": "214:3:3"
               },
               {
                 "attributes": {
@@ -729,30 +729,30 @@
                   "type": "int_const 0",
                   "value": "0"
                 },
-                "id": 10,
+                "id": 369,
                 "name": "Literal",
-                "src": "235:1:0"
+                "src": "237:1:3"
               }
             ],
-            "id": 11,
+            "id": 370,
             "name": "VariableDeclaration",
-            "src": "207:29:0"
+            "src": "214:24:3"
           },
           {
             "attributes": {
               "constant": false,
-              "name": "kategorije",
-              "scope": 37,
+              "name": "zelje",
+              "scope": 396,
               "stateVariable": true,
               "storageLocation": "default",
-              "type": "mapping(int256 => struct Kategorije.Kategorija)",
+              "type": "mapping(int256 => struct ListaZelja.Zelja)",
               "value": null,
               "visibility": "public"
             },
             "children": [
               {
                 "attributes": {
-                  "type": "mapping(int256 => struct Kategorije.Kategorija)"
+                  "type": "mapping(int256 => struct ListaZelja.Zelja)"
                 },
                 "children": [
                   {
@@ -760,30 +760,30 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 12,
+                    "id": 371,
                     "name": "ElementaryTypeName",
-                    "src": "253:3:0"
+                    "src": "255:3:3"
                   },
                   {
                     "attributes": {
                       "contractScope": null,
-                      "name": "Kategorija",
-                      "referencedDeclaration": 8,
-                      "type": "struct Kategorije.Kategorija"
+                      "name": "Zelja",
+                      "referencedDeclaration": 367,
+                      "type": "struct ListaZelja.Zelja"
                     },
-                    "id": 13,
+                    "id": 372,
                     "name": "UserDefinedTypeName",
-                    "src": "260:10:0"
+                    "src": "262:5:3"
                   }
                 ],
-                "id": 14,
+                "id": 373,
                 "name": "Mapping",
-                "src": "245:26:0"
+                "src": "247:21:3"
               }
             ],
-            "id": 15,
+            "id": 374,
             "name": "VariableDeclaration",
-            "src": "245:44:0"
+            "src": "247:34:3"
           },
           {
             "attributes": {
@@ -794,8 +794,8 @@
               "modifiers": [
                 null
               ],
-              "name": "dodajKategoriju",
-              "scope": 37,
+              "name": "dodajZelju",
+              "scope": 396,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -806,8 +806,8 @@
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "_idRoditelja",
-                      "scope": 36,
+                      "name": "_idPotencijalnogKupca",
+                      "scope": 395,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -820,45 +820,45 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 16,
+                        "id": 375,
                         "name": "ElementaryTypeName",
-                        "src": "323:3:0"
+                        "src": "310:3:3"
                       }
                     ],
-                    "id": 17,
+                    "id": 376,
                     "name": "VariableDeclaration",
-                    "src": "323:16:0"
+                    "src": "310:25:3"
                   },
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "_naziv",
-                      "scope": 36,
+                      "name": "_idProizvoda",
+                      "scope": 395,
                       "stateVariable": false,
-                      "storageLocation": "memory",
-                      "type": "string",
+                      "storageLocation": "default",
+                      "type": "int256",
                       "value": null,
                       "visibility": "internal"
                     },
                     "children": [
                       {
                         "attributes": {
-                          "name": "string",
-                          "type": "string"
+                          "name": "int",
+                          "type": "int256"
                         },
-                        "id": 18,
+                        "id": 377,
                         "name": "ElementaryTypeName",
-                        "src": "341:6:0"
+                        "src": "337:3:3"
                       }
                     ],
-                    "id": 19,
+                    "id": 378,
                     "name": "VariableDeclaration",
-                    "src": "341:20:0"
+                    "src": "337:16:3"
                   }
                 ],
-                "id": 20,
+                "id": 379,
                 "name": "ParameterList",
-                "src": "322:40:0"
+                "src": "309:45:3"
               },
               {
                 "attributes": {
@@ -867,9 +867,9 @@
                   ]
                 },
                 "children": [],
-                "id": 21,
+                "id": 380,
                 "name": "ParameterList",
-                "src": "370:0:0"
+                "src": "362:0:3"
               },
               {
                 "children": [
@@ -893,23 +893,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 11,
+                              "referencedDeclaration": 370,
                               "type": "int256",
-                              "value": "brojKategorija"
+                              "value": "brojZelja"
                             },
-                            "id": 22,
+                            "id": 381,
                             "name": "Identifier",
-                            "src": "381:14:0"
+                            "src": "373:9:3"
                           }
                         ],
-                        "id": 23,
+                        "id": 382,
                         "name": "UnaryOperation",
-                        "src": "381:16:0"
+                        "src": "373:11:3"
                       }
                     ],
-                    "id": 24,
+                    "id": 383,
                     "name": "ExpressionStatement",
-                    "src": "381:16:0"
+                    "src": "373:11:3"
                   },
                   {
                     "children": [
@@ -921,7 +921,7 @@
                           "isPure": false,
                           "lValueRequested": false,
                           "operator": "=",
-                          "type": "struct Kategorije.Kategorija storage ref"
+                          "type": "struct ListaZelja.Zelja storage ref"
                         },
                         "children": [
                           {
@@ -931,7 +931,7 @@
                               "isLValue": true,
                               "isPure": false,
                               "lValueRequested": true,
-                              "type": "struct Kategorije.Kategorija storage ref"
+                              "type": "struct ListaZelja.Zelja storage ref"
                             },
                             "children": [
                               {
@@ -940,13 +940,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 15,
-                                  "type": "mapping(int256 => struct Kategorije.Kategorija storage ref)",
-                                  "value": "kategorije"
+                                  "referencedDeclaration": 374,
+                                  "type": "mapping(int256 => struct ListaZelja.Zelja storage ref)",
+                                  "value": "zelje"
                                 },
-                                "id": 25,
+                                "id": 384,
                                 "name": "Identifier",
-                                "src": "408:10:0"
+                                "src": "395:5:3"
                               },
                               {
                                 "attributes": {
@@ -954,18 +954,18 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 11,
+                                  "referencedDeclaration": 370,
                                   "type": "int256",
-                                  "value": "brojKategorija"
+                                  "value": "brojZelja"
                                 },
-                                "id": 26,
+                                "id": 385,
                                 "name": "Identifier",
-                                "src": "419:14:0"
+                                "src": "401:9:3"
                               }
                             ],
-                            "id": 27,
+                            "id": 386,
                             "name": "IndexAccess",
-                            "src": "408:26:0"
+                            "src": "395:16:3"
                           },
                           {
                             "attributes": {
@@ -978,7 +978,7 @@
                               "names": [
                                 null
                               ],
-                              "type": "struct Kategorije.Kategorija memory",
+                              "type": "struct ListaZelja.Zelja memory",
                               "type_conversion": false
                             },
                             "children": [
@@ -994,20 +994,20 @@
                                       "typeString": "int256"
                                     },
                                     {
-                                      "typeIdentifier": "t_string_memory_ptr",
-                                      "typeString": "string memory"
+                                      "typeIdentifier": "t_int256",
+                                      "typeString": "int256"
                                     }
                                   ],
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 8,
-                                  "type": "type(struct Kategorije.Kategorija storage pointer)",
-                                  "value": "Kategorija"
+                                  "referencedDeclaration": 367,
+                                  "type": "type(struct ListaZelja.Zelja storage pointer)",
+                                  "value": "Zelja"
                                 },
-                                "id": 28,
+                                "id": 387,
                                 "name": "Identifier",
-                                "src": "437:10:0"
+                                "src": "414:5:3"
                               },
                               {
                                 "attributes": {
@@ -1015,13 +1015,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 11,
+                                  "referencedDeclaration": 370,
                                   "type": "int256",
-                                  "value": "brojKategorija"
+                                  "value": "brojZelja"
                                 },
-                                "id": 29,
+                                "id": 388,
                                 "name": "Identifier",
-                                "src": "448:14:0"
+                                "src": "420:9:3"
                               },
                               {
                                 "attributes": {
@@ -1029,13 +1029,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 17,
+                                  "referencedDeclaration": 376,
                                   "type": "int256",
-                                  "value": "_idRoditelja"
+                                  "value": "_idPotencijalnogKupca"
                                 },
-                                "id": 30,
+                                "id": 389,
                                 "name": "Identifier",
-                                "src": "464:12:0"
+                                "src": "431:21:3"
                               },
                               {
                                 "attributes": {
@@ -1043,48 +1043,48 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 19,
-                                  "type": "string memory",
-                                  "value": "_naziv"
+                                  "referencedDeclaration": 378,
+                                  "type": "int256",
+                                  "value": "_idProizvoda"
                                 },
-                                "id": 31,
+                                "id": 390,
                                 "name": "Identifier",
-                                "src": "478:6:0"
+                                "src": "454:12:3"
                               }
                             ],
-                            "id": 32,
+                            "id": 391,
                             "name": "FunctionCall",
-                            "src": "437:48:0"
+                            "src": "414:53:3"
                           }
                         ],
-                        "id": 33,
+                        "id": 392,
                         "name": "Assignment",
-                        "src": "408:77:0"
+                        "src": "395:72:3"
                       }
                     ],
-                    "id": 34,
+                    "id": 393,
                     "name": "ExpressionStatement",
-                    "src": "408:77:0"
+                    "src": "395:72:3"
                   }
                 ],
-                "id": 35,
+                "id": 394,
                 "name": "Block",
-                "src": "370:123:0"
+                "src": "362:113:3"
               }
             ],
-            "id": 36,
+            "id": 395,
             "name": "FunctionDefinition",
-            "src": "298:195:0"
+            "src": "290:185:3"
           }
         ],
-        "id": 37,
+        "id": 396,
         "name": "ContractDefinition",
-        "src": "69:427:0"
+        "src": "69:409:3"
       }
     ],
-    "id": 38,
+    "id": 397,
     "name": "SourceUnit",
-    "src": "33:463:0"
+    "src": "33:445:3"
   },
   "compiler": {
     "name": "solc",
@@ -1094,12 +1094,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xAaE4ef2DAfE66e726Cef386dd801bC3192f8B9fF",
-      "transactionHash": "0x2d18d18198cdf126597915c452653230be3e95b7932f850702af0bcb38a0f50d"
+      "address": "0x67107d299A1734A5AB09815C663C18a9D97bc7F6",
+      "transactionHash": "0xb4199bbd43f72c797bfc0827b14c8c46c438cf91bb03cde213e58aa467386dda"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-04-12T16:52:55.274Z",
+  "updatedAt": "2021-04-12T16:52:59.169Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
