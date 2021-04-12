@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:app/components/input_fields.dart';
+import 'package:app/components/rad_sa_slikama.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../constants.dart';
 
@@ -14,6 +18,7 @@ class AddProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String slika = null;
     Size size = MediaQuery.maybeOf(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +32,19 @@ class AddProduct extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
+            FloatingActionButton(
+              onPressed: () async {
+                var file =
+                    await ImagePicker().getImage(source: ImageSource.gallery);
+                var _image = File(file.path);
+                var res = await uploadImage(_image);
+                print(res);
+                slika = res;
+              },
+              child: Icon(Icons.add),
+            ),
             InputFieldNotValidated(field: " ", title: "Naziv"),
+            InputFieldNotValidated(field: " ", title: "Kolicina"),
             InputFieldNotValidated(field: " ", title: "Cena"),
             InputFieldNotValidated(field: " ", title: "Opis"),
             InputFieldNotValidated(field: " ", title: "Kategorija (comboBox)"),

@@ -1,12 +1,12 @@
 import 'package:app/model/proizvodiModel.dart';
 import 'package:flutter/cupertino.dart';
 
-class NotificationModel {
+class Notification {
   final String message;
   final Proizvod proizvod;
   final int id;
 
-  NotificationModel({this.proizvod, @required this.message, @required this.id});
+  Notification({this.proizvod, @required this.message, @required this.id});
 }
 
 Proizvod demoProizvod = Proizvod(
@@ -17,9 +17,9 @@ Proizvod demoProizvod = Proizvod(
     kolicina: 10,
     naziv: "jaja-test");
 
-List<NotificationModel> notificationList = [
-  NotificationModel(message: "Narudzbina1", id: 1, proizvod: demoProizvod),
-  NotificationModel(message: "Narudzbina2", id: 1),
+List<Notification> notificationList = [
+  Notification(message: "Narudzbina1", id: 1, proizvod: demoProizvod),
+  Notification(message: "Narudzbina2", id: 1),
 ];
 
 void dismissAllNotifications() {

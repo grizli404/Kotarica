@@ -1,5 +1,6 @@
 //import 'dart:html';
 import 'package:app/components/product_card.dart';
+import 'package:app/screens/add_product/add_product.dart';
 import 'package:app/screens/notifications/notification_screen.dart';
 import 'package:app/screens/products/products.dart';
 import 'package:app/screens/profile/update_profile.dart';
@@ -7,9 +8,6 @@ import 'package:app/screens/profile/update_profile.dart';
 import '../../constants.dart';
 
 import 'package:flutter/material.dart';
-
-import '../../constants.dart';
-import '../../constants.dart';
 
 class MyProfileScreen extends StatelessWidget {
   final fName;
@@ -166,6 +164,12 @@ class ThinProfileBody extends StatelessWidget {
                         );
                       },
                     ),
+                    FloatingActionButton(onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return AddProduct();
+                      }));
+                    }),
                     SizedBox(height: 30.0),
                     Text(
                       "IME",
@@ -390,6 +394,12 @@ class MediumProfileBody extends StatelessWidget {
                         );
                       },
                     ),
+                    FloatingActionButton(onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return AddProduct();
+                      }));
+                    }),
                   ],
                 ),
                 Column(
@@ -623,7 +633,6 @@ class WideProfileBody extends StatelessWidget {
                       margin: EdgeInsets.symmetric(vertical: 15),
                       child: IconButton(
                         onPressed: () {
-                          print("To NotificationScreen");
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -638,7 +647,13 @@ class WideProfileBody extends StatelessWidget {
                           color: kPrimaryColor,
                         ),
                       ),
-                    )
+                    ),
+                    FloatingActionButton(onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return AddProduct();
+                      }));
+                    }),
                   ],
                 ),
                 Column(
