@@ -31,6 +31,7 @@ class MyThemes {
     iconTheme: IconThemeData(color: Colors.white),
     dividerColor: Colors.black,
     indicatorColor: Colors.black,
+    bottomAppBarColor: Colors.white,
   );
 
   static final lightTheme = ThemeData(
@@ -43,5 +44,6 @@ class MyThemes {
     iconTheme: IconThemeData(color: kPrimaryColor),
     dividerColor: Colors.white,
     indicatorColor: kPrimaryColor,
+    bottomAppBarColor: Colors.white,
   );
 }
