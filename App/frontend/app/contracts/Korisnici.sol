@@ -38,7 +38,7 @@ contract Korisnici{
         return 1;
     }
 
-    function prijavljivanje (string memory _username, string memory _password) public view returns (int)
+    function prijavljivanje (string memory _username, string memory _password) public returns (int)
     {
         bool nasao = false;
         for (int i = 1; i <= brojKorisnika; i++) {
