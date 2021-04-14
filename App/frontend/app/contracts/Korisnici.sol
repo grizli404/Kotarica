@@ -3,6 +3,8 @@ pragma solidity >=0.4.22 <0.9.0;
 
 contract Korisnici{
 
+    event LoginAttempt(address sender, string challenge);
+
     struct Korisnik{
         int id;
         string mejl;
@@ -38,9 +40,16 @@ contract Korisnici{
 
     function prijavljivanje (string memory _username, string memory _password) public view returns (int)
     {
+        bool nasao = false;
         for (int i = 1; i <= brojKorisnika; i++) {
-            if(keccak256(abi.encodePacked(_username)) == keccak256(abi.encodePacked(korisnici[i].mejl)) && keccak256(abi.encodePacked(_password)) == keccak256(abi.encodePacked(korisnici[i].password)))
-                return i;
+            if(keccak256(abi.encodePacked(_username)) == keccak256(abi.encodePacked(korisnici[i].mejl)) && keccak256(abi.encodePacked(_password)) == keccak256(abi.encodePacked(korisnici[i].password))) {
+                nasao = true;
+            }
+        }
+
+        if(nasao){
+            emit LoginAttempt(msg.sender, _password);
+            return 1;
         }
         return 0;
     }
