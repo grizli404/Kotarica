@@ -28,7 +28,7 @@ class Token {
 
     if (DateTime.fromMillisecondsSinceEpoch(token["exp"] * 1000)
         .isAfter(DateTime.now())) {
-      loginUserID = int.parse(token['sub']);
+      //loginUserID = int.parse(token['sub']);
       //  loginUser = await KorisniciModel.vratiKorisnika(loginUserID, jwt);
       return jwt;
     }
