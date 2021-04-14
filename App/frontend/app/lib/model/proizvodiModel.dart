@@ -17,9 +17,12 @@ class ProizvodiModel extends ChangeNotifier {
   EthereumAddress adresaUgovora;
   DeployedContract ugovor;
 
+  Credentials credentials;
+  EthereumAddress nasaAdresa;
+
   ContractFunction brojProizvoda;
   ContractFunction proizvodi;
-  ContractFunction dodajProizvod;
+  ContractFunction _dodajProizvod;
   ContractFunction proizvodiKorisnika;
 
   ProizvodiModel() {
@@ -32,6 +35,7 @@ class ProizvodiModel extends ChangeNotifier {
     });
 
     await getAbi();
+    await getCredentials();
     await getDeployedCotract();
     await dajSveProizvode();
   }
@@ -47,14 +51,30 @@ class ProizvodiModel extends ChangeNotifier {
     //print(adresaUgovora);
   }
 
+  Future<void> getCredentials() async {
+    //ovde smo dobili nasu javnu adresu uz pomocom privatnog kljuca
+    credentials = await client.credentialsFromPrivateKey(privatniKljuc);
+    nasaAdresa = await credentials.extractAddress();
+  }
+
   Future<void> getDeployedCotract() async {
     ugovor = DeployedContract(
         ContractAbi.fromJson(abiCode, "Proizvodi"), adresaUgovora);
 
     brojProizvoda = ugovor.function("brojProizvoda");
     proizvodi = ugovor.function("proizvodi");
-    dodajProizvod = ugovor.function("dodajProizvod");
+    _dodajProizvod = ugovor.function("dodajProizvod");
     proizvodiKorisnika = ugovor.function("dajProizvodeZaKorisnika");
+  }
+
+  Future<void> dodajProizvod(int _idKorisnika, _idKategorije, String _naziv, int _kolicina, int _cena, String _slika) async {
+    await client.sendTransaction(
+          credentials,
+          Transaction.callContract(
+              maxGas: 6721975,
+              contract: ugovor,
+              function: _dodajProizvod,
+              parameters: [BigInt.from(_idKorisnika), BigInt.from(_idKategorije), _naziv, BigInt.from(_kolicina), BigInt.from(_cena), _slika]));
   }
 
   Future<void> dajSveProizvode() async {
@@ -68,6 +88,9 @@ class ProizvodiModel extends ChangeNotifier {
     int _idKategorije = 0;
     int _kolicina = 0;
     int _cena = 0;
+
+    listaProizvoda.clear();
+
     for (var i = brojP; i >= 1; i--) {
       var proizvod = await client.call(
           contract: ugovor, function: proizvodi, params: [BigInt.from(i)]);
@@ -174,6 +197,7 @@ class Proizvod {
   String naziv;
   int kolicina;
   int cena;
+  String slika;
 
   Proizvod(
       {this.id,
@@ -181,5 +205,7 @@ class Proizvod {
       this.idKategorije,
       this.naziv,
       this.kolicina,
-      this.cena});
+      this.cena,
+      this.slika
+      });
 }
