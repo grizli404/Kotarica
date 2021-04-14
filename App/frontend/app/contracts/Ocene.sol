@@ -26,6 +26,7 @@ contract Ocene{
 
 
     //Funkcija vraca prosecnu ocenu za jedan proizvod
+    //U flutter-u se rezultat mora podeliti sa 100
     function prosecnaOcenaZaProizvod (int _idProizvoda) public view returns (int)
     {
         int br = 0;
@@ -48,6 +49,7 @@ contract Ocene{
 
 
     //Funkcija vraca prosecnu ocenu svih ocena koje su date proizvodima odredjenog prodavca
+    //U flutter-u se rezultat mora podeliti sa 100
     function prosecnaOcenaZaProdavca (int _idProdavca) public view returns (int)
     {
         int br = 0;
