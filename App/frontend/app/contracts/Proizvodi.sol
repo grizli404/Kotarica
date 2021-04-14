@@ -68,4 +68,20 @@ contract Proizvodi{
             return arr;
         }
     }
+
+
+    //Funkcija vraca ID-jeve proizvoda ciji je redni broj u odredjenim granicama
+    //Koristice se tako sto ce se brojProizvodaPoStrani staviti na primer na 10
+    //a broj strane na 1, rezultat ce biti prvih 10 proizvoda
+    //broj strane 2, drugih 10 proizvoda
+    uint[] public produkti;
+
+    function pagination(uint _brojStrane, uint _brojProizvodaPoStrani) public returns (uint[] memory) {
+
+        for(uint i = _brojProizvodaPoStrani * _brojStrane - _brojProizvodaPoStrani; i < _brojProizvodaPoStrani * _brojStrane; i++ ){
+            uint idProizvoda = proizvodi[i].id;
+            produkti.push(idProizvoda);
+        } 
+        return produkti;
+    }
 }
