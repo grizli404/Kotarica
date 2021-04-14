@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -24,7 +25,8 @@ class OceneModel extends ChangeNotifier {
   ContractFunction brojOcena;
   ContractFunction ocene;
   ContractFunction dodajOcenu;
-
+  ContractFunction _prosecnaOcenaZaProdavca;
+  
   OceneModel() {
     inicijalnoSetovanje();
   }
@@ -64,6 +66,7 @@ class OceneModel extends ChangeNotifier {
     brojOcena = ugovor.function("brojOcena");
     ocene = ugovor.function("ocene");
     dodajOcenu = ugovor.function("dodajOcenu");
+    _prosecnaOcenaZaProdavca = ugovor.function("prosecnaOcenaZaProdavca");
   }
 
   Future<void> oceniProizvod(int _idKupca, int _idKategorije, int _idProizvoda,
@@ -81,6 +84,16 @@ class OceneModel extends ChangeNotifier {
               BigInt.from(_ocena),
               _komentar
             ]));
+  }
+
+  Future<double> prosecnaOcenaZaProdavca(int _idProdavca) async{
+    var temp = await client.call(
+        contract: ugovor, function: _prosecnaOcenaZaProdavca, params: [BigInt.from(_idProdavca)]);
+
+    BigInt tempInt = temp[0];
+    int vrednost = tempInt.toInt();
+    double srednjaVresnot = vrednost / 100;
+    return srednjaVresnot;
   }
 
   /*
