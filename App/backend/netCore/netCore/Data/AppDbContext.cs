@@ -11,8 +11,5 @@ namespace netCore.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        //-----------<models>----Tabela u db-------------
-        public DbSet<Kategorije> Kategorije { get; set; }
-        public DbSet<Proizvodi> Proizvodi { get; set; }
     }
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\beslac_lazar\\Desktop\\project dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj": {}
+    "C:\\Users\\beslac_lazar\\Desktop\\project_dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\beslac_lazar\\Desktop\\project dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj": {
+    "C:\\Users\\beslac_lazar\\Desktop\\project_dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\beslac_lazar\\Desktop\\project dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
+        "projectUniqueName": "C:\\Users\\beslac_lazar\\Desktop\\project_dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
         "projectName": "netCore",
-        "projectPath": "C:\\Users\\beslac_lazar\\Desktop\\project dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
+        "projectPath": "C:\\Users\\beslac_lazar\\Desktop\\project_dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
         "packagesPath": "C:\\Users\\beslac_lazar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\beslac_lazar\\Desktop\\project dev\\ChainTech\\App\\backend\\netCore\\netCore\\obj\\",
+        "outputPath": "C:\\Users\\beslac_lazar\\Desktop\\project_dev\\ChainTech\\App\\backend\\netCore\\netCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\beslac_lazar\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,6 +44,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[5.0.4, )"
@@ -67,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
