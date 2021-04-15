@@ -1,5 +1,7 @@
+import 'package:app/components/customAppBar.dart';
+import 'package:app/components/drawer.dart';
+import 'package:app/components/responsive_layout.dart';
 import 'package:app/model/proizvodiModel.dart';
-import 'package:app/screens/home/components/productContainer.dart';
 import 'package:app/screens/home/components/productView.dart';
 
 import '../../constants.dart';
@@ -19,26 +21,20 @@ class ProductByCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Proizvodi "' + category + '" kategorije'),
-        backgroundColor: kPrimaryColor,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(36),
-        )),
-      ),
-      body: Container(
-        child: Row(
-          children: [
-            // ProductContainer(
-            //   proizvodi: listaProizvoda,
-            // )
-            ProductView(
-              listaProizvoda: listaProizvoda,
-            )
-          ],
-        ),
-      ),
+      appBar: CustomAppBar(),
+      //     AppBar(
+      //   title: Text('Proizvodi "' + category + '" kategorije'),
+      //   backgroundColor: kPrimaryColor,
+      //   shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.vertical(
+      //     bottom: Radius.circular(36),
+      //   )),
+      // ),
+      body: Stack(children: [
+        //Text('Proizvodi ' + category + ' kategorije.'),
+        ProductView(listaProizvoda: listaProizvoda),
+      ]),
+      drawer: ResponsiveLayout.isIphone(context) ? ListenToDrawerEvent() : null,
     );
   }
 }
