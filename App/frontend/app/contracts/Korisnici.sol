@@ -13,6 +13,7 @@ contract Korisnici{
         string prezime;
         string brojTelefona;
         string adresa;
+        string slika;
     }
 
     int public brojKorisnika = 0;
@@ -23,8 +24,8 @@ contract Korisnici{
     function dodajKorisnika (string memory _mejl, string memory _password, string memory _ime, string memory _prezime, string memory _brojTelefona, string memory _adresa) public returns(int)
     {
         brojKorisnika++;
-        korisnici[brojKorisnika] = Korisnik(brojKorisnika, _mejl, _password, _ime, _prezime, _brojTelefona, _adresa);
-        korisniciMail[_mejl] = Korisnik(brojKorisnika, _mejl, _password, _ime, _prezime, _brojTelefona, _adresa);
+        korisnici[brojKorisnika] = Korisnik(brojKorisnika, _mejl, _password, _ime, _prezime, _brojTelefona, _adresa, "");
+        korisniciMail[_mejl] = Korisnik(brojKorisnika, _mejl, _password, _ime, _prezime, _brojTelefona, _adresa, "");
         return brojKorisnika;
     }
 
@@ -66,5 +67,9 @@ contract Korisnici{
         korisnici[_id].prezime = _prezime;
         korisnici[_id].brojTelefona = _broj;
         korisnici[_id].adresa = _adresa;
+    }
+
+    function dodajSliku(int _id, string memory _slika) public {
+        korisnici[_id].slika = _slika;
     }
 }
