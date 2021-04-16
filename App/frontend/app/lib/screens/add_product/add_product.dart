@@ -29,38 +29,64 @@ class AddProduct extends StatelessWidget {
           bottom: Radius.circular(36),
         )),
       ),
-      body: Container(
-        child: Column(
-          children: [
-            FloatingActionButton(
-              onPressed: () async {
-                var file =
-                    await ImagePicker().getImage(source: ImageSource.gallery);
-                var _image = File(file.path);
-                var res = await uploadImage(_image);
-                print(res);
-                slika = res;
-              },
-              child: Icon(Icons.add),
-            ),
-            InputFieldNotValidated(field: " ", title: "Naziv"),
-            InputFieldNotValidated(field: " ", title: "Kolicina"),
-            InputFieldNotValidated(field: " ", title: "Cena"),
-            InputFieldNotValidated(field: " ", title: "Opis"),
-            InputFieldNotValidated(field: " ", title: "Kategorija (comboBox)"),
-            RaisedButton(
-              child: Text(
-                "Postavi proizvod",
-                style: TextStyle(color: Colors.white),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.all(20),
+                width: 210,
+                height: 210,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: kPrimaryColor,
+                ),
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage(
+                              "assets/images/defaultProductPhoto.jpg"))),
+                ),
               ),
-              color: kPrimaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(30)),
+              IconButton(
+                icon: Icon(Icons.add_a_photo),
+                focusColor: kPrimaryColor,
+                hoverColor: kPrimaryColorHover,
+                onPressed: () async {
+                  var file =
+                      await ImagePicker().getImage(source: ImageSource.gallery);
+                  var _image = File(file.path);
+                  var res = await uploadImage(_image);
+                  print(res);
+                  slika = res;
+                },
               ),
-              padding: EdgeInsets.symmetric(horizontal: (size.width / 2) - 85),
-              onPressed: () {},
-            )
-          ],
+              InputFieldNotValidated(field: " ", title: "Naziv"),
+              InputFieldNotValidated(field: " ", title: "Kolicina"),
+              InputFieldNotValidated(field: " ", title: "Cena"),
+              InputFieldNotValidated(field: " ", title: "Opis"),
+              InputFieldNotValidated(
+                  field: " ", title: "Kategorija (comboBox)"),
+              RaisedButton(
+                child: Text(
+                  "Postavi proizvod",
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: kPrimaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                ),
+                padding:
+                    EdgeInsets.symmetric(horizontal: (size.width / 2) - 85),
+                onPressed: () {},
+              )
+            ],
+          ),
         ),
       ),
     );
