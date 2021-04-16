@@ -4,6 +4,7 @@ import 'package:app/screens/add_product/add_product.dart';
 import 'package:app/screens/notifications/notification_screen.dart';
 import 'package:app/screens/products/products.dart';
 import 'package:app/screens/profile/update_profile.dart';
+import 'package:flutter/gestures.dart';
 
 import '../../constants.dart';
 
@@ -121,6 +122,35 @@ class ThinProfileBody extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.add),
+                          focusColor: kPrimaryColor,
+                          hoverColor: kPrimaryColorHover,
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return AddProduct();
+                            }));
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.notifications_active),
+                          focusColor: kPrimaryColor,
+                          hoverColor: kPrimaryColorHover,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return NotificationScreen();
+                              }),
+                            );
+                          },
+                        )
+                      ],
+                    ),
                     Container(
                       margin: EdgeInsets.all(20),
                       width: 210,
@@ -137,8 +167,8 @@ class ThinProfileBody extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 fit: BoxFit.fill,
-                                image: NetworkImage(
-                                    "https://i.imgur.com/BoN9kdC.png"))),
+                                image: AssetImage(
+                                    "assets/images/defaultProfilePhoto.png"))),
                       ),
                     ),
                     RaisedButton(
@@ -164,12 +194,6 @@ class ThinProfileBody extends StatelessWidget {
                         );
                       },
                     ),
-                    FloatingActionButton(onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return AddProduct();
-                      }));
-                    }),
                     SizedBox(height: 30.0),
                     Text(
                       "IME",
