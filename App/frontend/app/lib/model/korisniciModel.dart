@@ -27,6 +27,7 @@ class KorisniciModel extends ChangeNotifier {
   ContractFunction logovanje;
   ContractFunction proveriUsername;
   ContractFunction dodajKorisnika;
+  ContractFunction _dodajSliku;
 
   Web3Client client;
 
@@ -50,6 +51,8 @@ class KorisniciModel extends ChangeNotifier {
     if(broj > 0) {
       print(ulogovaniKorisnik.ime + " " + ulogovaniKorisnik.prezime);
     }*/
+    await dodajSliku(1, "promena");
+    print("promenio sam");
   }
 
   Future<void> getAbi() async {
@@ -82,6 +85,7 @@ class KorisniciModel extends ChangeNotifier {
     logovanje = ugovor.function("prijavljivanje");
     proveriUsername = ugovor.function("proveriUsername");
     dodajKorisnika = ugovor.function("dodajKorisnika");
+    _dodajSliku = ugovor.function("dodajSliku");
   }
 
   //Logovanje
@@ -167,6 +171,16 @@ class KorisniciModel extends ChangeNotifier {
             adresa: k[6]);
       }
     }
+  }
+
+  Future<void> dodajSliku(int id, String slika) async {
+    await client.sendTransaction(
+          credentials,
+          Transaction.callContract(
+              maxGas: 6721975,
+              contract: ugovor,
+              function: _dodajSliku,
+              parameters: [BigInt.from(id), slika]));
   }
 }
 

@@ -37,8 +37,9 @@ class ProizvodiModel extends ChangeNotifier {
     await getAbi();
     await getCredentials();
     await getDeployedCotract();
+    //await dodajProizvod(1, 1, "Ovca", 5, 25000, "hashslike");
     await dajSveProizvode();
-  }
+    }
 
   Future<void> getAbi() async {
     String abiStringFile =
@@ -67,7 +68,7 @@ class ProizvodiModel extends ChangeNotifier {
     proizvodiKorisnika = ugovor.function("dajProizvodeZaKorisnika");
   }
 
-  Future<void> dodajProizvod(int _idKorisnika, _idKategorije, String _naziv, int _kolicina, int _cena, String _slika) async {
+  Future<void> dodajProizvod(int _idKorisnika, int _idKategorije, String _naziv, int _kolicina, int _cena, String _slika) async {
     await client.sendTransaction(
           credentials,
           Transaction.callContract(
