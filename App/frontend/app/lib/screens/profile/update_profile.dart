@@ -27,15 +27,12 @@ class UpdateProfileForm extends StatelessWidget {
         child: Column(
           children: [
             InputFieldNotValidated(
-              field: fName,
               title: "IME",
             ),
             InputFieldNotValidated(
-              field: lName,
               title: "PREZIME",
             ),
             InputFieldNotValidated(
-              field: address,
               title: "ADRESA",
             ),
             RoundedButton(
