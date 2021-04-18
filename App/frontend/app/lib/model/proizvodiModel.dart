@@ -67,14 +67,22 @@ class ProizvodiModel extends ChangeNotifier {
     proizvodiKorisnika = ugovor.function("dajProizvodeZaKorisnika");
   }
 
-  Future<void> dodajProizvod(int _idKorisnika, _idKategorije, String _naziv, int _kolicina, int _cena, String _slika) async {
+  Future<void> dodajProizvod(int _idKorisnika, _idKategorije, String _naziv,
+      int _kolicina, int _cena, String _slika) async {
     await client.sendTransaction(
-          credentials,
-          Transaction.callContract(
-              maxGas: 6721975,
-              contract: ugovor,
-              function: _dodajProizvod,
-              parameters: [BigInt.from(_idKorisnika), BigInt.from(_idKategorije), _naziv, BigInt.from(_kolicina), BigInt.from(_cena), _slika]));
+        credentials,
+        Transaction.callContract(
+            maxGas: 6721975,
+            contract: ugovor,
+            function: _dodajProizvod,
+            parameters: [
+              BigInt.from(_idKorisnika),
+              BigInt.from(_idKategorije),
+              _naziv,
+              BigInt.from(_kolicina),
+              BigInt.from(_cena),
+              _slika
+            ]));
   }
 
   Future<void> dajSveProizvode() async {
@@ -206,6 +214,5 @@ class Proizvod {
       this.naziv,
       this.kolicina,
       this.cena,
-      this.slika
-      });
+      this.slika});
 }

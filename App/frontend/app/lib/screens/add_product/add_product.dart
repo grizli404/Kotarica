@@ -2,13 +2,16 @@ import 'dart:io';
 
 import 'package:app/components/input_fields.dart';
 import 'package:app/components/rad_sa_slikama.dart';
+import 'package:app/model/proizvodiModel.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../constants.dart';
 
 import 'package:flutter/material.dart';
 
-class AddProduct extends StatelessWidget {
+String slika = "0";
+
+class AddProduct extends StatefulWidget {
   final String korisnik;
 
   const AddProduct({
@@ -17,8 +20,17 @@ class AddProduct extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _AddProductState createState() => _AddProductState();
+}
+
+class _AddProductState extends State<AddProduct> {
+  @override
   Widget build(BuildContext context) {
-    String slika = null;
+    ValueChanged<String> naziv;
+    ValueChanged<String> kolicina;
+    ValueChanged<String> cena;
+    ValueChanged<String> opis;
+    ValueChanged<String> kategorija;
     Size size = MediaQuery.maybeOf(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -49,8 +61,10 @@ class AddProduct extends StatelessWidget {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           fit: BoxFit.fill,
-                          image: AssetImage(
-                              "assets/images/defaultProductPhoto.jpg"))),
+                          image: slika != "0"
+                              ? NetworkImage("https://ipfs.io/ipfs/" + slika)
+                              : AssetImage(
+                                  "assets/images/defaultProductPhoto.jpg"))),
                 ),
               ),
               IconButton(
@@ -60,18 +74,24 @@ class AddProduct extends StatelessWidget {
                 onPressed: () async {
                   var file =
                       await ImagePicker().getImage(source: ImageSource.gallery);
+                  print("Loading image...");
                   var _image = File(file.path);
+                  print("Uploading image image...");
+                  SnackBar(
+                    content: Text("Loading image..."),
+                  );
                   var res = await uploadImage(_image);
-                  print(res);
+                  print("image: " + res);
                   slika = res;
+                  setState(() {});
                 },
               ),
-              InputFieldNotValidated(field: " ", title: "Naziv"),
-              InputFieldNotValidated(field: " ", title: "Kolicina"),
-              InputFieldNotValidated(field: " ", title: "Cena"),
-              InputFieldNotValidated(field: " ", title: "Opis"),
+              InputFieldNotValidated(field: naziv, title: "Naziv"),
+              InputFieldNotValidated(field: kolicina, title: "Kolicina"),
+              InputFieldNotValidated(field: cena, title: "Cena"),
+              InputFieldNotValidated(field: opis, title: "Opis"),
               InputFieldNotValidated(
-                  field: " ", title: "Kategorija (comboBox)"),
+                  field: kategorija, title: "Kategorija comboBox"),
               RaisedButton(
                 child: Text(
                   "Postavi proizvod",
@@ -83,7 +103,15 @@ class AddProduct extends StatelessWidget {
                 ),
                 padding:
                     EdgeInsets.symmetric(horizontal: (size.width / 2) - 85),
-                onPressed: () {},
+                onPressed: () {
+                  ProizvodiModel().dodajProizvod(
+                      1,
+                      int.parse(kategorija.toString()),
+                      naziv.toString(),
+                      int.parse(kolicina.toString()),
+                      int.parse(cena.toString()),
+                      slika);
+                },
               )
             ],
           ),

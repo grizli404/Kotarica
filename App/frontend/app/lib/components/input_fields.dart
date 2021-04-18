@@ -3,12 +3,12 @@ import '../constants.dart';
 import 'package:flutter/material.dart';
 
 class InputFieldNotValidated extends StatelessWidget {
-  final String field;
+  final ValueChanged<String> field;
   final String title;
 
   const InputFieldNotValidated({
     Key key,
-    @required this.field,
+    this.field,
     @required this.title,
   }) : super(key: key);
 
@@ -18,7 +18,7 @@ class InputFieldNotValidated extends StatelessWidget {
       margin: EdgeInsets.all(30),
       child: TextFormField(
         cursorColor: Theme.of(context).cursorColor,
-        initialValue: field,
+        onChanged: field,
         maxLength: 20,
         decoration: InputDecoration(
           labelText: title,
