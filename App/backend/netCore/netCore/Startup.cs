@@ -15,8 +15,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using netCore.Data;
+using netCore.Handlers;
 using netCore.Interfaces;
 using netCore.Models;
+using netCore.SocketsManager;
 
 namespace netCore
 {
@@ -41,7 +43,7 @@ namespace netCore
 
             services.AddControllers();
 
-            //Za tokene
+            /*************** POCETAK TOKENA ************** */
             var key = "Mod privatni kljuc";
 
             services.AddAuthentication(x =>
@@ -62,10 +64,15 @@ namespace netCore
            });
 
             services.AddSingleton<IJWTAuthenticationManager>(new JWTAuthenticationManager(key));
+            /*************** KRAJ TOKENA ************** */
+
+            /*************** POCETAK CHAT-a ************** */
+            services.AddWebSocketManager();
+            /*************** KRAJ CHAT-a ************** */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -82,6 +89,14 @@ namespace netCore
             {
                 endpoints.MapControllers();
             });
+
+
+            /*************** POCETAK CHAT-a ************** */
+            app.UseWebSockets();
+            //OVDE IMAMO PROBLEM VALJDA TREBA DA UKLJUCIMO SOCKETSEXTENSION.CS IZ SOCKETSMANAGER
+            app.MapSockets("/ws", serviceProvider.GetService<WebSocketMessageHandler>());
+            app.UseStaticFiles();
+            /*************** KRAJ CHAT-a ************** */
         }
     }
 }
