@@ -7,15 +7,16 @@ final String privatniKljuc =
 */
 
 //Lazar
-// final String rpcUrl = "http://192.168.0.24:7545";
-// final String wsUrl = "ws://192.168.0.24:7545/";
+ final String rpcUrl = "http://192.168.0.24:7545";
+ final String wsUrl = "ws://192.168.0.24:7545/";
 
-// final String privatniKljuc =
-//     "7c95adc131db0e26e4197d454dd829f493b64d69be2105cb31dcb8569b10f521";
+ final String privatniKljuc =
+     "7c95adc131db0e26e4197d454dd829f493b64d69be2105cb31dcb8569b10f521";
 
-//Andrija
+/*//Andrija
 final String rpcUrl = "http://192.168.1.100:7545";
 final String wsUrl = "ws://192.168.1.100:7545/";
 
 final String privatniKljuc =
     "cd7cd06d3e61e34d9e3cdc03289ca388508b117e9761378cb59219c53976b26f";
+*/
