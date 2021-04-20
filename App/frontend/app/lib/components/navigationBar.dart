@@ -30,7 +30,9 @@ class NavigationBarWidget extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.favorite_rounded),
               color: Theme.of(context).bottomAppBarColor,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/favorites');
+              },
             ),
             IconButton(
               icon: Icon(Icons.shopping_cart_rounded),
