@@ -32,6 +32,8 @@ class MyThemes {
     dividerColor: Colors.black,
     indicatorColor: Colors.black,
     bottomAppBarColor: Colors.white,
+    canvasColor: Colors.white,
+    hoverColor: Colors.black,
   );
 
   static final lightTheme = ThemeData(
@@ -45,5 +47,7 @@ class MyThemes {
     dividerColor: Colors.white,
     indicatorColor: kPrimaryColor,
     bottomAppBarColor: Colors.white,
+    canvasColor: Colors.white,
+    hoverColor: Colors.black,
   );
 }

@@ -1,4 +1,6 @@
 import 'dart:collection';
+//import 'dart:html';
+import 'dart:io';
 
 import 'package:app/components/customAppBar.dart';
 import 'package:app/components/drawer.dart';
@@ -9,6 +11,7 @@ import 'package:app/model/search.dart';
 import 'package:app/screens/home/components/productContainer.dart';
 import 'package:app/screens/home/components/productView.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants.dart';
 
@@ -33,14 +36,43 @@ class ProductByCategory extends StatefulWidget {
 }
 
 class _ProductByCategoryState extends State<ProductByCategory> {
+  maxCena() {
+    if (widget.listaProizvoda.length > 0) {
+      int max = 0;
+      for (var i = 0; i < widget.listaProizvoda.length; i++) {
+        if (widget.listaProizvoda[i].cena > max)
+          max = widget.listaProizvoda[i].cena;
+      }
+      return max.toDouble();
+    }
+    return 5000.0;
+  }
+
+  double _currentSliderValue = 0;
+  minCena() {
+    if (widget.listaProizvoda.length > 0) {
+      int min = widget.listaProizvoda[0].cena;
+      for (var i = 0; i < widget.listaProizvoda.length; i++) {
+        if (widget.listaProizvoda[i].cena < min)
+          min = widget.listaProizvoda[i].cena;
+      }
+      return min.toDouble();
+    }
+    //print(min.toString());
+    //_currentSliderValue = min.toDouble();
+  }
+
   int _value = 3;
   bool _isSortChanged = false;
+  bool _isFilterChanged = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(),
-      body: Container(
-        child: Column(
+    if (widget.listaProizvoda != null)
+      return Scaffold(
+        appBar: CustomAppBar(),
+        body: SingleChildScrollView(
+            child: Column(
           children: <Widget>[
             Row(
               children: [
@@ -56,13 +88,25 @@ class _ProductByCategoryState extends State<ProductByCategory> {
                       underline: SizedBox(),
                       items: [
                         DropdownMenuItem(
-                            child: Text("Cena - opadajuća"), value: 1),
+                            child: Text("Cena - opadajuća",
+                                style: TextStyle(
+                                    color: Theme.of(context).hoverColor)),
+                            value: 1),
                         DropdownMenuItem(
-                            child: Text("Cena - rasutuća"), value: 2),
+                            child: Text("Cena - rasutuća",
+                                style: TextStyle(
+                                    color: Theme.of(context).hoverColor)),
+                            value: 2),
                         DropdownMenuItem(
-                            child: Text("Datum - najnovije"), value: 3),
+                            child: Text("Datum - najnovije",
+                                style: TextStyle(
+                                    color: Theme.of(context).hoverColor)),
+                            value: 3),
                         DropdownMenuItem(
-                            child: Text("Datum - najstarije"), value: 4)
+                            child: Text("Datum - najstarije",
+                                style: TextStyle(
+                                    color: Theme.of(context).hoverColor)),
+                            value: 4)
                       ],
                       onChanged: (value) {
                         setState(() {
@@ -73,16 +117,47 @@ class _ProductByCategoryState extends State<ProductByCategory> {
                 ),
               ],
             ),
+            // slider
+            Row(
+              children: [
+                SizedBox(width: 25),
+                Text('Cena:'),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(width: 25),
+                //Text(minCena.toString() + ' RSD'),
+                Text('0.0 RSD - ' + maxCena().toString() + ' RSD'),
+                // SizedBox(
+                //   width: 200,
+                // ),
+              ],
+            ),
+            Slider(
+              activeColor: Theme.of(context).primaryColor,
+              inactiveColor: Theme.of(context).primaryColor.withOpacity(0.5),
+              value: _currentSliderValue,
+              min: 0.0,
+              max: maxCena(),
+              divisions: 10,
+              label: _currentSliderValue.round().toString(),
+              onChanged: (double value) {
+                setState(() {
+                  _isFilterChanged = true;
+                  _currentSliderValue = value;
+                });
+              },
+            ),
+
             if (_isSortChanged == false) ...[
-              Expanded(
-                  child: ProductView(
+              ProductView(
                 listaProizvoda: widget.listaProizvoda,
-              ))
+              )
             ] else if (_isSortChanged == true) ...[
-              Expanded(
-                  child: ProductContainer(
+              ProductContainer(
                 naziv: 'nesto',
-              ))
+              )
             ]
             // Pretraga(
             //     searchController: searchController,
@@ -93,10 +168,10 @@ class _ProductByCategoryState extends State<ProductByCategory> {
             //   listaProizvoda: widget.listaProizvoda,
             // ))
           ],
-        ),
-      ),
-      drawer: ResponsiveLayout.isIphone(context) ? ListenToDrawerEvent() : null,
-    );
+        )),
+        drawer:
+            ResponsiveLayout.isIphone(context) ? ListenToDrawerEvent() : null,
+      );
   }
 }
 
