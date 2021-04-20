@@ -1,5 +1,6 @@
 import 'package:app/components/customAppBar.dart';
 import 'package:app/components/progress_hud.dart';
+import 'package:app/constants.dart';
 import 'package:app/model/personal_data.dart';
 import 'package:app/screens/checkout/components/confirm_configuration.dart';
 import 'package:app/screens/checkout/components/payment_configuration.dart';
@@ -38,78 +39,106 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   Widget _build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: CustomAppBar(),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          height: size.height * 0.8,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+      appBar: AppBar(
+        title: Text("Kotarica"),
+        centerTitle: true,
+        actions: [
+          Row(
             children: [
-              Chooser(
-                shipping: widget.shippingConfig,
-                payment: widget.paymentConfig,
-                confirm: widget.confirmConfig,
-              ),
-              if (widget.shippingConfig == true) ...[
-                ShippingConfiguration(
-                  personalData: widget.personalData,
+              IconButton(
+                icon: Icon(
+                  Icons.shopping_cart_outlined,
                 ),
-              ],
-              if (widget.paymentConfig == true) ...[
-                PaymentConfiguration(
-                  personalData: widget.personalData,
-                )
-              ],
-              if (widget.confirmConfig == true) ...[
-                ConfirmConfiguration(
-                  personalData: widget.personalData,
-                )
-              ],
-              Expanded(
-                child: SizedBox(),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FlatButton(
-                    onPressed: widget.shippingConfig ? null : setPrevious,
-                    disabledColor: Colors.grey,
-                    child: Row(children: [
-                      Icon(Icons.arrow_back_rounded),
-                      Text("Nazad")
-                    ]),
-                    color: Colors.purple,
-                    textColor: Colors.white,
-                  ),
-                  if (!widget.confirmConfig) ...[
-                    FlatButton(
-                      onPressed: () {
-                        setNext();
-                      },
-                      child: Row(children: [
-                        Text("Dalje"),
-                        Icon(Icons.arrow_forward_rounded)
-                      ]),
-                      color: Colors.purple,
-                      textColor: Colors.white,
-                    )
-                  ] else ...[
-                    FlatButton(
-                      onPressed: () {},
-                      child: Row(children: [
-                        Text("Naruci!"),
-                        Icon(Icons.check_rounded)
-                      ]),
-                      color: Colors.purple,
-                      textColor: Colors.white,
-                    )
-                  ],
-                ],
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, '/cart', arguments: {});
+                }, // korpa
               ),
             ],
           ),
+        ],
+      ),
+      body: Container(
+        height: size.height,
+        width: size.width,
+        child: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Chooser(
+                  shipping: widget.shippingConfig,
+                  payment: widget.paymentConfig,
+                  confirm: widget.confirmConfig,
+                ),
+                if (widget.shippingConfig == true) ...[
+                  ShippingConfiguration(
+                    personalData: widget.personalData,
+                  ),
+                ],
+                if (widget.paymentConfig == true) ...[
+                  PaymentConfiguration(
+                    personalData: widget.personalData,
+                  ),
+                ],
+                if (widget.confirmConfig == true) ...[
+                  ConfirmConfiguration(
+                    personalData: widget.personalData,
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(vertical: 20),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme == ColorScheme.dark()
+              ? Theme.of(context).primaryColor
+              : Theme.of(context).primaryColor,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+          boxShadow: [
+            BoxShadow(
+                offset: Offset(0, -15),
+                blurRadius: 20,
+                color: Color(0xFFDADADA).withOpacity(0.15)),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            FlatButton(
+              onPressed: widget.shippingConfig ? null : setPrevious,
+              disabledColor: Colors.grey,
+              child: Row(
+                  children: [Icon(Icons.arrow_back_rounded), Text("Nazad")]),
+              color: kPrimaryLightColor,
+              textColor: Theme.of(context).primaryColor,
+            ),
+            if (!widget.confirmConfig) ...[
+              FlatButton(
+                onPressed: () {
+                  setNext();
+                },
+                child: Row(children: [
+                  Text("Dalje"),
+                  Icon(Icons.arrow_forward_rounded)
+                ]),
+                color: kPrimaryLightColor,
+                textColor: Theme.of(context).primaryColor,
+              )
+            ] else ...[
+              FlatButton(
+                onPressed: () {},
+                child:
+                    Row(children: [Text("Naruci!"), Icon(Icons.check_rounded)]),
+                color: kPrimaryLightColor,
+                textColor: Theme.of(context).primaryColor,
+              )
+            ],
+          ],
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:app/components/progress_hud.dart';
 import 'package:app/components/rounded_button.dart';
 import 'package:app/components/rounded_input_field.dart';
 import 'package:app/components/rounded_password_field.dart';
+import 'package:app/constants.dart';
 import 'package:app/model/korisniciModel.dart';
 
 import 'package:app/screens/home/homeScreen.dart';
@@ -59,22 +60,34 @@ class _BodyState extends State<Body> {
                 height: size.height * 0.03,
               ),
               SvgPicture.asset(
-                "assets/icons/shopping-basket.svg",
+                Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? "assets/icons/shopping-basket-dark.svg"
+                    : "assets/icons/shopping-basket.svg",
                 height: size.height * 0.35,
               ),
               SizedBox(
                 height: size.height * 0.03,
               ),
               RoundedInputField(
+                color: Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? Theme.of(context).primaryColor
+                    : kPrimaryLightColor,
                 hintText: "Your email",
                 onChanged: (input) => _email = input,
                 // validator: (input) => !input.contains("@") ? "Missing @" : null,
               ),
               RoundedPasswordField(
+                hintText: 'Password',
+                color: Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? Theme.of(context).primaryColor
+                    : kPrimaryLightColor,
                 onChanged: (input) => _password = input,
                 validator: (input) => input.length < 3 ? "Too short!" : null,
               ),
               RoundedButton(
+                color: Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? Colors.grey
+                    : Theme.of(context).primaryColor,
                 text: "LOGIN",
                 press: () async {
                   if (validateAndSave()) {
@@ -87,7 +100,8 @@ class _BodyState extends State<Body> {
                     if (id != 0) {
                       await FlutterSession().set('email', _email);
                       korisnikInfo = await korisnik.vratiKorisnikaMail(_email);
-                      Navigator.pushNamed(context, '/home', arguments: {});
+                      Navigator.popAndPushNamed(context, '/home',
+                          arguments: {});
                       ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text("uspesno!")));
                     } else {
@@ -108,7 +122,7 @@ class _BodyState extends State<Body> {
               ),
               AlreadyHaveAnAccountCheck(
                 press: () {
-                  Navigator.pushNamed(context, '/signup', arguments: {});
+                  Navigator.popAndPushNamed(context, '/signup', arguments: {});
                 },
               ),
               SizedBox(

@@ -43,7 +43,8 @@ class _CartItemCardState extends State<CartItemCard> {
               widget.cart.product.naziv,
               style: TextStyle(
                 fontSize: 16,
-                color: kPrimaryColor,
+                color: Theme.of(context).accentColor,
+                fontWeight: FontWeight.w600,
               ),
               maxLines: 2,
             ),
@@ -52,16 +53,22 @@ class _CartItemCardState extends State<CartItemCard> {
               Text.rich(
                 TextSpan(
                     text: "\$${widget.cart.product.cena} ",
-                    style: TextStyle(color: kPrimaryColor),
+                    style: TextStyle(
+                        color: Theme.of(context).accentColor,
+                        fontWeight: FontWeight.w600),
                     children: [
-                      TextSpan(
-                        text: " x",
-                        style: TextStyle(color: Colors.black),
-                      ),
+                      // TextSpan(
+                      //   text: " x",
+                      //   style: TextStyle(color: Theme.of(context).hintColor),
+                      // ),
                     ]),
               ),
               IconButton(
-                color: widget.cart.numOfItems > 1 ? kPrimaryColor : Colors.grey,
+                color: widget.cart.numOfItems > 1
+                    ? (Theme.of(context).colorScheme == ColorScheme.dark()
+                        ? Colors.yellow
+                        : Theme.of(context).accentColor)
+                    : Colors.grey,
                 icon: Icon(
                   Icons.remove_circle_outline,
                   size: 16.0,
@@ -77,11 +84,16 @@ class _CartItemCardState extends State<CartItemCard> {
               ),
               Text.rich(
                 TextSpan(
-                    text: "${widget.cart.numOfItems}",
-                    style: TextStyle(color: kPrimaryColor)),
+                  text: "${widget.cart.numOfItems}",
+                  style: TextStyle(
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.w600),
+                ),
               ),
               IconButton(
-                color: kPrimaryColor,
+                color: Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? Colors.yellow
+                    : Theme.of(context).accentColor,
                 icon: Icon(
                   Icons.add_circle_outline,
                   size: 16.0,

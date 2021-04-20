@@ -11,8 +11,15 @@ class ConfirmConfiguration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
+          Divider(
+            thickness: 3,
+            color: Theme.of(context).colorScheme == ColorScheme.dark()
+                ? Colors.black
+                : kPrimaryColor,
+          ),
           Container(
             height: 60,
             child: Row(
@@ -21,6 +28,11 @@ class ConfirmConfiguration extends StatelessWidget {
                 _Vrednost(text: personalData.ime)
               ],
             ),
+          ),
+          Divider(
+            color: Theme.of(context).colorScheme == ColorScheme.dark()
+                ? Colors.black
+                : kPrimaryColor,
           ),
           Container(
             height: 60,
@@ -31,6 +43,11 @@ class ConfirmConfiguration extends StatelessWidget {
               ],
             ),
           ),
+          Divider(
+            color: Theme.of(context).colorScheme == ColorScheme.dark()
+                ? Colors.black
+                : kPrimaryColor,
+          ),
           Container(
             height: 60,
             child: Row(
@@ -39,6 +56,11 @@ class ConfirmConfiguration extends StatelessWidget {
                 _Vrednost(text: personalData.postanskiBroj),
               ],
             ),
+          ),
+          Divider(
+            color: Theme.of(context).colorScheme == ColorScheme.dark()
+                ? Colors.black
+                : kPrimaryColor,
           ),
           Container(
             height: 60,
@@ -49,6 +71,11 @@ class ConfirmConfiguration extends StatelessWidget {
               ],
             ),
           ),
+          Divider(
+            color: Theme.of(context).colorScheme == ColorScheme.dark()
+                ? Colors.black
+                : kPrimaryColor,
+          ),
           Container(
             height: 60,
             child: Row(
@@ -57,6 +84,11 @@ class ConfirmConfiguration extends StatelessWidget {
                 _Vrednost(text: personalData.opis)
               ],
             ),
+          ),
+          Divider(
+            color: Theme.of(context).colorScheme == ColorScheme.dark()
+                ? Colors.black
+                : kPrimaryColor,
           ),
           Container(
             height: 60,
@@ -67,6 +99,12 @@ class ConfirmConfiguration extends StatelessWidget {
                 _Vrednost(text: personalData.privateKey)
               ],
             ),
+          ),
+          Divider(
+            thickness: 3,
+            color: Theme.of(context).colorScheme == ColorScheme.dark()
+                ? Colors.black
+                : kPrimaryColor,
           ),
           _Atribut(
             text: "Korpa: ",
@@ -86,8 +124,14 @@ class ConfirmConfiguration extends StatelessWidget {
             height: 10,
           ),
           _Atribut(
-            text: "Total: ${sumTotal(demoCarts)}",
-          )
+            text: "Total: ${sumTotal(demoCarts)}\$",
+          ),
+          Divider(
+            thickness: 3,
+            color: Theme.of(context).colorScheme == ColorScheme.dark()
+                ? Colors.black
+                : kPrimaryColor,
+          ),
         ],
       ),
     );
@@ -113,7 +157,7 @@ class _Vrednost extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Text(
-        "${text}",
+        text != '' ? "${text}" : '-',
         style: TextStyle(
           fontSize: 16,
         ),
