@@ -1,4 +1,5 @@
-import 'package:app/screens/cart/cart/cart_screen.dart';
+import 'package:app/components/responsive_layout.dart';
+import 'package:app/main.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
@@ -7,29 +8,32 @@ import 'package:flutter_svg/svg.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
-    Future procitajPodatke() async {
-      var token = await FlutterSession().get('email');
-      return token.toString();
-    }
+    // Future procitajPodatke() async {
+    //   var token = await FlutterSession().get('email');
+    //   return token.toString();
+    // }
 
-    var token;
-    procitajPodatke().then((value) {
-      token = value;
-    });
+    // var token;
+    // procitajPodatke().then((value) {
+    //   token = value;
+    // });
 
     return AppBar(
       elevation: 0,
-      leading: Builder(
-        builder: (BuildContext context) {
-          return IconButton(
-            icon: SvgPicture.asset('assets/icons/menu.svg'),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-          );
-        },
-      ),
+      leading: ResponsiveLayout.isIphone(context)
+          ? Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: SvgPicture.asset('assets/icons/menu.svg'),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  tooltip:
+                      MaterialLocalizations.of(context).openAppDrawerTooltip,
+                );
+              },
+            )
+          : null,
       actions: [
         Row(
           children: [
@@ -52,7 +56,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Icons.person,
                 ),
                 onPressed: () {
-                  if (token.toString() != '') {
+                  if (korisnikInfo != null) {
                     Navigator.pushNamed(context, '/profile');
                   } else {
                     Navigator.pushNamed(context, '/login');
@@ -65,14 +69,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Icons.shopping_cart_outlined,
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return CartScreen();
-                    },
-                  ),
-                );
+                Navigator.pushNamed(context, '/cart', arguments: {});
               }, // korpa
             ),
           ],

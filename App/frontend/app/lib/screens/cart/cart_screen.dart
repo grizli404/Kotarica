@@ -1,6 +1,8 @@
 import 'package:app/components/rounded_button.dart';
 import 'package:app/constants.dart';
 import 'package:app/model/cart.dart';
+import 'package:app/screens/checkout/checkout_screen.dart';
+import 'package:app/theme/themeProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -52,6 +54,7 @@ class _CartScreenState extends State<CartScreen> {
               },
               child: CartItemCard(
                 cart: demoCarts[index],
+                rebuild: setState,
               ),
             ),
           ),
@@ -63,19 +66,25 @@ class _CartScreenState extends State<CartScreen> {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      title: Center(
-        child: Column(
-          children: [
+      centerTitle: true,
+      title: Column(
+        children: [
+          Text(
+            "Your Cart",
+            style: TextStyle(color: kPrimaryLightColor),
+          ),
+          if (demoCarts.length == 1) ...[
             Text(
-              "Your Cart",
-              style: TextStyle(color: Colors.black),
+              "${demoCarts.length} item",
+              style: TextStyle(inherit: false, color: kPrimaryLightColor),
             ),
+          ] else ...[
             Text(
               "${demoCarts.length} items",
-              style: Theme.of(context).textTheme.caption,
+              style: TextStyle(inherit: false, color: kPrimaryLightColor),
             )
-          ],
-        ),
+          ]
+        ],
       ),
     );
   }
@@ -94,7 +103,9 @@ class CheckOutCard extends StatelessWidget {
         horizontal: 30,
       ),
       decoration: BoxDecoration(
-        color: Colors.teal,
+        color: Theme.of(context).colorScheme == ColorScheme.dark()
+            ? Theme.of(context).primaryColor
+            : Theme.of(context).primaryColor,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30), topRight: Radius.circular(30)),
         boxShadow: [
@@ -132,7 +143,7 @@ class CheckOutCard extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: kPrimaryColor),
+                                color: Colors.yellow),
                           ),
                         ],
                       ),
@@ -145,25 +156,17 @@ class CheckOutCard extends StatelessWidget {
               height: 30,
               width: size.width,
             ),
-            Container(
-              child: RoundedButton(
-                text: "Checkout",
-                press: () {},
-                textColor: kPrimaryColor,
-                color: Colors.yellowAccent,
-              ),
+            RoundedButton(
+              text: "Checkout",
+              press: () {
+                Navigator.popAndPushNamed(context, '/checkout', arguments: {});
+              },
+              textColor: kPrimaryColor,
+              color: Colors.yellowAccent,
             ),
           ],
         ),
       ),
     );
-  }
-
-  double sumTotal(List<Cart> demoCarts) {
-    double total = 0;
-    demoCarts.forEach((Cart cart) {
-      total += cart.product.cena * cart.numOfItems;
-    });
-    return total;
   }
 }

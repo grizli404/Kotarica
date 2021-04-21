@@ -6,14 +6,11 @@ import 'package:http/http.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
 
+import 'ether_setup.dart';
+
 class KorisniciModel extends ChangeNotifier {
   Korisnik ulogovaniKorisnik;
 
-  final String rpcUrl = "http://127.0.0.1:7545";
-  final String wsUrl = "ws://127.0.0.1:7545/";
-
-  final String privatniKljuc =
-      "d896ec869580b5da9f00731fc755d749b3299d6c7df519bb3dda03ae441509ae";
   var abiCode; //ovde ce da bude smesten json file iz src/abis/korisnici.json
   EthereumAddress adresaUgovora;
 
@@ -30,6 +27,7 @@ class KorisniciModel extends ChangeNotifier {
   ContractFunction logovanje;
   ContractFunction proveriUsername;
   ContractFunction dodajKorisnika;
+  ContractFunction _dodajSliku;
 
   Web3Client client;
 
@@ -53,6 +51,8 @@ class KorisniciModel extends ChangeNotifier {
     if(broj > 0) {
       print(ulogovaniKorisnik.ime + " " + ulogovaniKorisnik.prezime);
     }*/
+    await dodajSliku(1, "promena");
+    print("promenio sam");
   }
 
   Future<void> getAbi() async {
@@ -85,6 +85,7 @@ class KorisniciModel extends ChangeNotifier {
     logovanje = ugovor.function("prijavljivanje");
     proveriUsername = ugovor.function("proveriUsername");
     dodajKorisnika = ugovor.function("dodajKorisnika");
+    _dodajSliku = ugovor.function("dodajSliku");
   }
 
   //Logovanje
@@ -137,14 +138,7 @@ class KorisniciModel extends ChangeNotifier {
               maxGas: 6721975,
               contract: ugovor,
               function: dodajKorisnika,
-              parameters: [
-                _mail,
-                _password,
-                _ime,
-                _prezime,
-                _broj,
-                _adresa
-              ]));
+              parameters: [_mail, _password, _ime, _prezime, _broj, _adresa]));
 
       return await login(_mail,
           _password); // kada se uspesno registrovao, odma prijavimo tog korisnika
@@ -159,27 +153,35 @@ class KorisniciModel extends ChangeNotifier {
     return tempInt.toInt();
   }
 
-  
   Future<Korisnik> vratiKorisnikaMail(String mail) async {
     if (mail != "") {
-      var k = await client.call(
-          contract: ugovor, function: korisniciMail, params: [mail]);
+      var k = await client
+          .call(contract: ugovor, function: korisniciMail, params: [mail]);
 
       BigInt bigId = k[0];
       int _id = bigId.toInt();
-      if(_id != 0) {
+      if (_id != 0) {
         return Korisnik(
-          id: _id,
-          mail: k[1],
-          password: k[2],
-          ime: k[3],
-          prezime: k[4],
-          brojTelefona: k[5],
-          adresa: k[6]);
+            id: _id,
+            mail: k[1],
+            password: k[2],
+            ime: k[3],
+            prezime: k[4],
+            brojTelefona: k[5],
+            adresa: k[6]);
       }
     }
   }
-  
+
+  Future<void> dodajSliku(int id, String slika) async {
+    await client.sendTransaction(
+          credentials,
+          Transaction.callContract(
+              maxGas: 6721975,
+              contract: ugovor,
+              function: _dodajSliku,
+              parameters: [BigInt.from(id), slika]));
+  }
 }
 
 class Korisnik {
@@ -198,6 +200,5 @@ class Korisnik {
       this.ime,
       this.prezime,
       this.brojTelefona,
-      this.adresa
-    });
+      this.adresa});
 }

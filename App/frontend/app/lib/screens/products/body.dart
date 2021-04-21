@@ -1,14 +1,23 @@
+import 'package:app/components/responsive_layout.dart';
+import 'package:app/main.dart';
+import 'package:app/model/korisniciModel.dart';
+import 'package:app/model/oceneModel.dart';
 import 'package:app/screens/home/homeScreen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_session/flutter_session.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants.dart';
+import '../../model/cart.dart';
+import '../../model/proizvodiModel.dart';
 import 'components/rating.dart';
 
 class Body extends StatefulWidget {
   final assetPath, price, name;
+  final Proizvod proizvod;
 
-  Body({this.assetPath, this.price, this.name});
+  Body({this.assetPath, this.price, this.name, @required this.proizvod});
 
   @override
   _BodyState createState() => _BodyState();
@@ -18,6 +27,26 @@ class _BodyState extends State<Body> {
   int _rating;
   @override
   Widget build(BuildContext context) {
+    //KorisniciModel k = Provider.of<KorisniciModel>(context);
+    // Future<Korisnik> uzmiPodatke() async {
+    //   var token = await FlutterSession().get('email');
+    //   print("token " + token);
+    //   if (token != '') {
+    //     // print(token);
+    //     Korisnik korisnik = await k.vratiKorisnikaMail(token);
+
+    //     print("korisnik " + korisnik.ime);
+    //     return korisnik;
+    //   } else
+    //     return null;
+    // }
+
+    OceneModel ocene = Provider.of<OceneModel>(context);
+    unesiOcenu(Korisnik korisnik, Proizvod proizvod, int ocena) async {
+      await ocene.oceniProizvod(korisnik.id, proizvod.idKategorije, proizvod.id,
+          ocena, "komentar...");
+    }
+
     return ListView(
       children: [
         SizedBox(height: 15.0),
@@ -36,13 +65,13 @@ class _BodyState extends State<Body> {
                   fontFamily: 'Varela',
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
-                  color: kPrimaryColor)),
+                  color: Theme.of(context).accentColor)),
         ),
         SizedBox(height: 10.0),
         Center(
           child: Text(widget.price,
               style: TextStyle(
-                  color: Color(0xFF575E67),
+                  color: Theme.of(context).hintColor,
                   fontFamily: 'Varela',
                   fontSize: 24.0)),
         ),
@@ -67,22 +96,17 @@ class _BodyState extends State<Body> {
                 InkWell(
                   // dodaj u korpu
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return null;
-                        },
-                      ),
-                    );
+                    dodajJedanProizvodUKorpu(widget.proizvod);
                   },
                   child: Center(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
+                      width: ResponsiveLayout.isIphone(context)
+                          ? MediaQuery.of(context).size.width * 0.4
+                          : MediaQuery.of(context).size.width * 0.3,
                       height: 50.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25.0),
-                          color: kPrimaryColor),
+                          color: Theme.of(context).primaryColor),
                       child: Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -121,11 +145,13 @@ class _BodyState extends State<Body> {
                   },
                   child: Center(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
+                      width: ResponsiveLayout.isIphone(context)
+                          ? MediaQuery.of(context).size.width * 0.4
+                          : MediaQuery.of(context).size.width * 0.3,
                       height: 50.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25.0),
-                          color: kPrimaryColor),
+                          color: Theme.of(context).primaryColor),
                       child: Center(
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -155,12 +181,24 @@ class _BodyState extends State<Body> {
         Center(
           child: Text(
             'Ocenite proizvod: ',
-            style: TextStyle(color: Color(0xFF575E67), fontSize: 20),
+            style: TextStyle(color: Theme.of(context).hintColor, fontSize: 20),
           ),
         ),
         Rating((rating) {
-          setState(() {
+          setState(() async {
             _rating = rating;
+            // Korisnik k = await uzmiPodatke();
+            if (korisnikInfo != null) {
+              // unesi ocenu
+              unesiOcenu(korisnikInfo, widget.proizvod, _rating);
+              print('uneta ocena ' + _rating.toString());
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text("Uneli ste ocenu!")));
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                      "Morate biti ulogovani da biste ocenili proizvod!")));
+            }
           });
         }, 5),
         SizedBox(height: 30),
@@ -175,7 +213,8 @@ class _BodyState extends State<Body> {
                 TableRow(children: [
                   Text(
                     'Korisnik: Ime',
-                    style: TextStyle(color: Color(0xFF575E67), fontSize: 20),
+                    style: TextStyle(
+                        color: Theme.of(context).hintColor, fontSize: 20),
                   ),
                 ]),
                 TableRow(
@@ -186,7 +225,7 @@ class _BodyState extends State<Body> {
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.italic,
                             fontSize: 20,
-                            color: Color(0xFF575E67),
+                            color: Theme.of(context).hintColor,
                           ),
                           text: 'Svi proizvodi >>',
                           recognizer: TapGestureRecognizer()

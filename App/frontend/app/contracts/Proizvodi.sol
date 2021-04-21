@@ -12,7 +12,7 @@ contract Proizvodi{
         uint kolicina;
         uint cena;
         string slika;
-	string opis;
+	    string opis;
     }
 
     uint public brojProizvoda = 0;

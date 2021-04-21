@@ -3,6 +3,8 @@ pragma solidity >=0.4.22 <0.9.0;
 
 contract Korisnici{
 
+    event LoginAttempt(address sender, string challenge);
+
     struct Korisnik{
         int id;
         string mejl;
@@ -11,6 +13,7 @@ contract Korisnici{
         string prezime;
         string brojTelefona;
         string adresa;
+        string slika;
     }
 
     int public brojKorisnika = 0;
@@ -21,8 +24,8 @@ contract Korisnici{
     function dodajKorisnika (string memory _mejl, string memory _password, string memory _ime, string memory _prezime, string memory _brojTelefona, string memory _adresa) public returns(int)
     {
         brojKorisnika++;
-        korisnici[brojKorisnika] = Korisnik(brojKorisnika, _mejl, _password, _ime, _prezime, _brojTelefona, _adresa);
-        korisniciMail[_mejl] = Korisnik(brojKorisnika, _mejl, _password, _ime, _prezime, _brojTelefona, _adresa);
+        korisnici[brojKorisnika] = Korisnik(brojKorisnika, _mejl, _password, _ime, _prezime, _brojTelefona, _adresa, "");
+        korisniciMail[_mejl] = Korisnik(brojKorisnika, _mejl, _password, _ime, _prezime, _brojTelefona, _adresa, "");
         return brojKorisnika;
     }
 
@@ -36,11 +39,18 @@ contract Korisnici{
         return 1;
     }
 
-    function prijavljivanje (string memory _username, string memory _password) public view returns (int)
+    function prijavljivanje (string memory _username, string memory _password) public returns (int)
     {
+        bool nasao = false;
         for (int i = 1; i <= brojKorisnika; i++) {
-            if(keccak256(abi.encodePacked(_username)) == keccak256(abi.encodePacked(korisnici[i].mejl)) && keccak256(abi.encodePacked(_password)) == keccak256(abi.encodePacked(korisnici[i].password)))
-                return i;
+            if(keccak256(abi.encodePacked(_username)) == keccak256(abi.encodePacked(korisnici[i].mejl)) && keccak256(abi.encodePacked(_password)) == keccak256(abi.encodePacked(korisnici[i].password))) {
+                nasao = true;
+            }
+        }
+
+        if(nasao){
+            emit LoginAttempt(msg.sender, _password);
+            return 1;
         }
         return 0;
     }
@@ -57,5 +67,9 @@ contract Korisnici{
         korisnici[_id].prezime = _prezime;
         korisnici[_id].brojTelefona = _broj;
         korisnici[_id].adresa = _adresa;
+    }
+
+    function dodajSliku(int _id, string memory _slika) public {
+        korisnici[_id].slika = _slika;
     }
 }
