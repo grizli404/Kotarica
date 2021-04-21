@@ -11,7 +11,8 @@ contract Proizvodi{
         string naziv;
         uint kolicina;
         uint cena;
-        string opis;
+        string slika;
+	string opis;
     }
 
     uint public brojProizvoda = 0;
@@ -19,10 +20,10 @@ contract Proizvodi{
     mapping (uint => Proizvod) public proizvodi;
     mapping (uint => uint[]) proizvodiKorisnika;
 
-    function dodajProizvod(uint _idKorisnika, uint _idKategorije, string memory _naziv, uint _kolicina, uint _cena, string memory _opis) public
+    function dodajProizvod(uint _idKorisnika, uint _idKategorije, string memory _naziv, uint _kolicina, uint _cena, string memory _slika, string memory _opis) public
     {
         brojProizvoda++;
-        proizvodi[brojProizvoda] = Proizvod(brojProizvoda, _idKorisnika, _idKategorije, _naziv, _kolicina, _cena, _opis);
+        proizvodi[brojProizvoda] = Proizvod(brojProizvoda, _idKorisnika, _idKategorije, _naziv, _kolicina, _cena, _slika, _opis);
         proizvodiKorisnika[_idKorisnika].push(brojProizvoda);
     }
 
@@ -39,16 +40,15 @@ contract Proizvodi{
     {
         proizvodi[brojProizvoda].id = proizvodi[_id].id;
         proizvodi[_id] = proizvodi[brojProizvoda];
-        Proizvod memory p = Proizvod(0, 0, 0, "", 0, 0, "");
+        Proizvod memory p = Proizvod(0, 0, 0, "", 0, 0, "", "");
         proizvodi[brojProizvoda] = p;
         brojProizvoda--;
     }
-
-
+    
     uint[] arr;
-
+    
     function search(string memory substring) public returns(uint[] memory) {
-
+        
         bytes memory whatBytes = bytes (substring);
 
         for (uint i = 1; i <= brojProizvoda; i++) {
