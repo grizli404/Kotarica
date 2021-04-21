@@ -45,9 +45,13 @@ contract Proizvodi{
         brojProizvoda--;
     }
     
-    uint[] arr;
+    
     
     function search(string memory substring) public returns(uint[] memory) {
+
+        uint duzina = 0;
+
+        uint[] memory arr = new uint[] (10);
         
         bytes memory whatBytes = bytes (substring);
 
@@ -65,8 +69,9 @@ contract Proizvodi{
                 
                 if(flag) {
                     found = true;
+                    duzina = duzina +1;
                     uint pomId = proizvodi[i].id;
-                    arr.push(pomId); 
+                    arr[duzina] = pomId; 
                     break;
                 }
             }
@@ -75,7 +80,7 @@ contract Proizvodi{
             return arr;
         else
         {
-            arr.push(0);
+            arr[0] = 0;
             return arr;
         }
     }
@@ -85,14 +90,61 @@ contract Proizvodi{
     //Koristice se tako sto ce se brojProizvodaPoStrani staviti na primer na 10
     //a broj strane na 1, rezultat ce biti prvih 10 proizvoda
     //broj strane 2, drugih 10 proizvoda
-    uint[] public produkti;
+    
 
-    function pagination(uint _brojStrane, uint _brojProizvodaPoStrani) public returns (uint[] memory) {
+    function pagination(uint _brojStrane, uint _brojProizvodaPoStrani) public returns (uint[] memory) 
+    {
+
+        uint[] memory produkti = new uint[] (_brojProizvodaPoStrani);
 
         for(uint i = _brojProizvodaPoStrani * _brojStrane - _brojProizvodaPoStrani; i < _brojProizvodaPoStrani * _brojStrane; i++ ){
             uint idProizvoda = proizvodi[i].id;
-            produkti.push(idProizvoda);
+            produkti[i] = idProizvoda;
         } 
+        return produkti;
+    }
+
+    function sortiranjePoCeniRastuce() public returns (uint [] memory)
+    {
+        uint duzina = brojProizvoda;
+        uint[] memory niz = new uint[] (duzina);
+
+        for(uint i=0;i<duzina;i++)
+        {
+            niz[i] = proizvodi[i].cena;
+        }
+
+        for(uint i =0;i<duzina;i++)
+        {
+            for(uint j =i+1;j<duzina;j++)
+            {
+                if(niz[i]<niz[j])
+                {
+                    uint temp= niz[j];
+                    niz[j] = niz[i];
+                    niz[i] = temp;
+
+                }
+
+            }
+        }
+
+        return niz;
+    }
+
+    function odDo(uint donjaGranica, uint gornjaGranica) public returns (uint[] memory)
+    {
+        uint[] memory produkti = new uint[] (10);
+        uint br = 0;
+
+        for(uint i = 0; i < brojProizvoda; i++)
+        {
+            if(proizvodi[i].cena > donjaGranica && proizvodi[i].cena < gornjaGranica)
+            {
+                br = br + 1;
+                produkti[br] = proizvodi[i].id;
+            }
+        }
         return produkti;
     }
 }
