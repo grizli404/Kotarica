@@ -6,10 +6,7 @@ import 'package:app/components/rounded_input_field.dart';
 import 'package:app/components/rounded_password_field.dart';
 import 'package:app/constants.dart';
 import 'package:app/model/korisniciModel.dart';
-
-import 'package:app/screens/home/homeScreen.dart';
 import 'package:app/screens/login/components/background.dart';
-import 'package:app/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
 import 'package:flutter_svg/flutter_svg.dart';

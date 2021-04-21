@@ -5,6 +5,7 @@ import 'package:app/model/personal_data.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/cart/cart_screen.dart';
 import 'package:app/screens/checkout/checkout_screen.dart';
+import 'package:app/screens/conversation/conversation_screen.dart';
 import 'package:app/screens/favorites/favorites_screen.dart';
 import 'package:app/screens/home/homeScreen.dart';
 import 'package:app/screens/login/login_screen.dart';
