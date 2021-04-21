@@ -108,10 +108,12 @@ contract Proizvodi{
     {
         uint duzina = brojProizvoda;
         uint[] memory niz = new uint[] (duzina);
+        uint[] memory nizID = new uint[] (duzina);
 
         for(uint i=0;i<duzina;i++)
         {
             niz[i] = proizvodi[i].cena;
+            nizID[i] = proizvodi[i].id;
         }
 
         for(uint i =0;i<duzina;i++)
@@ -124,12 +126,15 @@ contract Proizvodi{
                     niz[j] = niz[i];
                     niz[i] = temp;
 
+                    temp = nizID[j];
+                    nizID[j] = nizID[i];
+                    nizID[i] = temp;
                 }
 
             }
         }
 
-        return niz;
+        return nizID;
     }
 
     function odDo(uint donjaGranica, uint gornjaGranica) public returns (uint[] memory)
