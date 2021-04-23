@@ -120,7 +120,8 @@ class KorisniciModel extends ChangeNotifier {
           ime: k[3],
           prezime: k[4],
           brojTelefona: k[5],
-          adresa: k[6]);
+          adresa: k[6],
+          slika: k[7]);
     }
   }
 
@@ -168,7 +169,8 @@ class KorisniciModel extends ChangeNotifier {
             ime: k[3],
             prezime: k[4],
             brojTelefona: k[5],
-            adresa: k[6]);
+            adresa: k[6],
+            slika: k[7]);
       }
     }
   }
@@ -192,6 +194,7 @@ class Korisnik {
   String prezime;
   String brojTelefona;
   String adresa;
+  String slika;
 
   Korisnik(
       {this.id,
@@ -200,5 +203,7 @@ class Korisnik {
       this.ime,
       this.prezime,
       this.brojTelefona,
-      this.adresa});
+      this.adresa,
+      this.slika
+      });
 }
