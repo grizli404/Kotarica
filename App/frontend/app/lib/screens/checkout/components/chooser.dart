@@ -24,7 +24,9 @@ class ChooserState extends State<Chooser> {
                 child: Container(
                   child: Icon(
                     Icons.location_on,
-                    color: widget.shipping ? kPrimaryColor : Colors.grey,
+                    color: widget.shipping
+                        ? Theme.of(context).accentColor
+                        : Colors.grey,
                   ),
                 )),
             Padding(
@@ -32,7 +34,9 @@ class ChooserState extends State<Chooser> {
                 child: Container(
                   child: Icon(
                     Icons.payment,
-                    color: widget.payment ? kPrimaryColor : Colors.grey,
+                    color: widget.payment
+                        ? Theme.of(context).accentColor
+                        : Colors.grey,
                   ),
                 )),
             Padding(
@@ -40,7 +44,9 @@ class ChooserState extends State<Chooser> {
                 child: Container(
                   child: Icon(
                     Icons.check,
-                    color: widget.confirm ? kPrimaryColor : Colors.grey,
+                    color: widget.confirm
+                        ? Theme.of(context).accentColor
+                        : Colors.grey,
                   ),
                 )),
           ],
