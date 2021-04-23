@@ -1,36 +1,44 @@
 //import 'dart:html';
+import 'dart:io';
+
 import 'package:app/components/navigationBar.dart';
 import 'package:app/components/product_card.dart';
+import 'package:app/components/rad_sa_slikama.dart';
+import 'package:app/model/korisniciModel.dart';
 import 'package:app/screens/add_product/add_product.dart';
 import 'package:app/screens/notifications/notification_screen.dart';
 import 'package:app/screens/products/products.dart';
+import 'package:app/screens/profile/profile_screen.dart';
 import 'package:app/screens/profile/update_profile.dart';
-import 'package:flutter/gestures.dart';
+import 'package:app/main.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../constants.dart';
 
 import 'package:flutter/material.dart';
 
 class MyProfileScreen extends StatelessWidget {
-  final fName;
-  final lName;
-  final address;
-  final reputationScore;
-
-  const MyProfileScreen({
-    Key key,
-    this.fName = "Carl",
-    this.lName = "Johnson",
-    this.address = "Grove Street",
-    this.reputationScore = "NA",
-  }) : super(key: key);
+  String fName = "";
+  String lName = "";
+  String address = "";
+  String reputationScore = "";
+  String profilePhoto;
+  int id;
 
   @override
   Widget build(BuildContext context) {
+    if (korisnikInfo != null) print(korisnikInfo.ime);
+
+    this.fName = korisnikInfo.ime;
+    this.lName = korisnikInfo.prezime;
+    this.address = korisnikInfo.adresa;
+    this.id = korisnikInfo.id;
+    this.reputationScore = "1"; //funkcija
+
     Size size = MediaQuery.maybeOf(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile"),
+        title: Text("Profilan strana"),
         centerTitle: true,
         backgroundColor: kPrimaryColor,
         shape: RoundedRectangleBorder(
@@ -40,6 +48,7 @@ class MyProfileScreen extends StatelessWidget {
       ),
       body: ProfileBody(
         size: size,
+        id: id,
         fName: fName,
         address: address,
         lName: lName,
@@ -56,9 +65,11 @@ class ProfileBody extends StatelessWidget {
   final address;
   final reputationScore;
   final Size size;
+  final int id;
 
   const ProfileBody({
     Key key,
+    this.id,
     this.fName,
     this.lName,
     this.address,
@@ -70,22 +81,23 @@ class ProfileBody extends StatelessWidget {
   Widget build(BuildContext context) {
     if (size.width < 550) {
       return ThinProfileBody(
+        id: id,
         address: address,
-        fName: "Thin",
+        fName: fName,
         lName: lName,
         reputationScore: reputationScore,
       );
     } else if (size.width < 850) {
       return MediumProfileBody(
         address: address,
-        fName: "Medium",
+        fName: fName,
         lName: lName,
         reputationScore: reputationScore,
       );
     } else {
       return WideProfileBody(
         address: address,
-        fName: "Wide",
+        fName: fName,
         lName: lName,
         reputationScore: reputationScore,
       );
@@ -98,9 +110,11 @@ class ThinProfileBody extends StatelessWidget {
   final lName;
   final address;
   final reputationScore;
+  final int id;
 
   const ThinProfileBody({
     Key key,
+    this.id,
     this.fName,
     this.lName,
     this.address,
@@ -109,6 +123,7 @@ class ThinProfileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String slika;
     Size size = MediaQuery.maybeOf(context).size;
     return SingleChildScrollView(
       child: Padding(
@@ -127,10 +142,26 @@ class ThinProfileBody extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        // IconButton(
+                        //   icon: Icon(Icons.notifications_active),
+                        //   focusColor: kPrimaryColor,
+                        //   hoverColor: kPrimaryColorHover,
+                        //   onPressed: () {
+                        //     Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(builder: (context) {
+                        //         return NotificationScreen();
+                        //       }),
+                        //     );
+                        //   },
+                        // )
+                      ],
+                    ),
+                    Row(
+                      children: [
                         IconButton(
                           icon: Icon(Icons.add),
                           focusColor: kPrimaryColor,
-                          hoverColor: kPrimaryColorHover,
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
@@ -138,40 +169,56 @@ class ThinProfileBody extends StatelessWidget {
                             }));
                           },
                         ),
+                        Container(
+                          margin: EdgeInsets.all(20),
+                          width: 210,
+                          height: 210,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: kPrimaryColor,
+                          ),
+                          child: Container(
+                            margin: EdgeInsets.all(10),
+                            width: 200,
+                            height: 200,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: AssetImage(
+                                    "assets/images/defaultProfilePhoto.png"),
+                              ),
+                            ),
+                          ),
+                        ),
                         IconButton(
-                          icon: Icon(Icons.notifications_active),
-                          focusColor: kPrimaryColor,
-                          hoverColor: kPrimaryColorHover,
-                          onPressed: () {
+                          icon: Icon(Icons.add_photo_alternate_outlined),
+                          onPressed: () async {
+                            var file = await ImagePicker()
+                                .getImage(source: ImageSource.gallery);
+                            print("Loading image...");
+                            var _image = File(file.path);
+                            print("Uploading image image...");
+                            SnackBar(
+                              content: Text("Loading image..."),
+                            );
+                            var res = await uploadImage(_image);
+                            print("image: " + res);
+                            slika = res;
+                            KorisniciModel k = new KorisniciModel();
+                            k.dodajSliku(id, slika);
+                            Navigator.pop(context);
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) {
-                                return NotificationScreen();
-                              }),
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return MyProfileScreen();
+                                },
+                              ),
                             );
                           },
                         )
                       ],
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(20),
-                      width: 210,
-                      height: 210,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: kPrimaryColor,
-                      ),
-                      child: Container(
-                        margin: EdgeInsets.all(10),
-                        width: 200,
-                        height: 200,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image: AssetImage(
-                                    "assets/images/defaultProfilePhoto.png"))),
-                      ),
                     ),
                     RaisedButton(
                       color: kPrimaryColor,
@@ -393,8 +440,8 @@ class MediumProfileBody extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 fit: BoxFit.fill,
-                                image: NetworkImage(
-                                    "https://i.imgur.com/BoN9kdC.png"))),
+                                image: AssetImage(
+                                    "assets/images/defaultProfilePhoto.png"))),
                       ),
                     ),
                     RaisedButton(
@@ -628,8 +675,8 @@ class WideProfileBody extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 fit: BoxFit.fill,
-                                image: NetworkImage(
-                                    "https://i.imgur.com/BoN9kdC.png"))),
+                                image: AssetImage(
+                                    "assets/images/defaultProfilePhoto.png"))),
                       ),
                     ),
                     RaisedButton(
