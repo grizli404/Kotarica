@@ -100,7 +100,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
               itemCount: kategorije.trenutnaKategorija.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  shape: Border.all(color: Colors.grey),
+                  dense: true,
                   title: MaterialButton(
                     onPressed: () {
                       Navigator.push(
@@ -118,13 +118,19 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                         ),
                       );
                     },
-                    child: Text(
-                      '${kategorije.trenutnaKategorija[index].naziv}',
-                      style: TextStyle(
-                        fontSize: 20,
-                        // color: ResponsiveLayout.isIphone(context)
-                        //     ? Theme.of(context).primaryColor
-                        //     : Colors.white,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        '${kategorije.trenutnaKategorija[index].naziv}',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontSize: 20,
+
+                          // color: ResponsiveLayout.isIphone(context)
+                          //     ? Theme.of(context).primaryColor
+                          //     : Colors.white,
+                        ),
                       ),
                     ),
                   ),

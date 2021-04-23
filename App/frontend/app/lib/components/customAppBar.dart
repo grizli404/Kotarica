@@ -1,4 +1,5 @@
 import 'package:app/components/responsive_layout.dart';
+import 'package:app/main.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
@@ -7,15 +8,15 @@ import 'package:flutter_svg/svg.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
-    Future procitajPodatke() async {
-      var token = await FlutterSession().get('email');
-      return token.toString();
-    }
+    // Future procitajPodatke() async {
+    //   var token = await FlutterSession().get('email');
+    //   return token.toString();
+    // }
 
-    var token;
-    procitajPodatke().then((value) {
-      token = value;
-    });
+    // var token;
+    // procitajPodatke().then((value) {
+    //   token = value;
+    // });
 
     return AppBar(
       elevation: 0,
@@ -55,7 +56,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Icons.person,
                 ),
                 onPressed: () {
-                  if (token.toString() != '') {
+                  if (korisnikInfo != null) {
                     Navigator.pushNamed(context, '/profile');
                   } else {
                     Navigator.pushNamed(context, '/login');

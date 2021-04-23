@@ -6,6 +6,7 @@ import 'package:app/components/progress_hud.dart';
 import 'package:app/components/rounded_button.dart';
 import 'package:app/components/rounded_input_field.dart';
 import 'package:app/components/rounded_password_field.dart';
+import 'package:app/constants.dart';
 import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/signup_model.dart';
 import 'package:app/screens/home/homeScreen.dart';
@@ -78,23 +79,35 @@ class _BodyState extends State<Body> {
                 height: size.height * 0.03,
               ),
               SvgPicture.asset(
-                "assets/icons/shopping-basket.svg",
+                Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? "assets/icons/shopping-basket-dark.svg"
+                    : "assets/icons/shopping-basket.svg",
                 height: size.height * 0.35,
               ),
               SizedBox(
                 height: size.height * 0.03,
               ),
               RoundedInputField(
+                color: Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? Theme.of(context).primaryColor
+                    : kPrimaryLightColor,
                 hintText: "Your Email",
                 onChanged: (input) => _email = input,
                 validator: (input) => !input.contains("@") ? "Missing @" : null,
                 icon: Icons.mail_rounded,
               ),
               RoundedPasswordField(
+                hintText: 'Password',
+                color: Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? Theme.of(context).primaryColor
+                    : kPrimaryLightColor,
                 onChanged: (input) => _password = input,
                 validator: (input) => input.length < 3 ? "Too short!" : null,
               ),
               RoundedInputField(
+                color: Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? Theme.of(context).primaryColor
+                    : kPrimaryLightColor,
                 hintText: "Ime",
                 onChanged: (input) => _ime = input,
                 validator: (input) => !(input.contains(RegExp(
@@ -103,6 +116,9 @@ class _BodyState extends State<Body> {
                     : null,
               ),
               RoundedInputField(
+                color: Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? Theme.of(context).primaryColor
+                    : kPrimaryLightColor,
                 hintText: "Prezime",
                 onChanged: (input) => _prezime = input,
                 validator: (input) => !(input.contains(RegExp(
@@ -111,6 +127,9 @@ class _BodyState extends State<Body> {
                     : null,
               ),
               RoundedInputField(
+                color: Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? Theme.of(context).primaryColor
+                    : kPrimaryLightColor,
                 hintText: "Kontakt telefon",
                 onChanged: (input) => _kontakt = input,
                 validator: (input) => !(input.contains(RegExp(
@@ -120,11 +139,17 @@ class _BodyState extends State<Body> {
                 icon: Icons.phone,
               ),
               RoundedInputField(
+                color: Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? Theme.of(context).primaryColor
+                    : kPrimaryLightColor,
                 hintText: "Adresa i postanski broj",
                 onChanged: (input) => _adresa = input,
                 icon: Icons.location_city_rounded,
               ),
               RoundedButton(
+                color: Theme.of(context).colorScheme == ColorScheme.dark()
+                    ? Colors.grey
+                    : Theme.of(context).primaryColor,
                 text: "SIGN UP",
                 press: () async {
                   if (validateAndSave()) {
@@ -140,7 +165,8 @@ class _BodyState extends State<Body> {
                       isApiCallProcess = false;
                     });
                     if (response != 0) {
-                      Navigator.pushNamed(context, '/home', arguments: {});
+                      Navigator.popAndPushNamed(context, '/home',
+                          arguments: {});
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text("Korisnik vec postoji!")));
@@ -154,7 +180,7 @@ class _BodyState extends State<Body> {
               AlreadyHaveAnAccountCheck(
                 login: false,
                 press: () {
-                  Navigator.pushNamed(context, '/login', arguments: {});
+                  Navigator.popAndPushNamed(context, '/login', arguments: {});
                 },
               ),
               /*OrDivider(),

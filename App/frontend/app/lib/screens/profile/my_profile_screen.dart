@@ -1,4 +1,5 @@
 //import 'dart:html';
+import 'package:app/components/navigationBar.dart';
 import 'package:app/components/product_card.dart';
 import 'package:app/screens/add_product/add_product.dart';
 import 'package:app/screens/notifications/notification_screen.dart';
@@ -44,6 +45,7 @@ class MyProfileScreen extends StatelessWidget {
         lName: lName,
         reputationScore: reputationScore,
       ),
+      bottomNavigationBar: NavigationBarWidget(),
     );
   }
 }

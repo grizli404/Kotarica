@@ -5,6 +5,8 @@ import 'package:app/model/personal_data.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/cart/cart_screen.dart';
 import 'package:app/screens/checkout/checkout_screen.dart';
+import 'package:app/screens/conversation/conversation_screen.dart';
+import 'package:app/screens/favorites/favorites_screen.dart';
 import 'package:app/screens/home/homeScreen.dart';
 import 'package:app/screens/login/login_screen.dart';
 import 'package:app/screens/signup/signup_screen.dart';
@@ -28,11 +30,11 @@ Korisnik korisnikInfo;
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  Future setujSesiju() async {
-    var token = await FlutterSession().get('email');
-    if (token == '') await FlutterSession().set('email', '');
-    return token;
-  }
+  // Future setujSesiju() async {
+  //   var token = await FlutterSession().get('email');
+  //   if (token == '') await FlutterSession().set('email', '');
+  //   return token;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
     //var kategorije = KategorijeModel();
     //var proizvodi = ProizvodiModel();
     //var ocene = OceneModel();
-    setujSesiju();
+    // setujSesiju();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => KorisniciModel()),
@@ -79,6 +81,7 @@ class MaterialAppCustom extends StatelessWidget {
                 postanskiBroj: "Kragujevac 34000",
                 privateKey: "089ywegrxzch-qw9ytpbhgpwe9")),
         '/cart': (context) => CartScreen(),
+        '/favorites': (context) => FavoritesScreen(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Kotarica',

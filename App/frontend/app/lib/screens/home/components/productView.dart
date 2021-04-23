@@ -16,14 +16,15 @@ class ProductView extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 10.0),
         margin: EdgeInsets.symmetric(vertical: 5.0),
         // width: MediaQuery.of(context).size.width,
-        // height: MediaQuery.of(context).size.height - 100.0,
+        // height: MediaQuery.of(context).size.height,
         child: Stack(children: [
           GridView.count(
+            shrinkWrap: true,
             //  physics: NeverScrollableScrollPhysics(),
             crossAxisCount: ResponsiveLayout.isIphone(context)
                 ? 2
                 : (MediaQuery.of(context).size.width / 250).round(),
-            //primary: false,
+            primary: false,
             // crossAxisSpacing: 5.0,
             //  mainAxisSpacing: 10.0,
             childAspectRatio: ResponsiveLayout.isIphone(context) ? 0.7 : 0.8,
