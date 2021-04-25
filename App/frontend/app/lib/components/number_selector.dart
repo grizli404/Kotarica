@@ -35,8 +35,11 @@ class TestState extends State<NumberSelector> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 //if (!added) ...[
-                Icon(Icons.shopping_basket, color: Theme.of(context).iconTheme.color, size: 12.0),
+                Icon(Icons.shopping_basket,
+                    color: Theme.of(context).iconTheme.color, size: 12.0),
                 MaterialButton(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   onPressed: () {
                     dodajProizvod(proizvod, counter);
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -62,7 +65,8 @@ class TestState extends State<NumberSelector> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
-              color: counter > 1 ? Theme.of(context).iconTheme.color : Colors.grey,
+              color:
+                  counter > 1 ? Theme.of(context).iconTheme.color : Colors.grey,
               onPressed: counter > 1
                   ? () {
                       setState(() {

@@ -12,6 +12,7 @@ import 'package:app/screens/login/login_screen.dart';
 import 'package:app/screens/signup/signup_screen.dart';
 import 'package:app/screens/welcome/welcome_screen.dart';
 import 'package:app/theme/themeProvider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +29,8 @@ void main() {
 
 Korisnik korisnikInfo;
 
+bool isWeb;
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   // Future setujSesiju() async {
@@ -38,6 +41,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    kIsWeb ? isWeb = true : isWeb = false;
     // print(FlutterSession().get('email').toString());
     //var korisnici = KorisniciModel();
     //var kategorije = KategorijeModel();
