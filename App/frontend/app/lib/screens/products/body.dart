@@ -53,6 +53,19 @@ class _BodyState extends State<Body> {
         Padding(
           padding: EdgeInsets.only(left: 20.0),
         ),
+        Container(
+          alignment: Alignment.centerLeft,
+          margin: EdgeInsets.only(left: 25),
+          child: Row(
+            children: [
+              Text('5', style: TextStyle(fontSize: 20)),
+              Icon(
+                Icons.star,
+                color: Theme.of(context).primaryColor,
+              )
+            ],
+          ),
+        ),
         SizedBox(height: 15.0),
         Hero(
             tag: widget.assetPath,
@@ -197,7 +210,7 @@ class _BodyState extends State<Body> {
             } else {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text(
-                      "Morate biti ulogovani da biste ocenili proizvod!")));
+                      "Morate biti prijavljeni da biste ocenili proizvod!")));
             }
           });
         }, 5),
@@ -212,7 +225,7 @@ class _BodyState extends State<Body> {
               children: [
                 TableRow(children: [
                   Text(
-                    'Korisnik: Ime',
+                    'Korisnik: Mika Mikić',
                     style: TextStyle(
                         color: Theme.of(context).hintColor, fontSize: 20),
                   ),

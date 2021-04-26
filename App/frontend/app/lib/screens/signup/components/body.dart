@@ -72,7 +72,7 @@ class _BodyState extends State<Body> {
                 height: size.height * 0.03,
               ),
               Text(
-                "SIGN UP",
+                "REGISTRACIJA",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -91,18 +91,19 @@ class _BodyState extends State<Body> {
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Theme.of(context).primaryColor
                     : kPrimaryLightColor,
-                hintText: "Your Email",
+                hintText: "Email",
                 onChanged: (input) => _email = input,
-                validator: (input) => !input.contains("@") ? "Missing @" : null,
+                validator: (input) =>
+                    !input.contains("@") ? "Nedostaje @" : null,
                 icon: Icons.mail_rounded,
               ),
               RoundedPasswordField(
-                hintText: 'Password',
+                hintText: 'Lozinka',
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Theme.of(context).primaryColor
                     : kPrimaryLightColor,
                 onChanged: (input) => _password = input,
-                validator: (input) => input.length < 3 ? "Too short!" : null,
+                validator: (input) => input.length < 3 ? "Prekratko!" : null,
               ),
               RoundedInputField(
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
@@ -142,7 +143,7 @@ class _BodyState extends State<Body> {
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Theme.of(context).primaryColor
                     : kPrimaryLightColor,
-                hintText: "Adresa i postanski broj",
+                hintText: "Adresa i poštanski broj",
                 onChanged: (input) => _adresa = input,
                 icon: Icons.location_city_rounded,
               ),
@@ -150,7 +151,7 @@ class _BodyState extends State<Body> {
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Colors.grey
                     : Theme.of(context).primaryColor,
-                text: "SIGN UP",
+                text: "REGISTRACIJA",
                 press: () async {
                   if (validateAndSave()) {
                     setState(() {
@@ -169,7 +170,7 @@ class _BodyState extends State<Body> {
                           arguments: {});
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Korisnik vec postoji!")));
+                          SnackBar(content: Text("Korisnik već postoji!")));
                     }
                   }
                 },

@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "DOBRODOSLI NA KOTARICU",
+              "DOBRODOŠLI NA KOTARICU",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: size.height * 0.03),
@@ -26,7 +26,7 @@ class Body extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.03),
             RoundedButton(
-              text: "LOGIN",
+              text: "PRIJAVA",
               press: () {
                 Navigator.push(
                   context,
@@ -39,7 +39,7 @@ class Body extends StatelessWidget {
               },
             ),
             RoundedButton(
-              text: "SIGN UP",
+              text: "REGISTRACIJA",
               color: kPrimaryLightColor,
               textColor: Colors.black,
               press: () {

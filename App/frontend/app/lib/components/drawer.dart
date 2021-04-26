@@ -58,43 +58,65 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
             SizedBox(
               height: ResponsiveLayout.isIphone(context) ? 120 : 150,
               child: DrawerHeader(
-                decoration: ResponsiveLayout.isIphone(context)
-                    ? BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(36),
-                          bottomRight: Radius.circular(36),
-                        ),
-                      )
-                    : BoxDecoration(color: Theme.of(context).primaryColor),
-                child: !ResponsiveLayout.isIphone(context)
-                    ? (korisnikInfo != null
-                        ? Text(
-                            'Dobrodošli, ${korisnikInfo.ime}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline5
-                                .copyWith(
+                  decoration: ResponsiveLayout.isIphone(context)
+                      ? BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          // borderRadius: BorderRadius.only(
+                          //   bottomLeft: Radius.circular(36),
+                          //   bottomRight: Radius.circular(36),
+                          //),
+                        )
+                      : BoxDecoration(color: Theme.of(context).primaryColor),
+                  child: !ResponsiveLayout.isIphone(context)
+                      ? (korisnikInfo != null
+                          ? Text(
+                              'Dobrodošli, ${korisnikInfo.ime}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline5
+                                  .copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                            )
+                          : Text(
+                              'Dobrodošli',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline5
+                                  .copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                            ))
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                              Text(
+                                'Kotarica',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
                                     color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                          )
-                        : Text(
-                            'Dobrodošli',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline5
-                                .copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                          ))
-                    : Text(
-                        'Kotarica',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 30),
-                      ),
-              ),
+                                    fontSize: 30),
+                              ),
+                              korisnikInfo != null
+                                  ? Text(
+                                      'Dobrodošli, ${korisnikInfo.ime}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline5
+                                          .copyWith(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                    )
+                                  : Text(
+                                      'Dobrodošli',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline5
+                                          .copyWith(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                    )
+                            ])),
             ),
             Container(
               padding: EdgeInsets.only(left: 15.0),
