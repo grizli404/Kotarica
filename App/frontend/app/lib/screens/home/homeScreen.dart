@@ -13,11 +13,11 @@ class HomeScreen extends StatelessWidget {
         ipad: Row(
           children: [
             Expanded(
-              flex: _size.width > 1200 && _size.width < 1340 ? 2 : 4,
+              // flex: 1000,
               child: ListenToDrawerEvent(),
             ),
             Expanded(
-              flex: _size.width > 1200 && _size.width < 1340 ? 8 : 10,
+              flex: _size.width > 1200 && _size.width < 1340 ? 7 : 3,
               child: HomeScreenLayout(),
             ),
           ],
@@ -26,11 +26,11 @@ class HomeScreen extends StatelessWidget {
           children: [
             //   Padding(padding: EdgeInsets.symmetric(horizontal: 130.0)),
             Expanded(
-              flex: _size.width > 1340 ? 2 : 4,
+              // flex: _size.width > 1340 ? 1 : 100,
               child: ListenToDrawerEvent(),
             ),
             Expanded(
-              flex: _size.width > 1340 ? 8 : 10,
+              flex: _size.width > 1340 ? 7 : 3,
               child: HomeScreenLayout(),
             ),
 

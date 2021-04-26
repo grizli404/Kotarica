@@ -22,70 +22,41 @@ class HeaderWithSearchBox extends StatelessWidget {
   final List<Proizvod> proizvodi;
   @override
   Widget build(BuildContext context) {
+    return containerWeb(context);
+  }
+
+  Widget containerWeb(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: kDefaultPadding * 2.5),
-      height: ResponsiveLayout.isIphone(context)
-          ? size.height * 0.2
-          : size.height * 0.09,
-      child: Stack(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(
-              left: kDefaultPadding,
-              right: kDefaultPadding,
-              bottom: 36 + kDefaultPadding,
-            ),
-            height: size.height * 0.2 - 27,
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.only(
-                bottomLeft: ResponsiveLayout.isIphone(context)
-                    ? Radius.circular(36)
-                    : Radius.zero,
-                bottomRight: ResponsiveLayout.isIphone(context)
-                    ? Radius.circular(36)
-                    : Radius.zero,
-              ),
-            ),
-            child: Row(
-              children: <Widget>[
-                ResponsiveLayout.isIphone(context)
-                    ? (korisnikInfo != null
-                        ? Text(
-                            'Hello, ${korisnikInfo.ime}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline5
-                                .copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                          )
-                        : Text(
-                            'Hello',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline5
-                                .copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                          ))
-                    : Text(''),
-                Spacer(),
-              ],
-            ),
+      //margin: EdgeInsets.only(bottom: kDefaultPadding * 2.5),
+      // height: ResponsiveLayout.isIphone(context)
+      //     ? size.height * 0.2
+      //     : size.height * 0.09,
+      child: Stack(children: <Widget>[
+        Container(
+          padding: EdgeInsets.only(
+            left: kDefaultPadding,
+            right: kDefaultPadding,
+            bottom: 36 + kDefaultPadding,
           ),
-          Positioned(
-            bottom: ResponsiveLayout.isIphone(context) ? 0 : null,
-            left: 0,
-            right: 0,
-            child: Container(
+          height: 89,
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
+        Positioned(
+          child: Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              margin: EdgeInsets.only(
+                  left: kDefaultPadding,
+                  right: kDefaultPadding,
+                  top: kDefaultPadding),
               padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
               height: 54,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
+                border:
+                    Border.all(width: 1, color: Theme.of(context).primaryColor),
                 boxShadow: [
                   BoxShadow(
                     offset: Offset(0, 10),
@@ -101,7 +72,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                       controller: searchController,
                       onChanged: (value) {},
                       decoration: InputDecoration(
-                        hintText: 'Pretraga',
+                        hintText: 'Pretraga...',
                         hintStyle:
                             TextStyle(color: Theme.of(context).indicatorColor),
                         enabledBorder: InputBorder.none,
@@ -118,11 +89,9 @@ class HeaderWithSearchBox extends StatelessWidget {
                     },
                   )
                 ],
-              ),
-            ),
-          ),
-        ],
-      ),
+              )),
+        )
+      ]),
     );
   }
 }

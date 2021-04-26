@@ -33,45 +33,72 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 );
               },
             )
-          : null,
+          : new Container(),
       actions: [
         Row(
           children: [
-            RichText(
-              text: TextSpan(
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 25,
-                    color: Colors.white,
-                  ),
-                  text: 'Kotarica',
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      Navigator.pushNamed(context, '/home');
-                    }),
-            ),
-            IconButton(
-                icon: Icon(
-                  Icons.person,
-                ),
-                onPressed: () {
-                  if (korisnikInfo != null) {
-                    Navigator.pushNamed(context, '/profile');
-                  } else {
-                    Navigator.pushNamed(context, '/login');
-                  }
-                }),
-            // strana za profil
-
-            IconButton(
-              icon: Icon(
-                Icons.shopping_cart_outlined,
-              ),
+            MaterialButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/cart', arguments: {});
-              }, // korpa
+                Navigator.pushNamed(context, '/home');
+              },
+              child: Text(
+                'Kotarica',
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 25,
+                  color: Colors.white,
+                ),
+              ),
             ),
+            !ResponsiveLayout.isIphone(context)
+                ? IconButton(
+                    icon: Icon(
+                      Icons.person,
+                    ),
+                    onPressed: () {
+                      if (korisnikInfo != null) {
+                        Navigator.pushNamed(context, '/profile');
+                      } else {
+                        Navigator.pushNamed(context, '/login');
+                      }
+                    })
+                : Container(),
+            if (korisnikInfo != null) ...[
+              IconButton(
+                  icon: Icon(
+                    Icons.notifications_rounded,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/login');
+                  }),
+            ],
+            !ResponsiveLayout.isIphone(context)
+                ? IconButton(
+                    icon: Icon(
+                      Icons.favorite_rounded,
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/favorites');
+                    })
+                : Container(),
+            !ResponsiveLayout.isIphone(context)
+                ? IconButton(
+                    icon: Icon(
+                      Icons.shopping_cart_outlined,
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/cart', arguments: {});
+                    }, // korpa
+                  )
+                : Container(),
+            !ResponsiveLayout.isIphone(context)
+                ? SizedBox(
+                    width: 15,
+                  )
+                : SizedBox(
+                    width: 0,
+                  ),
           ],
         ),
       ],

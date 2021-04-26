@@ -48,6 +48,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
       color: Theme.of(context).primaryColor,
       child: SafeArea(
           child: Container(
+        //width: ResponsiveLayout.isIphone(context) ? null : 1000,
         color: ResponsiveLayout.isIphone(context)
             ? Theme.of(context).scaffoldBackgroundColor
             : Theme.of(context).primaryColor,
@@ -55,7 +56,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
           padding: EdgeInsets.zero,
           children: <Widget>[
             SizedBox(
-              height: 120,
+              height: ResponsiveLayout.isIphone(context) ? 120 : 150,
               child: DrawerHeader(
                 decoration: ResponsiveLayout.isIphone(context)
                     ? BoxDecoration(
@@ -69,7 +70,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                 child: !ResponsiveLayout.isIphone(context)
                     ? (korisnikInfo != null
                         ? Text(
-                            'Hello, ${korisnikInfo.ime}',
+                            'Dobrodošli, ${korisnikInfo.ime}',
                             style: Theme.of(context)
                                 .textTheme
                                 .headline5
@@ -78,7 +79,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                                     fontWeight: FontWeight.bold),
                           )
                         : Text(
-                            'Hello',
+                            'Dobrodošli',
                             style: Theme.of(context)
                                 .textTheme
                                 .headline5
@@ -93,6 +94,13 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                             color: Colors.white,
                             fontSize: 30),
                       ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 15.0),
+              child: Text(
+                'Kategorije:',
+                style: TextStyle(fontSize: 22),
               ),
             ),
             ListView.builder(
@@ -142,39 +150,108 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
               //   child: Container(color: Color(0xFFEBEBEB)
               //  height: 1.0)
             ),
-            Container(
-              height: 80,
-              padding: EdgeInsets.only(left: 15.0),
-              child: InkWell(
-                hoverColor: Colors.grey,
-                //focusColor: Colors.grey,
-                onTap: () {
-                  zatvoriSesiju();
-                  Navigator.pushNamed(context, '/home');
-                },
-                child: Row(
-                  children: [
-                    Text(
-                      'Log out',
-                      style: TextStyle(
-                        fontSize: 20,
-                        // color: ResponsiveLayout.isIphone(context)
-                        //     ? Colors.black
-                        //     : Colors.white,
+            korisnikInfo != null
+                ? Container(
+                    height: 80,
+                    padding: EdgeInsets.only(left: 15.0),
+                    child: InkWell(
+                      hoverColor: Colors.grey,
+                      //focusColor: Colors.grey,
+                      onTap: () {
+                        // _showMyDialog();
+                        // zatvoriSesiju();
+                        // Navigator.pushNamed(context, '/home');
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false, // user must tap button!
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text(
+                                  'Da li ste sigurni da želite da se odjavite?'),
+                              content: SingleChildScrollView(),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text(
+                                    'Da',
+                                    style: TextStyle(
+                                      color: Theme.of(context).iconTheme.color,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    zatvoriSesiju();
+                                    Navigator.of(context).pushNamed('/home');
+                                  },
+                                ),
+                                TextButton(
+                                  child: Text(
+                                    'Ne',
+                                    style: TextStyle(
+                                      color: Theme.of(context).iconTheme.color,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            'Odjavite se',
+                            style: TextStyle(
+                              fontSize: 20,
+                              // color: ResponsiveLayout.isIphone(context)
+                              //     ? Colors.black
+                              //     : Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-              //color: Colors.white,
-              alignment: Alignment.centerLeft,
-            ),
+                    //color: Colors.white,
+                    alignment: Alignment.centerLeft,
+                  )
+                : Container(
+                    height: 80,
+                    padding: EdgeInsets.only(left: 15.0),
+                    child: InkWell(
+                      hoverColor: Colors.grey,
+                      //focusColor: Colors.grey,
+                      onTap: () {
+                        Navigator.pushNamed(context, '/login');
+                      },
+
+                      child: Row(
+                        children: [
+                          Text(
+                            'Prijavite se',
+                            style: TextStyle(
+                              fontSize: 20,
+                              // color: ResponsiveLayout.isIphone(context)
+                              //     ? Colors.black
+                              //     : Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    //color: Colors.white,
+                    alignment: Alignment.centerLeft,
+                  ),
             Container(
               padding: EdgeInsets.only(left: 15.0),
               alignment: Alignment.centerLeft,
               child: Row(
                 children: [
-                  Text('Light/Dark mode',
+                  Text('Tamna tema',
                       style: TextStyle(
                         fontSize: 20,
                       )),

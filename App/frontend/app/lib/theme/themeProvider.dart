@@ -33,7 +33,7 @@ class MyThemes {
     indicatorColor: Colors.black,
     bottomAppBarColor: Colors.white,
     canvasColor: Colors.white,
-    hoverColor: Colors.black,
+    hoverColor: Colors.grey.shade800,
   );
 
   static final lightTheme = ThemeData(
@@ -48,6 +48,6 @@ class MyThemes {
     indicatorColor: kPrimaryColor,
     bottomAppBarColor: Colors.white,
     canvasColor: Colors.white,
-    hoverColor: Colors.black,
+    hoverColor: Color(0xFF6580ad),
   );
 }
