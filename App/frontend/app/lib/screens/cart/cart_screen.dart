@@ -70,17 +70,17 @@ class _CartScreenState extends State<CartScreen> {
       title: Column(
         children: [
           Text(
-            "Your Cart",
+            "KORPA",
             style: TextStyle(color: kPrimaryLightColor),
           ),
           if (demoCarts.length == 1) ...[
             Text(
-              "${demoCarts.length} item",
+              "${demoCarts.length} proizvod",
               style: TextStyle(inherit: false, color: kPrimaryLightColor),
             ),
           ] else ...[
             Text(
-              "${demoCarts.length} items",
+              "${demoCarts.length} proizvoda",
               style: TextStyle(inherit: false, color: kPrimaryLightColor),
             )
           ]
@@ -121,30 +121,30 @@ class CheckOutCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.teal.shade400,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: SvgPicture.asset("assets/icons/bill.svg"),
-                ),
+                // Container(
+                //   height: 40,
+                //   width: 40,
+                //   decoration: BoxDecoration(
+                //     color: Colors.teal.shade400,
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                //   // child: SvgPicture.asset("assets/icons/bill.svg"),
+                // ),
                 Spacer(),
                 Row(
                   children: [
                     Text.rich(
                       TextSpan(
-                        text: "Total:\n",
+                        text: "Ukupno:   ",
                         style: TextStyle(fontWeight: FontWeight.bold),
                         children: [
                           TextSpan(
-                            text: "\$${sumTotal(demoCarts)}",
-                            style: TextStyle(
+                              text: "${sumTotal(demoCarts)} RSD",
+                              style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.yellow),
-                          ),
+                                color: Colors.white,
+                              )),
                         ],
                       ),
                     ),
@@ -157,12 +157,12 @@ class CheckOutCard extends StatelessWidget {
               width: size.width,
             ),
             RoundedButton(
-              text: "Checkout",
+              text: "KUPI",
               press: () {
                 Navigator.popAndPushNamed(context, '/checkout', arguments: {});
               },
               textColor: kPrimaryColor,
-              color: Colors.yellowAccent,
+              color: Colors.white,
             ),
           ],
         ),

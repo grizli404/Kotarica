@@ -1,8 +1,10 @@
 import 'package:app/components/customAppBar.dart';
 import 'package:app/components/drawer.dart';
+import 'package:app/components/navigationBar.dart';
 import 'package:app/components/responsive_layout.dart';
 import 'package:flutter/material.dart';
 
+import '../../main.dart';
 import '../../model/proizvodiModel.dart';
 import 'body.dart';
 
@@ -19,6 +21,7 @@ class ProductDetail extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(),
       drawer: ResponsiveLayout.isIphone(context) ? ListenToDrawerEvent() : null,
+      bottomNavigationBar: !isWeb ? NavigationBarWidget() : null,
       body: ResponsiveLayout(
         iphone: Body(
           assetPath: assetPath,
