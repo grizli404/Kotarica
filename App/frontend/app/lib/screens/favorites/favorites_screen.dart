@@ -12,12 +12,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Omiljeni proizvodi"),
+        title: Text("Lista želja"),
         centerTitle: true,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(36),
-        )),
+        // shape: RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.vertical(
+        //   bottom: Radius.circular(36),
+        // )),
       ),
       body: Container(),
     );

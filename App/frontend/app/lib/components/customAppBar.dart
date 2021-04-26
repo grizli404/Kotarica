@@ -64,7 +64,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       }
                     })
                 : Container(),
-            if (korisnikInfo != null) ...[
+            if (korisnikInfo != null && isWeb) ...[
               IconButton(
                   icon: Icon(
                     Icons.notifications_rounded,

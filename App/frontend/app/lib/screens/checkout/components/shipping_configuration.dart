@@ -70,17 +70,17 @@ class _ShippingConfigurationState extends State<ShippingConfiguration> {
                     widget.personalData.adresa = value;
                   },
                 ),
-                RoundedInputField(
-                  color: Theme.of(context).colorScheme == ColorScheme.dark()
-                      ? Theme.of(context).primaryColor
-                      : Colors.white,
-                  icon: Icons.superscript,
-                  hintText: 'Nesto fali, ne znam sta',
-                  value: widget.personalData.opis,
-                  onChanged: (value) {
-                    widget.personalData.opis = value;
-                  },
-                ),
+                // RoundedInputField(
+                //   color: Theme.of(context).colorScheme == ColorScheme.dark()
+                //       ? Theme.of(context).primaryColor
+                //       : Colors.white,
+                //   icon: Icons.superscript,
+                //   hintText: 'Nesto fali, ne znam sta',
+                //   value: widget.personalData.opis,
+                //   onChanged: (value) {
+                //     widget.personalData.opis = value;
+                //   },
+                // ),
               ],
             ),
           ),

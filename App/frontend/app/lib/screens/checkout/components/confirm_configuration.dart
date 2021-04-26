@@ -76,20 +76,20 @@ class ConfirmConfiguration extends StatelessWidget {
                 ? Colors.black
                 : kPrimaryColor,
           ),
-          Container(
-            height: 60,
-            child: Row(
-              children: [
-                _Atribut(text: "opis: "),
-                _Vrednost(text: personalData.opis)
-              ],
-            ),
-          ),
-          Divider(
-            color: Theme.of(context).colorScheme == ColorScheme.dark()
-                ? Colors.black
-                : kPrimaryColor,
-          ),
+          // Container(
+          //   height: 60,
+          //   child: Row(
+          //     children: [
+          //       _Atribut(text: "opis: "),
+          //       _Vrednost(text: personalData.opis)
+          //     ],
+          //   ),
+          // ),
+          // Divider(
+          //   color: Theme.of(context).colorScheme == ColorScheme.dark()
+          //       ? Colors.black
+          //       : kPrimaryColor,
+          // ),
           Container(
             height: 60,
             child: Row(
@@ -116,7 +116,7 @@ class ConfirmConfiguration extends StatelessWidget {
                 _Atribut(
                     text:
                         "${demoCarts.indexOf(item) + 1}. ${item.product.naziv}: "),
-                _Vrednost(text: "${item.numOfItems} x ${item.product.cena}\$")
+                _Vrednost(text: "${item.numOfItems} x ${item.product.cena} RSD")
               ],
             )
           },
@@ -124,7 +124,7 @@ class ConfirmConfiguration extends StatelessWidget {
             height: 10,
           ),
           _Atribut(
-            text: "Total: ${sumTotal(demoCarts)}\$",
+            text: "Ukupno: ${sumTotal(demoCarts)} RSD",
           ),
           Divider(
             thickness: 3,

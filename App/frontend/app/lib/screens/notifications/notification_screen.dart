@@ -20,12 +20,13 @@ class NotificationScreenState extends State<NotificationScreen> {
           "Obaveštenja",
           style: TextStyle(color: kBackgroundColor),
         ),
-        backgroundColor: kPrimaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(36),
-          ),
-        ),
+        centerTitle: true,
+        //backgroundColor: kPrimaryColor,
+        // shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.vertical(
+        //     bottom: Radius.circular(36),
+        //   ),
+        // ),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
@@ -61,10 +62,10 @@ class NotificationScreenState extends State<NotificationScreen> {
               setState(() {});
             },
             child: Text(
-              "Dismiss All Notifications",
+              "Izbrišite sva obaveštenja",
               style: TextStyle(color: kBackgroundColor),
             ),
-            color: kPrimaryColor,
+            color: Theme.of(context).primaryColor,
           ),
         ),
       ),

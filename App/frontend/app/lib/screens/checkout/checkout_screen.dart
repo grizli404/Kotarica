@@ -40,7 +40,15 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Kotarica"),
+        title: Text(
+          'Kotarica',
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontStyle: FontStyle.italic,
+            fontSize: 25,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
         actions: [
           Row(
@@ -133,7 +141,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               FlatButton(
                 onPressed: () {},
                 child:
-                    Row(children: [Text("Naruci!"), Icon(Icons.check_rounded)]),
+                    Row(children: [Text("Naruči!"), Icon(Icons.check_rounded)]),
                 color: kPrimaryLightColor,
                 textColor: Theme.of(context).primaryColor,
               )

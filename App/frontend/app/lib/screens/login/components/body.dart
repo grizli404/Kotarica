@@ -50,7 +50,7 @@ class _BodyState extends State<Body> {
                 height: size.height * 0.03,
               ),
               Text(
-                "LOGIN",
+                "PRIJAVA",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -69,23 +69,23 @@ class _BodyState extends State<Body> {
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Theme.of(context).primaryColor
                     : kPrimaryLightColor,
-                hintText: "Your email",
+                hintText: "Email",
                 onChanged: (input) => _email = input,
                 // validator: (input) => !input.contains("@") ? "Missing @" : null,
               ),
               RoundedPasswordField(
-                hintText: 'Password',
+                hintText: 'Lozinka',
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Theme.of(context).primaryColor
                     : kPrimaryLightColor,
                 onChanged: (input) => _password = input,
-                validator: (input) => input.length < 3 ? "Too short!" : null,
+                validator: (input) => input.length < 3 ? "Prekratko!" : null,
               ),
               RoundedButton(
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Colors.grey
                     : Theme.of(context).primaryColor,
-                text: "LOGIN",
+                text: "PRIJAVA",
                 press: () async {
                   if (validateAndSave()) {
                     //    Crypt.sha256(requestModel.password).toString();
@@ -100,13 +100,13 @@ class _BodyState extends State<Body> {
                       Navigator.popAndPushNamed(context, '/home',
                           arguments: {});
                       ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text("uspesno!")));
+                          .showSnackBar(SnackBar(content: Text("Uspešno!")));
                     } else {
                       setState(() {
                         isApiCallProcess = false;
                       });
                       ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text("neuspesno!")));
+                          .showSnackBar(SnackBar(content: Text("Neuspešno!")));
                       print("Neuspesan login!");
                     }
 
