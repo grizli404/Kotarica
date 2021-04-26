@@ -8,12 +8,15 @@ import 'package:web_socket_channel/io.dart';
 import 'ether_setup.dart';
 
 class KategorijeModel extends ChangeNotifier {
+  
   List<Kategorija> listaKategorija = [];
   List<Kategorija> trenutnaKategorija = [];
 
+  bool isLoading = true;
+  /*
   Web3Client client;
 
-  bool isLoading = true;
+  
   var abiCode;
   EthereumAddress adresaUgovora;
   DeployedContract ugovor;
@@ -21,25 +24,30 @@ class KategorijeModel extends ChangeNotifier {
   //F-je u Kategorije.sol
   ContractFunction brojKategorija;
   ContractFunction kategorije;
+  */
 
   KategorijeModel() {
     inicijalnoSetovanje();
   }
 
   Future<void> inicijalnoSetovanje() async {
+    /*
     client = Web3Client(rpcUrl, Client(), socketConnector: () {
       return IOWebSocketChannel.connect(wsUrl).cast<String>();
     });
 
     await getAbi();
     await getDeployedCotract();
-    await dajSveKategorije();
+    
     print(listaKategorija.length);
-    /*if(listaKategorija.length > 0) {
-      print(listaKategorija[0].naziv);
-    }*/
+    // if(listaKategorija.length > 0) {
+    //   print(listaKategorija[0].naziv);
+    // }
+    */
+    await dajSveKategorije();
   }
 
+  /*
   Future<void> getAbi() async {
     String abiStringFile =
         await rootBundle.loadString("src/abis/Kategorije.json");
@@ -57,9 +65,22 @@ class KategorijeModel extends ChangeNotifier {
     brojKategorija = ugovor.function("brojKategorija");
     kategorije = ugovor.function("kategorije");
   }
+  */
 
   //dajSveKategorije
   Future<void> dajSveKategorije() async {
+
+    String abiStringFile =
+        await rootBundle.loadString("assets/kategorije.json");
+    print(abiStringFile);
+    //var jsonAbi = jsonDecode(abiStringFile);
+
+    listaKategorija = parseJson(abiStringFile);
+    print(listaKategorija[0].naziv);
+
+    isLoading = false;
+    notifyListeners();
+    /*
     var temp = await client
         .call(contract: ugovor, function: brojKategorija, params: []);
 
@@ -84,9 +105,22 @@ class KategorijeModel extends ChangeNotifier {
       isLoading = false;
       notifyListeners();
     }
+    */
   }
 
+  List<Kategorija> parseJson(String response) {
+    if(response == null) {
+      return [];
+    }
+    final parsed =
+        json.decode(response.toString()).cast<Map<String, dynamic>>();
+    return parsed.map<Kategorija>((json) => Kategorija.fromJson(json)).toList();
+  }
+
+  
+
   void dajKategoriju(int _roditeljKategorija) {
+    
     trenutnaKategorija.clear();
     for (var i = 0; i < listaKategorija.length; i++) {
       if (listaKategorija[i].idRoditelja == _roditeljKategorija) {
@@ -102,4 +136,12 @@ class Kategorija {
   String naziv;
 
   Kategorija({this.id, this.idRoditelja, this.naziv});
+
+  factory Kategorija.fromJson(Map<String, dynamic> json) {
+    return new Kategorija(
+      id: json['id'] as int,
+      idRoditelja: json['idRoditelja'] as int,
+      naziv: json['kategorija'] as String,
+    );
+  }
 }

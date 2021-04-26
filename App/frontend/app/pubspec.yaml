@@ -58,6 +58,7 @@ flutter:
   assets: 
     - assets/images/
     - assets/icons/
+    - assets/kategorije.json
     - src/abis/Korisnici.json
     - src/abis/Kategorije.json
     - src/abis/Proizvodi.json
