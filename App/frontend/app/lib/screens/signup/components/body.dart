@@ -1,5 +1,7 @@
 //import 'dart:html';
 
+import 'dart:async';
+
 import 'package:app/api/api_signup.dart';
 import 'package:app/components/already_have_an_account_check.dart';
 import 'package:app/components/progress_hud.dart';
@@ -103,30 +105,72 @@ class _BodyState extends State<Body> {
                     ? Theme.of(context).primaryColor
                     : kPrimaryLightColor,
                 onChanged: (input) => _password = input,
-                validator: (input) => input.length < 3 ? "Prekratko!" : null,
-              ),
-              RoundedInputField(
-                color: Theme.of(context).colorScheme == ColorScheme.dark()
-                    ? Theme.of(context).primaryColor
-                    : kPrimaryLightColor,
-                hintText: "Ime",
-                onChanged: (input) => _ime = input,
                 validator: (input) => !(input.contains(RegExp(
-                        r"([^0-9\.\,\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+)")))
-                    ? "Unesite regularno ime"
+                        r"(^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$)")))
+                    ? "Mora sadržati najmanje 8 karaktera, veliko slovo, malo slovo, broj!"
                     : null,
               ),
-              RoundedInputField(
-                color: Theme.of(context).colorScheme == ColorScheme.dark()
-                    ? Theme.of(context).primaryColor
-                    : kPrimaryLightColor,
-                hintText: "Prezime",
-                onChanged: (input) => _prezime = input,
-                validator: (input) => !(input.contains(RegExp(
-                        r"([^0-9\.\,\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+)")))
-                    ? "Unesite regularno prezime"
-                    : null,
-              ),
+              if (MediaQuery.of(context).size.width /
+                      MediaQuery.of(context).size.height <
+                  1) ...[
+                RoundedInputField(
+                  color: Theme.of(context).colorScheme == ColorScheme.dark()
+                      ? Theme.of(context).primaryColor
+                      : kPrimaryLightColor,
+                  hintText: "Ime",
+                  onChanged: (input) => _ime = input,
+                  validator: (input) => !(input.contains(RegExp(
+                          r"([^0-9\.\,\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+)")))
+                      ? "Unesite regularno ime"
+                      : null,
+                ),
+                RoundedInputField(
+                  color: Theme.of(context).colorScheme == ColorScheme.dark()
+                      ? Theme.of(context).primaryColor
+                      : kPrimaryLightColor,
+                  hintText: "Prezime",
+                  onChanged: (input) => _prezime = input,
+                  validator: (input) => !(input.contains(RegExp(
+                          r"([^0-9\.\,\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+)")))
+                      ? "Unesite regularno prezime"
+                      : null,
+                ),
+              ] else ...[
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      RoundedInputField(
+                        sizeQ: 0.39,
+                        color:
+                            Theme.of(context).colorScheme == ColorScheme.dark()
+                                ? Theme.of(context).primaryColor
+                                : kPrimaryLightColor,
+                        hintText: "Ime",
+                        onChanged: (input) => _ime = input,
+                        validator: (input) => !(input.contains(RegExp(
+                                r"([^0-9\.\,\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+)")))
+                            ? "Unesite regularno ime"
+                            : null,
+                      ),
+                      RoundedInputField(
+                        sizeQ: 0.39,
+                        color:
+                            Theme.of(context).colorScheme == ColorScheme.dark()
+                                ? Theme.of(context).primaryColor
+                                : kPrimaryLightColor,
+                        hintText: "Prezime",
+                        onChanged: (input) => _prezime = input,
+                        validator: (input) => !(input.contains(RegExp(
+                                r"([^0-9\.\,\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+)")))
+                            ? "Unesite regularno prezime"
+                            : null,
+                      ),
+                    ],
+                  ),
+                )
+              ],
               RoundedInputField(
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Theme.of(context).primaryColor
@@ -134,8 +178,8 @@ class _BodyState extends State<Body> {
                 hintText: "Kontakt telefon",
                 onChanged: (input) => _kontakt = input,
                 validator: (input) => !(input.contains(RegExp(
-                        r"(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})")))
-                    ? "Unesite regularan kontakt telefon"
+                        r"^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$")))
+                    ? "Najmanje 5 cifara ili više"
                     : null,
                 icon: Icons.phone,
               ),
@@ -146,6 +190,10 @@ class _BodyState extends State<Body> {
                 hintText: "Adresa i poštanski broj",
                 onChanged: (input) => _adresa = input,
                 icon: Icons.location_city_rounded,
+                validator: (input) => !(input.contains(RegExp(
+                        r"(\w{1,}(\s|,){1,}[0-9]{1,}(\s|,){1,}[0-9]{5})")))
+                    ? "Ulica, broj, postanski broj"
+                    : null,
               ),
               RoundedButton(
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
@@ -159,9 +207,18 @@ class _BodyState extends State<Body> {
                     });
                     _username = _email;
                     await FlutterSession().set('email', _email);
-                    korisnikInfo = await korisnik.vratiKorisnikaMail(_email);
-                    var response = await korisnik.dodavanjeNovogKorisnika(
-                        _email, _password, _ime, _prezime, _kontakt, _adresa);
+                    var response = 0;
+                    try {
+                      korisnikInfo = await korisnik
+                          .vratiKorisnikaMail(_email)
+                          .timeout(const Duration(seconds: 5));
+                      response = await korisnik
+                          .dodavanjeNovogKorisnika(_email, _password, _ime,
+                              _prezime, _kontakt, _adresa)
+                          .timeout(const Duration(seconds: 5));
+                    } on TimeoutException catch (e) {
+                      print("TIMED OUT ON SIGNUP 1!");
+                    }
                     setState(() {
                       isApiCallProcess = false;
                     });
