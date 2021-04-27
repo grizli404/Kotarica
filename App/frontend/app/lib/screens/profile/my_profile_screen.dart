@@ -38,13 +38,13 @@ class MyProfileScreen extends StatelessWidget {
     Size size = MediaQuery.maybeOf(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profilan strana"),
+        title: Text("Profil"),
         centerTitle: true,
         backgroundColor: kPrimaryColor,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(36),
-        )),
+        // shape: RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.vertical(
+        //   bottom: Radius.circular(36),
+        // )),
       ),
       body: ProfileBody(
         size: size,
@@ -54,7 +54,7 @@ class MyProfileScreen extends StatelessWidget {
         lName: lName,
         reputationScore: reputationScore,
       ),
-      bottomNavigationBar: NavigationBarWidget(),
+      bottomNavigationBar: !isWeb ? NavigationBarWidget() : null,
     );
   }
 }

@@ -7,8 +7,8 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 class ProductView extends StatelessWidget {
-  const ProductView({this.listaProizvoda});
-  final List<Proizvod> listaProizvoda;
+  ProductView({this.listaProizvoda});
+  List<Proizvod> listaProizvoda;
 
   @override
   Widget build(BuildContext context) {

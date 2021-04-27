@@ -8,20 +8,29 @@ import 'package:flutter/material.dart';
 
 import '../../components/drawer.dart';
 
-class HomeScreenLayout extends StatelessWidget {
+class ProductCategoryLayout extends StatelessWidget {
+  String category;
+  List<Proizvod> listaProizvoda;
+  ProductCategoryLayout({this.category, this.listaProizvoda});
   @override
   Widget build(BuildContext context) {
     if (ResponsiveLayout.isIphone(context)) {
       return Scaffold(
         appBar: CustomAppBar(),
-        body: Body(proizvodi: ProizvodiModel().listaProizvoda),
+        body: Body(
+          category: category,
+          proizvodi: listaProizvoda,
+        ),
         drawer: ListenToDrawerEvent(),
         bottomNavigationBar: !isWeb ? NavigationBarWidget() : null,
       );
     } else {
       return Scaffold(
         appBar: CustomAppBar(),
-        body: Body(proizvodi: ProizvodiModel().listaProizvoda),
+        body: Body(
+          category: category,
+          proizvodi: listaProizvoda,
+        ),
       );
     }
   }
