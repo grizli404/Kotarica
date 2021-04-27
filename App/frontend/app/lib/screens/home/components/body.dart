@@ -1,3 +1,5 @@
+//import 'dart:html';
+
 import 'package:app/components/filter.dart';
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/model/proizvodiModel.dart';
@@ -13,14 +15,16 @@ import '../../../main.dart';
 import 'headerWithSearchBox.dart';
 
 class Body extends StatefulWidget {
-  final proizvodi = ProizvodiModel().listaProizvoda;
+  List<Proizvod> proizvodi;
+  final String category;
+
+  Body({this.category, this.proizvodi});
   @override
-  _Body createState() => _Body(listaProizvoda: proizvodi);
+  _BodyState createState() => _BodyState();
 }
 
-class _Body extends State<Body> {
-  _Body({this.listaProizvoda});
-  List<Proizvod> listaProizvoda;
+class _BodyState extends State<Body> {
+  //List<Proizvod> listaProizvoda;
   List<Proizvod> listaFilter;
   bool _isSearchState = false;
   int _value;
@@ -39,6 +43,7 @@ class _Body extends State<Body> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            //  Text('${widget.category}'),
             HeaderWithSearchBox(
               size: size,
               displayProducts: displayProducts,
@@ -60,7 +65,6 @@ class _Body extends State<Body> {
                   napraviDugme(),
                   Text('/'),
                   dugmePonisti(),
-
                   //SizedBox(width: MediaQuery.of(context).size.width - 1000),
                 ],
               ),
@@ -70,27 +74,66 @@ class _Body extends State<Body> {
                 napraviSort(),
               ]),
             ],
-            if (_isSearchState == false &&
-                _isSortChanged == false &&
-                _isFilterChanged == false) ...[
-              //SizedBox(height: kDefaultPadding),
-              //ProductView(),
-              ProductContainer(naziv: 'Najnoviji proizvodi'),
-              ProductContainer(naziv: 'Popularni proizvodi'),
-              ProductContainer(naziv: 'Preporuka'),
-              SizedBox(
-                height: 30.0,
-              ),
-            ] else if (_isSearchState == true) ...[
-              ProductView(
-                listaProizvoda: listaProizvoda,
-              ),
-            ] else if (_isSortChanged == true) ...[
-              prikaziProizvode()
-            ] else if (_isFilterChanged == true) ...[
-              ProductView(
-                listaProizvoda: listaFilter,
-              )
+            if (widget.category == null) ...[
+              if (_isSearchState == false &&
+                  _isSortChanged == false &&
+                  _isFilterChanged == false) ...[
+                //SizedBox(height: kDefaultPadding),
+                //ProductView(),
+                ProductContainer(naziv: 'Najnoviji proizvodi'),
+                ProductContainer(naziv: 'Popularni proizvodi'),
+                ProductContainer(naziv: 'Preporuka'),
+                SizedBox(
+                  height: 30.0,
+                ),
+              ] else if (_isSearchState == true) ...[
+                ProductView(
+                  listaProizvoda: widget.proizvodi,
+                ),
+              ] else if (_isSortChanged == true) ...[
+                if (_isFilterChanged == false)
+                  prikaziProizvode(widget.proizvodi)
+                else
+                  ProductView(
+                    listaProizvoda: listaFilter,
+                  )
+              ] else if (_isFilterChanged == true) ...[
+                if (_isSortChanged == false)
+                  ProductView(
+                    listaProizvoda: listaFilter,
+                  )
+                else
+                  prikaziProizvode(listaFilter)
+              ]
+            ] else if (widget.category != null) ...[
+              if (_isSearchState == false &&
+                  _isSortChanged == false &&
+                  _isFilterChanged == false) ...[
+                ProductView(
+                  listaProizvoda: widget.proizvodi,
+                ),
+                SizedBox(
+                  height: 30.0,
+                ),
+              ] else if (_isSearchState == true) ...[
+                ProductView(
+                  listaProizvoda: widget.proizvodi,
+                ),
+              ] else if (_isSortChanged == true) ...[
+                if (_isFilterChanged == false)
+                  prikaziProizvode(widget.proizvodi)
+                else
+                  ProductView(
+                    listaProizvoda: listaFilter,
+                  )
+              ] else if (_isFilterChanged == true) ...[
+                if (_isSortChanged == false)
+                  ProductView(
+                    listaProizvoda: listaFilter,
+                  )
+                else
+                  prikaziProizvode(listaFilter)
+              ]
             ]
           ],
         ),
@@ -101,7 +144,7 @@ class _Body extends State<Body> {
   void displayProducts(List<Proizvod> displayLista) {
     setState(() {
       _isSearchState = true;
-      this.listaProizvoda = displayLista;
+      this.widget.proizvodi = displayLista;
     });
   }
 
@@ -112,17 +155,17 @@ class _Body extends State<Body> {
     });
   }
 
-  Widget prikaziProizvode() {
+  Widget prikaziProizvode(List<Proizvod> proizvodi) {
     if (_value == 1) {
-      return null;
+      return Text('nije uradjeno');
     } else if (_value == 2) {
-      return null;
+      return Text('nije uradjeno');
     } else if (_value == 3) {
       // najnoviji
-      return ProductView(listaProizvoda: listaProizvoda);
+      return ProductView(listaProizvoda: proizvodi);
     } else if (_value == 4) {
       // najstariji
-      Iterable inReverse = listaProizvoda.reversed;
+      Iterable inReverse = proizvodi.reversed;
       var listaReverse = inReverse.toList();
       return ProductView(listaProizvoda: listaReverse);
     }
@@ -174,7 +217,7 @@ class _Body extends State<Body> {
           List<Proizvod> lista = filterFunction(
               num.tryParse(controllerMin.text),
               num.tryParse(controllerMax.text),
-              listaProizvoda);
+              widget.proizvodi);
           displayFilterProducts(lista);
         }
       },
