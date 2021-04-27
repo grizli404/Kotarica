@@ -43,8 +43,8 @@ module.exports = {
     // options below to some value.
     //
      development: {
-      host: "192.168.1.107",     // Localhost (default: none)
-      port: 7545,            // Standard Ethereum port (default: none)
+      host: "147.91.204.116",     // Localhost (default: none)
+      port: 11092,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
      },
     // Another network with more advanced options...
@@ -80,7 +80,7 @@ module.exports = {
   },
 
   //Na ovoj lokaciji ce da budu json fajlovi
-  contracts_build_directory: "./src/abis/",
+  contracts_build_directory: "./assets/src/",
 
   // Configure your compilers
   compilers: {
