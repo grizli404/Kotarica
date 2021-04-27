@@ -15,6 +15,7 @@ class HomeScreenLayout extends StatelessWidget {
         appBar: CustomAppBar(),
         body: Body(),
         drawer: ListenToDrawerEvent(),
+        extendBody: true,
         bottomNavigationBar: !isWeb ? NavigationBarWidget() : null,
       );
     } else {

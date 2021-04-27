@@ -23,7 +23,9 @@ class NavigationBarWidget extends StatelessWidget {
             IconButton(
               color: Theme.of(context).bottomAppBarColor,
               onPressed: () {
-                Navigator.pushNamed(context, '/home');
+                ModalRoute.of(context).settings.name == "/home"
+                    ? Navigator.pushNamed(context, "/home")
+                    : Navigator.popAndPushNamed(context, "/home");
               },
               icon: Icon(Icons.home_rounded),
             ),
@@ -55,7 +57,9 @@ class NavigationBarWidget extends StatelessWidget {
                 icon: Icon(Icons.person),
                 onPressed: () {
                   korisnikInfo != null
-                      ? Navigator.pushNamed(context, '/profile')
+                      ? ModalRoute.of(context).settings.name == "/home"
+                          ? Navigator.pushNamed(context, "/profile")
+                          : Navigator.popAndPushNamed(context, "/profile")
                       : Navigator.pushNamed(context, '/login');
                 },
                 color: Theme.of(context).bottomAppBarColor)

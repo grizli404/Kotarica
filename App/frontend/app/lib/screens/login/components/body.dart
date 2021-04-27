@@ -1,4 +1,6 @@
 //import 'package:app/api/api_login.dart';
+import 'dart:async';
+
 import 'package:app/components/already_have_an_account_check.dart';
 import 'package:app/components/progress_hud.dart';
 import 'package:app/components/rounded_button.dart';
@@ -71,7 +73,8 @@ class _BodyState extends State<Body> {
                     : kPrimaryLightColor,
                 hintText: "Email",
                 onChanged: (input) => _email = input,
-                // validator: (input) => !input.contains("@") ? "Missing @" : null,
+                validator: (input) =>
+                    !input.contains("@") ? "Nedostaje @" : null,
               ),
               RoundedPasswordField(
                 hintText: 'Lozinka',
@@ -79,7 +82,10 @@ class _BodyState extends State<Body> {
                     ? Theme.of(context).primaryColor
                     : kPrimaryLightColor,
                 onChanged: (input) => _password = input,
-                validator: (input) => input.length < 3 ? "Prekratko!" : null,
+                validator: (input) => !(input.contains(RegExp(
+                        r"(^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$)")))
+                    ? "Mora sadržati najmanje 8 karaktera, veliko slovo, malo slovo, broj!"
+                    : null,
               ),
               RoundedButton(
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
@@ -92,11 +98,27 @@ class _BodyState extends State<Body> {
                     setState(() {
                       isApiCallProcess = true;
                     });
-                    int id = await korisnik.login(_email, _password);
+                    int id = 0;
+                    try {
+                      id = await korisnik.login(_email, _password).timeout(
+                            const Duration(seconds: 5),
+                          );
+                    } on TimeoutException catch (e) {
+                      print("TIMED OUT ON LOGIN 1!");
+                      id = 0;
+                    }
+
+                    try {
+                      await FlutterSession().set('email', _email);
+                      korisnikInfo = await korisnik
+                          .vratiKorisnikaMail(_email)
+                          .timeout(const Duration(seconds: 5));
+                    } on TimeoutException catch (e) {
+                      print("TIMED OUT ON LOGIN 2!");
+                      id = 0;
+                    }
 
                     if (id != 0) {
-                      await FlutterSession().set('email', _email);
-                      korisnikInfo = await korisnik.vratiKorisnikaMail(_email);
                       Navigator.popAndPushNamed(context, '/home',
                           arguments: {});
                       ScaffoldMessenger.of(context)
@@ -109,8 +131,6 @@ class _BodyState extends State<Body> {
                           .showSnackBar(SnackBar(content: Text("Neuspešno!")));
                       print("Neuspesan login!");
                     }
-
-                    //print(requestModel.toJson());
                   }
                 },
               ),

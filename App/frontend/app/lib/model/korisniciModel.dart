@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
@@ -72,6 +73,7 @@ class KorisniciModel extends ChangeNotifier {
     //ovde smo dobili nasu javnu adresu uz pomocom privatnog kljuca
     credentials = await client.credentialsFromPrivateKey(privatniKljuc);
     nasaAdresa = await credentials.extractAddress();
+    print(nasaAdresa);
   }
 
   //Ovde treba da budu navedene sve f-je koje se nalaze na ugovoru
@@ -129,9 +131,10 @@ class KorisniciModel extends ChangeNotifier {
   //dodavanjeNovogKorisnika(String)
   dodavanjeNovogKorisnika(String _mail, String _password, String _ime,
       String _prezime, String _broj, String _adresa) async {
-    int posotoji = await proveraDaLiPostojiUsername(_mail);
+    int postoji;
 
-    if (posotoji == 1) {
+    postoji = await proveraDaLiPostojiUsername(_mail);
+    if (postoji == 1) {
       // znaci da ne postoji taj username
       var k = await client.sendTransaction(
           credentials,
@@ -140,10 +143,12 @@ class KorisniciModel extends ChangeNotifier {
               contract: ugovor,
               function: dodajKorisnika,
               parameters: [_mail, _password, _ime, _prezime, _broj, _adresa]));
-
-      return await login(_mail,
-          _password); // kada se uspesno registrovao, odma prijavimo tog korisnika
+      if (k != 0) {
+        return await login(_mail, _password);
+      }
     }
+
+    // kada se uspesno registrovao, odma prijavimo tog korisnika
   }
 
   Future<int> proveraDaLiPostojiUsername(String _username) async {
@@ -177,12 +182,12 @@ class KorisniciModel extends ChangeNotifier {
 
   Future<void> dodajSliku(int id, String slika) async {
     await client.sendTransaction(
-          credentials,
-          Transaction.callContract(
-              maxGas: 6721975,
-              contract: ugovor,
-              function: _dodajSliku,
-              parameters: [BigInt.from(id), slika]));
+        credentials,
+        Transaction.callContract(
+            maxGas: 6721975,
+            contract: ugovor,
+            function: _dodajSliku,
+            parameters: [BigInt.from(id), slika]));
   }
 }
 
@@ -204,6 +209,5 @@ class Korisnik {
       this.prezime,
       this.brojTelefona,
       this.adresa,
-      this.slika
-      });
+      this.slika});
 }

@@ -96,7 +96,9 @@ class ConfirmConfiguration extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _Atribut(text: "Privatni kljuc: "),
-                _Vrednost(text: personalData.privateKey)
+                _Vrednost(
+                    text:
+                        "${personalData.privateKey.substring(0, 4) + personalData.privateKey.replaceRange(0, personalData.privateKey.length, '*' * (personalData.privateKey.length - 4))}")
               ],
             ),
           ),

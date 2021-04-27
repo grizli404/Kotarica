@@ -26,6 +26,7 @@ class HeaderWithSearchBox extends StatelessWidget {
   }
 
   Widget containerWeb(BuildContext context) {
+    List<Proizvod> lista = [];
     return Container(
       //margin: EdgeInsets.only(bottom: kDefaultPadding * 2.5),
       // height: ResponsiveLayout.isIphone(context)
@@ -69,12 +70,17 @@ class HeaderWithSearchBox extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
+                      style: TextStyle(color: Colors.black),
                       controller: searchController,
-                      onChanged: (value) {},
+                      onSubmitted: (input) {
+                        lista =
+                            searchFunction(searchController.text, proizvodi);
+                        displayProducts(lista);
+                      },
+                      onChanged: (input) {},
                       decoration: InputDecoration(
                         hintText: 'Pretraga...',
-                        hintStyle:
-                            TextStyle(color: Theme.of(context).indicatorColor),
+                        hintStyle: TextStyle(color: Colors.black),
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
                       ),
@@ -83,8 +89,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                   GestureDetector(
                     child: SvgPicture.asset('assets/icons/search.svg'),
                     onTap: () {
-                      List<Proizvod> lista =
-                          searchFunction(searchController.text, proizvodi);
+                      lista = searchFunction(searchController.text, proizvodi);
                       displayProducts(lista);
                     },
                   )

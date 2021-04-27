@@ -54,7 +54,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             !ResponsiveLayout.isIphone(context)
                 ? IconButton(
                     icon: Icon(
-                      Icons.person,
+                      Icons.person_outline,
                     ),
                     onPressed: () {
                       if (korisnikInfo != null) {
@@ -67,7 +67,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             if (korisnikInfo != null && isWeb) ...[
               IconButton(
                   icon: Icon(
-                    Icons.notifications_rounded,
+                    Icons.notifications_none_rounded,
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, '/login');
@@ -76,7 +76,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             !ResponsiveLayout.isIphone(context)
                 ? IconButton(
                     icon: Icon(
-                      Icons.favorite_rounded,
+                      Icons.favorite_outline_rounded,
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, '/favorites');
