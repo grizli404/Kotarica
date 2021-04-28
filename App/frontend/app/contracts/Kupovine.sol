@@ -10,7 +10,6 @@ contract Kupovine{
         int idKupca;
         int idProizvoda;
         int kolicina;
-        //moguce da ce trebati datum
     }
 
     int public brojKupovina = 0;
@@ -23,7 +22,7 @@ contract Kupovine{
         kupovine[brojKupovina] = Kupovina(brojKupovina, _idProdavca, _idKupca, _idProizvoda, _kolicina);
     }
 
-    //Ukoliko postoji kupovina, tek onda se moze dati ocena za neki proizvod
+    //Pre davanja ocene, mora se proveriti da li postoji kupovina tog proizvoda od strane onog koji hoce da da ocenu
     function daLiPostojiKupovina (int _idKupca, int _idProdavca, int _idProizvoda) public view returns (int)
     {
         for (int i = 1; i <= brojKupovina; i++) {
