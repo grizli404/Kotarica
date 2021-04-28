@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
 import 'ether_setup.dart';
@@ -30,7 +30,7 @@ class ProizvodiModel extends ChangeNotifier {
   }
 
   Future<void> inicijalnoSetovanje() async {
-    client = Web3Client(rpcUrl, Client(), socketConnector: () {
+    client = Web3Client(rpcUrl, http.Client(), socketConnector: () {
       return IOWebSocketChannel.connect(wsUrl).cast<String>();
     });
 
@@ -42,9 +42,23 @@ class ProizvodiModel extends ChangeNotifier {
     }
 
   Future<void> getAbi() async {
-    String abiStringFile =
-        await rootBundle.loadString("src/abis/Proizvodi.json");
-    var jsonAbi = jsonDecode(abiStringFile);
+    /**************************  WEB  ********************************** */
+    // String abiStringFile =
+    //     await rootBundle.loadString("assets/src/Proizvodi.json");
+    // var jsonAbi = jsonDecode(abiStringFile);
+    /**************************  WEB  ********************************** */
+
+    /**************************  MOB  ********************************** */
+    final response =
+        await http.get(Uri.http('147.91.204.116:11091', 'Proizvodi.json'));
+    var jsonAbi;
+    if (response.statusCode == 200) {
+      jsonAbi = jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to load data from server');
+    }
+    /**************************  MOB  ********************************** */
+
     abiCode = jsonEncode(jsonAbi["abi"]);
 
     adresaUgovora =

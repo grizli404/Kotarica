@@ -68,7 +68,7 @@ class NotifikacijeModel extends ChangeNotifier{
 
   Future<void> getAbi() async {
     String abiStringFile =
-        await rootBundle.loadString("src/abis/Notifications.json");
+        await rootBundle.loadString("assets/src/Notifications.json");
     var jsonAbi = jsonDecode(abiStringFile);
     abiCode = jsonEncode(jsonAbi["abi"]);
 
