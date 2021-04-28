@@ -225,9 +225,40 @@ class _BodyState extends State<Body> {
                     if (response != 0) {
                       Navigator.popAndPushNamed(context, '/home',
                           arguments: {});
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content:
+                              Text("Uspešna registracija i prijavljivanje!"),
+                          duration: const Duration(milliseconds: 3000),
+                          width: MediaQuery.of(context).size.width *
+                              0.9, // Width of the SnackBar.
+                          padding: const EdgeInsets.symmetric(
+                            horizontal:
+                                8.0, // Inner padding for SnackBar content.
+                          ),
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Korisnik već postoji!")));
+                        SnackBar(
+                          content: Text("Neuspešna registracija!"),
+                          duration: const Duration(milliseconds: 2000),
+                          width: MediaQuery.of(context).size.width *
+                              0.9, // Width of the SnackBar.
+                          padding: const EdgeInsets.symmetric(
+                            horizontal:
+                                8.0, // Inner padding for SnackBar content.
+                          ),
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      );
                     }
                   }
                 },

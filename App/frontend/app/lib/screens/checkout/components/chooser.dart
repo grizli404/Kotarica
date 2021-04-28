@@ -12,45 +12,43 @@ class Chooser extends StatefulWidget {
 class ChooserState extends State<Chooser> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 10, bottom: 30),
-      child: Center(
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-                padding: EdgeInsets.all(10),
-                child: Container(
-                  child: Icon(
-                    Icons.location_on,
-                    color: widget.shipping
-                        ? Theme.of(context).accentColor
-                        : Colors.grey,
-                  ),
-                )),
-            Padding(
-                padding: EdgeInsets.all(10),
-                child: Container(
-                  child: Icon(
-                    Icons.payment,
-                    color: widget.payment
-                        ? Theme.of(context).accentColor
-                        : Colors.grey,
-                  ),
-                )),
-            Padding(
-                padding: EdgeInsets.all(10),
-                child: Container(
-                  child: Icon(
-                    Icons.check,
-                    color: widget.confirm
-                        ? Theme.of(context).accentColor
-                        : Colors.grey,
-                  ),
-                )),
-          ],
-        ),
+    return Center(
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+              padding: EdgeInsets.all(10),
+              child: Container(
+                child: Icon(
+                  Icons.location_on,
+                  color: widget.shipping
+                      ? Theme.of(context).accentColor
+                      : Colors.grey,
+                ),
+              )),
+          Padding(
+              padding: EdgeInsets.all(10),
+              child: Container(
+                child: Icon(
+                  Icons.payment,
+                  color: widget.payment
+                      ? Theme.of(context).accentColor
+                      : Colors.grey,
+                ),
+              )),
+          Padding(
+              padding: EdgeInsets.all(10),
+              child: Container(
+                child: Icon(
+                  Icons.check,
+                  color: widget.confirm
+                      ? Theme.of(context).accentColor
+                      : Colors.grey,
+                ),
+              )),
+        ],
       ),
     );
   }

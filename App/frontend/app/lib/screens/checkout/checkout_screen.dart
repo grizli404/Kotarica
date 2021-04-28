@@ -1,6 +1,8 @@
 import 'package:app/components/customAppBar.dart';
 import 'package:app/components/progress_hud.dart';
 import 'package:app/constants.dart';
+import 'package:app/main.dart';
+import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/personal_data.dart';
 import 'package:app/screens/checkout/components/confirm_configuration.dart';
 import 'package:app/screens/checkout/components/payment_configuration.dart';
@@ -16,13 +18,14 @@ class CheckoutScreen extends StatefulWidget {
     this.paymentConfig = false,
     this.confirmConfig = false,
     this.personalData,
+    this.korisnik,
   });
   bool shippingConfig;
   bool paymentConfig;
   bool confirmConfig;
   PersonalData personalData;
   bool isApiCallProcess = false;
-
+  Korisnik korisnik;
   @override
   _CheckoutScreenState createState() => _CheckoutScreenState();
 }
@@ -40,14 +43,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Kotarica',
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontStyle: FontStyle.italic,
-            fontSize: 25,
-            color: Colors.white,
-          ),
+        title: Chooser(
+          shipping: widget.shippingConfig,
+          payment: widget.paymentConfig,
+          confirm: widget.confirmConfig,
         ),
         centerTitle: true,
         actions: [
@@ -74,31 +73,63 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Chooser(
-                  shipping: widget.shippingConfig,
-                  payment: widget.paymentConfig,
-                  confirm: widget.confirmConfig,
-                ),
-                if (widget.shippingConfig == true) ...[
+                if (widget.shippingConfig == false) ...[
+                  AbsorbPointer(
+                    absorbing: true,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          backgroundBlendMode: BlendMode.darken,
+                          color: Colors.black.withOpacity(0.3)),
+                      child: ShippingConfiguration(
+                        korisnik: korisnikInfo,
+                        personalData: widget.personalData,
+                      ),
+                    ),
+                  ),
+                ] else ...[
                   ShippingConfiguration(
+                    korisnik: korisnikInfo,
                     personalData: widget.personalData,
                   ),
                 ],
-                if (widget.paymentConfig == true) ...[
+                if (widget.paymentConfig == false) ...[
+                  AbsorbPointer(
+                    absorbing: true,
+                    child: Container(
+                        decoration: BoxDecoration(
+                            backgroundBlendMode: BlendMode.darken,
+                            color: Colors.black.withOpacity(0.3)),
+                        child: PaymentConfiguration(
+                          personalData: widget.personalData,
+                        )),
+                  ),
+                ] else ...[
                   PaymentConfiguration(
                     personalData: widget.personalData,
-                  ),
+                  )
                 ],
-                if (widget.confirmConfig == true) ...[
+                if (widget.confirmConfig == false) ...[
+                  AbsorbPointer(
+                    absorbing: true,
+                    child: Container(
+                        decoration: BoxDecoration(
+                            backgroundBlendMode: BlendMode.darken,
+                            color: Colors.black.withOpacity(0.3)),
+                        child: ConfirmConfiguration(
+                          personalData: widget.personalData,
+                        )),
+                  ),
+                ] else ...[
                   ConfirmConfiguration(
                     personalData: widget.personalData,
-                  ),
-                ],
+                  )
+                ]
               ],
             ),
           ),
         ),
       ),
+      extendBody: true,
       bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(vertical: 20),
         decoration: BoxDecoration(

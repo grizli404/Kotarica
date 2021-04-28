@@ -77,6 +77,7 @@ class MaterialAppCustom extends StatelessWidget {
         '/home': (context) => HomeScreen(),
         '/profile': (context) => MyProfileScreen(),
         '/checkout': (context) => CheckoutScreen(
+            korisnik: korisnikInfo,
             personalData: PersonalData(
                 adresa: "Novosadska",
                 ime: "Nikola",

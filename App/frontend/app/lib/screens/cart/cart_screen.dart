@@ -1,5 +1,6 @@
 import 'package:app/components/rounded_button.dart';
 import 'package:app/constants.dart';
+import 'package:app/main.dart';
 import 'package:app/model/cart.dart';
 import 'package:app/screens/checkout/checkout_screen.dart';
 import 'package:app/theme/themeProvider.dart';
@@ -160,7 +161,43 @@ class CheckOutCard extends StatelessWidget {
             RoundedButton(
               text: "KUPI",
               press: () {
-                Navigator.popAndPushNamed(context, '/checkout', arguments: {});
+                korisnikInfo == null
+                    ? ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                              "Morate biti prijavljeni da biste nastavili kupovinu!"),
+                          duration: const Duration(milliseconds: 2000),
+                          width: MediaQuery.of(context).size.width *
+                              0.9, // Width of the SnackBar.
+                          padding: const EdgeInsets.symmetric(
+                            horizontal:
+                                8.0, // Inner padding for SnackBar content.
+                          ),
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      )
+                    : demoCarts.length == 0
+                        ? ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Nemate proizvode u korpi!"),
+                              duration: const Duration(milliseconds: 2000),
+                              width: MediaQuery.of(context).size.width *
+                                  0.9, // Width of the SnackBar.
+                              padding: const EdgeInsets.symmetric(
+                                horizontal:
+                                    8.0, // Inner padding for SnackBar content.
+                              ),
+                              behavior: SnackBarBehavior.floating,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          )
+                        : Navigator.popAndPushNamed(context, '/checkout',
+                            arguments: {});
               },
               textColor: kPrimaryColor,
               color: Colors.white,
