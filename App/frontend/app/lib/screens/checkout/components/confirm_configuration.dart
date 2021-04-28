@@ -11,7 +11,8 @@ class ConfirmConfiguration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      width: double.infinity,
+      padding: EdgeInsets.fromLTRB(20, 0, 20, 100),
       child: Column(
         children: [
           Divider(
@@ -20,68 +21,12 @@ class ConfirmConfiguration extends StatelessWidget {
                 ? Colors.black
                 : kPrimaryColor,
           ),
-          Container(
-            height: 60,
-            child: Row(
-              children: [
-                _Atribut(text: "Ime: "),
-                _Vrednost(text: personalData.ime)
-              ],
-            ),
-          ),
-          Divider(
-            color: Theme.of(context).colorScheme == ColorScheme.dark()
-                ? Colors.black
-                : kPrimaryColor,
-          ),
-          Container(
-            height: 60,
-            child: Row(
-              children: [
-                _Atribut(text: "Kontakt: "),
-                _Vrednost(text: personalData.kontakt)
-              ],
-            ),
-          ),
-          Divider(
-            color: Theme.of(context).colorScheme == ColorScheme.dark()
-                ? Colors.black
-                : kPrimaryColor,
-          ),
-          Container(
-            height: 60,
-            child: Row(
-              children: [
-                _Atribut(text: "Postanski broj: "),
-                _Vrednost(text: personalData.postanskiBroj),
-              ],
-            ),
-          ),
-          Divider(
-            color: Theme.of(context).colorScheme == ColorScheme.dark()
-                ? Colors.black
-                : kPrimaryColor,
-          ),
-          Container(
-            height: 60,
-            child: Row(
-              children: [
-                _Atribut(text: "Adresa: "),
-                _Vrednost(text: personalData.adresa)
-              ],
-            ),
-          ),
-          Divider(
-            color: Theme.of(context).colorScheme == ColorScheme.dark()
-                ? Colors.black
-                : kPrimaryColor,
-          ),
           // Container(
           //   height: 60,
           //   child: Row(
           //     children: [
-          //       _Atribut(text: "opis: "),
-          //       _Vrednost(text: personalData.opis)
+          //       _Atribut(text: "Ime: "),
+          //       _Vrednost(text: personalData.ime)
           //     ],
           //   ),
           // ),
@@ -90,24 +35,80 @@ class ConfirmConfiguration extends StatelessWidget {
           //       ? Colors.black
           //       : kPrimaryColor,
           // ),
-          Container(
-            height: 60,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _Atribut(text: "Privatni kljuc: "),
-                _Vrednost(
-                    text:
-                        "${personalData.privateKey.substring(0, 4) + personalData.privateKey.replaceRange(0, personalData.privateKey.length, '*' * (personalData.privateKey.length - 4))}")
-              ],
-            ),
-          ),
-          Divider(
-            thickness: 3,
-            color: Theme.of(context).colorScheme == ColorScheme.dark()
-                ? Colors.black
-                : kPrimaryColor,
-          ),
+          // Container(
+          //   height: 60,
+          //   child: Row(
+          //     children: [
+          //       _Atribut(text: "Kontakt: "),
+          //       _Vrednost(text: personalData.kontakt)
+          //     ],
+          //   ),
+          // ),
+          // Divider(
+          //   color: Theme.of(context).colorScheme == ColorScheme.dark()
+          //       ? Colors.black
+          //       : kPrimaryColor,
+          // ),
+          // Container(
+          //   height: 60,
+          //   child: Row(
+          //     children: [
+          //       _Atribut(text: "Postanski broj: "),
+          //       _Vrednost(text: personalData.postanskiBroj),
+          //     ],
+          //   ),
+          // ),
+          // Divider(
+          //   color: Theme.of(context).colorScheme == ColorScheme.dark()
+          //       ? Colors.black
+          //       : kPrimaryColor,
+          // ),
+          // Container(
+          //   height: 60,
+          //   child: Row(
+          //     children: [
+          //       _Atribut(text: "Adresa: "),
+          //       _Vrednost(text: personalData.adresa)
+          //     ],
+          //   ),
+          // ),
+          // Divider(
+          //   color: Theme.of(context).colorScheme == ColorScheme.dark()
+          //       ? Colors.black
+          //       : kPrimaryColor,
+          // ),
+          // // Container(
+          // //   height: 60,
+          // //   child: Row(
+          // //     children: [
+          // //       _Atribut(text: "opis: "),
+          // //       _Vrednost(text: personalData.opis)
+          // //     ],
+          // //   ),
+          // // ),
+          // // Divider(
+          // //   color: Theme.of(context).colorScheme == ColorScheme.dark()
+          // //       ? Colors.black
+          // //       : kPrimaryColor,
+          // // ),
+          // Container(
+          //   height: 60,
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       _Atribut(text: "Privatni kljuc: "),
+          //       _Vrednost(
+          //           text:
+          //               "${personalData.privateKey.substring(0, 4) + personalData.privateKey.replaceRange(0, personalData.privateKey.length, '*' * (personalData.privateKey.length - 4))}")
+          //     ],
+          //   ),
+          // ),
+          // Divider(
+          //   thickness: 3,
+          //   color: Theme.of(context).colorScheme == ColorScheme.dark()
+          //       ? Colors.black
+          //       : kPrimaryColor,
+          // ),
           _Atribut(
             text: "Korpa: ",
           ),

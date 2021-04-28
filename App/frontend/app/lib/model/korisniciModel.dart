@@ -88,7 +88,6 @@ class KorisniciModel extends ChangeNotifier {
     //ovde smo dobili nasu javnu adresu uz pomocom privatnog kljuca
     credentials = await client.credentialsFromPrivateKey(privatniKljuc);
     nasaAdresa = await credentials.extractAddress();
-    print(nasaAdresa);
   }
 
   //Ovde treba da budu navedene sve f-je koje se nalaze na ugovoru

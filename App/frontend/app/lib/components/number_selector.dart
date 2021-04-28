@@ -42,10 +42,29 @@ class TestState extends State<NumberSelector> {
                   highlightColor: Colors.transparent,
                   onPressed: () {
                     dodajProizvod(proizvod, counter);
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Dodata " +
-                            counter.toString() +
-                            " proizvoda u korpu")));
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: counter != 1
+                            ? Text("Dodata " +
+                                counter.toString() +
+                                " proizvoda u korpu")
+                            : Text("Dodat " +
+                                counter.toString() +
+                                " proizvod u korpu"),
+                        duration: const Duration(milliseconds: 1500),
+                        width: MediaQuery.of(context).size.width *
+                            0.9, // Width of the SnackBar.
+                        padding: const EdgeInsets.symmetric(
+                          horizontal:
+                              8.0, // Inner padding for SnackBar content.
+                        ),
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                    );
                   },
                   child: Text('Dodaj u korpu',
                       style: TextStyle(

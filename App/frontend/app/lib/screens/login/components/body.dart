@@ -92,47 +92,7 @@ class _BodyState extends State<Body> {
                     ? Colors.grey
                     : Theme.of(context).primaryColor,
                 text: "PRIJAVA",
-                press: () async {
-                  if (validateAndSave()) {
-                    //    Crypt.sha256(requestModel.password).toString();
-                    setState(() {
-                      isApiCallProcess = true;
-                    });
-                    int id = 0;
-                    try {
-                      id = await korisnik.login(_email, _password).timeout(
-                            const Duration(seconds: 5),
-                          );
-                    } on TimeoutException catch (e) {
-                      print("TIMED OUT ON LOGIN 1!");
-                      id = 0;
-                    }
-
-                    try {
-                      await FlutterSession().set('email', _email);
-                      korisnikInfo = await korisnik
-                          .vratiKorisnikaMail(_email)
-                          .timeout(const Duration(seconds: 5));
-                    } on TimeoutException catch (e) {
-                      print("TIMED OUT ON LOGIN 2!");
-                      id = 0;
-                    }
-
-                    if (id != 0) {
-                      Navigator.popAndPushNamed(context, '/home',
-                          arguments: {});
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text("Uspešno!")));
-                    } else {
-                      setState(() {
-                        isApiCallProcess = false;
-                      });
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text("Neuspešno!")));
-                      print("Neuspesan login!");
-                    }
-                  }
-                },
+                press: () => loginAction(korisnik),
               ),
               SizedBox(
                 height: size.height * 0.03,
@@ -150,6 +110,72 @@ class _BodyState extends State<Body> {
         ),
       ),
     );
+  }
+
+  void loginAction(var korisnik) async {
+    if (validateAndSave()) {
+      //    Crypt.sha256(requestModel.password).toString();
+      setState(() {
+        isApiCallProcess = true;
+      });
+      int id = 0;
+      try {
+        id = await korisnik.login(_email, _password).timeout(
+              const Duration(seconds: 5),
+            );
+      } on TimeoutException catch (e) {
+        print("TIMED OUT ON LOGIN 1!");
+        id = 0;
+      }
+
+      try {
+        await FlutterSession().set('email', _email);
+        korisnikInfo = await korisnik
+            .vratiKorisnikaMail(_email)
+            .timeout(const Duration(seconds: 5));
+      } on TimeoutException catch (e) {
+        print("TIMED OUT ON LOGIN 2!");
+        id = 0;
+      }
+
+      if (id != 0) {
+        Navigator.popAndPushNamed(context, '/home', arguments: {});
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Uspešno prijavljivanje!"),
+            duration: const Duration(milliseconds: 2000),
+            width: MediaQuery.of(context).size.width *
+                0.9, // Width of the SnackBar.
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0, // Inner padding for SnackBar content.
+            ),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+        );
+      } else {
+        setState(() {
+          isApiCallProcess = false;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Neuspešno prijavljivanje!"),
+            duration: const Duration(milliseconds: 2000),
+            width: MediaQuery.of(context).size.width *
+                0.9, // Width of the SnackBar.
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0, // Inner padding for SnackBar content.
+            ),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+        );
+      }
+    }
   }
 
   bool validateAndSave() {

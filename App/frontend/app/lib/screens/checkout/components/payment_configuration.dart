@@ -20,6 +20,7 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       child: Padding(
         padding: EdgeInsets.all(20),
         child: Form(
