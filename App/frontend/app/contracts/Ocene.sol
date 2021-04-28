@@ -27,22 +27,23 @@ contract Ocene{
 
     //Funkcija vraca prosecnu ocenu za jedan proizvod
     //U flutter-u se rezultat mora podeliti sa 100
+    //Npr. ako je prosek ocena 4.72 bice vracen rezultat 472
     function prosecnaOcenaZaProizvod (int _idProizvoda) public view returns (int)
     {
         int br = 0;
-        int sum = 0;
+        int suma = 0;
         for (int i = 1; i <= brojOcena; i++) {
             if(_idProizvoda == ocene[i].idProizvoda)
             {
-                sum += ocene[i].ocena;
+                suma += ocene[i].ocena;
                 br++;
             }
         }
-        sum *= 100;
-        if(sum != 0 && br != 0)
+        suma = suma * 100;
+        if(suma != 0 && br != 0)
         {
-            int avg = sum/br;
-            return avg;
+            int prosek = suma/br;
+            return prosek;
         }
         return 0;
     }
@@ -50,22 +51,23 @@ contract Ocene{
 
     //Funkcija vraca prosecnu ocenu svih ocena koje su date proizvodima odredjenog prodavca
     //U flutter-u se rezultat mora podeliti sa 100
+    //Npr. ako je prosek ocena 4.72 bice vracen rezultat 472
     function prosecnaOcenaZaProdavca (int _idProdavca) public view returns (int)
     {
         int br = 0;
-        int sum = 0;
+        int suma = 0;
         for (int i = 1; i <= brojOcena; i++) {
             if(_idProdavca == ocene[i].idProdavca)
             {
-                sum += ocene[i].ocena;
+                suma += ocene[i].ocena;
                 br++;
             }
         }
-        sum *= 100;
-        if(sum != 0 && br != 0)
+        suma = suma * 100;
+        if(suma != 0 && br != 0)
         {
-            int avg = sum/br;
-            return avg;
+            int prosek = suma/br;
+            return prosek;
         }
         return 0;
     }

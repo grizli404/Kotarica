@@ -33,7 +33,7 @@ contract Proizvodi{
 
     function izmeniKolicinu(uint _id, uint _promenaKolicine) public
     {
-        proizvodi[_id].kolicina += _promenaKolicine;
+        proizvodi[_id].kolicina = proizvodi[_id].kolicina + _promenaKolicine;
     }
 
     function obrisiProizvod (uint _id) public
@@ -85,25 +85,7 @@ contract Proizvodi{
         }
     }
 
-
-    //Funkcija vraca ID-jeve proizvoda ciji je redni broj u odredjenim granicama
-    //Koristice se tako sto ce se brojProizvodaPoStrani staviti na primer na 10
-    //a broj strane na 1, rezultat ce biti prvih 10 proizvoda
-    //broj strane 2, drugih 10 proizvoda
-    
-
-    function pagination(uint _brojStrane, uint _brojProizvodaPoStrani) public returns (uint[] memory) 
-    {
-
-        uint[] memory produkti = new uint[] (_brojProizvodaPoStrani);
-
-        for(uint i = _brojProizvodaPoStrani * _brojStrane - _brojProizvodaPoStrani; i < _brojProizvodaPoStrani * _brojStrane; i++ ){
-            uint idProizvoda = proizvodi[i].id;
-            produkti[i] = idProizvoda;
-        } 
-        return produkti;
-    }
-
+    /*
     function sortiranjePoCeniRastuce() public returns (uint [] memory)
     {
         uint duzina = brojProizvoda;
@@ -136,6 +118,7 @@ contract Proizvodi{
 
         return nizID;
     }
+    */
 
     function odDo(uint donjaGranica, uint gornjaGranica) public returns (uint[] memory)
     {
