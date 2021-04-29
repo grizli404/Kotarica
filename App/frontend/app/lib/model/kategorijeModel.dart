@@ -4,8 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 class KategorijeModel extends ChangeNotifier {
-  
-  List<Kategorija> listaKategorija = [];
   List<Kategorija> kategorije = [];
 
   bool isLoading = true;
@@ -42,7 +40,6 @@ class KategorijeModel extends ChangeNotifier {
 
   //U listu 'kategorije' smesta sve kategorije
   void dajKategorije() {
-    
     kategorije.clear();
     for (var i = 0; i < listaKategorija.length; i++) {
       if (listaKategorija[i].idRoditelja == 0) {
