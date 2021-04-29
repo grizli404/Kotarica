@@ -21,6 +21,7 @@ import 'package:provider/provider.dart';
 
 import 'constants.dart';
 import 'model/korisniciModel.dart';
+import 'screens/add_product/add_product.dart';
 import 'screens/profile/my_profile_screen.dart';
 
 void main() {
@@ -87,6 +88,7 @@ class MaterialAppCustom extends StatelessWidget {
                 privateKey: "089ywegrxzch-qw9ytpbhgpwe9")),
         '/cart': (context) => CartScreen(),
         '/favorites': (context) => FavoritesScreen(),
+        '/addProduct': (context) => AddProduct()
       },
       debugShowCheckedModeBanner: false,
       title: 'Kotarica',

@@ -39,7 +39,7 @@ class ProizvodiModel extends ChangeNotifier {
     await getDeployedCotract();
     //await dodajProizvod(1, 1, "Ovca", 5, 25000, "hashslike");
     await dajSveProizvode();
-    }
+  }
 
   Future<void> getAbi() async {
     /**************************  WEB  ********************************** */
@@ -82,7 +82,8 @@ class ProizvodiModel extends ChangeNotifier {
     proizvodiKorisnika = ugovor.function("dajProizvodeZaKorisnika");
   }
 
-  Future<void> dodajProizvod(int _idKorisnika, int _idKategorije, String _naziv, int _kolicina, int _cena, String _slika/*, String _opis*/) async {
+  Future<void> dodajProizvod(int _idKorisnika, int _idKategorije, String _naziv,
+      int _kolicina, int _cena, String _slika, String _opis) async {
     await client.sendTransaction(
         credentials,
         Transaction.callContract(
@@ -95,13 +96,12 @@ class ProizvodiModel extends ChangeNotifier {
               _naziv,
               BigInt.from(_kolicina),
               BigInt.from(_cena),
-              _slika/*,
-              _opis*/
+              _slika,
+              _opis
             ]));
   }
 
   Future<void> dajSveProizvode() async {
-    
     var temp = await client
         .call(contract: ugovor, function: brojProizvoda, params: []);
 
@@ -112,7 +112,6 @@ class ProizvodiModel extends ChangeNotifier {
     int _idKategorije = 0;
     int _kolicina = 0;
     int _cena = 0;
-
 
     listaProizvoda.clear();
 
@@ -138,8 +137,7 @@ class ProizvodiModel extends ChangeNotifier {
             kolicina: _kolicina,
             cena: _cena,
             slika: proizvod[6],
-            //opis: proizvod[7]
-            ));
+            opis: proizvod[7]));
         //print(proizvod[3]);
       }
     }
@@ -191,7 +189,7 @@ class Proizvod {
   int kolicina;
   int cena;
   String slika;
-  //String opis;
+  String opis;
 
   Proizvod(
       {this.id,
@@ -201,6 +199,5 @@ class Proizvod {
       this.kolicina,
       this.cena,
       this.slika,
-      //this.opis
-      });
+      this.opis});
 }

@@ -2,26 +2,42 @@ import '../constants.dart';
 
 import 'package:flutter/material.dart';
 
-class InputFieldNotValidated extends StatelessWidget {
+class InputFieldNotValidated extends StatefulWidget {
   final ValueChanged<String> field;
   final String title;
+  final int maxLen;
+  final myController;
 
   const InputFieldNotValidated({
     Key key,
     this.field,
     @required this.title,
+    this.maxLen,
+    this.myController,
   }) : super(key: key);
+
+  @override
+  _InputFieldNotValidatedState createState() =>
+      _InputFieldNotValidatedState(myController);
+}
+
+class _InputFieldNotValidatedState extends State<InputFieldNotValidated> {
+  var textController;
+  _InputFieldNotValidatedState(myController) {
+    textController = myController;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(30),
+      margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: TextFormField(
         cursorColor: Theme.of(context).cursorColor,
-        onChanged: field,
-        maxLength: 20,
+        controller: textController,
+        onChanged: widget.field,
+        maxLength: widget.maxLen,
         decoration: InputDecoration(
-          labelText: title,
+          labelText: widget.title,
           labelStyle: TextStyle(
             color: kPrimaryColor,
           ),
