@@ -12,13 +12,6 @@ namespace netCore.Models
 {
     public class JWTAuthenticationManager : IJWTAuthenticationManager
     {
-        //Ovde mora da se napravi da se ove stvari cuvaju u bazi ovo je samo test
-        private readonly IDictionary<string, string> users = new Dictionary<string, string>
-        {
-            {"mika.mikic@gmail.com", "mika123"},
-            {"mika.mikic", "mikica" }
-        };
-
         private readonly string key;
 
         public JWTAuthenticationManager(string key)
@@ -28,11 +21,6 @@ namespace netCore.Models
 
         public string Authenticate(string username, string password)
         {
-            if(!users.Any(u => u.Key == username && u.Value == password))
-            {
-                return null;
-            }
-
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.ASCII.GetBytes(key);
             var tokenDescriptor = new SecurityTokenDescriptor
