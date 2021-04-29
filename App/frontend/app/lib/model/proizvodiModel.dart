@@ -43,20 +43,20 @@ class ProizvodiModel extends ChangeNotifier {
 
   Future<void> getAbi() async {
     /**************************  WEB  ********************************** */
-    // String abiStringFile =
-    //     await rootBundle.loadString("assets/src/Proizvodi.json");
-    // var jsonAbi = jsonDecode(abiStringFile);
+    String abiStringFile =
+        await rootBundle.loadString("assets/src/Proizvodi.json");
+    var jsonAbi = jsonDecode(abiStringFile);
     /**************************  WEB  ********************************** */
 
     /**************************  MOB  ********************************** */
-    final response =
-        await http.get(Uri.http('147.91.204.116:11091', 'Proizvodi.json'));
-    var jsonAbi;
-    if (response.statusCode == 200) {
-      jsonAbi = jsonDecode(response.body);
-    } else {
-      throw Exception('Failed to load data from server');
-    }
+    // final response =
+    //     await http.get(Uri.http('147.91.204.116:11091', 'Proizvodi.json'));
+    // var jsonAbi;
+    // if (response.statusCode == 200) {
+    //   jsonAbi = jsonDecode(response.body);
+    // } else {
+    //   throw Exception('Failed to load data from server');
+    // }
     /**************************  MOB  ********************************** */
 
     abiCode = jsonEncode(jsonAbi["abi"]);
@@ -82,7 +82,7 @@ class ProizvodiModel extends ChangeNotifier {
     proizvodiKorisnika = ugovor.function("dajProizvodeZaKorisnika");
   }
 
-  Future<void> dodajProizvod(int _idKorisnika, int _idKategorije, String _naziv, int _kolicina, int _cena, String _slika) async {
+  Future<void> dodajProizvod(int _idKorisnika, int _idKategorije, String _naziv, int _kolicina, int _cena, String _slika/*, String _opis*/) async {
     await client.sendTransaction(
         credentials,
         Transaction.callContract(
@@ -95,11 +95,13 @@ class ProizvodiModel extends ChangeNotifier {
               _naziv,
               BigInt.from(_kolicina),
               BigInt.from(_cena),
-              _slika
+              _slika/*,
+              _opis*/
             ]));
   }
 
   Future<void> dajSveProizvode() async {
+    
     var temp = await client
         .call(contract: ugovor, function: brojProizvoda, params: []);
 
@@ -110,6 +112,7 @@ class ProizvodiModel extends ChangeNotifier {
     int _idKategorije = 0;
     int _kolicina = 0;
     int _cena = 0;
+
 
     listaProizvoda.clear();
 
@@ -133,7 +136,10 @@ class ProizvodiModel extends ChangeNotifier {
             idKategorije: _idKategorije,
             naziv: proizvod[3],
             kolicina: _kolicina,
-            cena: _cena));
+            cena: _cena,
+            slika: proizvod[6],
+            //opis: proizvod[7]
+            ));
         //print(proizvod[3]);
       }
     }
@@ -152,41 +158,6 @@ class ProizvodiModel extends ChangeNotifier {
         }
       }
     }
-    /*
-    List<dynamic> idPr = await client.call(contract: ugovor, function: proizvodiKorisnika, params: [BigInt.from(idKorisnika)]);
-    print(idPr[0][2]);
-
-    if(idPr[0].length > 0) { //Ako taj korisnik ima neki proizvd
-      BigInt big;
-      int _idKat;
-      int _kol;
-      int _cena;
-      proizvodiKor.clear();
-      for (var i = 0; i < idPr[0].length; i++) {
-        var proizvod = await client.call(contract: ugovor, function: proizvodi, params: [BigInt.from(idPr[0][i])]);
-
-        big = proizvod[2];
-        _idKat = big.toInt();
-        big = proizvod[4];
-        _kol = big.toInt();
-        big = proizvod[5];
-        _cena = big.toInt();
-
-        proizvodiKor.add(
-          Proizvod(
-            id: idPr[i],
-            idKorisnika: idKorisnika,
-            idKategorije: _idKat,
-            naziv: proizvod[3],
-            kolicina: _kol,
-            cena: _cena
-          )
-        );
-
-        print(proizvod[3]);
-      } //Dodali smo sve proizvode datog korisnika u listu
-    }
-    */
     return proizvodiKor;
   }
 
@@ -220,6 +191,7 @@ class Proizvod {
   int kolicina;
   int cena;
   String slika;
+  //String opis;
 
   Proizvod(
       {this.id,
@@ -228,5 +200,7 @@ class Proizvod {
       this.naziv,
       this.kolicina,
       this.cena,
-      this.slika});
+      this.slika,
+      //this.opis
+      });
 }

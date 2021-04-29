@@ -44,19 +44,19 @@ class OceneModel extends ChangeNotifier {
 
   Future<void> getAbi() async {
     /**************************  WEB  ********************************** */
-    // String abiStringFile = await rootBundle.loadString("assets/src/Ocene.json");
-    // var jsonAbi = jsonDecode(abiStringFile);
+    String abiStringFile = await rootBundle.loadString("assets/src/Ocene.json");
+    var jsonAbi = jsonDecode(abiStringFile);
    /**************************  WEB  ********************************** */
 
     /**************************  MOB  ********************************** */
-    final response =
-        await http.get(Uri.http('147.91.204.116:11091', 'Ocene.json'));
-    var jsonAbi;
-    if (response.statusCode == 200) {
-      jsonAbi = jsonDecode(response.body);
-    } else {
-      throw Exception('Failed to load data from server');
-    }
+    // final response =
+    //     await http.get(Uri.http('147.91.204.116:11091', 'Ocene.json'));
+    // var jsonAbi;
+    // if (response.statusCode == 200) {
+    //   jsonAbi = jsonDecode(response.body);
+    // } else {
+    //   throw Exception('Failed to load data from server');
+    // }
     /**************************  MOB  ********************************** */
 
     abiCode = jsonEncode(jsonAbi["abi"]);

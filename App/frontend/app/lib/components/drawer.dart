@@ -24,7 +24,7 @@ class ListenToDrawerEventState extends State<ListenToDrawerEvent> {
     KategorijeModel kategorije = Provider.of<KategorijeModel>(context);
 
     if (kategorije.isLoading == false) {
-      kategorije.dajKategoriju(0);
+      kategorije.dajKategorije();
     }
     if (ResponsiveLayout.isIphone(context)) {
       return Drawer(
@@ -127,7 +127,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
             ),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: kategorije.trenutnaKategorija.length,
+              itemCount: kategorije.kategorije.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   dense: true,
@@ -140,9 +140,9 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                             return ProductByCategory(
                               listaProizvoda:
                                   proizvodi.dajProizvodeZaKategoriju(
-                                      kategorije.trenutnaKategorija[index].id),
+                                      kategorije.kategorije[index].id),
                               category:
-                                  '${kategorije.trenutnaKategorija[index].naziv}',
+                                  '${kategorije.kategorije[index].naziv}',
                             );
                           },
                         ),
@@ -152,7 +152,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                       padding: EdgeInsets.all(20),
                       alignment: Alignment.topLeft,
                       child: Text(
-                        '${kategorije.trenutnaKategorija[index].naziv}',
+                        '${kategorije.kategorije[index].naziv}',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20,
