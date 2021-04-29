@@ -46,7 +46,7 @@ class _AddProductState extends State<AddProduct> {
     KategorijeModel kModel = new KategorijeModel();
     kModel.dajKategorije();
     List<Kategorija> listaRoditeljKategorija = kModel.kategorije;
-    print(kModel.listaKategorija.length);
+    print(listaKategorija.length);
     ValueChanged<String> naziv;
     ValueChanged<String> kolicina;
     ValueChanged<String> cena;
@@ -252,7 +252,6 @@ class _AddProductState extends State<AddProduct> {
                   if (!proba) {
                     setState(() {});
                   } else {
-                    print("proslo");
                     ProizvodiModel().dodajProizvod(
                         1, //Zamentiti sa pravim IDjem korisnika
                         int.parse("1"), //zameniti sa pravim idjem kategorije
@@ -261,6 +260,7 @@ class _AddProductState extends State<AddProduct> {
                         int.parse(cenaController.text),
                         slika,
                         opisController.text);
+                    print("proslo");
                   }
                   setState(() {});
                 },
