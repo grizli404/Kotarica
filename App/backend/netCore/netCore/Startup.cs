@@ -1,24 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using netCore.Data;
-using netCore.Handlers;
+using netCore.Hubs;
 using netCore.Interfaces;
 using netCore.Models;
-using netCore.SocketsManager;
 
 namespace netCore
 {
@@ -67,7 +60,7 @@ namespace netCore
             /*************** KRAJ TOKENA ************** */
 
             /*************** POCETAK CHAT-a ************** */
-            services.AddWebSocketManager();
+            services.AddSignalR();
             /*************** KRAJ CHAT-a ************** */
         }
 
@@ -92,10 +85,10 @@ namespace netCore
 
 
             /*************** POCETAK CHAT-a ************** */
-            app.UseWebSockets();
-            //OVDE IMAMO PROBLEM VALJDA TREBA DA UKLJUCIMO SOCKETSEXTENSION.CS IZ SOCKETSMANAGER
-            app.MapSockets("/ws", serviceProvider.GetService<WebSocketMessageHandler>());
-            app.UseStaticFiles();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHub<ChatHub>("/chathub");
+            });
             /*************** KRAJ CHAT-a ************** */
         }
     }
