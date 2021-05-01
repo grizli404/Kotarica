@@ -14,6 +14,7 @@ class KategorijeModel extends ChangeNotifier {
 
   Future<void> inicijalnoSetovanje() async {
     await dajSveKategorije();
+    dajKategorije();
   }
 
   List<Kategorija> parseJson(String response) {
