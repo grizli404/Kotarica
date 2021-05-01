@@ -10,7 +10,7 @@ namespace netCore.Hubs
     {
         public async Task SendMessage(string from, string to, string message)
         {
-            await Clients.All.SendAsync("ReceiveNewMessage", from, to, message, DateTime.Now);
+            await Clients.All.SendAsync("ReceiveMessage", from, to, message, DateTime.Now);
             Console.WriteLine("Primljena je nova poruka od: " + from + ", i on ju je poslao: " + to + " a tekst poruke je: " + message);
         }
     }
