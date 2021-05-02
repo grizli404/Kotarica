@@ -9,7 +9,6 @@ contract Ocene{
         int idKupovine;
         int idProdavca;
         int idKategorije; //ovi podaci o proizvodu se ponavljaju zbog toga sto trenutno trebaju Maji 
-                          //da bi pocela svoj rad na vreme, bice reseno drugacije kada vidimo koji je najbolji nacin
         int idProizvoda;  
         int ocena;
     }
@@ -48,29 +47,6 @@ contract Ocene{
         return 0;
     }
 
-
-    //Funkcija vraca prosecnu ocenu svih ocena koje su date proizvodima odredjenog prodavca
-    //U flutter-u se rezultat mora podeliti sa 100
-    //Npr. ako je prosek ocena 4.72 bice vracen rezultat 472
-    function prosecnaOcenaZaProdavca (int _idProdavca) public view returns (int)
-    {
-        int br = 0;
-        int suma = 0;
-        for (int i = 1; i <= brojOcena; i++) {
-            if(_idProdavca == ocene[i].idProdavca)
-            {
-                suma += ocene[i].ocena;
-                br++;
-            }
-        }
-        suma = suma * 100;
-        if(suma != 0 && br != 0)
-        {
-            int prosek = suma/br;
-            return prosek;
-        }
-        return 0;
-    }
 }
 
 
