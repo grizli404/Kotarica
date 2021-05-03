@@ -6,7 +6,9 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
+import 'dart:convert' as convert;
 
+import '../main.dart';
 import 'ether_setup.dart';
 
 class KorisniciModel extends ChangeNotifier {
@@ -63,7 +65,6 @@ class KorisniciModel extends ChangeNotifier {
 
     var jsonAbi = jsonDecode(abiStringFile);
     /**************************  WEB  ********************************** */
-
 
     /**************************  MOB  ********************************** */
     // final response =
@@ -202,6 +203,25 @@ class KorisniciModel extends ChangeNotifier {
             contract: ugovor,
             function: _dodajSliku,
             parameters: [BigInt.from(id), slika]));
+  }
+
+  static Map<String, String> header = {
+    "Access-Control_Allow_Origin": "*",
+    'Content-type': 'application/json; charset=utf-8',
+    'Accept': 'application/json',
+    //'Authorization': 'Authorize'
+  };
+
+  static Future<String> checkUser(String email, String password) async {
+    String url_pom = url + 'Token/authenticate';
+    var data = Map();
+    data['username'] = email;
+    data['password'] = password;
+    var jsonBody = convert.jsonEncode(data);
+    var res = await http.post(url_pom, headers: header, body: jsonBody);
+    String data2 = res.body.toString();
+    if (res.statusCode != 200) return ('false');
+    return data2;
   }
 }
 

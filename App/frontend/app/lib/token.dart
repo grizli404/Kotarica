@@ -12,7 +12,7 @@ class Token {
     await storage.write(key: key, value: data);
     jwt = await storage.read(key: "jwt");
     print('SET SECURE STORAGE');
-    print(jwt);
+    // print(jwt);
   }
 
   static Future<String> getSecureStorage(String key) async {
@@ -28,8 +28,6 @@ class Token {
 
     if (DateTime.fromMillisecondsSinceEpoch(token["exp"] * 1000)
         .isAfter(DateTime.now())) {
-      //loginUserID = int.parse(token['sub']);
-      //  loginUser = await KorisniciModel.vratiKorisnika(loginUserID, jwt);
       return jwt;
     }
 

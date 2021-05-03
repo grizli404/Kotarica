@@ -38,6 +38,12 @@ namespace netCore
 
             /*************** POCETAK TOKENA ************** */
             var key = "Mod privatni kljuc";
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
             services.AddAuthentication(x =>
            {
@@ -57,6 +63,7 @@ namespace netCore
            });
 
             services.AddSingleton<IJWTAuthenticationManager>(new JWTAuthenticationManager(key));
+            services.AddMvc();
             /*************** KRAJ TOKENA ************** */
 
             /*************** POCETAK CHAT-a ************** */
@@ -81,7 +88,9 @@ namespace netCore
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            app.UseCors("MyPolicy");
+
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseCors("_allowAnyOrigin");
