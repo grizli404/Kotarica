@@ -28,7 +28,6 @@ import 'package:provider/provider.dart';
 
 import '../../../main.dart';
 import '../../../token.dart';
-import '../../../tokenWeb.dart';
 
 class Body extends StatefulWidget {
   final scaffoldKey;
@@ -231,7 +230,8 @@ class _BodyState extends State<Body> {
                     if (response != 0 && jwt != 'false') {
                       !isWeb
                           ? Token.setSecureStorage("jwt", jwt)
-                          : TokenWeb.setToken = jwt;
+                          : await FlutterSession().set('jwt', jwt);
+                      //TokenWeb.setToken = jwt;
                       //print('TOKEN');
                       //print('jwt ' + jwt);
                       var token = json.decode(ascii.decode(
