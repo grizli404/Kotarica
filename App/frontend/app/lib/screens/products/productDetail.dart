@@ -2,6 +2,7 @@ import 'package:app/components/customAppBar.dart';
 import 'package:app/components/drawer.dart';
 import 'package:app/components/navigationBar.dart';
 import 'package:app/components/responsive_layout.dart';
+import 'package:app/screens/products/productDetailLayout.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
@@ -19,50 +20,44 @@ class ProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: CustomAppBar(),
-      drawer: ResponsiveLayout.isIphone(context) ? ListenToDrawerEvent() : null,
-      bottomNavigationBar: !isWeb ? NavigationBarWidget() : null,
       body: ResponsiveLayout(
-        iphone: Body(
-          assetPath: assetPath,
-          price: price,
-          name: name,
-          proizvod: proizvod,
-        ),
+        iphone: ProductDetailLayout(
+            proizvod: proizvod, assetPath: assetPath, price: price, name: name),
         ipad: Row(
           children: [
             Expanded(
-              flex: _size.width > 1200 && _size.width < 1340 ? 2 : 4,
+              // flex: 1000,
               child: ListenToDrawerEvent(),
             ),
             Expanded(
-              child: Body(
-                assetPath: assetPath,
-                price: price,
-                name: name,
-                proizvod: proizvod,
-              ),
-              flex: _size.width > 1200 && _size.width < 1340 ? 8 : 10,
-            )
+              flex: _size.width > 1200 && _size.width < 1340 ? 7 : 3,
+              child: ProductDetailLayout(
+                  proizvod: proizvod,
+                  assetPath: assetPath,
+                  price: price,
+                  name: name),
+            ),
           ],
         ),
         macbook: Row(
           children: [
             //   Padding(padding: EdgeInsets.symmetric(horizontal: 130.0)),
             Expanded(
-              flex: _size.width > 1340 ? 2 : 4,
+              // flex: _size.width > 1340 ? 1 : 100,
               child: ListenToDrawerEvent(),
             ),
             Expanded(
-              flex: _size.width > 1340 ? 8 : 10,
-              child: Body(
-                assetPath: assetPath,
-                price: price,
-                name: name,
-                proizvod: proizvod,
-              ),
+              flex: _size.width > 1340 ? 7 : 3,
+              child: ProductDetailLayout(
+                  proizvod: proizvod,
+                  assetPath: assetPath,
+                  price: price,
+                  name: name),
             ),
-            //  Padding(padding: EdgeInsets.symmetric(horizontal: 130.0)),
+
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 130.0),
+            // ),
           ],
         ),
       ),

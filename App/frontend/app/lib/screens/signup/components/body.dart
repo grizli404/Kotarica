@@ -206,15 +206,16 @@ class _BodyState extends State<Body> {
                       isApiCallProcess = true;
                     });
                     _username = _email;
-                    await FlutterSession().set('email', _email);
+
                     var response = 0;
                     try {
-                      korisnikInfo = await korisnik
-                          .vratiKorisnikaMail(_email)
-                          .timeout(const Duration(seconds: 5));
                       response = await korisnik
                           .dodavanjeNovogKorisnika(_email, _password, _ime,
                               _prezime, _kontakt, _adresa)
+                          .timeout(const Duration(seconds: 5));
+                      await FlutterSession().set('email', _email);
+                      korisnikInfo = await korisnik
+                          .vratiKorisnikaMail(_email)
                           .timeout(const Duration(seconds: 5));
                     } on TimeoutException catch (e) {
                       print("TIMED OUT ON SIGNUP 1!");

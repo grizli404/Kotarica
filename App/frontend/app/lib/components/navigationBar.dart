@@ -1,3 +1,4 @@
+import 'package:app/screens/add_product/add_product.dart';
 import 'package:app/screens/notifications/notification_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -36,13 +37,25 @@ class NavigationBarWidget extends StatelessWidget {
                 Navigator.pushNamed(context, '/favorites');
               },
             ),
-            IconButton(
-              icon: Icon(Icons.shopping_cart_rounded),
-              color: Theme.of(context).bottomAppBarColor,
-              onPressed: () {
-                Navigator.pushNamed(context, '/cart');
-              },
-            ),
+            korisnikInfo != null
+                ? IconButton(
+                    icon: Icon(Icons.control_point),
+                    iconSize: 40,
+                    color: Theme.of(context).bottomAppBarColor,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AddProduct()),
+                      );
+                    },
+                  )
+                : IconButton(
+                    icon: Icon(Icons.shopping_cart_outlined),
+                    color: Theme.of(context).bottomAppBarColor,
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/cart');
+                    },
+                  ),
             IconButton(
                 icon: Icon(Icons.notifications),
                 onPressed: () {

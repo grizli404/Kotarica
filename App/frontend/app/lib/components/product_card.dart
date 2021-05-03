@@ -50,7 +50,7 @@ class ProductCard extends StatelessWidget {
               );
             },
             child: Container(
-                width: 150,
+                width: ResponsiveLayout.isIphone(context) ? 160 : 180,
                 height: ResponsiveLayout.isIphone(context) ? 200 : 250,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),

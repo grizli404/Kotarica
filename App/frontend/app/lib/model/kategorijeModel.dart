@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
+List<Kategorija> listaKategorija = [];
+
 class KategorijeModel extends ChangeNotifier {
   List<Kategorija> kategorije = [];
 
@@ -18,7 +20,7 @@ class KategorijeModel extends ChangeNotifier {
   }
 
   List<Kategorija> parseJson(String response) {
-    if(response == null) {
+    if (response == null) {
       return [];
     }
     final parsed =
@@ -28,7 +30,6 @@ class KategorijeModel extends ChangeNotifier {
 
   //Iz jsona cita sve kategorije
   Future<void> dajSveKategorije() async {
-
     String abiStringFile =
         await rootBundle.loadString("assets/kategorije.json");
     //var jsonAbi = jsonDecode(abiStringFile);
@@ -47,11 +48,10 @@ class KategorijeModel extends ChangeNotifier {
         kategorije.add(listaKategorija[i]);
       }
     }
-  }  
+  }
 
   //F-ja vraca potkategorije trazene kategorije
   List<Kategorija> dajPotkategorije(int _roditeljKategorija) {
-    
     List<Kategorija> potkategorije = [];
     for (var i = 0; i < listaKategorija.length; i++) {
       if (listaKategorija[i].idRoditelja == _roditeljKategorija) {
