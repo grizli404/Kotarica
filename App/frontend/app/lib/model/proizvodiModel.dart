@@ -37,7 +37,7 @@ class ProizvodiModel extends ChangeNotifier {
     await getAbi();
     await getCredentials();
     await getDeployedCotract();
-    //await dodajProizvod(1, 1, "Ovca", 5, 25000, "hashslike");
+    
     await dajSveProizvode();
   }
 
@@ -179,6 +179,32 @@ class ProizvodiModel extends ChangeNotifier {
 
     return result;
   }
+
+  //Funkcija koja vraca proizvod za zadati id
+  //Ovo je potrebno za lajkovane proizvode
+  Proizvod dajProizvodZaId(int _idProizvoda) {
+    Proizvod p = Proizvod(
+      id: 0,
+      idKorisnika: 0,
+      idKategorije: 0,
+      naziv: "",
+      kolicina: 0,
+      cena: 0,
+      slika: "",
+      opis: ""
+      );
+
+    if(_idProizvoda > 0) {
+      for (var i = 0; i < listaProizvoda.length; i++) {
+        if(listaProizvoda[i].id == _idProizvoda){
+          p = listaProizvoda[i];
+          break;
+        }
+      }
+    }
+    return p;
+  }
+
 }
 
 class Proizvod {

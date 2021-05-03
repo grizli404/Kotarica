@@ -48,11 +48,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     kIsWeb ? isWeb = true : isWeb = false;
     // print(FlutterSession().get('email').toString());
-    //var korisnici = KorisniciModel();
+    var korisnici = KorisniciModel();
     //var kategorije = KategorijeModel();
     //var proizvodi = ProizvodiModel();
     //var ocene = OceneModel();
-    var lista = ListaZeljaModel();
+    //var lista = ListaZeljaModel();
     // setujSesiju();
     return MultiProvider(
       providers: [
