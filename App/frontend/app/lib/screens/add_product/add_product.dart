@@ -46,7 +46,7 @@ class _AddProductState extends State<AddProduct> {
     KategorijeModel kModel = new KategorijeModel();
     kModel.dajKategorije();
     List<Kategorija> listaRoditeljKategorija = kModel.kategorije;
-    print(listaKategorija.length);
+    //print(listaKategorija.length);
     ValueChanged<String> naziv;
     ValueChanged<String> kolicina;
     ValueChanged<String> cena;

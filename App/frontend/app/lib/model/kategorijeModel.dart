@@ -3,7 +3,10 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
+List<Kategorija> listaKategorija = [];
+
 class KategorijeModel extends ChangeNotifier {
+  
   List<Kategorija> kategorije = [];
 
   bool isLoading = true;
