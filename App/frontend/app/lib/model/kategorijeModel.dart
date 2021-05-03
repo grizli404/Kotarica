@@ -4,9 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 List<Kategorija> listaKategorija = [];
+List<Kategorija> listaRoditeljKateogrijaMain = [];
 
 class KategorijeModel extends ChangeNotifier {
-  
   List<Kategorija> kategorije = [];
 
   bool isLoading = true;
@@ -49,6 +49,7 @@ class KategorijeModel extends ChangeNotifier {
         kategorije.add(listaKategorija[i]);
       }
     }
+    listaRoditeljKateogrijaMain = kategorije;
   }
 
   //F-ja vraca potkategorije trazene kategorije
