@@ -126,12 +126,27 @@ class KorisniciModel extends ChangeNotifier {
 
   //Setuje prijavljenog korisnika
   Future<void> vratiKorisnika(int _id) async {
-    if (_id > 0) {
-      var k = await client.call(
-          contract: ugovor, function: korisnici, params: [BigInt.from(_id)]);
+      ulogovaniKorisnik = await dajKorisnikaZaId(_id);
+  }
 
-      ulogovaniKorisnik = Korisnik(
-          id: _id,
+  Future<Korisnik> dajKorisnikaZaId(int _idKorisnika) async {
+    Korisnik kor = Korisnik(
+      id: 0,
+      mail: "",
+      password: "",
+      ime: "",
+      prezime: "",
+      brojTelefona: "",
+      adresa: "",
+      slika: ""
+    );
+
+    if (_idKorisnika > 0) {
+      var k = await client.call(
+          contract: ugovor, function: korisnici, params: [BigInt.from(_idKorisnika)]);
+
+      kor = Korisnik(
+          id: _idKorisnika,
           mail: k[1],
           password: k[2],
           ime: k[3],
@@ -140,6 +155,11 @@ class KorisniciModel extends ChangeNotifier {
           adresa: k[6],
           slika: k[7]);
     }
+
+    print(kor.ime);
+    print(kor.mail);
+
+    return kor;
   }
 
   //Registracija
