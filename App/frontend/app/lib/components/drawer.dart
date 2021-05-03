@@ -41,7 +41,7 @@ class ListenToDrawerEventState extends State<ListenToDrawerEvent> {
 Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
   zatvoriSesiju() async {
     korisnikInfo = null;
-    await FlutterSession().set('email', '');
+    // await FlutterSession().set('email', '');
   }
 
   ProizvodiModel proizvodi = ProizvodiModel();
@@ -129,9 +129,10 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
             ListView.builder(
               shrinkWrap: true,
               itemCount: kategorije.kategorije.length,
+              physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                return ListTile(
-                  dense: true,
+                return ExpansionTile(
+                  //dense: true,
                   title: MaterialButton(
                     onPressed: () {
                       Navigator.push(
@@ -156,21 +157,19 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20,
-
-                          // color: ResponsiveLayout.isIphone(context)
-                          //     ? Theme.of(context).primaryColor
-                          //     : Colors.white,
                         ),
                       ),
                     ),
                   ),
+
+                  children: [
+                    prikazPotkategorija(index, kategorije, proizvodi),
+                  ],
                 );
               },
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 5.0),
-              //   child: Container(color: Color(0xFFEBEBEB)
-              //  height: 1.0)
             ),
             if (korisnikInfo != null && isWeb)
               Container(
@@ -178,43 +177,26 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                 padding: EdgeInsets.only(left: 15.0),
                 child: InkWell(
                   hoverColor: Colors.grey,
-                  //focusColor: Colors.grey,
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => AddProduct()),
                     );
                   },
-
-                  child:
-                      // Row(
-                      //  children: [
-                      Text(
+                  child: Text(
                     'Dodajte novi proizvod',
                     style: TextStyle(
                       fontSize: 20,
-                      // color: ResponsiveLayout.isIphone(context)
-                      //     ? Colors.black
-                      //     : Colors.white,
                     ),
                   ),
-                  //    ],
                 ),
               ),
-            //color: Colors.white,
-            //  alignment: Alignment.centerLeft,
-            // ),
             korisnikInfo != null
                 ? Container(
                     height: 80,
                     padding: EdgeInsets.only(left: 15.0),
                     child: InkWell(
-                      //hoverColor: Colors.grey,
-                      //focusColor: Colors.grey,
                       onTap: () {
-                        // _showMyDialog();
-                        // zatvoriSesiju();
-                        // Navigator.pushNamed(context, '/home');
                         showDialog(
                           context: context,
                           barrierDismissible: false, // user must tap button!
@@ -262,15 +244,11 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                             'Odjavite se',
                             style: TextStyle(
                               fontSize: 20,
-                              // color: ResponsiveLayout.isIphone(context)
-                              //     ? Colors.black
-                              //     : Colors.white,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    //color: Colors.white,
                     alignment: Alignment.centerLeft,
                   )
                 : Container(
@@ -278,26 +256,20 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                     padding: EdgeInsets.only(left: 15.0),
                     child: InkWell(
                       hoverColor: Colors.grey,
-                      //focusColor: Colors.grey,
                       onTap: () {
                         Navigator.pushNamed(context, '/login');
                       },
-
                       child: Row(
                         children: [
                           Text(
                             'Prijavite se',
                             style: TextStyle(
                               fontSize: 20,
-                              // color: ResponsiveLayout.isIphone(context)
-                              //     ? Colors.black
-                              //     : Colors.white,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    //color: Colors.white,
                     alignment: Alignment.centerLeft,
                   ),
             Container(
@@ -316,4 +288,47 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
           ],
         ),
       )));
+}
+
+Widget prikazPotkategorija(
+    int index, KategorijeModel kategorije, ProizvodiModel proizvodi) {
+  List<Kategorija> potkategorije =
+      kategorije.dajPotkategorije(kategorije.kategorije[index].id);
+  return ListView.builder(
+    shrinkWrap: true,
+    itemCount: potkategorije.length,
+    physics: NeverScrollableScrollPhysics(),
+    itemBuilder: (context, index) {
+      return ListTile(
+        dense: true,
+        title: MaterialButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return ProductByCategory(
+                    listaProizvoda: proizvodi
+                        .dajProizvodeZaKategoriju(potkategorije[index].id),
+                    category: '${potkategorije[index].naziv}',
+                  );
+                },
+              ),
+            );
+          },
+          child: Container(
+            padding: EdgeInsets.all(20),
+            alignment: Alignment.topLeft,
+            child: Text(
+              '  ${potkategorije[index].naziv}',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ),
+      );
+    },
+  );
 }

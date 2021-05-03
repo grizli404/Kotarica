@@ -1,4 +1,6 @@
 // ignore: unused_import
+import 'dart:io';
+
 import 'package:app/model/kategorijeModel.dart';
 import 'package:app/model/oceneModel.dart';
 import 'package:app/model/personal_data.dart';
@@ -24,12 +26,22 @@ import 'model/korisniciModel.dart';
 import 'screens/add_product/add_product.dart';
 import 'screens/profile/my_profile_screen.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() {
+  HttpOverrides.global = new MyHttpOverrides();
   runApp(MyApp());
 }
 
 Korisnik korisnikInfo;
-
+String url = '';
 bool isWeb;
 
 class MyApp extends StatelessWidget {
@@ -42,6 +54,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (kIsWeb) {
+      url = 'http://127.0.0.1:5000/';
+    } else {
+      url = 'http://10.0.2.2:5000/';
+    }
     kIsWeb ? isWeb = true : isWeb = false;
     // print(FlutterSession().get('email').toString());
     //var korisnici = KorisniciModel();
