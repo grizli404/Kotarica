@@ -61,6 +61,15 @@ namespace netCore
 
             /*************** POCETAK CHAT-a ************** */
             services.AddSignalR();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("_allowAnyOrigin",
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                                  });
+            });
             /*************** KRAJ CHAT-a ************** */
         }
 
@@ -75,7 +84,7 @@ namespace netCore
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("_allowAnyOrigin");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

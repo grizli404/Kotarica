@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:app/model/kategorijeModel.dart';
+import 'package:app/model/listaZeljaModel.dart';
 import 'package:app/model/oceneModel.dart';
 import 'package:app/model/personal_data.dart';
 import 'package:app/model/proizvodiModel.dart';
@@ -39,6 +40,9 @@ class MyApp extends StatelessWidget {
   //   if (token == '') await FlutterSession().set('email', '');
   //   return token;
   // }
+  
+  //KorisniciModel km = KorisniciModel();
+  //ListaZeljaModel lzm = new ListaZeljaModel();
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +52,7 @@ class MyApp extends StatelessWidget {
     //var kategorije = KategorijeModel();
     //var proizvodi = ProizvodiModel();
     //var ocene = OceneModel();
+    var lista = ListaZeljaModel();
     // setujSesiju();
     return MultiProvider(
       providers: [
@@ -56,6 +61,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => KategorijeModel()),
         ChangeNotifierProvider(create: (context) => OceneModel()),
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => ListaZeljaModel()),
       ],
       child: MaterialAppCustom(),
     );
