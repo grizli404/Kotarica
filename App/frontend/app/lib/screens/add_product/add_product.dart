@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:app/components/input_fields.dart';
 import 'package:app/components/rad_sa_slikama.dart';
+import 'package:app/main.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:app/model/kategorijeModel.dart';
@@ -18,6 +19,7 @@ String textKolicina = "";
 double opacityKolicina = 0.0;
 String textCena = "";
 double opacityCena = 0.0;
+int kategorijaIndex = 0;
 
 class AddProduct extends StatefulWidget {
   final String korisnik;
@@ -35,7 +37,9 @@ class _AddProductState extends State<AddProduct> {
   final kolicinaController = TextEditingController();
   final cenaController = TextEditingController();
   final opisController = TextEditingController();
-
+  List<Kategorija> listaRoditeljKategorija = listaRoditeljKateogrijaMain;
+  Kategorija selectedCat = listaRoditeljKateogrijaMain[0];
+  int catIndex;
   void dispose() {
     nazivController.dispose();
     super.dispose();
@@ -43,15 +47,11 @@ class _AddProductState extends State<AddProduct> {
 
   @override
   Widget build(BuildContext context) {
-    KategorijeModel kModel = new KategorijeModel();
-    kModel.dajKategorije();
-    List<Kategorija> listaRoditeljKategorija = kModel.kategorije;
-    //print(listaKategorija.length);
-    ValueChanged<String> naziv;
-    ValueChanged<String> kolicina;
-    ValueChanged<String> cena;
-    ValueChanged<String> opis;
+    print(listaKategorija.length);
     ValueChanged<String> kategorija;
+    List<Kategorija> subcategory =
+        KategorijeModel().dajPotkategorije(selectedCat.id);
+    print(subcategory.length);
     Size size = MediaQuery.maybeOf(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -183,23 +183,47 @@ class _AddProductState extends State<AddProduct> {
                   )
                 ],
               ),
-              DropdownButton<String>(
-                items: listaRoditeljKategorija.map((Kategorija value) {
-                  return new DropdownMenuItem<String>(
-                      value: "izaberi",
-                      child: Text(
-                        value.naziv,
-                        style: TextStyle(color: kPrimaryColor),
-                      ));
-                }).toList(),
-                hint: Text(
-                  "Izaberite kategoriju",
-                  style: TextStyle(color: kPrimaryColor),
-                ),
-                onChanged: (_) {},
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  DropdownButton<Kategorija>(
+                    value: selectedCat,
+                    items: listaRoditeljKategorija.map((Kategorija value) {
+                      return new DropdownMenuItem<Kategorija>(
+                          value: value,
+                          child: Text(
+                            value.naziv,
+                            style: TextStyle(color: kPrimaryColor),
+                          ));
+                    }).toList(),
+                    onChanged: (Kategorija newCat) {
+                      print("Izmenjena kategorija");
+                      print(newCat.naziv);
+                      kategorijaIndex = 0;
+                      setState(() {
+                        selectedCat = newCat;
+                      });
+                    },
+                  ),
+                  DropdownButton<Kategorija>(
+                    value: subcategory[kategorijaIndex],
+                    items: subcategory.map((Kategorija value) {
+                      return new DropdownMenuItem<Kategorija>(
+                          value: value,
+                          child: Text(
+                            value.naziv,
+                            style: TextStyle(color: kPrimaryColor),
+                          ));
+                    }).toList(),
+                    onChanged: (Kategorija newCat) {
+                      print("Izmenjena potkategorija");
+                      print(newCat.naziv);
+                      kategorijaIndex = subcategory.indexOf(newCat);
+                      setState(() {});
+                    },
+                  ),
+                ],
               ),
-              InputFieldNotValidated(
-                  field: kategorija, title: "Kategorija comboBox"),
               RaisedButton(
                 child: Text(
                   "Postavi proizvod",
@@ -252,15 +276,26 @@ class _AddProductState extends State<AddProduct> {
                   if (!proba) {
                     setState(() {});
                   } else {
+                    print(korisnikInfo.id.toString() +
+                        "," +
+                        subcategory[kategorijaIndex].id.toString() +
+                        "," +
+                        nazivController.text +
+                        "," +
+                        kolicinaController.text +
+                        "," +
+                        cenaController.text +
+                        "," +
+                        opisController.text);
                     ProizvodiModel().dodajProizvod(
-                        1, //Zamentiti sa pravim IDjem korisnika
-                        int.parse("1"), //zameniti sa pravim idjem kategorije
+                        korisnikInfo.id,
+                        subcategory[kategorijaIndex].id,
                         nazivController.text,
                         int.parse(kolicinaController.text),
                         int.parse(cenaController.text),
                         slika,
                         opisController.text);
-                    print("proslo");
+                    print("Uspesno dodavanje");
                   }
                   setState(() {});
                 },
