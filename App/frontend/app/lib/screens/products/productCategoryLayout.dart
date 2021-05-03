@@ -22,6 +22,7 @@ class ProductCategoryLayout extends StatelessWidget {
           proizvodi: listaProizvoda,
         ),
         drawer: ListenToDrawerEvent(),
+        extendBody: true,
         bottomNavigationBar: !isWeb ? NavigationBarWidget() : null,
       );
     } else {

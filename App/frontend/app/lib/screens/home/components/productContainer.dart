@@ -15,7 +15,8 @@ class ProductContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProizvodiModel proizvodi = Provider.of<ProizvodiModel>(context);
-    return Material(
+    return Container(
+      height: 340,
       color: Theme.of(context).scaffoldBackgroundColor,
       child: ListView(
         physics: NeverScrollableScrollPhysics(),

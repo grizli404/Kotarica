@@ -1,5 +1,6 @@
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/model/proizvodiModel.dart';
+import 'package:app/screens/add_product/add_product.dart';
 import 'package:app/screens/products/products_by_category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
@@ -141,8 +142,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                               listaProizvoda:
                                   proizvodi.dajProizvodeZaKategoriju(
                                       kategorije.kategorije[index].id),
-                              category:
-                                  '${kategorije.kategorije[index].naziv}',
+                              category: '${kategorije.kategorije[index].naziv}',
                             );
                           },
                         ),
@@ -172,12 +172,44 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
               //   child: Container(color: Color(0xFFEBEBEB)
               //  height: 1.0)
             ),
+            if (korisnikInfo != null && isWeb)
+              Container(
+                height: 80,
+                padding: EdgeInsets.only(left: 15.0),
+                child: InkWell(
+                  hoverColor: Colors.grey,
+                  //focusColor: Colors.grey,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AddProduct()),
+                    );
+                  },
+
+                  child:
+                      // Row(
+                      //  children: [
+                      Text(
+                    'Dodajte novi proizvod',
+                    style: TextStyle(
+                      fontSize: 20,
+                      // color: ResponsiveLayout.isIphone(context)
+                      //     ? Colors.black
+                      //     : Colors.white,
+                    ),
+                  ),
+                  //    ],
+                ),
+              ),
+            //color: Colors.white,
+            //  alignment: Alignment.centerLeft,
+            // ),
             korisnikInfo != null
                 ? Container(
                     height: 80,
                     padding: EdgeInsets.only(left: 15.0),
                     child: InkWell(
-                      hoverColor: Colors.grey,
+                      //hoverColor: Colors.grey,
                       //focusColor: Colors.grey,
                       onTap: () {
                         // _showMyDialog();
