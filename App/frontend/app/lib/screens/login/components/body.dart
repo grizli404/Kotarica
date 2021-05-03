@@ -18,7 +18,6 @@ import 'package:provider/provider.dart';
 
 import '../../../main.dart';
 import '../../../token.dart';
-import '../../../tokenWeb.dart';
 
 class _BodyState extends State<Body> {
   GlobalKey<FormState> globalFormKey = new GlobalKey<FormState>();
@@ -144,7 +143,10 @@ class _BodyState extends State<Body> {
       }
 
       if (id != 0 && jwt != 'false') {
-        !isWeb ? Token.setSecureStorage("jwt", jwt) : TokenWeb.setToken = jwt;
+        !isWeb
+            ? Token.setSecureStorage("jwt", jwt)
+            : FlutterSession().set('jwt', jwt);
+        // TokenWeb.setToken = jwt;
         //  print('TOKEN');
         //  print('jwt ' + jwt);
         var token = json.decode(
