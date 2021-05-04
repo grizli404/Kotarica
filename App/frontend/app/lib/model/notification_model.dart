@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -57,7 +57,7 @@ class NotifikacijeModel extends ChangeNotifier{
   }
 
   Future<void> inicijalnoSetovanje() async {
-    client = Web3Client(rpcUrl, Client(), socketConnector: () {
+    client = Web3Client(rpcUrl, http.Client(), socketConnector: () {
       return IOWebSocketChannel.connect(wsUrl).cast<String>();
     });
 
@@ -69,19 +69,19 @@ class NotifikacijeModel extends ChangeNotifier{
   Future<void> getAbi() async {
     
     /**************************  WEB  ********************************** */
-    String abiStringFile = await rootBundle.loadString("assets/src/Notification.json");
-    var jsonAbi = jsonDecode(abiStringFile);
+    // String abiStringFile = await rootBundle.loadString("assets/src/Notification.json");
+    // var jsonAbi = jsonDecode(abiStringFile);
    /**************************  WEB  ********************************** */
 
     /**************************  MOB  ********************************** */
-    // final response =
-    //     await http.get(Uri.http('147.91.204.116:11091', 'Notification.json'));
-    // var jsonAbi;
-    // if (response.statusCode == 200) {
-    //   jsonAbi = jsonDecode(response.body);
-    // } else {
-    //   throw Exception('Failed to load data from server');
-    // }
+    final response =
+        await http.get(Uri.http('147.91.204.116:11091', 'Notification.json'));
+    var jsonAbi;
+    if (response.statusCode == 200) {
+      jsonAbi = jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to load data from server');
+    }
     /**************************  MOB  ********************************** */
 
 

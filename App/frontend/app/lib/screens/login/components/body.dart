@@ -143,10 +143,7 @@ class _BodyState extends State<Body> {
       }
 
       if (id != 0 && jwt != 'false') {
-        !isWeb
-            ? Token.setSecureStorage("jwt", jwt)
-            : FlutterSession().set('jwt', jwt);
-        // TokenWeb.setToken = jwt;
+        !isWeb ? Token.setSecureStorage("jwt", jwt) : await FlutterSession().set("jwt", jwt);
         //  print('TOKEN');
         //  print('jwt ' + jwt);
         var token = json.decode(
