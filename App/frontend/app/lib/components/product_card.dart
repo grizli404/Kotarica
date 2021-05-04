@@ -1,16 +1,16 @@
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/constants.dart';
 import 'package:app/main.dart';
-import 'package:app/model/cart.dart';
 import 'package:app/model/listaZeljaModel.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/products/productDetail.dart';
 import 'package:flutter/material.dart';
 
+import '../model/listaZeljaModel.dart';
 import 'number_selector.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({
+  ProductCard({
     Key key,
     @required this.name,
     @required this.price,
@@ -19,8 +19,11 @@ class ProductCard extends StatelessWidget {
     @required this.isFavorite,
     @required this.context,
     this.proizvod,
-  }) : super(key: key);
+  }) {
+    this.lzModel = new ListaZeljaModel();
+  }
 
+  ListaZeljaModel lzModel;
   final String name;
   final String price;
   final String imgPath;
@@ -32,6 +35,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NumberSelector numberSelector = new NumberSelector();
+
     Size size = MediaQuery.of(context).size;
     return Padding(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
@@ -79,11 +83,12 @@ class ProductCard extends StatelessWidget {
                                           color: Theme.of(context)
                                               .iconTheme
                                               .color),
-                                      onPressed: () {
+                                      onPressed: () async {
                                         if (korisnikInfo != null) {
                                           print("Stavljen u omiljene");
-                                          new ListaZeljaModel().lajkovanje(
+                                          await lzModel.lajkovanje(
                                               korisnikInfo.id, proizvod.id);
+                                          print("Proso");
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(SnackBar(
                                             content: Text(

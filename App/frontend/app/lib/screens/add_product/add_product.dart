@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'dart:ui';
+//import 'dart:ui';
 
 import 'package:app/components/input_fields.dart';
 import 'package:app/components/rad_sa_slikama.dart';
@@ -19,7 +19,6 @@ String textKolicina = "";
 double opacityKolicina = 0.0;
 String textCena = "";
 double opacityCena = 0.0;
-int kategorijaIndex = 0;
 
 class AddProduct extends StatefulWidget {
   final String korisnik;
@@ -38,26 +37,35 @@ class _AddProductState extends State<AddProduct> {
   final cenaController = TextEditingController();
   final opisController = TextEditingController();
   ProizvodiModel pModel;
-  List<Kategorija> listaRoditeljKategorija = listaRoditeljKateogrijaMain;
-  Kategorija selectedCat = listaRoditeljKateogrijaMain[0];
+  List<Kategorija> listaRoditeljKategorija = [];
+  List<Kategorija> subcategory = [];
+  Kategorija selectedCat;
   int catIndex;
-  void dispose() {
-    nazivController.dispose();
-    super.dispose();
-  }
+  Kategorija potkategorija;
+  KategorijeModel kModel;
+
+  // void dispose() {
+  //   nazivController.dispose();
+  //   kolicinaController.dispose();
+  //   cenaController.dispose();
+  //   opisController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   void initState() {
     super.initState();
+    kModel = new KategorijeModel();
     pModel = new ProizvodiModel();
+    listaRoditeljKategorija = listaRoditeljKateogrijaMain;
+    selectedCat = listaRoditeljKategorija[0];
+    subcategory = kModel.dajPotkategorije(selectedCat.id);
+    potkategorija = subcategory[0];
   }
 
   @override
   Widget build(BuildContext context) {
     print(listaKategorija.length);
-    ValueChanged<String> kategorija;
-    List<Kategorija> subcategory =
-        KategorijeModel().dajPotkategorije(selectedCat.id);
     print(subcategory.length);
     Size size = MediaQuery.maybeOf(context).size;
 
@@ -194,9 +202,11 @@ class _AddProductState extends State<AddProduct> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  //kategorije
                   DropdownButton<Kategorija>(
                     value: selectedCat,
                     items: listaRoditeljKategorija.map((Kategorija value) {
+                      print("Doropdown kategorija");
                       return new DropdownMenuItem<Kategorija>(
                           value: value,
                           child: Text(
@@ -207,15 +217,17 @@ class _AddProductState extends State<AddProduct> {
                     onChanged: (Kategorija newCat) {
                       print("Izmenjena kategorija");
                       print(newCat.naziv);
-                      kategorijaIndex = 0;
                       setState(() {
                         selectedCat = newCat;
+                        subcategory = kModel.dajPotkategorije(selectedCat.id);
+                        potkategorija = subcategory[0];
                       });
                     },
-                  ),
+                  ), //potkategorije
                   DropdownButton<Kategorija>(
-                    value: subcategory[kategorijaIndex],
+                    value: potkategorija,
                     items: subcategory.map((Kategorija value) {
+                      print("Doropdown potkategorija");
                       return new DropdownMenuItem<Kategorija>(
                           value: value,
                           child: Text(
@@ -226,8 +238,9 @@ class _AddProductState extends State<AddProduct> {
                     onChanged: (Kategorija newCat) {
                       print("Izmenjena potkategorija");
                       print(newCat.naziv);
-                      kategorijaIndex = subcategory.indexOf(newCat);
-                      setState(() {});
+                      setState(() {
+                        potkategorija = newCat;
+                      });
                     },
                   ),
                 ],
@@ -282,11 +295,11 @@ class _AddProductState extends State<AddProduct> {
                   }
 
                   if (!proba) {
-                    setState(() {});
+                    //setState(() {});
                   } else {
                     print(korisnikInfo.id.toString() +
                         "," +
-                        subcategory[kategorijaIndex].id.toString() +
+                        potkategorija.id.toString() +
                         "," +
                         nazivController.text +
                         "," +
@@ -297,7 +310,7 @@ class _AddProductState extends State<AddProduct> {
                         opisController.text);
                     pModel.dodajProizvod(
                         korisnikInfo.id,
-                        subcategory[kategorijaIndex].id,
+                        potkategorija.id,
                         nazivController.text,
                         int.parse(kolicinaController.text),
                         int.parse(cenaController.text),
