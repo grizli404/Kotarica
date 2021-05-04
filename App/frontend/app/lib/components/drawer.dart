@@ -108,8 +108,8 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                                     color: Colors.white,
                                     fontSize: 30),
                               ),
-                              //korisnikInfo != null
-                              Token.jwt != null
+                              korisnikInfo != null
+                             // Token.jwt != null
                                   ? Text(
                                       'Dobrodošli, ${korisnikInfo.ime}',
                                       style: Theme.of(context)
