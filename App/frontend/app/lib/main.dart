@@ -41,6 +41,7 @@ void main() {
   runApp(MyApp());
 }
 
+ListaZeljaModel listaZeljaModelMain = new ListaZeljaModel();
 Korisnik korisnikInfo;
 String url = '';
 bool isWeb;
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
   //   if (token == '') await FlutterSession().set('email', '');
   //   return token;
   // }
-  
+
   //KorisniciModel km = KorisniciModel();
   //ListaZeljaModel lzm = new ListaZeljaModel();
 

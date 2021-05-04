@@ -82,7 +82,6 @@ class ListaZeljaModel extends ChangeNotifier {
   Future<void> getDeployedCotract() async {
     ugovor = DeployedContract(
         ContractAbi.fromJson(abiCode, "ListaZelja"), adresaUgovora);
-    print(ugovor);
     _lajkovanje = ugovor.function("lajkovanje");
     _dislajkovanje = ugovor.function("dislajkovanje");
     _dajLajkove = ugovor.function("dajLajkove");
