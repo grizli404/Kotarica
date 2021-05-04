@@ -53,7 +53,7 @@ Widget labelContainer(String labelVal) {
 
 Widget appsContainer(ProizvodiModel proizvodi, BuildContext context) {
   return Container(
-    height: ResponsiveLayout.isIphone(context) ? 270 : 250.0,
+    height: ResponsiveLayout.isIphone(context) ? 280 : 250.0,
     //200.0,
     child: ListView.builder(
       scrollDirection: Axis.horizontal,

@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
               child: ListenToDrawerEvent(),
             ),
             Expanded(
-              flex: _size.width > 1200 && _size.width < 1340 ? 7 : 3,
+              flex: _size.width > 1200 && _size.width < 1340 ? 6 : 3,
               child: HomeScreenLayout(),
             ),
           ],
@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               child: ListenToDrawerEvent(),
             ),
             Expanded(
-              flex: _size.width > 1340 ? 7 : 3,
+              flex: _size.width > 1340 ? 6 : 3,
               child: HomeScreenLayout(),
             ),
 
