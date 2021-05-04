@@ -46,10 +46,23 @@ class ListaZeljaModel extends ChangeNotifier{
   }
 
   Future<void> getAbi() async {
-    String abiStringFile =
-        await rootBundle.loadString("assets/src/ListaZelja.json");
+    /**************************  WEB  ********************************** */
+    // String abiStringFile =
+    //     await rootBundle.loadString("assets/src/ListaZelja.json");
 
-    var jsonAbi = jsonDecode(abiStringFile);
+    // var jsonAbi = jsonDecode(abiStringFile);
+    /**************************  WEB  ********************************** */
+
+    /**************************  MOB  ********************************** */
+    final response =
+        await http.get(Uri.http('147.91.204.116:11091', 'ListaZelja.json'));
+    var jsonAbi;
+    if (response.statusCode == 200) {
+      jsonAbi = jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to load data from server');
+    }
+    /**************************  MOB  ********************************** */
 
     abiCode = jsonEncode(jsonAbi["abi"]);
 

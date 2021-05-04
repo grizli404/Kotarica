@@ -4,7 +4,7 @@ import 'dart:io';
 
 Future<String> uploadImage(File filename) async {
   var request =
-      http.MultipartRequest('POST', Uri.parse("http://10.0.2.2:5000/upload"));
+      http.MultipartRequest('POST', Uri.parse("http://147.91.204.116:11093/upload"));
   print("Function: Adding request...");
   request.files
       .add(await http.MultipartFile.fromPath('picture', filename.path));
