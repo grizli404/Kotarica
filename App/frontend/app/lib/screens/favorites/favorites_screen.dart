@@ -19,7 +19,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         //   bottom: Radius.circular(36),
         // )),
       ),
-      body: Container(),
+      body: FavoritesBody(),
     );
   }
 }
