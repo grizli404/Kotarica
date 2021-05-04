@@ -1,6 +1,8 @@
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/constants.dart';
+import 'package:app/main.dart';
 import 'package:app/model/cart.dart';
+import 'package:app/model/listaZeljaModel.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/products/productDetail.dart';
 import 'package:flutter/material.dart';
@@ -72,8 +74,29 @@ class ProductCard extends StatelessWidget {
                             children: [
                               isFavorite
                                   ? Icon(Icons.favorite, color: kPrimaryColor)
-                                  : Icon(Icons.favorite_border,
-                                      color: Theme.of(context).iconTheme.color)
+                                  : IconButton(
+                                      icon: Icon(Icons.favorite_border,
+                                          color: Theme.of(context)
+                                              .iconTheme
+                                              .color),
+                                      onPressed: () {
+                                        if (korisnikInfo != null) {
+                                          print("Stavljen u omiljene");
+                                          new ListaZeljaModel().lajkovanje(
+                                              korisnikInfo.id, proizvod.id);
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content: Text(
+                                                "Proizvod dodat u omiljene"),
+                                          ));
+                                        } else {
+                                          print("Niste ulogovani");
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content: Text("Niste prijavljeni"),
+                                          ));
+                                        }
+                                      })
                             ])),
                     Hero(
                         tag: imgPath,
