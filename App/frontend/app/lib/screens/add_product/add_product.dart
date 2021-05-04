@@ -37,12 +37,19 @@ class _AddProductState extends State<AddProduct> {
   final kolicinaController = TextEditingController();
   final cenaController = TextEditingController();
   final opisController = TextEditingController();
+  ProizvodiModel pModel;
   List<Kategorija> listaRoditeljKategorija = listaRoditeljKateogrijaMain;
   Kategorija selectedCat = listaRoditeljKateogrijaMain[0];
   int catIndex;
   void dispose() {
     nazivController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    pModel = new ProizvodiModel();
   }
 
   @override
@@ -53,6 +60,7 @@ class _AddProductState extends State<AddProduct> {
         KategorijeModel().dajPotkategorije(selectedCat.id);
     print(subcategory.length);
     Size size = MediaQuery.maybeOf(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Dodavanje proizvoda"),
@@ -287,7 +295,7 @@ class _AddProductState extends State<AddProduct> {
                         cenaController.text +
                         "," +
                         opisController.text);
-                    ProizvodiModel().dodajProizvod(
+                    pModel.dodajProizvod(
                         korisnikInfo.id,
                         subcategory[kategorijaIndex].id,
                         nazivController.text,
