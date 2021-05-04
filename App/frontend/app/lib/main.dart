@@ -119,7 +119,7 @@ class MaterialAppCustom extends StatelessWidget {
       themeMode: themeProvider.themeMode,
       theme: MyThemes.lightTheme,
       darkTheme: MyThemes.darkTheme,
-      home: HomeScreen(),
+      home: ConversationScreen(),
     );
   }
 }

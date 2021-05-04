@@ -28,7 +28,7 @@ class ConversationScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Bvajan",
+                "WIP",
                 style: TextStyle(fontSize: 16),
               )
             ],

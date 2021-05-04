@@ -19,7 +19,10 @@ class TextMessage extends StatelessWidget {
           borderRadius: BorderRadius.circular(30)),
       child: Text(
         message.text,
-        style: TextStyle(color: message.isSender ? Colors.white : Colors.black),
+        style: TextStyle(
+            color: Theme.of(context).colorScheme == ColorScheme.dark()
+                ? Colors.white
+                : Colors.deepPurple),
         maxLines: 20,
         textDirection: TextDirection.ltr,
         softWrap: true,
