@@ -2,6 +2,7 @@ import 'package:app/components/responsive_layout.dart';
 import 'package:app/main.dart';
 import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/oceneModel.dart';
+import 'package:app/screens/conversation/conversation_screen.dart';
 import 'package:app/screens/home/homeScreen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -110,6 +111,24 @@ class _BodyState extends State<Body> {
                   // dodaj u korpu
                   onTap: () {
                     dodajJedanProizvodUKorpu(widget.proizvod);
+
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Dodat 1 proizvod u korpu"),
+                        duration: const Duration(milliseconds: 1500),
+                        width: MediaQuery.of(context).size.width *
+                            0.9, // Width of the SnackBar.
+                        padding: const EdgeInsets.symmetric(
+                          horizontal:
+                              8.0, // Inner padding for SnackBar content.
+                        ),
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                    );
                   },
                   child: Center(
                     child: Container(
@@ -151,7 +170,7 @@ class _BodyState extends State<Body> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return null;
+                          return ConversationScreen();
                         },
                       ),
                     );

@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
   //   if (token == '') await FlutterSession().set('email', '');
   //   return token;
   // }
-  
+
   //KorisniciModel km = KorisniciModel();
   //ListaZeljaModel lzm = new ListaZeljaModel();
 
@@ -118,7 +118,7 @@ class MaterialAppCustom extends StatelessWidget {
       themeMode: themeProvider.themeMode,
       theme: MyThemes.lightTheme,
       darkTheme: MyThemes.darkTheme,
-      home: HomeScreen(),
+      home: ConversationScreen(),
     );
   }
 }

@@ -126,24 +126,25 @@ class KorisniciModel extends ChangeNotifier {
 
   //Setuje prijavljenog korisnika
   Future<void> vratiKorisnika(int _id) async {
-      ulogovaniKorisnik = await dajKorisnikaZaId(_id);
+    ulogovaniKorisnik = await dajKorisnikaZaId(_id);
   }
 
   Future<Korisnik> dajKorisnikaZaId(int _idKorisnika) async {
     Korisnik kor = Korisnik(
-      id: 0,
-      mail: "",
-      password: "",
-      ime: "",
-      prezime: "",
-      brojTelefona: "",
-      adresa: "",
-      slika: ""
-    );
+        id: 0,
+        mail: "",
+        password: "",
+        ime: "",
+        prezime: "",
+        brojTelefona: "",
+        adresa: "",
+        slika: "");
 
     if (_idKorisnika > 0) {
       var k = await client.call(
-          contract: ugovor, function: korisnici, params: [BigInt.from(_idKorisnika)]);
+          contract: ugovor,
+          function: korisnici,
+          params: [BigInt.from(_idKorisnika)]);
 
       kor = Korisnik(
           id: _idKorisnika,
@@ -233,12 +234,12 @@ class KorisniciModel extends ChangeNotifier {
   };
 
   static Future<String> checkUser(String email, String password) async {
-    String url_pom = url + 'Token/authenticate';
+    Uri urlPom = Uri.dataFromString(url + 'Token/authenticate');
     var data = Map();
     data['username'] = email;
     data['password'] = password;
     var jsonBody = convert.jsonEncode(data);
-    var res = await http.post(url_pom, headers: header, body: jsonBody);
+    var res = await http.post(urlPom, headers: header, body: jsonBody);
     String data2 = res.body.toString();
     if (res.statusCode != 200) return ('false');
     return data2;
