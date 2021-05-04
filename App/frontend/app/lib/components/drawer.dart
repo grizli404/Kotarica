@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../constants.dart';
 import '../main.dart';
 import '../model/kategorijeModel.dart';
+import '../token.dart';
 import 'changeThemeButton.dart';
 
 class ListenToDrawerEvent extends StatefulWidget {
@@ -39,12 +40,19 @@ class ListenToDrawerEventState extends State<ListenToDrawerEvent> {
 }
 
 Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
+  // var tokenWeb;
   zatvoriSesiju() async {
     korisnikInfo = null;
-    // await FlutterSession().set('email', '');
+    //  print('jwt  ' + Token.jwt);
+    !isWeb
+        ? await Token.storage.delete(key: "jwt")
+        : await FlutterSession().set('jwt', '');
+
+    // tokenWeb = await FlutterSession().get('jwt');
   }
 
   ProizvodiModel proizvodi = ProizvodiModel();
+
   return Container(
       color: Theme.of(context).primaryColor,
       child: SafeArea(
@@ -69,25 +77,27 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                         )
                       : BoxDecoration(color: Theme.of(context).primaryColor),
                   child: !ResponsiveLayout.isIphone(context)
-                      ? (korisnikInfo != null
-                          ? Text(
-                              'Dobrodošli, ${korisnikInfo.ime}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline5
-                                  .copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                            )
-                          : Text(
-                              'Dobrodošli',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline5
-                                  .copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                            ))
+                      ? (
+                          //tokenWeb != ''
+                          korisnikInfo != null
+                              ? Text(
+                                  'Dobrodošli, ${korisnikInfo.ime}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      .copyWith(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                )
+                              : Text(
+                                  'Dobrodošli',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      .copyWith(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                ))
                       : Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -98,7 +108,8 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                                     color: Colors.white,
                                     fontSize: 30),
                               ),
-                              korisnikInfo != null
+                              //korisnikInfo != null
+                              Token.jwt != null
                                   ? Text(
                                       'Dobrodošli, ${korisnikInfo.ime}',
                                       style: Theme.of(context)
@@ -156,7 +167,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                         '${kategorije.kategorije[index].naziv}',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                         ),
                       ),
                     ),
@@ -169,7 +180,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
               },
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 5.0),
+              padding: EdgeInsets.only(bottom: 15.0),
             ),
             if (korisnikInfo != null && isWeb)
               Container(
@@ -323,7 +334,7 @@ Widget prikazPotkategorija(
               '  ${potkategorije[index].naziv}',
               textAlign: TextAlign.left,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 17,
               ),
             ),
           ),
