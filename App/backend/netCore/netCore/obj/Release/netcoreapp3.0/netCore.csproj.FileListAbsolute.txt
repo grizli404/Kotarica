@@ -64,3 +64,4 @@ C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\obj\Release\netcoreapp3.0\netCore.dll
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\obj\Release\netcoreapp3.0\netCore.pdb
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\obj\Release\netcoreapp3.0\netCore.genruntimeconfig.cache
+C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\AutoMapper.dll
