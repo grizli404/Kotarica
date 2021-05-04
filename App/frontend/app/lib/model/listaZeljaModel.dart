@@ -9,10 +9,10 @@ import 'package:web_socket_channel/io.dart';
 
 import 'ether_setup.dart';
 
-class ListaZeljaModel extends ChangeNotifier{
+class ListaZeljaModel extends ChangeNotifier {
   List<int> listaLajkovanihProizvoda = [];
 
-  var abiCode; 
+  var abiCode;
   EthereumAddress adresaUgovora;
 
   Credentials credentials;
@@ -26,7 +26,7 @@ class ListaZeljaModel extends ChangeNotifier{
 
   Web3Client client;
 
-  ListaZeljaModel(){
+  ListaZeljaModel() {
     inicijalnoSetovanje();
   }
 
@@ -37,12 +37,11 @@ class ListaZeljaModel extends ChangeNotifier{
 
     await getAbi();
     await getCredentials();
-    await getDeployedCotract();    
+    await getDeployedCotract();
 
-    await dislajkovanje(3, 6);
+    // await dislajkovanje(3, 6);
 
-    
-    await dajLajkove(3);
+    // await dajLajkove(3);
   }
 
   Future<void> getAbi() async {
@@ -57,10 +56,12 @@ class ListaZeljaModel extends ChangeNotifier{
     final response =
         await http.get(Uri.http('147.91.204.116:11091', 'ListaZelja.json'));
     var jsonAbi;
+
     if (response.statusCode == 200) {
       jsonAbi = jsonDecode(response.body);
     } else {
-      throw Exception('Failed to load data from server');
+      print(response.statusCode);
+      throw Exception('Failed to load data from server ListaZelja');
     }
     /**************************  MOB  ********************************** */
 
@@ -81,7 +82,7 @@ class ListaZeljaModel extends ChangeNotifier{
   Future<void> getDeployedCotract() async {
     ugovor = DeployedContract(
         ContractAbi.fromJson(abiCode, "ListaZelja"), adresaUgovora);
-
+    print(ugovor);
     _lajkovanje = ugovor.function("lajkovanje");
     _dislajkovanje = ugovor.function("dislajkovanje");
     _dajLajkove = ugovor.function("dajLajkove");
@@ -89,38 +90,44 @@ class ListaZeljaModel extends ChangeNotifier{
 
   Future<void> lajkovanje(int _idKorisnika, int _idProizvoda) async {
     await client.sendTransaction(
-      credentials,
-      Transaction.callContract(
-        maxGas: 6721975,
-        contract: ugovor,
-        function: _lajkovanje,
-        parameters: [BigInt.from(_idKorisnika), BigInt.from(_idProizvoda)]));
+        credentials,
+        Transaction.callContract(
+            maxGas: 6721975,
+            contract: ugovor,
+            function: _lajkovanje,
+            parameters: [
+              BigInt.from(_idKorisnika),
+              BigInt.from(_idProizvoda)
+            ]));
   }
 
   Future<void> dislajkovanje(int _idKorisnika, int _idProizvoda) async {
     await client.sendTransaction(
-      credentials,
-      Transaction.callContract(
-        maxGas: 6721975,
-        contract: ugovor,
-        function: _dislajkovanje,
-        parameters: [BigInt.from(_idKorisnika), BigInt.from(_idProizvoda)]));
+        credentials,
+        Transaction.callContract(
+            maxGas: 6721975,
+            contract: ugovor,
+            function: _dislajkovanje,
+            parameters: [
+              BigInt.from(_idKorisnika),
+              BigInt.from(_idProizvoda)
+            ]));
   }
 
   Future<void> dajLajkove(int _idKorisnika) async {
-    List lz = await client
-        .call(contract: ugovor, function: _dajLajkove, params: [BigInt.from(_idKorisnika)]);
+    List lz = await client.call(
+        contract: ugovor,
+        function: _dajLajkove,
+        params: [BigInt.from(_idKorisnika)]);
 
     for (var item in lz[0]) {
       int element = item.toInt();
-      if(element != 0) {
+      if (element != 0) {
         listaLajkovanihProizvoda.insert(0, element);
         print(element);
-      }
-      else{
+      } else {
         break;
       }
     }
   }
-
 }

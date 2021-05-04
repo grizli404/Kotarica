@@ -1,8 +1,6 @@
 import 'package:app/components/product_card.dart';
-import 'package:app/model/favoritesModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/single_child_widget.dart';
 
 import '../../../main.dart';
 import '../../../model/listaZeljaModel.dart';
@@ -18,7 +16,7 @@ class FavoritesBody extends StatelessWidget {
     ListaZeljaModel lzModel = new ListaZeljaModel();
     ProizvodiModel pModel = new ProizvodiModel();
     lzModel.dajLajkove(korisnikInfo.id);
-    List<Proizvod> listaOmiljenihProizvoda;
+    List<Proizvod> listaOmiljenihProizvoda = [];
     List<int> listaIndeksaOmiljenihProizvoda = lzModel.listaLajkovanihProizvoda;
 
     for (int i = 0; i < listaIndeksaOmiljenihProizvoda.length; i++) {
