@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:app/model/chat_message.dart';
 import 'package:flutter/material.dart';
 import 'package:signalr_core/signalr_core.dart';
@@ -79,7 +81,7 @@ class _BodyState extends State<Body> {
           receiverId: "arguments[1]",
           text: text,
           time: "arguments[3]",
-          isSender: false));
+          isSender: Random().nextInt(2) % 2 == 0 ? true : false));
     });
   }
 

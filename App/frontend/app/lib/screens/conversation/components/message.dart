@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:app/model/chat_message.dart';
 import 'package:flutter/material.dart';
 
@@ -40,8 +42,43 @@ class Message extends StatelessWidget {
           else ...[
             SizedBox(width: MediaQuery.of(context).size.width * 0.2),
           ],
+          if (message.isSender)
+            MessageStatusDot(
+              status: Random().nextInt(2) % 2 == 0 ? true : false,
+            ),
         ],
       ),
+    );
+  }
+}
+
+class MessageStatusDot extends StatelessWidget {
+  final bool status;
+
+  const MessageStatusDot({Key key, this.status}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    Color dotColor(bool status) {
+      switch (status) {
+        case true:
+          return Theme.of(context).primaryColor;
+          break;
+        case false:
+          return Colors.red;
+          break;
+        default:
+          return Colors.transparent;
+      }
+    }
+
+    return Container(
+      margin: EdgeInsets.only(left: 3),
+      height: 12,
+      width: 12,
+      decoration:
+          BoxDecoration(color: dotColor(status), shape: BoxShape.circle),
+      child: Icon(status ? Icons.done : Icons.close,
+          size: 8, color: Theme.of(context).scaffoldBackgroundColor),
     );
   }
 }

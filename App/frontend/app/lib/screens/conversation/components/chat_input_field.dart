@@ -1,12 +1,10 @@
-import 'package:app/components/rounded_input_field.dart';
 import 'package:app/components/text_field_container.dart';
 import 'package:app/constants.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 
 class ChatInputField extends StatelessWidget {
   final Function sendMessage;
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   ChatInputField({
     this.sendMessage,
   });
@@ -31,6 +29,11 @@ class ChatInputField extends StatelessWidget {
               child: TextFieldContainer(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 child: TextField(
+                  onSubmitted: (input) {
+                    if (_controller.text != '')
+                      sendMessage("NEKO", _controller.text);
+                    _controller.clear();
+                  },
                   controller: _controller,
                   decoration: InputDecoration(
                     hintText: 'Pošalji poruku...',
