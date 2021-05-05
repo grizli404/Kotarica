@@ -1,6 +1,7 @@
 // ignore: unused_import
 import 'dart:io';
 
+import 'package:app/screens/chats/chat_screen.dart';
 import 'package:app/model/kategorijeModel.dart';
 import 'package:app/model/listaZeljaModel.dart';
 import 'package:app/model/oceneModel.dart';
@@ -8,7 +9,6 @@ import 'package:app/model/personal_data.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/cart/cart_screen.dart';
 import 'package:app/screens/checkout/checkout_screen.dart';
-import 'package:app/screens/conversation/conversation_screen.dart';
 import 'package:app/screens/favorites/favorites_screen.dart';
 import 'package:app/screens/home/homeScreen.dart';
 import 'package:app/screens/login/login_screen.dart';
@@ -17,12 +17,10 @@ import 'package:app/screens/welcome/welcome_screen.dart';
 import 'package:app/theme/themeProvider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_session/flutter_session.dart';
 import 'package:provider/provider.dart';
 // ignore: unused_import
 //import 'package:google_fonts/google_fonts.dart';
 
-import 'constants.dart';
 import 'model/korisniciModel.dart';
 import 'screens/add_product/add_product.dart';
 import 'screens/profile/my_profile_screen.dart';
@@ -119,7 +117,7 @@ class MaterialAppCustom extends StatelessWidget {
       themeMode: themeProvider.themeMode,
       theme: MyThemes.lightTheme,
       darkTheme: MyThemes.darkTheme,
-      home: ConversationScreen(),
+      home: HomeScreen(),
     );
   }
 }
