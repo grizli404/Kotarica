@@ -1,6 +1,5 @@
-import 'dart:math';
-
 import 'package:app/model/chat_message.dart';
+import 'package:app/model/korisniciModel.dart';
 import 'package:flutter/material.dart';
 import 'package:signalr_core/signalr_core.dart';
 import 'chat_input_field.dart';
@@ -13,16 +12,23 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   HubConnection hubConnection;
+  Korisnik korisnikInfo = Korisnik(id: 1);
 
   ScrollController _scrollController = ScrollController();
-  List<ChatMessage> messages;
-  String _url = "http://147.91.204.116:11091/ChatHub";
-
+  List<ChatMessage> messages = [];
+  List<ChatMessage> sending = [];
+  String _url = "http://localhost:5000/ChatHub";
+  // Widget chatInputField;
   @override
   void initState() {
     messages = [];
     super.initState();
+    // chatInputField = ChatInputField(
+    //   key: UniqueKey(),
+    //   sendMessage: sendPrivate,
+    // );
     _initConnection();
+    hubConnection.invoke('GetMessageHistory', _handleGetMessageHistory);
   }
 
   @override
@@ -45,44 +51,73 @@ class _BodyState extends State<Body> {
           height: 20,
         ),
         ChatInputField(
-          sendMessage: sendMessage,
+          sendMessage: sendPrivate,
         ),
       ],
     );
   }
 
+  _handleGetMessageHistory() {}
   void _initConnection() async {
-    hubConnection = HubConnectionBuilder().withUrl(_url).build();
+    hubConnection = HubConnectionBuilder()
+        .withUrl(_url, HttpConnectionOptions(logging: (l, m) => {print(m)}))
+        .build();
     hubConnection.onclose((exception) {
       print(exception);
       print("\nCONNECTION CLOSED!");
     });
-    hubConnection.on('ReceiveMessage', _handleReceiveMessage);
+    hubConnection.on('newMessage', _handleNewMessage);
     await hubConnection.start();
+    hubConnection.state == HubConnectionState.connected
+        ? print("CONNECTED")
+        : print("CONNECTING FAILED");
   }
 
-  void _handleReceiveMessage(List arguments) {
-    setState(() {
-      messages.add(new ChatMessage(
-          senderId: arguments[0],
-          receiverId: arguments[1],
-          text: arguments[2],
-          time: arguments[3],
-          isSender: false));
+  void _handleNewMessage(var arguments) {
+    if (arguments[0]['ko'] == korisnikInfo.id.toString()) {
+      messages.forEach((element) {
+        if (arguments[0]['sta'] == element.text) {
+          setState(() {
+            element.sent = true;
+          });
+        }
+      });
+    }
+    if (arguments[0]['kome'] == korisnikInfo.id.toString()) {
+      setState(() {
+        messages.add(new ChatMessage(
+          senderId: arguments[0]['ko'],
+          receiverId: arguments[0]['kome'],
+          text: arguments[0]['sta'],
+          time: arguments[0]['kad'],
+          isSender: false,
+        ));
+      });
+    }
+  }
+
+  List<dynamic> _invokeSendPrivate(
+      String senderID, String receiverID, String text) {
+    List<dynamic> a = [senderID, receiverID, text];
+    a.forEach((element) {
+      print("foreach:");
+      print(element);
     });
+    return a;
   }
 
-  void sendMessage(String receiverId, String text) async {
-    // await hubConnection.invoke('SendMessage',
-    //     args: <Object>["JASAM", receiverId.toString(), text]);
+  void sendPrivate(String receiverID, String text) async {
     setState(() {
       messages.add(new ChatMessage(
-          senderId: "arguments[0]",
-          receiverId: "arguments[1]",
+          senderId: korisnikInfo.id.toString(),
+          receiverId: receiverID,
           text: text,
-          time: "arguments[3]",
-          isSender: Random().nextInt(2) % 2 == 0 ? true : false));
+          time: TimeOfDay.now().toString(),
+          isSender: true,
+          sent: false));
     });
+    await hubConnection.invoke('SendPrivate',
+        args: _invokeSendPrivate(korisnikInfo.id.toString(), receiverID, text));
   }
 
   _scrollToBottom() {

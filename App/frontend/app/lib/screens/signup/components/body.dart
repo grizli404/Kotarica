@@ -202,85 +202,7 @@ class _BodyState extends State<Body> {
                     ? Colors.grey
                     : Theme.of(context).primaryColor,
                 text: "REGISTRACIJA",
-                press: () async {
-                  if (validateAndSave()) {
-                    setState(() {
-                      isApiCallProcess = true;
-                    });
-                    _username = _email;
-
-                    var response = 0;
-                    var jwt = '';
-                    try {
-                      response = await korisnik
-                          .dodavanjeNovogKorisnika(_email, _password, _ime,
-                              _prezime, _kontakt, _adresa)
-                          .timeout(const Duration(seconds: 5));
-                      // await FlutterSession().set('email', _email);
-                      jwt = await KorisniciModel.checkUser(_email, _password);
-                      korisnikInfo = await korisnik
-                          .vratiKorisnikaMail(_email)
-                          .timeout(const Duration(seconds: 5));
-                    } on TimeoutException catch (e) {
-                      print("TIMED OUT ON SIGNUP 1!");
-                    }
-                    setState(() {
-                      isApiCallProcess = false;
-                    });
-                    if (response != 0 && jwt != 'false') {
-                      !isWeb
-                          ? Token.setSecureStorage("jwt", jwt)
-                          : await FlutterSession().set("jwt", jwt);
-                      //print('TOKEN');
-                      //print('jwt ' + jwt);
-                      var token = json.decode(ascii.decode(
-                          base64.decode(base64.normalize(jwt.split('.')[1]))));
-
-                      //print('token sub ' + token['unique_name']);
-
-                      if (!isWeb) Token.jwt = jwt;
-                      korisnikInfo = await korisnik
-                          .vratiKorisnikaMail(token['unique_name']);
-                      //print('korisnikInfo ' + korisnikInfo.ime);
-                      Navigator.popAndPushNamed(context, '/home',
-                          arguments: {});
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content:
-                              Text("Uspešna registracija i prijavljivanje!"),
-                          duration: const Duration(milliseconds: 3000),
-                          width: MediaQuery.of(context).size.width *
-                              0.9, // Width of the SnackBar.
-                          padding: const EdgeInsets.symmetric(
-                            horizontal:
-                                8.0, // Inner padding for SnackBar content.
-                          ),
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text("Neuspešna registracija!"),
-                          duration: const Duration(milliseconds: 2000),
-                          width: MediaQuery.of(context).size.width *
-                              0.9, // Width of the SnackBar.
-                          padding: const EdgeInsets.symmetric(
-                            horizontal:
-                                8.0, // Inner padding for SnackBar content.
-                          ),
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                      );
-                    }
-                  }
-                },
+                press: () => signUpAction(korisnik),
               ),
               SizedBox(
                 height: size.height * 0.03,
@@ -326,5 +248,80 @@ class _BodyState extends State<Body> {
       return true;
     }
     return false;
+  }
+
+  signUpAction(var korisnik) async {
+    if (validateAndSave()) {
+      setState(() {
+        isApiCallProcess = true;
+      });
+      _username = _email;
+
+      var response = 0;
+      var jwt = '';
+      try {
+        response = await korisnik
+            .dodavanjeNovogKorisnika(
+                _email, _password, _ime, _prezime, _kontakt, _adresa)
+            .timeout(const Duration(seconds: 10));
+        // await FlutterSession().set('email', _email);
+        jwt = await KorisniciModel.checkUser(_email, _password);
+        korisnikInfo = await korisnik
+            .vratiKorisnikaMail(_email)
+            .timeout(const Duration(seconds: 10));
+      } on TimeoutException catch (e) {
+        print("TIMED OUT ON SIGNUP 1!");
+      }
+      setState(() {
+        isApiCallProcess = false;
+      });
+      if (response != 0 && jwt != 'false') {
+        !isWeb
+            ? Token.setSecureStorage("jwt", jwt)
+            : await FlutterSession().set("jwt", jwt);
+        //print('TOKEN');
+        //print('jwt ' + jwt);
+        var token = json.decode(
+            ascii.decode(base64.decode(base64.normalize(jwt.split('.')[1]))));
+
+        //print('token sub ' + token['unique_name']);
+
+        if (!isWeb) Token.jwt = jwt;
+        korisnikInfo = await korisnik.vratiKorisnikaMail(token['unique_name']);
+        //print('korisnikInfo ' + korisnikInfo.ime);
+        Navigator.popAndPushNamed(context, '/home', arguments: {});
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Uspešna registracija i prijavljivanje!"),
+            duration: const Duration(milliseconds: 3000),
+            width: MediaQuery.of(context).size.width *
+                0.9, // Width of the SnackBar.
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0, // Inner padding for SnackBar content.
+            ),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Neuspešna registracija!"),
+            duration: const Duration(milliseconds: 2000),
+            width: MediaQuery.of(context).size.width *
+                0.9, // Width of the SnackBar.
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0, // Inner padding for SnackBar content.
+            ),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+        );
+      }
+    }
   }
 }

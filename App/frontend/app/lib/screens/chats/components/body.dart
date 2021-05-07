@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'chat_card.dart';
 
 class Body extends StatelessWidget {
-  ScrollController myScrollController;
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -1,7 +1,7 @@
 // ignore: unused_import
 import 'dart:io';
 
-import 'package:app/screens/chats/chat_screen.dart';
+import 'package:app/screens/chats/chats_screen.dart';
 import 'package:app/model/kategorijeModel.dart';
 import 'package:app/model/listaZeljaModel.dart';
 import 'package:app/model/oceneModel.dart';
@@ -9,6 +9,7 @@ import 'package:app/model/personal_data.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/cart/cart_screen.dart';
 import 'package:app/screens/checkout/checkout_screen.dart';
+import 'package:app/screens/conversation/conversation_screen.dart';
 import 'package:app/screens/favorites/favorites_screen.dart';
 import 'package:app/screens/home/homeScreen.dart';
 import 'package:app/screens/login/login_screen.dart';
@@ -110,7 +111,9 @@ class MaterialAppCustom extends StatelessWidget {
                 privateKey: "089ywegrxzch-qw9ytpbhgpwe9")),
         '/cart': (context) => CartScreen(),
         '/favorites': (context) => FavoritesScreen(),
-        '/addProduct': (context) => AddProduct()
+        '/addProduct': (context) => AddProduct(),
+        '/conversation': (context) => ConversationScreen(),
+        '/chats': (context) => ChatsScreen(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Kotarica',
