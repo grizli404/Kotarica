@@ -28,7 +28,7 @@ class _BodyState extends State<Body> {
     //   sendMessage: sendPrivate,
     // );
     _initConnection();
-    hubConnection.invoke('GetMessageHistory', _handleGetMessageHistory);
+    //hubConnection.invoke('GetMessageHistory', _handleGetMessageHistory);
   }
 
   @override

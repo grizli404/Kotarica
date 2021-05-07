@@ -85,6 +85,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
+KorisniciModel korisniciModel = new KorisniciModel();
+
+KorisniciModel getKorisniciModel() {
+  return korisniciModel;
+}
+
 class MaterialAppCustom extends StatelessWidget {
   const MaterialAppCustom({
     Key key,
