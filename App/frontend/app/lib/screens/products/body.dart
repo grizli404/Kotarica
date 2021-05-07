@@ -4,6 +4,7 @@ import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/oceneModel.dart';
 import 'package:app/screens/conversation/conversation_screen.dart';
 import 'package:app/screens/home/homeScreen.dart';
+import 'package:app/screens/profile/profile_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
@@ -21,11 +22,17 @@ class Body extends StatefulWidget {
   Body({this.assetPath, this.price, this.name, @required this.proizvod});
 
   @override
-  _BodyState createState() => _BodyState();
+  _BodyState createState() => _BodyState(proizvod);
 }
 
 class _BodyState extends State<Body> {
   int _rating;
+  Proizvod proizvod;
+
+  _BodyState(Proizvod proizvod) {
+    this.proizvod = proizvod;
+  }
+
   @override
   Widget build(BuildContext context) {
     //KorisniciModel k = Provider.of<KorisniciModel>(context);
@@ -243,11 +250,20 @@ class _BodyState extends State<Body> {
               columnWidths: {0: FractionColumnWidth(.75)},
               children: [
                 TableRow(children: [
-                  Text(
-                    'Korisnik: Mika Mikić',
-                    style: TextStyle(
-                        color: Theme.of(context).hintColor, fontSize: 20),
-                  ),
+                  TextButton(
+                      child: Text(
+                        'Korisnik: Mika Mikić',
+                        style: TextStyle(
+                            color: Theme.of(context).hintColor, fontSize: 20),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProfileScreen(
+                                      korisnikId: proizvod.idKorisnika,
+                                    )));
+                      }),
                 ]),
                 TableRow(
                   children: [
