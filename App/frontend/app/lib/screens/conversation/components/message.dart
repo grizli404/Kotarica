@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:app/model/chat_message.dart';
 import 'package:flutter/material.dart';
 
@@ -44,7 +42,7 @@ class Message extends StatelessWidget {
           ],
           if (message.isSender)
             MessageStatusDot(
-              status: Random().nextInt(2) % 2 == 0 ? true : false,
+              status: message.sent ? true : false,
             ),
         ],
       ),

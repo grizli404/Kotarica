@@ -5,9 +5,10 @@ class ChatMessage {
   final bool isSender;
   final String senderId;
   final String receiverId;
-  final String time;
-
+  String time;
+  bool sent;
   ChatMessage({
+    this.sent,
     @required this.senderId,
     @required this.receiverId,
     @required this.time,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

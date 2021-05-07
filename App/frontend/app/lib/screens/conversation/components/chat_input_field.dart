@@ -3,11 +3,13 @@ import 'package:app/constants.dart';
 import 'package:flutter/material.dart';
 
 class ChatInputField extends StatelessWidget {
+  final Key key;
   final Function sendMessage;
   final TextEditingController _controller = TextEditingController();
   ChatInputField({
+    this.key,
     this.sendMessage,
-  });
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,9 +31,10 @@ class ChatInputField extends StatelessWidget {
               child: TextFieldContainer(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 child: TextField(
+                  autofocus: true,
                   onSubmitted: (input) {
                     if (_controller.text != '')
-                      sendMessage("NEKO", _controller.text);
+                      sendMessage(1.toString(), _controller.text);
                     _controller.clear();
                   },
                   controller: _controller,
@@ -53,7 +56,7 @@ class ChatInputField extends StatelessWidget {
               ),
               onTap: () {
                 if (_controller.text != '')
-                  sendMessage("NEKO", _controller.text);
+                  sendMessage(1.toString(), _controller.text);
                 _controller.clear();
               },
             ),

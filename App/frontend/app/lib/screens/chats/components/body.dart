@@ -1,11 +1,9 @@
 import 'package:app/model/chats.dart';
 import 'package:app/screens/conversation/conversation_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'chat_card.dart';
 
 class Body extends StatelessWidget {
-  ScrollController myScrollController;
   @override
   Widget build(BuildContext context) {
     return Column(

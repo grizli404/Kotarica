@@ -36,7 +36,8 @@ namespace netCore.Hubs
                     Sta = sta,
                     Kada = DateTime.Now.ToLongTimeString()
                 };
-
+                Console.WriteLine("Primljena je nova poruka od: " + ko + ", i on ju je poslao: " + kome + " a tekst poruke je: " + sta);
+        
                 await Clients.Client(kome).SendAsync("newMessage", messageViewModel);
                 await Clients.Caller.SendAsync("newMessage", messageViewModel);
             }

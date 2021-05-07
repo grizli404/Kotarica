@@ -123,7 +123,7 @@ class _BodyState extends State<Body> {
       int id = 0;
       try {
         id = await korisnik.login(_email, _password).timeout(
-              const Duration(seconds: 5),
+              const Duration(seconds: 10),
             );
       } on TimeoutException catch (e) {
         print("TIMED OUT ON LOGIN 1!");
@@ -136,14 +136,16 @@ class _BodyState extends State<Body> {
         jwt = await KorisniciModel.checkUser(_email, _password);
         korisnikInfo = await korisnik
             .vratiKorisnikaMail(_email)
-            .timeout(const Duration(seconds: 5));
+            .timeout(const Duration(seconds: 10));
       } on TimeoutException catch (e) {
         print("TIMED OUT ON LOGIN 2!");
         id = 0;
       }
 
       if (id != 0 && jwt != 'false') {
-        !isWeb ? Token.setSecureStorage("jwt", jwt) : await FlutterSession().set("jwt", jwt);
+        !isWeb
+            ? Token.setSecureStorage("jwt", jwt)
+            : await FlutterSession().set("jwt", jwt);
         //  print('TOKEN');
         //  print('jwt ' + jwt);
         var token = json.decode(
