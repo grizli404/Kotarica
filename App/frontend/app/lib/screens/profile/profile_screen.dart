@@ -1,5 +1,7 @@
+import 'package:app/components/product_card.dart';
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/model/korisniciModel.dart';
+import 'package:app/model/proizvodiModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,13 +9,29 @@ import '../../constants.dart';
 
 class ProfileScreen extends StatelessWidget {
   final Korisnik korisnik;
+  final List<Proizvod> proizvodi;
+  List<Container> kartice = [];
 
-  const ProfileScreen({Key key, this.korisnik}) : super(key: key);
+  ProfileScreen({Key key, this.korisnik, this.proizvodi}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    for (Proizvod proizvod in proizvodi) {
+      kartice.add(Container(
+        height: 250,
+        child: new ProductCard(
+          context: "",
+          added: true,
+          isFavorite: false,
+          name: proizvod.naziv,
+          price: proizvod.cena.toString(),
+          imgPath: "assets/images/cookiechoco.jpg",
+          proizvod: proizvod,
+        ),
+      ));
+    }
     return Scaffold(
       appBar: AppBar(
-        title: Text(korisnik.ime + " " + korisnik.prezime),
+        title: Text(korisnik.prezime + " " + korisnik.ime),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -157,7 +175,17 @@ class ProfileScreen extends StatelessWidget {
               ),
               Divider(
                 color: kPrimaryColor,
-              )
+              ),
+              Container(
+                child: Text(
+                  "Proizvodi korisnika " +
+                      korisnik.ime +
+                      " " +
+                      korisnik.prezime,
+                  style: TextStyle(color: kPrimaryColor, fontSize: 20),
+                ),
+              ),
+              Wrap(children: kartice),
             ],
           ),
         ),

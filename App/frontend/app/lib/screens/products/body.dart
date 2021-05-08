@@ -1,3 +1,4 @@
+import 'package:app/components/product_card.dart';
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/main.dart';
 import 'package:app/model/korisniciModel.dart';
@@ -20,6 +21,8 @@ class Body extends StatefulWidget {
   final assetPath, price, name;
   final Proizvod proizvod;
   KorisniciModel kModel;
+  ProizvodiModel pModel;
+  List<Proizvod> proizvodiKorisnika;
   Korisnik korisnik;
   Body({this.assetPath, this.price, this.name, @required this.proizvod});
 
@@ -264,8 +267,8 @@ class _BodyState extends State<Body> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => ProfileScreen(
-                                      korisnik: widget.korisnik,
-                                    )));
+                                    korisnik: widget.korisnik,
+                                    proizvodi: widget.proizvodiKorisnika)));
                       }),
                 ]),
                 TableRow(
@@ -303,7 +306,10 @@ class _BodyState extends State<Body> {
 
   Future<void> setValues() async {
     widget.kModel = getKorisniciModel();
+    widget.pModel = getProizvodiModel();
     widget.korisnik =
         await widget.kModel.dajKorisnikaZaId(widget.proizvod.idKorisnika);
+    widget.proizvodiKorisnika =
+        widget.pModel.dajProizvodeZaKorisnika(widget.proizvod.idKorisnika);
   }
 }
