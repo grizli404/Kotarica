@@ -4,6 +4,7 @@ import 'package:app/screens/add_product/add_product.dart';
 import 'package:app/screens/products/products_by_category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
@@ -65,51 +66,48 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
           padding: EdgeInsets.zero,
           children: <Widget>[
             SizedBox(
-              height: ResponsiveLayout.isIphone(context) ? 120 : 150,
-              child: DrawerHeader(
-                  decoration: ResponsiveLayout.isIphone(context)
-                      ? BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          // borderRadius: BorderRadius.only(
-                          //   bottomLeft: Radius.circular(36),
-                          //   bottomRight: Radius.circular(36),
-                          //),
-                        )
-                      : BoxDecoration(color: Theme.of(context).primaryColor),
-                  child: !ResponsiveLayout.isIphone(context)
-                      ? (
-                          //tokenWeb != ''
-                          korisnikInfo != null
-                              ? Text(
-                                  'Dobrodošli, ${korisnikInfo.ime}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline5
-                                      .copyWith(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                )
-                              : Text(
-                                  'Dobrodošli',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline5
-                                      .copyWith(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                ))
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                              Text(
-                                'Kotarica',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontSize: 30),
+                height: ResponsiveLayout.isIphone(context) ? 150 : 150,
+                child: !isWeb
+                    ? DrawerHeader(
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  InkWell(
+                                      onTap: () {
+                                        Navigator.pushNamed(context, '/home');
+                                      },
+                                      child: Row(children: [
+                                        IconButton(
+                                          onPressed: () {
+                                            Navigator.pushNamed(
+                                                context, '/home');
+                                          },
+                                          icon: SvgPicture.asset(Theme.of(
+                                                          context)
+                                                      .colorScheme ==
+                                                  ColorScheme.dark()
+                                              ? "assets/icons/shopping-basket-dark.svg"
+                                              : "assets/icons/shopping-basket.svg"),
+                                          iconSize: 45,
+                                        ),
+                                        Text(
+                                          'Kotarica',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle: FontStyle.italic,
+                                            fontSize: 25,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ])),
+                                ],
                               ),
                               korisnikInfo != null
-                             // Token.jwt != null
+                                  // Token.jwt != null
                                   ? Text(
                                       'Dobrodošli, ${korisnikInfo.ime}',
                                       style: Theme.of(context)
@@ -128,8 +126,55 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold),
                                     )
-                            ])),
-            ),
+                            ]))
+                    : Container(
+                        padding: EdgeInsets.only(left: 15, top: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(context, '/home');
+                                    },
+                                    child: Row(children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          Navigator.pushNamed(context, '/home');
+                                        },
+                                        icon: SvgPicture.asset(Theme.of(context)
+                                                    .colorScheme ==
+                                                ColorScheme.dark()
+                                            ? "assets/icons/shopping-basket-dark.svg"
+                                            : "assets/icons/shopping-basket.svg"),
+                                        iconSize: 45,
+                                      ),
+                                      Text(
+                                        'Kotarica',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 25,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ])),
+                              ],
+                            ),
+                            Text(
+                              korisnikInfo != null
+                                  ? 'Dobrodošli,\n${korisnikInfo.ime}'
+                                  : 'Dobrodošli',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6
+                                  .copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ))),
             Container(
               padding: EdgeInsets.only(left: 15.0),
               child: Text(
