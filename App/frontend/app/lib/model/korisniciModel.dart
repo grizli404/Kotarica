@@ -234,7 +234,7 @@ class KorisniciModel extends ChangeNotifier {
   };
 
   static Future<String> checkUser(String email, String password) async {
-    Uri urlPom = Uri.dataFromString(url + 'Token/authenticate');
+    Uri urlPom = Uri(path: url + 'Token/authenticate');
     var data = Map();
     data['username'] = email;
     data['password'] = password;

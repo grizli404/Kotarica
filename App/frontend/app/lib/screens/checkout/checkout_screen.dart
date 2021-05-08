@@ -43,11 +43,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Chooser(
-          shipping: widget.shippingConfig,
-          payment: widget.paymentConfig,
-          confirm: widget.confirmConfig,
-        ),
+        // title: Chooser(
+        //   shipping: widget.shippingConfig,
+        //   payment: widget.paymentConfig,
+        //   confirm: widget.confirmConfig,
+        // ),
         centerTitle: true,
         actions: [
           Row(
@@ -73,57 +73,70 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (widget.shippingConfig == false) ...[
-                  AbsorbPointer(
-                    absorbing: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          backgroundBlendMode: BlendMode.darken,
-                          color: Colors.black.withOpacity(0.3)),
-                      child: ShippingConfiguration(
-                        korisnik: korisnikInfo,
-                        personalData: widget.personalData,
-                      ),
-                    ),
-                  ),
-                ] else ...[
-                  ShippingConfiguration(
-                    korisnik: korisnikInfo,
-                    personalData: widget.personalData,
-                  ),
-                ],
-                if (widget.paymentConfig == false) ...[
-                  AbsorbPointer(
-                    absorbing: true,
-                    child: Container(
-                        decoration: BoxDecoration(
-                            backgroundBlendMode: BlendMode.darken,
-                            color: Colors.black.withOpacity(0.3)),
-                        child: PaymentConfiguration(
-                          personalData: widget.personalData,
-                        )),
-                  ),
-                ] else ...[
-                  PaymentConfiguration(
-                    personalData: widget.personalData,
-                  )
-                ],
-                if (widget.confirmConfig == false) ...[
-                  AbsorbPointer(
-                    absorbing: true,
-                    child: Container(
-                        decoration: BoxDecoration(
-                            backgroundBlendMode: BlendMode.darken,
-                            color: Colors.black.withOpacity(0.3)),
-                        child: ConfirmConfiguration(
-                          personalData: widget.personalData,
-                        )),
-                  ),
-                ] else ...[
-                  ConfirmConfiguration(
-                    personalData: widget.personalData,
-                  )
-                ]
+                // if (widget.shippingConfig == false) ...[
+                // AbsorbPointer(
+                //   absorbing: true,
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //         backgroundBlendMode: BlendMode.darken,
+                //         color: Colors.black.withOpacity(0.3)),
+                //     child: ShippingConfiguration(
+                //       korisnik: korisnikInfo,
+                //       personalData: widget.personalData,
+                //     ),
+                //   ),
+                // ),
+                // ] else ...[
+                ShippingConfiguration(
+                  korisnik: korisnikInfo,
+                  personalData: widget.personalData,
+                ),
+                // ],
+                // if (widget.paymentConfig == false) ...[
+                // AbsorbPointer(
+                //   absorbing: true,
+                //   child: Container(
+                //       decoration: BoxDecoration(
+                //           backgroundBlendMode: BlendMode.darken,
+                //           color: Colors.black.withOpacity(0.3)),
+                //       child: PaymentConfiguration(
+                //         personalData: widget.personalData,
+                //       )),
+                // ),
+                // ] else ...[
+                Divider(
+                  thickness: 3,
+                  color: Theme.of(context).colorScheme == ColorScheme.dark()
+                      ? Colors.black
+                      : kPrimaryColor,
+                ),
+                PaymentConfiguration(
+                  personalData: widget.personalData,
+                ),
+                // ],
+                // if (widget.confirmConfig == false) ...[
+                //   AbsorbPointer(
+                //     absorbing: true,
+                //     child: Container(
+                //         decoration: BoxDecoration(
+                //             backgroundBlendMode: BlendMode.darken,
+                //             color: Colors.black.withOpacity(0.3)),
+                //         child: ConfirmConfiguration(
+                //           personalData: widget.personalData,
+                //         )),
+                //   ),
+                // ] else ...[
+                Divider(
+                  thickness: 3,
+                  color: Theme.of(context).colorScheme == ColorScheme.dark()
+                      ? Colors.black
+                      : kPrimaryColor,
+                ),
+                Text('KORPA:'),
+                ConfirmConfiguration(
+                  personalData: widget.personalData,
+                )
+                //   ]
               ],
             ),
           ),
@@ -148,35 +161,34 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            // FlatButton(
+            //   onPressed: widget.shippingConfig ? null : setPrevious,
+            //   disabledColor: Colors.grey,
+            //   child: Row(
+            //       children: [Icon(Icons.arrow_back_rounded), Text("Nazad")]),
+            //   color: kPrimaryLightColor,
+            //   textColor: Theme.of(context).primaryColor,
+            // ),
+            // if (!widget.confirmConfig) ...[
+            //   FlatButton(
+            //     onPressed: () {
+            //       setNext();
+            //     },
+            //     child: Row(children: [
+            //       Text("Dalje"),
+            //       Icon(Icons.arrow_forward_rounded)
+            //     ]),
+            //     color: kPrimaryLightColor,
+            //     textColor: Theme.of(context).primaryColor,
+            //   )
+            // ] else ...[
             FlatButton(
-              onPressed: widget.shippingConfig ? null : setPrevious,
-              disabledColor: Colors.grey,
-              child: Row(
-                  children: [Icon(Icons.arrow_back_rounded), Text("Nazad")]),
+              onPressed: () {},
+              child: Row(children: [Text("Naruči"), Icon(Icons.check_rounded)]),
               color: kPrimaryLightColor,
               textColor: Theme.of(context).primaryColor,
-            ),
-            if (!widget.confirmConfig) ...[
-              FlatButton(
-                onPressed: () {
-                  setNext();
-                },
-                child: Row(children: [
-                  Text("Dalje"),
-                  Icon(Icons.arrow_forward_rounded)
-                ]),
-                color: kPrimaryLightColor,
-                textColor: Theme.of(context).primaryColor,
-              )
-            ] else ...[
-              FlatButton(
-                onPressed: () {},
-                child:
-                    Row(children: [Text("Naruči!"), Icon(Icons.check_rounded)]),
-                color: kPrimaryLightColor,
-                textColor: Theme.of(context).primaryColor,
-              )
-            ],
+            )
+            // ],
           ],
         ),
       ),

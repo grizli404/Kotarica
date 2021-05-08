@@ -3,6 +3,8 @@ import 'package:app/model/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../main.dart';
+
 class CartItemCard extends StatefulWidget {
   const CartItemCard({
     Key key,
@@ -52,7 +54,7 @@ class _CartItemCardState extends State<CartItemCard> {
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               Text.rich(
                 TextSpan(
-                    text: "\$${widget.cart.product.cena} ",
+                    text: "${widget.cart.product.cena} RSD",
                     style: TextStyle(
                         color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.w600),
@@ -107,7 +109,23 @@ class _CartItemCardState extends State<CartItemCard> {
               )
             ]),
           ],
-        )
+        ),
+        Expanded(
+          child: SizedBox(),
+        ),
+        if (isWeb) ...[
+          IconButton(
+            hoverColor: Theme.of(context).primaryColor,
+            tooltip: 'Izbaci iz korpe',
+            icon: Icon(
+              Icons.delete_outline,
+            ),
+            color: Theme.of(context).accentColor,
+            onPressed: () => widget.rebuild(() {
+              demoCarts.remove(widget.cart);
+            }),
+          )
+        ]
       ],
     );
   }

@@ -28,7 +28,9 @@ class _BodyState extends State<Body> {
     //   sendMessage: sendPrivate,
     // );
     _initConnection();
-    hubConnection.invoke('GetMessageHistory', _handleGetMessageHistory);
+    hubConnection.invoke('GetMessageHistory',
+        args:
+            _invokeGetMessageHistory(korisnikInfo.id.toString(), 1.toString()));
   }
 
   @override
@@ -57,7 +59,14 @@ class _BodyState extends State<Body> {
     );
   }
 
-  _handleGetMessageHistory() {}
+  List<dynamic> _invokeGetMessageHistory(String senderID, String receiverID) {
+    List<String> a = [];
+    //ovde treba da se dobije id sagovornika sa korisnikModela??vrv
+    a.add(senderID);
+    a.add(receiverID);
+    return a;
+  }
+
   void _initConnection() async {
     hubConnection = HubConnectionBuilder()
         .withUrl(_url, HttpConnectionOptions(logging: (l, m) => {print(m)}))
