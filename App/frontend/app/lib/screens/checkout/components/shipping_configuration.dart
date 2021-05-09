@@ -1,5 +1,6 @@
 import 'package:app/components/rounded_input_field.dart';
 import 'package:app/constants.dart';
+import 'package:app/main.dart';
 import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/personal_data.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,6 @@ class _ShippingConfigurationState extends State<ShippingConfiguration> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(20),
@@ -30,17 +30,66 @@ class _ShippingConfigurationState extends State<ShippingConfiguration> {
             key: _formKey,
             child: Column(
               children: <Widget>[
-                RoundedInputField(
-                  color: Theme.of(context).colorScheme == ColorScheme.dark()
-                      ? Theme.of(context).primaryColor
-                      : Colors.white,
-                  icon: Icons.person,
-                  hintText: 'Ime i prezime',
-                  value: widget.korisnik.ime,
-                  onChanged: (value) {
-                    widget.korisnik.ime = value;
-                  },
-                ),
+                Text('ISPORUKA:'),
+                if (isWeb == true) ...[
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        RoundedInputField(
+                          sizeQ: 0.39,
+                          color: Theme.of(context).colorScheme ==
+                                  ColorScheme.dark()
+                              ? Theme.of(context).primaryColor
+                              : Colors.white,
+                          icon: Icons.person,
+                          hintText: 'Ime',
+                          value: widget.korisnik.ime,
+                          onChanged: (value) {
+                            widget.korisnik.ime = value;
+                          },
+                        ),
+                        RoundedInputField(
+                          sizeQ: 0.39,
+                          color: Theme.of(context).colorScheme ==
+                                  ColorScheme.dark()
+                              ? Theme.of(context).primaryColor
+                              : Colors.white,
+                          icon: Icons.person,
+                          hintText: 'Prezime',
+                          value: widget.korisnik.prezime,
+                          onChanged: (value) {
+                            widget.korisnik.prezime = value;
+                          },
+                        ),
+                      ],
+                    ),
+                  )
+                ] else ...[
+                  RoundedInputField(
+                    color: Theme.of(context).colorScheme == ColorScheme.dark()
+                        ? Theme.of(context).primaryColor
+                        : Colors.white,
+                    icon: Icons.person,
+                    hintText: 'Ime',
+                    value: widget.korisnik.ime,
+                    onChanged: (value) {
+                      widget.korisnik.ime = value;
+                    },
+                  ),
+                  RoundedInputField(
+                    color: Theme.of(context).colorScheme == ColorScheme.dark()
+                        ? Theme.of(context).primaryColor
+                        : Colors.white,
+                    icon: Icons.person,
+                    hintText: 'Prezime',
+                    value: widget.korisnik.prezime,
+                    onChanged: (value) {
+                      widget.korisnik.prezime = value;
+                    },
+                  ),
+                ],
                 RoundedInputField(
                   color: Theme.of(context).colorScheme == ColorScheme.dark()
                       ? Theme.of(context).primaryColor

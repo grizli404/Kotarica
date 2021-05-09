@@ -27,6 +27,7 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
           key: _formKey,
           child: Column(
             children: <Widget>[
+              Text('NAČIN PLAĆANJA:'),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,

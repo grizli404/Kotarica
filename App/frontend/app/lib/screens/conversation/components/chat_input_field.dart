@@ -31,7 +31,6 @@ class ChatInputField extends StatelessWidget {
               child: TextFieldContainer(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 child: TextField(
-                  autofocus: true,
                   onSubmitted: (input) {
                     if (_controller.text != '')
                       sendMessage(1.toString(), _controller.text);

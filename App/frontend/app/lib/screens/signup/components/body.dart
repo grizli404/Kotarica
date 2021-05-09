@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:app/api/api_signup.dart';
 import 'package:app/components/already_have_an_account_check.dart';
 import 'package:app/components/progress_hud.dart';
 import 'package:app/components/rounded_button.dart';
@@ -11,9 +10,6 @@ import 'package:app/components/rounded_input_field.dart';
 import 'package:app/components/rounded_password_field.dart';
 import 'package:app/constants.dart';
 import 'package:app/model/korisniciModel.dart';
-import 'package:app/model/signup_model.dart';
-import 'package:app/screens/home/homeScreen.dart';
-import 'package:app/screens/login/login_screen.dart';
 import 'package:app/screens/signup/components/background.dart';
 // ignore: unused_import
 import 'package:app/screens/signup/components/or_divider.dart';
@@ -275,16 +271,18 @@ class _BodyState extends State<Body> {
       setState(() {
         isApiCallProcess = false;
       });
+      print(response);
+      print(jwt.toString());
       if (response != 0 && jwt != 'false') {
         !isWeb
             ? Token.setSecureStorage("jwt", jwt)
             : await FlutterSession().set("jwt", jwt);
-        //print('TOKEN');
-        //print('jwt ' + jwt);
+        print('TOKEN');
+        print('jwt ' + jwt);
         var token = json.decode(
             ascii.decode(base64.decode(base64.normalize(jwt.split('.')[1]))));
 
-        //print('token sub ' + token['unique_name']);
+        print('token sub ' + token['unique_name']);
 
         if (!isWeb) Token.jwt = jwt;
         korisnikInfo = await korisnik.vratiKorisnikaMail(token['unique_name']);

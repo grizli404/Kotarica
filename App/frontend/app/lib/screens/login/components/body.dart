@@ -133,7 +133,8 @@ class _BodyState extends State<Body> {
       var jwt = '';
       try {
         //await FlutterSession().set('email', _email);
-        jwt = await KorisniciModel.checkUser(_email, _password);
+        // jwt = await KorisniciModel.checkUser(_email, _password);
+        jwt = 'true';
         korisnikInfo = await korisnik
             .vratiKorisnikaMail(_email)
             .timeout(const Duration(seconds: 10));
@@ -143,19 +144,19 @@ class _BodyState extends State<Body> {
       }
 
       if (id != 0 && jwt != 'false') {
-        !isWeb
-            ? Token.setSecureStorage("jwt", jwt)
-            : await FlutterSession().set("jwt", jwt);
-        //  print('TOKEN');
-        //  print('jwt ' + jwt);
-        var token = json.decode(
-            ascii.decode(base64.decode(base64.normalize(jwt.split('.')[1]))));
+        // !isWeb
+        //     ? Token.setSecureStorage("jwt", jwt)
+        //     : await FlutterSession().set("jwt", jwt);
+        // //  print('TOKEN');
+        // //  print('jwt ' + jwt);
+        // var token = json.decode(
+        //     ascii.decode(base64.decode(base64.normalize(jwt.split('.')[1]))));
 
-        // print('token sub ' + token['unique_name']);
+        // // print('token sub ' + token['unique_name']);
 
-        if (!isWeb) Token.jwt = jwt;
-        korisnikInfo = await korisnik.vratiKorisnikaMail(token['unique_name']);
-        // print('korisnikInfo ' + korisnikInfo.ime);
+        // if (!isWeb) Token.jwt = jwt;
+        // korisnikInfo = await korisnik.vratiKorisnikaMail(token['unique_name']);
+        // // print('korisnikInfo ' + korisnikInfo.ime);
         Navigator.popAndPushNamed(context, '/home', arguments: {});
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

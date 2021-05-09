@@ -15,12 +15,12 @@ class ConfirmConfiguration extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(20, 0, 20, 100),
       child: Column(
         children: [
-          Divider(
-            thickness: 3,
-            color: Theme.of(context).colorScheme == ColorScheme.dark()
-                ? Colors.black
-                : kPrimaryColor,
-          ),
+          // Divider(
+          //   thickness: 3,
+          //   color: Theme.of(context).colorScheme == ColorScheme.dark()
+          //       ? Colors.black
+          //       : kPrimaryColor,
+          // ),
           // Container(
           //   height: 60,
           //   child: Row(
@@ -109,9 +109,7 @@ class ConfirmConfiguration extends StatelessWidget {
           //       ? Colors.black
           //       : kPrimaryColor,
           // ),
-          _Atribut(
-            text: "Korpa: ",
-          ),
+
           for (Cart item in demoCarts) ...{
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -129,12 +127,12 @@ class ConfirmConfiguration extends StatelessWidget {
           _Atribut(
             text: "Ukupno: ${sumTotal(demoCarts)} RSD",
           ),
-          Divider(
-            thickness: 3,
-            color: Theme.of(context).colorScheme == ColorScheme.dark()
-                ? Colors.black
-                : kPrimaryColor,
-          ),
+          // Divider(
+          //   thickness: 3,
+          //   color: Theme.of(context).colorScheme == ColorScheme.dark()
+          //       ? Colors.black
+          //       : kPrimaryColor,
+          // ),
         ],
       ),
     );
