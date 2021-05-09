@@ -15,7 +15,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
