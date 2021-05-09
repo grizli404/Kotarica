@@ -228,19 +228,25 @@ class KorisniciModel extends ChangeNotifier {
 
   static Map<String, String> header = {
     "Access-Control_Allow_Origin": "*",
-    'Content-type': 'application/json; charset=utf-8',
+    'Content-type': 'application/json',
+    //; charset=utf-8
     'Accept': 'application/json',
     //'Authorization': 'Authorize'
   };
 
   static Future<String> checkUser(String email, String password) async {
     Uri urlPom = Uri(path: url + 'Token/authenticate');
+    var decoded = Uri.decodeComponent(urlPom.toString());
+    //print('url ' + urlPom.toString());
     var data = Map();
     data['username'] = email;
     data['password'] = password;
     var jsonBody = convert.jsonEncode(data);
-    var res = await http.post(urlPom, headers: header, body: jsonBody);
+    //print('jsonBody ' + jsonBody.toString());
+    var res =
+        await http.post(Uri.parse(decoded), headers: header, body: jsonBody);
     String data2 = res.body.toString();
+    // print(res.statusCode.toString());
     if (res.statusCode != 200) return ('false');
     return data2;
   }
