@@ -1,6 +1,7 @@
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/main.dart';
 import 'package:app/model/cart.dart';
+import 'package:app/screens/notifications/notification_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
@@ -38,20 +39,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Row(
           children: [
-            MaterialButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/home');
-              },
-              child: Text(
-                'Kotarica',
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontStyle: FontStyle.italic,
-                  fontSize: 25,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            if (!isWeb) ...[
+              MaterialButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/home');
+                  },
+                  child: Text(
+                    'Kotarica',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontStyle: FontStyle.italic,
+                      fontSize: 25,
+                      color: Colors.white,
+                    ),
+                  )),
+            ],
             !ResponsiveLayout.isIphone(context)
                 ? IconButton(
                     icon: Icon(
@@ -71,7 +73,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     Icons.notifications_none_rounded,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/login');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return NotificationScreen();
+                        },
+                      ),
+                    );
                   }),
             ],
             !ResponsiveLayout.isIphone(context)
@@ -83,6 +92,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       Navigator.pushNamed(context, '/favorites');
                     })
                 : Container(),
+            if (isWeb)
+              IconButton(
+                  icon: Icon(
+                    Icons.shopping_cart_outlined,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/cart');
+                  }),
             if (korisnikInfo != null && ResponsiveLayout.isIphone(context))
               CartIcon(),
             !ResponsiveLayout.isIphone(context)

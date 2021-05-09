@@ -1,5 +1,6 @@
 import 'package:app/components/product_card.dart';
 import 'package:app/components/responsive_layout.dart';
+import 'package:app/main.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +17,7 @@ class ProductContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     ProizvodiModel proizvodi = Provider.of<ProizvodiModel>(context);
     return Container(
-      height: 340,
+      height: 350,
       color: Theme.of(context).scaffoldBackgroundColor,
       child: ListView(
         physics: NeverScrollableScrollPhysics(),
@@ -40,12 +41,30 @@ Widget labelContainer(String labelVal) {
   return Container(
     height: 30.0,
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment:
+          isWeb ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text(
-          labelVal,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-        ),
+        if (isWeb) ...[
+          Expanded(
+              child: Divider(
+            height: 5,
+            thickness: 4,
+          )),
+          Text(
+            '     ' + labelVal + '      ',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27.0),
+          ),
+          Expanded(
+              child: Divider(
+            height: 5,
+            thickness: 4,
+          ))
+        ] else if (!isWeb) ...[
+          Text(
+            labelVal,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+          ),
+        ]
       ],
     ),
   );
@@ -53,7 +72,7 @@ Widget labelContainer(String labelVal) {
 
 Widget appsContainer(ProizvodiModel proizvodi, BuildContext context) {
   return Container(
-    height: ResponsiveLayout.isIphone(context) ? 280 : 250.0,
+    height: ResponsiveLayout.isIphone(context) ? 290 : 250.0,
     //200.0,
     child: ListView.builder(
       scrollDirection: Axis.horizontal,
