@@ -271,18 +271,18 @@ class _BodyState extends State<Body> {
       setState(() {
         isApiCallProcess = false;
       });
-      print(response);
-      print(jwt.toString());
+      //  print(response);
+      // print(jwt.toString());
       if (response != 0 && jwt != 'false') {
         !isWeb
             ? Token.setSecureStorage("jwt", jwt)
             : await FlutterSession().set("jwt", jwt);
-        print('TOKEN');
-        print('jwt ' + jwt);
+        // print('TOKEN');
+        // print('jwt ' + jwt);
         var token = json.decode(
             ascii.decode(base64.decode(base64.normalize(jwt.split('.')[1]))));
 
-        print('token sub ' + token['unique_name']);
+        // print('token sub ' + token['unique_name']);
 
         if (!isWeb) Token.jwt = jwt;
         korisnikInfo = await korisnik.vratiKorisnikaMail(token['unique_name']);
