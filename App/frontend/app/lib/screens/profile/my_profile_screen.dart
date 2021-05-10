@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:app/components/navigationBar.dart';
 import 'package:app/components/product_card.dart';
 import 'package:app/components/rad_sa_slikama.dart';
+import 'package:app/components/star_display.dart';
 import 'package:app/model/korisniciModel.dart';
 import 'package:app/screens/add_product/add_product.dart';
 import 'package:app/screens/notifications/notification_screen.dart';
@@ -21,7 +22,7 @@ class MyProfileScreen extends StatelessWidget {
   String fName = "";
   String lName = "";
   String address = "";
-  String reputationScore = "";
+  int reputationScore = 0;
   String profilePhoto;
   int id;
 
@@ -33,7 +34,7 @@ class MyProfileScreen extends StatelessWidget {
     this.lName = korisnikInfo.prezime;
     this.address = korisnikInfo.adresa;
     this.id = korisnikInfo.id;
-    this.reputationScore = "1"; //funkcija
+    this.reputationScore = 1; //funkcija
 
     Size size = MediaQuery.maybeOf(context).size;
     return Scaffold(
@@ -311,15 +312,10 @@ class ThinProfileBody extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 10.0),
-                    Text(
-                      // star system
-                      reputationScore,
-                      style: TextStyle(
-                        color: Colors.grey[700],
-                        letterSpacing: 2.0,
-                        fontSize: 20,
-                      ),
-                    ),
+                    StarDisplayWidget(
+                        filledStar: Icon(Icons.star),
+                        unfilledStar: Icon(Icons.star_border),
+                        value: reputationScore),
                     SizedBox(height: 30.0),
                     Container(
                         child: Column(
@@ -546,15 +542,10 @@ class MediumProfileBody extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 10.0),
-                    Text(
-                      // star system
-                      reputationScore,
-                      style: TextStyle(
-                        color: Colors.grey[700],
-                        letterSpacing: 2.0,
-                        fontSize: 20,
-                      ),
-                    ),
+                    StarDisplayWidget(
+                        filledStar: Icon(Icons.star),
+                        unfilledStar: Icon(Icons.star_border),
+                        value: reputationScore),
                     SizedBox(height: 30.0),
                   ],
                 )
@@ -582,20 +573,26 @@ class MediumProfileBody extends StatelessWidget {
                 )),
             Row(
               children: [
-                ProductCard(
-                    name: "proizvod",
-                    price: "100din",
-                    imgPath: "assets/images/cookiechoco.jpg",
-                    added: true,
-                    isFavorite: false,
-                    context: "context"),
-                ProductCard(
-                    name: "proizvod",
-                    price: "100din",
-                    imgPath: "assets/images/cookiechoco.jpg",
-                    added: true,
-                    isFavorite: false,
-                    context: "context"),
+                Container(
+                  height: 350,
+                  child: ProductCard(
+                      name: "proizvod",
+                      price: "100din",
+                      imgPath: "assets/images/cookiechoco.jpg",
+                      added: true,
+                      isFavorite: false,
+                      context: "context"),
+                ),
+                Container(
+                  height: 350,
+                  child: ProductCard(
+                      name: "proizvod",
+                      price: "100din",
+                      imgPath: "assets/images/cookiechoco.jpg",
+                      added: true,
+                      isFavorite: false,
+                      context: "context"),
+                ),
               ],
             ),
             SizedBox(height: 30.0),
@@ -800,15 +797,10 @@ class WideProfileBody extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 10.0),
-                    Text(
-                      // star system
-                      reputationScore,
-                      style: TextStyle(
-                        color: Colors.grey[700],
-                        letterSpacing: 2.0,
-                        fontSize: 20,
-                      ),
-                    ),
+                    StarDisplayWidget(
+                        filledStar: Icon(Icons.star),
+                        unfilledStar: Icon(Icons.star_border),
+                        value: reputationScore),
                     SizedBox(height: 30.0),
                   ],
                 ),
