@@ -25,8 +25,8 @@ class ProductDetailLayout extends StatelessWidget {
       extendBody: true,
       body: Body(
         assetPath: assetPath,
-        price: price,
-        name: name,
+        // price: price,
+        //  name: name,
         proizvod: proizvod,
       ),
     );

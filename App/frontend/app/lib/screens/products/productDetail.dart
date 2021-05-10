@@ -21,8 +21,9 @@ class ProductDetail extends StatelessWidget {
     Size _size = MediaQuery.of(context).size;
     return Scaffold(
       body: ResponsiveLayout(
-        iphone: ProductDetailLayout(
-            proizvod: proizvod, assetPath: assetPath, price: price, name: name),
+        iphone: ProductDetailLayout(proizvod: proizvod, assetPath: assetPath
+            //, price: price, name: name
+            ),
         ipad: Row(
           children: [
             Expanded(
@@ -32,10 +33,11 @@ class ProductDetail extends StatelessWidget {
             Expanded(
               flex: _size.width > 1200 && _size.width < 1340 ? 6 : 3,
               child: ProductDetailLayout(
-                  proizvod: proizvod,
-                  assetPath: assetPath,
-                  price: price,
-                  name: name),
+                proizvod: proizvod,
+                assetPath: assetPath,
+                //   price: price,
+                //   name: name
+              ),
             ),
           ],
         ),
@@ -49,10 +51,11 @@ class ProductDetail extends StatelessWidget {
             Expanded(
               flex: _size.width > 1340 ? 6 : 3,
               child: ProductDetailLayout(
-                  proizvod: proizvod,
-                  assetPath: assetPath,
-                  price: price,
-                  name: name),
+                proizvod: proizvod,
+                assetPath: assetPath,
+                //  price: price,
+                // name: name
+              ),
             ),
 
             // Padding(

@@ -61,7 +61,7 @@ Widget labelContainer(String labelVal) {
           ))
         ] else if (!isWeb) ...[
           Text(
-            labelVal,
+            ' ' + labelVal,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
           ),
         ]
