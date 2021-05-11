@@ -23,6 +23,7 @@ import 'package:provider/provider.dart';
 //import 'package:google_fonts/google_fonts.dart';
 
 import 'model/korisniciModel.dart';
+import 'model/notification_model.dart';
 import 'screens/add_product/add_product.dart';
 import 'screens/profile/my_profile_screen.dart';
 
@@ -69,7 +70,7 @@ class MyApp extends StatelessWidget {
     //var kategorije = KategorijeModel();
     //var proizvodi = ProizvodiModel();
     //var ocene = OceneModel();
-    //var lista = ListaZeljaModel();
+    //var lista = NotifikacijeModel();
     // setujSesiju();
     return MultiProvider(
       providers: [

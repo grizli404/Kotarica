@@ -176,6 +176,30 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                           ],
                         ))),
             Container(
+                padding: EdgeInsets.only(left: 15.0),
+                child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/home');
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.home,
+                          size: 26,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          'Početna strana',
+                          style: TextStyle(fontSize: 22),
+                        ),
+                      ],
+                    ))),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
               padding: EdgeInsets.only(left: 15.0),
               child: Text(
                 'Kategorije:',

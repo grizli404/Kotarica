@@ -34,7 +34,7 @@ contract Kupovine{
 
     //Pre davanja ocene za prodavca, mora se proveriti da li postoji kupovina nekog proizvoda od strane onog koji hoce da da ocenu
     //od onog kome zeli da da ocenu
-    function daLiPostojiKupovina (int _idKupca, int _idProdavca) public view returns (int)
+    function daLiPostojiKupovinaBiloKogProizvoda (int _idKupca, int _idProdavca) public view returns (int)
     {
         for (int i = 1; i <= brojKupovina; i++) {
             if(_idKupca == kupovine[i].idKupca && _idProdavca == kupovine[i].idProdavca)

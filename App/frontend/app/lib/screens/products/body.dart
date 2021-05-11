@@ -6,6 +6,8 @@ import 'package:app/screens/conversation/conversation_screen.dart';
 import 'package:app/screens/profile/profile_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_session/flutter_session.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/cart.dart';
@@ -76,12 +78,33 @@ class _BodyState extends State<Body> {
         ),
         SizedBox(height: 15.0),
         Hero(
-            tag: widget.assetPath,
-            child: Image.asset(widget.assetPath,
-                height: 200.0, width: 150.0, fit: BoxFit.contain)),
+          tag: widget.proizvod.slika,
+          child: Container(
+              width: 150,
+              constraints: BoxConstraints.expand(height: 200),
+              child: imageSlider(context, widget.proizvod)),
+
+          // height: 200,
+          // child: Image(
+          //   image:
+
+          //    widget.proizvod.slika != ''
+          //       ? NetworkImage(
+          //           "https://ipfs.io/ipfs/" + widget.proizvod.slika)
+          //       : AssetImage(
+          //           widget.assetPath,
+
+          //           // height: 200.0, width: 150.0, fit: BoxFit.contain
+          //         ),
+          // ),
+          //   )
+
+          //  Image.asset(widget.assetPath,
+          //     height: 200.0, width: 150.0, fit: BoxFit.contain)
+        ),
         SizedBox(height: 20.0),
         Center(
-          child: Text(widget.name,
+          child: Text(widget.proizvod.naziv,
               style: TextStyle(
                   fontFamily: 'Varela',
                   fontSize: 22.0,
@@ -90,7 +113,7 @@ class _BodyState extends State<Body> {
         ),
         SizedBox(height: 10.0),
         Center(
-          child: Text(widget.price,
+          child: Text(widget.proizvod.cena.toString(),
               style: TextStyle(
                   color: Theme.of(context).hintColor,
                   fontFamily: 'Varela',
@@ -100,7 +123,7 @@ class _BodyState extends State<Body> {
         Center(
           child: Container(
             width: MediaQuery.of(context).size.width - 50.0,
-            child: Text('Opis Opis Opis Opis Opis Opis Opis Opis Opis',
+            child: Text(widget.proizvod.opis,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: 'Varela',
@@ -266,31 +289,31 @@ class _BodyState extends State<Body> {
                                     proizvodi: widget.proizvodiKorisnika)));
                       }),
                 ]),
-                TableRow(
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontStyle: FontStyle.italic,
-                            fontSize: 20,
-                            color: Theme.of(context).hintColor,
-                          ),
-                          text: 'Svi proizvodi >>',
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return null;
-                                  },
-                                ),
-                              );
-                            }),
-                    ),
-                  ],
-                ),
+                // TableRow(
+                //   children: [
+                //     RichText(
+                //       text: TextSpan(
+                //           style: TextStyle(
+                //             fontWeight: FontWeight.w500,
+                //             fontStyle: FontStyle.italic,
+                //             fontSize: 20,
+                //             color: Theme.of(context).hintColor,
+                //           ),
+                //           text: 'Svi proizvodi >>',
+                //           recognizer: TapGestureRecognizer()
+                //             ..onTap = () {
+                //               Navigator.push(
+                //                 context,
+                //                 MaterialPageRoute(
+                //                   builder: (context) {
+                //                     return null;
+                //                   },
+                //                 ),
+                //               );
+                //             }),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ),
@@ -306,5 +329,27 @@ class _BodyState extends State<Body> {
         await widget.kModel.dajKorisnikaZaId(widget.proizvod.idKorisnika);
     widget.proizvodiKorisnika =
         widget.pModel.dajProizvodeZaKorisnika(widget.proizvod.idKorisnika);
+  }
+
+  Swiper imageSlider(context, Proizvod proizvod) {
+    return new Swiper(
+      autoplay: false,
+      itemBuilder: (BuildContext context, int index) {
+        return proizvod.slika != ''
+            ? new Image.network(
+                "https://ipfs.io/ipfs/" + widget.proizvod.slika,
+                //  fit: BoxFit.fill,
+              )
+            : new AssetImage(
+                widget.assetPath,
+              );
+      },
+      itemCount: 3,
+      viewportFraction: 0.8,
+      scale: 0.9,
+      pagination: new SwiperPagination(
+          margin: new EdgeInsets.only(left: 5.0, right: 5.0, top: 25)),
+      //control: new SwiperControl(),
+    );
   }
 }

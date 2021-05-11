@@ -35,10 +35,9 @@ class NotificationScreenState extends State<NotificationScreen> {
           itemBuilder: (context, index) {
             final notification = notificationList[index];
             return Dismissible(
-              key: Key(notification.message),
+              key: Key(notification.nazivProizoda),
               child: NotificationBar(
-                message: notification.message,
-                proizvod: notification.proizvod,
+                message: notification.nazivProizoda
               ),
               onDismissed: (direction) {
                 setState(() {
