@@ -80,7 +80,7 @@ module.exports = {
   },
 
   //Na ovoj lokaciji ce da budu json fajlovi
-  contracts_build_directory: "./assets/src/",
+  contracts_build_directory: "./src/abis/",
 
   // Configure your compilers
   compilers: {

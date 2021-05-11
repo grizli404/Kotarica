@@ -4,21 +4,33 @@ pragma solidity >=0.4.22 <0.9.0;
 contract Notifications {
 
     struct Notification{
-        int id;
-        int idKorisnika;
-        int idProizvoda;
-        string poruka;
-        bool procitana;
+        uint id;
+        uint idKorisnika;
+        uint idProizvoda;
+        string nazivProizvoda;
+        uint kolicina;
+        string ime; //Ime osobe koja je narucila proizvod
+        string brojTelefona; // telefon osobe koja je narucila
+        string adresa; // adresa gde treba da se isporuci
     }
 
-    int public brojNotifikacija = 0;
+    uint public brojPorudzbina = 0;
 
-    mapping (int => Notification) public notifikacije;
+    mapping (uint => Notification) public notifikacije;
 
-    function dodajNotifikaciju(int _idKorisnika,int  _idProizvoda, string memory _poruka) public returns(int) {
-        brojNotifikacija++;
-        notifikacije[brojNotifikacija] = Notification(brojNotifikacija, _idKorisnika, _idProizvoda, _poruka, false);
-        return brojNotifikacija;
+    function dodajNotifikaciju(uint _idKorisnika, uint  _idProizvoda, string memory _nazivProizvoda,
+                                uint _kolicina, string memory _ime, string memory _telefon, string memory _adresa) public {
+        brojPorudzbina++;
+        notifikacije[brojPorudzbina] = Notification(
+            brojPorudzbina,
+            _idKorisnika,
+            _idProizvoda,
+            _nazivProizvoda,
+            _kolicina,
+            _ime,
+            _telefon,
+            _adresa
+        );
     }
 
 }
