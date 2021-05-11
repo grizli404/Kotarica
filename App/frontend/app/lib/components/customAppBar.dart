@@ -1,11 +1,11 @@
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/main.dart';
-import 'package:app/model/cart.dart';
+import 'package:app/screens/home/homeScreenLayout.dart';
 import 'package:app/screens/notifications/notification_screen.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_session/flutter_session.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'cart_icon.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -93,15 +93,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     })
                 : Container(),
             if (isWeb)
-              IconButton(
-                  icon: Icon(
-                    Icons.shopping_cart_outlined,
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/cart');
-                  }),
+              CartIcon(
+                key: HomeScreenLayout.cart1,
+              ),
             if (korisnikInfo != null && ResponsiveLayout.isIphone(context))
-              CartIcon(),
+              CartIcon(
+                key: HomeScreenLayout.cart1,
+              ),
             !ResponsiveLayout.isIphone(context)
                 ? SizedBox(
                     width: 15,
@@ -117,46 +115,4 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
-}
-
-class CartIcon extends StatefulWidget {
-  const CartIcon({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  _CartIconState createState() => _CartIconState();
-}
-
-class _CartIconState extends State<CartIcon> {
-  @override
-  Widget build(BuildContext context) {
-    return Stack(children: [
-      IconButton(
-        icon: Icon(
-          Icons.shopping_cart_outlined,
-        ),
-        onPressed: () {
-          setCartIcon();
-          Navigator.of(context).pushNamed('/cart');
-        },
-      ),
-      Positioned(
-        right: 7,
-        top: 5,
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5), color: Colors.grey),
-          child: Text(
-            demoCarts.length.toString(),
-            style: TextStyle(color: Theme.of(context).accentColor),
-          ),
-        ),
-      )
-    ]);
-  }
-
-  void setCartIcon() {
-    setState(() {});
-  }
 }

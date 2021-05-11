@@ -122,7 +122,30 @@ class _CartItemCardState extends State<CartItemCard> {
             ),
             color: Theme.of(context).accentColor,
             onPressed: () => widget.rebuild(() {
-              demoCarts.remove(widget.cart);
+              int index = demoCarts.indexOf(widget.cart);
+              Cart cart = removeProduct(index);
+              ScaffoldMessenger.of(context)
+                  .removeCurrentSnackBar(reason: SnackBarClosedReason.remove);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  action: SnackBarAction(
+                    label: "Vrati ${cart.product.naziv} u korpu!",
+                    onPressed: () =>
+                        widget.rebuild(() => insertProductAtIndex(index, cart)),
+                  ),
+                  content: Text("Uklonili ste ${cart.product.naziv}"),
+                  duration: const Duration(milliseconds: 5000),
+                  width: MediaQuery.of(context).size.width *
+                      0.9, // Width of the SnackBar.
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0, // Inner padding for SnackBar content.
+                  ),
+                  behavior: SnackBarBehavior.floating,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              );
             }),
           )
         ]

@@ -1,8 +1,10 @@
 import 'package:app/screens/add_product/add_product.dart';
+import 'package:app/screens/home/homeScreenLayout.dart';
 import 'package:app/screens/notifications/notification_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
+import 'cart_icon.dart';
 
 class NavigationBarWidget extends StatelessWidget {
   @override
@@ -49,13 +51,7 @@ class NavigationBarWidget extends StatelessWidget {
                       );
                     },
                   )
-                : IconButton(
-                    icon: Icon(Icons.shopping_cart_outlined),
-                    color: Theme.of(context).bottomAppBarColor,
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/cart');
-                    },
-                  ),
+                : CartIcon(key: HomeScreenLayout.cart2),
             IconButton(
                 icon: Icon(Icons.notifications),
                 onPressed: () {

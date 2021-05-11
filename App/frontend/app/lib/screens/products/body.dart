@@ -1,18 +1,13 @@
-import 'package:app/components/product_card.dart';
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/main.dart';
 import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/oceneModel.dart';
 import 'package:app/screens/conversation/conversation_screen.dart';
-import 'package:app/screens/home/homeScreen.dart';
 import 'package:app/screens/profile/profile_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_session/flutter_session.dart';
 import 'package:provider/provider.dart';
-import 'package:app/main.dart';
 
-import '../../constants.dart';
 import '../../model/cart.dart';
 import '../../model/proizvodiModel.dart';
 import 'components/rating.dart';

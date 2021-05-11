@@ -2,8 +2,6 @@ import 'package:app/components/rounded_button.dart';
 import 'package:app/constants.dart';
 import 'package:app/main.dart';
 import 'package:app/model/cart.dart';
-import 'package:app/screens/checkout/checkout_screen.dart';
-import 'package:app/theme/themeProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -27,37 +25,62 @@ class _CartScreenState extends State<CartScreen> {
           itemCount: demoCarts.length,
           itemBuilder: (context, index) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: Dismissible(
-              direction: DismissDirection.endToStart,
-              key: Key(demoCarts[index].product.id.toString()),
-              background: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(15)),
-                child: Row(
-                  children: [
-                    Spacer(),
-                    SvgPicture.asset(
-                      "assets/icons/trash-solid.svg",
-                      width: MediaQuery.of(context).size.width * 0.05,
-                    )
-                  ],
-                ),
-              ),
-              onDismissed: (direction) {
-                setState(() {
-                  demoCarts.removeAt(index);
-                  demoCarts.forEach((element) {
-                    print(element.product.naziv);
-                  });
-                });
-              },
-              child: CartItemCard(
-                cart: demoCarts[index],
-                rebuild: setState,
-              ),
-            ),
+            child: !isWeb
+                ? Dismissible(
+                    direction: DismissDirection.endToStart,
+                    key: Key(demoCarts[index].product.id.toString()),
+                    background: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Row(
+                        children: [
+                          Spacer(),
+                          SvgPicture.asset(
+                            "assets/icons/trash-solid.svg",
+                            width: MediaQuery.of(context).size.width * 0.05,
+                          )
+                        ],
+                      ),
+                    ),
+                    onDismissed: (direction) {
+                      setState(() {
+                        Cart cart = removeProduct(index);
+                        ScaffoldMessenger.of(context).removeCurrentSnackBar(
+                            reason: SnackBarClosedReason.remove);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            action: SnackBarAction(
+                              label: "Vrati ${cart.product.naziv} u korpu!",
+                              onPressed: () => setState(
+                                  () => insertProductAtIndex(index, cart)),
+                            ),
+                            content: Text("Uklonili ste ${cart.product.naziv}"),
+                            duration: const Duration(milliseconds: 5000),
+                            width: MediaQuery.of(context).size.width *
+                                0.9, // Width of the SnackBar.
+                            padding: const EdgeInsets.symmetric(
+                              horizontal:
+                                  8.0, // Inner padding for SnackBar content.
+                            ),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                        );
+                      });
+                    },
+                    child: CartItemCard(
+                      cart: demoCarts[index],
+                      rebuild: setState,
+                    ),
+                  )
+                : CartItemCard(
+                    cart: demoCarts[index],
+                    rebuild: setState,
+                  ),
           ),
         ),
       ),
@@ -68,6 +91,16 @@ class _CartScreenState extends State<CartScreen> {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: true,
+      leading: IconButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context)
+                .removeCurrentSnackBar(reason: SnackBarClosedReason.remove);
+            Navigator.pop(
+              context,
+            );
+          },
+          icon: Icon(Icons.arrow_back)),
       centerTitle: true,
       title: Column(
         children: [
