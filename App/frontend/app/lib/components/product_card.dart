@@ -48,8 +48,8 @@ class ProductCard extends StatelessWidget {
                     return ProductDetail(
                       proizvod: proizvod,
                       assetPath: imgPath,
-                      name: name,
-                      price: price,
+                      //  name: name,
+                      //   price: price,
                     );
                   },
                 ),
@@ -110,7 +110,10 @@ class ProductCard extends StatelessWidget {
                             width: 75.0,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage(imgPath),
+                                    image: proizvod.slika != ''
+                                        ? NetworkImage("https://ipfs.io/ipfs/" +
+                                            proizvod.slika)
+                                        : AssetImage(imgPath),
                                     fit: BoxFit.contain)))),
                     SizedBox(height: 7.0),
                     Text(price,
