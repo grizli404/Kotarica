@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
     //var kategorije = KategorijeModel();
     //var proizvodi = ProizvodiModel();
     //var ocene = OceneModel();
-    var lista = NotifikacijeModel();
+    //var lista = NotifikacijeModel();
     // setujSesiju();
     return MultiProvider(
       providers: [
