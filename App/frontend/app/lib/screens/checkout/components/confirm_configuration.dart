@@ -1,4 +1,3 @@
-import 'package:app/constants.dart';
 import 'package:app/model/cart.dart';
 import 'package:app/model/personal_data.dart';
 import 'package:flutter/material.dart';

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/model/chat_message.dart';
 import 'package:app/model/korisniciModel.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,7 @@ class _BodyState extends State<Body> {
   ScrollController _scrollController = ScrollController();
   List<ChatMessage> messages = [];
   List<ChatMessage> sending = [];
-  String _url = "http://localhost:5000/ChatHub";
+  String _url = "http://147.91.204.116:11094/ChatHub";
   // Widget chatInputField;
   @override
   void initState() {
@@ -28,9 +30,6 @@ class _BodyState extends State<Body> {
     //   sendMessage: sendPrivate,
     // );
     _initConnection();
-    hubConnection.invoke('GetMessageHistory',
-        args:
-            _invokeGetMessageHistory(korisnikInfo.id.toString(), 1.toString()));
   }
 
   @override
@@ -80,6 +79,9 @@ class _BodyState extends State<Body> {
     hubConnection.state == HubConnectionState.connected
         ? print("CONNECTED")
         : print("CONNECTING FAILED");
+    var stream = await hubConnection.invoke('GetMessageHistory',
+        args: <dynamic>[korisnikInfo.id, korisnikInfo.id]);
+    print("PRINT:" + stream.toString());
   }
 
   void _handleNewMessage(var arguments) {
@@ -108,14 +110,13 @@ class _BodyState extends State<Body> {
   List<dynamic> _invokeSendPrivate(
       String senderID, String receiverID, String text) {
     List<dynamic> a = [senderID, receiverID, text];
-    a.forEach((element) {
-      print("foreach:");
-      print(element);
-    });
     return a;
   }
 
   void sendPrivate(String receiverID, String text) async {
+    if (hubConnection.state == HubConnectionState.disconnected) {
+      await hubConnection.start();
+    }
     setState(() {
       messages.add(new ChatMessage(
           senderId: korisnikInfo.id.toString(),
@@ -126,7 +127,8 @@ class _BodyState extends State<Body> {
           sent: false));
     });
     await hubConnection.invoke('SendPrivate',
-        args: _invokeSendPrivate(korisnikInfo.id.toString(), receiverID, text));
+        args: _invokeSendPrivate(
+            korisnikInfo.id.toString(), korisnikInfo.id.toString(), text));
   }
 
   _scrollToBottom() {

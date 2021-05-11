@@ -1,7 +1,6 @@
 import 'package:app/model/cart.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:flutter/material.dart';
-import 'package:app/constants.dart';
 
 // ignore: must_be_immutable
 class NumberSelector extends StatefulWidget {
