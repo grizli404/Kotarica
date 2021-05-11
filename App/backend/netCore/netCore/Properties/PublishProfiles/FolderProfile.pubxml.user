@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
-    <History>True|2021-05-11T17:14:05.6680337Z;True|2021-05-04T01:38:50.1810022+02:00;True|2021-05-04T01:34:47.5452997+02:00;True|2021-05-04T01:19:06.9528070+02:00;</History>
+    <_PublishTargetUrl>C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release</_PublishTargetUrl>
+    <History>True|2021-05-11T21:36:31.5698077Z;True|2021-05-11T23:34:24.9350675+02:00;True|2021-05-11T23:23:18.7566425+02:00;True|2021-05-11T19:14:05.6680337+02:00;True|2021-05-04T01:38:50.1810022+02:00;True|2021-05-04T01:34:47.5452997+02:00;True|2021-05-04T01:19:06.9528070+02:00;</History>
   </PropertyGroup>
 </Project>

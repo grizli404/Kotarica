@@ -50,18 +50,17 @@ namespace netCore.Hubs
             }
         }
 
-        public IEnumerable<MessageViewModel> GetMessageHistory(int ko, int kome)
+        public IEnumerable<Message> GetMessageHistory(int ko, int kome)
         {
-            var messageHistory = _context.Message.Where(mes => (mes.Ko == ko && mes.Kome == kome) || (mes.Ko == kome && mes.Kome == ko))
-                .Include(mes => mes.Ko)
-                .Include(mes => mes.Kome)
+            List<Message> messageHistory = _context.Message.Where(mes => (mes.Ko == ko && mes.Kome == kome) || (mes.Ko == kome && mes.Kome == ko))
                 .OrderByDescending(mes => mes.Kada)
-                .Take(50)
                 .AsEnumerable()
                 .Reverse()
                 .ToList();
 
-            return _mapper.Map<IEnumerable<Message>, IEnumerable<MessageViewModel>>(messageHistory);
+            return messageHistory;
+
+            //return _mapper.Map<IEnumerable<Message>, IEnumerable<MessageViewModel>>(messageHistory);
         }
 
         public async Task Online(string ko)
