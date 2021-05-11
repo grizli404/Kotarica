@@ -129,6 +129,9 @@ class _BodyState extends State<Body> {
     await hubConnection.invoke('SendPrivate',
         args: _invokeSendPrivate(
             korisnikInfo.id.toString(), korisnikInfo.id.toString(), text));
+    var res =
+        await hubConnection.invoke('GetMessageHistory', args: <int>[1, 2]);
+    print(res.toString());
   }
 
   _scrollToBottom() {

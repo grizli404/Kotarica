@@ -37,6 +37,7 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    var cart = Provider.of<Carts>(context, listen: true);
     //KorisniciModel k = Provider.of<KorisniciModel>(context);
     // Future<Korisnik> uzmiPodatke() async {
     //   var token = await FlutterSession().get('email');
@@ -140,7 +141,7 @@ class _BodyState extends State<Body> {
                 InkWell(
                   // dodaj u korpu
                   onTap: () {
-                    dodajJedanProizvodUKorpu(widget.proizvod);
+                    cart.dodajJedanProizvodUKorpu(widget.proizvod);
 
                     ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(

@@ -1,14 +1,16 @@
 import 'package:app/components/rounded_input_field.dart';
 import 'package:app/components/rounded_password_field.dart';
 import 'package:app/constants.dart';
+import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/personal_data.dart';
 import 'package:flutter/material.dart';
 
 class PaymentConfiguration extends StatefulWidget {
-  PaymentConfiguration({this.character = payment.online, this.personalData});
-
+  PaymentConfiguration(
+      {this.character = payment.online, this.korisnik, this.formKey});
+  final formKey;
+  Korisnik korisnik;
   payment character;
-  PersonalData personalData;
   @override
   _PaymentConfigurationState createState() => _PaymentConfigurationState();
 }
@@ -16,7 +18,6 @@ class PaymentConfiguration extends StatefulWidget {
 enum payment { online, onArrival }
 
 class _PaymentConfigurationState extends State<PaymentConfiguration> {
-  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,10 +25,9 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
       child: Padding(
         padding: EdgeInsets.all(20),
         child: Form(
-          key: _formKey,
+          key: widget.formKey,
           child: Column(
             children: <Widget>[
-              Text('NAČIN PLAĆANJA:'),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -62,12 +62,14 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
                       : Colors.white,
                   hintText: 'Adresa Ethereum naloga',
                   icon: Icons.payment,
+                  // value: korisnikInfo.EthereumAddress,
+                  //onChanged: (value){widget.korisnik.EthereumAddress=value},
                 ),
                 RoundedPasswordField(
                   hintText: 'Privatni kljuc',
-                  value: widget.personalData.privateKey,
+                  //value: widget.korisnik.privateKey,
                   onChanged: (value) {
-                    widget.personalData.privateKey = value;
+                    //widget.korisnik.privateKey!=null?"dsaf": value;
                   },
                   color: Theme.of(context).colorScheme == ColorScheme.dark()
                       ? Theme.of(context).primaryColor

@@ -51,7 +51,7 @@ class NavigationBarWidget extends StatelessWidget {
                       );
                     },
                   )
-                : CartIcon(key: HomeScreenLayout.cart2),
+                : CartIcon(),
             IconButton(
                 icon: Icon(Icons.notifications),
                 onPressed: () {

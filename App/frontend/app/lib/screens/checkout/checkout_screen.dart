@@ -2,35 +2,43 @@ import 'package:app/components/customAppBar.dart';
 import 'package:app/components/progress_hud.dart';
 import 'package:app/constants.dart';
 import 'package:app/main.dart';
+import 'package:app/model/cart.dart';
 import 'package:app/model/korisniciModel.dart';
+import 'package:app/model/kupovineModel.dart';
 import 'package:app/model/personal_data.dart';
+import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/checkout/components/confirm_configuration.dart';
 import 'package:app/screens/checkout/components/payment_configuration.dart';
 import 'package:app/screens/checkout/components/shipping_configuration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'components/chooser.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutScreen extends StatefulWidget {
   CheckoutScreen({
     this.shippingConfig = true,
     this.paymentConfig = false,
     this.confirmConfig = false,
-    this.personalData,
-    this.korisnik,
   });
   bool shippingConfig;
   bool paymentConfig;
   bool confirmConfig;
-  PersonalData personalData;
   bool isApiCallProcess = false;
-  Korisnik korisnik;
+  Korisnik korisnik = Korisnik.clone(korisnikInfo);
   @override
   _CheckoutScreenState createState() => _CheckoutScreenState();
 }
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
+  final formKey1 = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
+  var kupovine;
+  @override
+  initState() {
+    super.initState();
+    kupovine = KupovineModel();
+  }
+
   Widget build(BuildContext context) {
     return ProgressHUD(
       child: _build(context),
@@ -40,6 +48,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   }
 
   Widget _build(BuildContext context) {
+    var carts = Provider.of<Carts>(context);
+    var kupovina = Provider.of<KupovineModel>(context);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -87,9 +97,43 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 //   ),
                 // ),
                 // ] else ...[
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          height: 5,
+                          thickness: 4,
+                          color: Theme.of(context).colorScheme ==
+                                  ColorScheme.dark()
+                              ? Colors.black
+                              : kPrimaryColor,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text("ISPORUKA:"),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Divider(
+                          height: 5,
+                          thickness: 4,
+                          color: Theme.of(context).colorScheme ==
+                                  ColorScheme.dark()
+                              ? Colors.black
+                              : kPrimaryColor,
+                        ),
+                      ),
+                    ]),
                 ShippingConfiguration(
-                  korisnik: korisnikInfo,
-                  personalData: widget.personalData,
+                  formKey: formKey1,
+                  korisnik: widget.korisnik,
                 ),
                 // ],
                 // if (widget.paymentConfig == false) ...[
@@ -104,14 +148,40 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 //       )),
                 // ),
                 // ] else ...[
-                Divider(
-                  thickness: 3,
-                  color: Theme.of(context).colorScheme == ColorScheme.dark()
-                      ? Colors.black
-                      : kPrimaryColor,
-                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          height: 5,
+                          thickness: 4,
+                          color: Theme.of(context).colorScheme ==
+                                  ColorScheme.dark()
+                              ? Colors.black
+                              : kPrimaryColor,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text("NAČIN PLAĆANJA:"),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Divider(
+                          height: 5,
+                          thickness: 4,
+                          color: Theme.of(context).colorScheme ==
+                                  ColorScheme.dark()
+                              ? Colors.black
+                              : kPrimaryColor,
+                        ),
+                      ),
+                    ]),
                 PaymentConfiguration(
-                  personalData: widget.personalData,
+                  formKey: formKey2,
+                  korisnik: widget.korisnik,
                 ),
                 // ],
                 // if (widget.confirmConfig == false) ...[
@@ -126,16 +196,36 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 //         )),
                 //   ),
                 // ] else ...[
-                Divider(
-                  thickness: 3,
-                  color: Theme.of(context).colorScheme == ColorScheme.dark()
-                      ? Colors.black
-                      : kPrimaryColor,
-                ),
-                Text('KORPA:'),
-                ConfirmConfiguration(
-                  personalData: widget.personalData,
-                )
+
+                Row(children: [
+                  Expanded(
+                    child: Divider(
+                      height: 5,
+                      thickness: 4,
+                      color: Theme.of(context).colorScheme == ColorScheme.dark()
+                          ? Colors.black
+                          : kPrimaryColor,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text('KORPA:'),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: Divider(
+                      height: 5,
+                      thickness: 4,
+                      color: Theme.of(context).colorScheme == ColorScheme.dark()
+                          ? Colors.black
+                          : kPrimaryColor,
+                    ),
+                  ),
+                ]),
+
+                ConfirmConfiguration()
                 //   ]
               ],
             ),
@@ -183,7 +273,23 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             //   )
             // ] else ...[
             FlatButton(
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  widget.isApiCallProcess = true;
+                });
+                for (Cart index in carts.demoCarts) {
+                  kupovine.dodavanjeNoveKupovine(index.product.idKorisnika,
+                      korisnikInfo.id, index.product.id, index.numOfItems);
+                  print(index.product.idKorisnika.toString() +
+                      korisnikInfo.id.toString() +
+                      index.product.id.toString() +
+                      index.numOfItems.toString());
+                }
+
+                setState(() {
+                  widget.isApiCallProcess = false;
+                });
+              },
               child: Row(children: [Text("Naruči"), Icon(Icons.check_rounded)]),
               color: kPrimaryLightColor,
               textColor: Theme.of(context).primaryColor,

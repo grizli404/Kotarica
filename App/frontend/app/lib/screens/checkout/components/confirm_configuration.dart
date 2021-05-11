@@ -1,14 +1,16 @@
 import 'package:app/model/cart.dart';
 import 'package:app/model/personal_data.dart';
+import 'package:app/screens/cart/components/cart_item_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+
+import '../../../main.dart';
 
 class ConfirmConfiguration extends StatelessWidget {
-  ConfirmConfiguration({
-    this.personalData,
-  });
-  PersonalData personalData;
   @override
   Widget build(BuildContext context) {
+    var cart = Provider.of<Carts>(context, listen: true);
     return Container(
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(20, 0, 20, 100),
@@ -109,22 +111,19 @@ class ConfirmConfiguration extends StatelessWidget {
           //       : kPrimaryColor,
           // ),
 
-          for (Cart item in demoCarts) ...{
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _Atribut(
-                    text:
-                        "${demoCarts.indexOf(item) + 1}. ${item.product.naziv}: "),
-                _Vrednost(text: "${item.numOfItems} x ${item.product.cena} RSD")
-              ],
-            )
+          for (Cart item in cart.demoCarts) ...{
+            CheckoutItemCard(
+              cart: item,
+            ),
+            SizedBox(
+              height: 10,
+            ),
           },
           SizedBox(
             height: 10,
           ),
           _Atribut(
-            text: "Ukupno: ${sumTotal(demoCarts)} RSD",
+            text: "Ukupno: ${cart.sumTotal(cart.demoCarts)} RSD",
           ),
           // Divider(
           //   thickness: 3,
@@ -164,6 +163,75 @@ class _Vrednost extends StatelessWidget {
         maxLines: 2,
         textDirection: TextDirection.ltr,
       ),
+    );
+  }
+}
+
+class CheckoutItemCard extends StatelessWidget {
+  const CheckoutItemCard({
+    Key key,
+    @required this.cart,
+  }) : super(key: key);
+  final Cart cart;
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Row(
+      children: [
+        SizedBox(
+          width: 150,
+          child: AspectRatio(
+            aspectRatio: 1,
+            child: Container(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(20),
+                    image: cart.product.slika != ''
+                        ? DecorationImage(
+                            image: NetworkImage(
+                                "https://ipfs.io/ipfs/" + cart.product.slika))
+                        : SvgPicture.asset(
+                            "assets/icons/shopping-basket.svg"))),
+          ),
+        ),
+        SizedBox(
+          width: size.width * 0.05,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              cart.product.naziv,
+              style: TextStyle(
+                fontSize: 16,
+                color: Theme.of(context).accentColor,
+                fontWeight: FontWeight.w600,
+              ),
+              maxLines: 2,
+            ),
+            const SizedBox(height: 10),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              Text.rich(
+                TextSpan(
+                    text: "${cart.product.cena} RSD x ${cart.numOfItems}",
+                    style: TextStyle(
+                        color: Theme.of(context).accentColor,
+                        fontWeight: FontWeight.w600),
+                    children: [
+                      // TextSpan(
+                      //   text: " x",
+                      //   style: TextStyle(color: Theme.of(context).hintColor),
+                      // ),
+                    ]),
+              ),
+            ]),
+          ],
+        ),
+        Expanded(
+          child: SizedBox(),
+        ),
+      ],
     );
   }
 }
