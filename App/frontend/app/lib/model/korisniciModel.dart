@@ -54,8 +54,8 @@ class KorisniciModel extends ChangeNotifier {
     if(broj > 0) {
       print(ulogovaniKorisnik.ime + " " + ulogovaniKorisnik.prezime);
     }*/
-    await dodajSliku(1, "promena");
-    print("promenio sam");
+    // await dodajSliku(1, "promena");
+    // print("promenio sam");
   }
 
   Future<void> getAbi() async {

@@ -13,16 +13,7 @@ C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.EntityFrameworkCore.Sqlite.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.Extensions.Caching.Abstractions.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.Extensions.DependencyModel.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.Extensions.Logging.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.Extensions.Options.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.Extensions.Primitives.dll
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.IdentityModel.Logging.dll
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.IdentityModel.Protocols.dll
@@ -31,13 +22,7 @@ C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Newtonsoft.Json.dll
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\SQLitePCLRaw.batteries_v2.dll
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\SQLitePCLRaw.core.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\SQLitePCLRaw.provider.e_sqlite3.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\System.Collections.Immutable.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\System.ComponentModel.Annotations.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\System.Diagnostics.DiagnosticSource.dll
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\System.Text.Encodings.Web.dll
-C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\System.Text.Json.dll
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\libe_sqlite3.so
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\obj\Release\netcoreapp3.0\linux-x64\netCore.AssemblyInfoInputs.cache
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\obj\Release\netcoreapp3.0\linux-x64\netCore.AssemblyInfo.cs
@@ -51,3 +36,6 @@ C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\obj\Release\netcoreapp3.0\linux-x64\netCore.dll
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\obj\Release\netcoreapp3.0\linux-x64\netCore.pdb
 C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\obj\Release\netcoreapp3.0\linux-x64\netCore.genruntimeconfig.cache
+C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\AutoMapper.dll
+C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\SQLitePCLRaw.nativelibrary.dll
+C:\Users\beslac_lazar\Desktop\project_dev\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\SQLitePCLRaw.provider.dynamic_cdecl.dll
