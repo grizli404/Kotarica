@@ -2,6 +2,7 @@ import 'package:app/constants.dart';
 import 'package:app/model/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../main.dart';
 
@@ -9,7 +10,7 @@ class CartItemCard extends StatefulWidget {
   const CartItemCard({
     Key key,
     @required this.cart,
-    @required this.rebuild,
+    this.rebuild,
   }) : super(key: key);
   final Function rebuild;
   final Cart cart;
@@ -21,6 +22,7 @@ class CartItemCard extends StatefulWidget {
 class _CartItemCardState extends State<CartItemCard> {
   @override
   Widget build(BuildContext context) {
+    var cart = Provider.of<Carts>(context, listen: true);
     Size size = MediaQuery.of(context).size;
     return Row(
       children: [
@@ -31,8 +33,13 @@ class _CartItemCardState extends State<CartItemCard> {
             child: Container(
                 decoration: BoxDecoration(
                     color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(20)),
-                child: SvgPicture.asset("assets/icons/shopping-basket.svg")),
+                    borderRadius: BorderRadius.circular(20),
+                    image: widget.cart.product.slika != ''
+                        ? DecorationImage(
+                            image: NetworkImage("https://ipfs.io/ipfs/" +
+                                widget.cart.product.slika))
+                        : SvgPicture.asset(
+                            "assets/icons/shopping-basket.svg"))),
           ),
         ),
         SizedBox(
@@ -122,18 +129,18 @@ class _CartItemCardState extends State<CartItemCard> {
             ),
             color: Theme.of(context).accentColor,
             onPressed: () => widget.rebuild(() {
-              int index = demoCarts.indexOf(widget.cart);
-              Cart cart = removeProduct(index);
+              int index = cart.demoCarts.indexOf(widget.cart);
+              Cart carty = cart.removeProduct(index);
               ScaffoldMessenger.of(context)
                   .removeCurrentSnackBar(reason: SnackBarClosedReason.remove);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   action: SnackBarAction(
-                    label: "Vrati ${cart.product.naziv} u korpu!",
-                    onPressed: () =>
-                        widget.rebuild(() => insertProductAtIndex(index, cart)),
+                    label: "Vrati ${carty.product.naziv} u korpu!",
+                    onPressed: () => widget
+                        .rebuild(() => cart.insertProductAtIndex(index, carty)),
                   ),
-                  content: Text("Uklonili ste ${cart.product.naziv}"),
+                  content: Text("Uklonili ste ${carty.product.naziv}"),
                   duration: const Duration(milliseconds: 5000),
                   width: MediaQuery.of(context).size.width *
                       0.9, // Width of the SnackBar.

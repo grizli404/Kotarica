@@ -36,6 +36,7 @@ class KupovineModel extends ChangeNotifier {
     await getAbi();
     await getCredentials();
     await getDeployedCotract();
+    print(ugovor);
 
     //await oceniProizvod(1, 1, 2, 4, "Bez komentara");
   }
@@ -117,14 +118,10 @@ class KupovineModel extends ChangeNotifier {
     var temp = await client.call(
         contract: ugovor,
         function: daLiPostojiKupovinaBiloKogProizvoda,
-        params: [
-          BigInt.from(_idKupca),
-          BigInt.from(_idProdavca)
-        ]);
+        params: [BigInt.from(_idKupca), BigInt.from(_idProdavca)]);
 
     return temp[0].toInt();
   }
-
 }
 
 class Kupovina {

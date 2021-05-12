@@ -92,14 +92,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       Navigator.pushNamed(context, '/favorites');
                     })
                 : Container(),
-            if (isWeb)
-              CartIcon(
-                key: HomeScreenLayout.cart1,
-              ),
+            if (isWeb) CartIcon(),
             if (korisnikInfo != null && ResponsiveLayout.isIphone(context))
-              CartIcon(
-                key: HomeScreenLayout.cart1,
-              ),
+              CartIcon(),
             !ResponsiveLayout.isIphone(context)
                 ? SizedBox(
                     width: 15,

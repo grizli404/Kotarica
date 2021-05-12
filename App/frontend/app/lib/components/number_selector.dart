@@ -1,6 +1,7 @@
 import 'package:app/model/cart.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class NumberSelector extends StatefulWidget {
@@ -24,6 +25,7 @@ class TestState extends State<NumberSelector> {
 
   @override
   Widget build(BuildContext context) {
+    var cart = Provider.of<Carts>(context, listen: true);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -40,7 +42,7 @@ class TestState extends State<NumberSelector> {
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onPressed: () {
-                    dodajProizvod(proizvod, counter);
+                    cart.dodajProizvod(proizvod, counter);
                     ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

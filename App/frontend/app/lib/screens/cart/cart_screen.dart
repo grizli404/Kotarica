@@ -4,6 +4,7 @@ import 'package:app/main.dart';
 import 'package:app/model/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import 'components/cart_item_card.dart';
 
@@ -17,18 +18,19 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    var cart = Provider.of<Carts>(context, listen: true);
     return Scaffold(
       appBar: buildAppBar(context),
       body: Padding(
         padding: EdgeInsets.all(10),
         child: ListView.builder(
-          itemCount: demoCarts.length,
+          itemCount: cart.demoCarts.length,
           itemBuilder: (context, index) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: !isWeb
                 ? Dismissible(
                     direction: DismissDirection.endToStart,
-                    key: Key(demoCarts[index].product.id.toString()),
+                    key: Key(cart.demoCarts[index].product.id.toString()),
                     background: Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
@@ -46,17 +48,18 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                     onDismissed: (direction) {
                       setState(() {
-                        Cart cart = removeProduct(index);
+                        Cart carty = cart.removeProduct(index);
                         ScaffoldMessenger.of(context).removeCurrentSnackBar(
                             reason: SnackBarClosedReason.remove);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             action: SnackBarAction(
-                              label: "Vrati ${cart.product.naziv} u korpu!",
-                              onPressed: () => setState(
-                                  () => insertProductAtIndex(index, cart)),
+                              label: "Vrati ${carty.product.naziv} u korpu!",
+                              onPressed: () => setState(() =>
+                                  cart.insertProductAtIndex(index, carty)),
                             ),
-                            content: Text("Uklonili ste ${cart.product.naziv}"),
+                            content:
+                                Text("Uklonili ste ${carty.product.naziv}"),
                             duration: const Duration(milliseconds: 5000),
                             width: MediaQuery.of(context).size.width *
                                 0.9, // Width of the SnackBar.
@@ -73,12 +76,12 @@ class _CartScreenState extends State<CartScreen> {
                       });
                     },
                     child: CartItemCard(
-                      cart: demoCarts[index],
+                      cart: cart.demoCarts[index],
                       rebuild: setState,
                     ),
                   )
                 : CartItemCard(
-                    cart: demoCarts[index],
+                    cart: cart.demoCarts[index],
                     rebuild: setState,
                   ),
           ),
@@ -90,6 +93,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   AppBar buildAppBar(BuildContext context) {
+    var cart = Provider.of<Carts>(context, listen: true);
     return AppBar(
       automaticallyImplyLeading: true,
       leading: IconButton(
@@ -108,14 +112,14 @@ class _CartScreenState extends State<CartScreen> {
             "KORPA",
             style: TextStyle(color: kPrimaryLightColor),
           ),
-          if (demoCarts.length == 1) ...[
+          if (cart.demoCarts.length == 1) ...[
             Text(
-              "${demoCarts.length} proizvod",
+              "${cart.demoCarts.length} proizvod",
               style: TextStyle(inherit: false, color: kPrimaryLightColor),
             ),
           ] else ...[
             Text(
-              "${demoCarts.length} proizvoda",
+              "${cart.demoCarts.length} proizvoda",
               style: TextStyle(inherit: false, color: kPrimaryLightColor),
             )
           ]
@@ -131,6 +135,7 @@ class CheckOutCard extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var cart = Provider.of<Carts>(context, listen: true);
     Size size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.symmetric(
@@ -174,7 +179,7 @@ class CheckOutCard extends StatelessWidget {
                         style: TextStyle(fontWeight: FontWeight.bold),
                         children: [
                           TextSpan(
-                              text: "${sumTotal(demoCarts)} RSD",
+                              text: "${cart.sumTotal(cart.demoCarts)} RSD",
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -212,7 +217,7 @@ class CheckOutCard extends StatelessWidget {
                           ),
                         ),
                       )
-                    : demoCarts.length == 0
+                    : cart.demoCarts.length == 0
                         ? ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text("Nemate proizvode u korpi!"),

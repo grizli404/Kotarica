@@ -1,6 +1,7 @@
 // ignore: unused_import
 import 'dart:io';
 
+import 'package:app/model/kupovineModel.dart';
 import 'package:app/screens/chats/chats_screen.dart';
 import 'package:app/model/kategorijeModel.dart';
 import 'package:app/model/listaZeljaModel.dart';
@@ -22,6 +23,7 @@ import 'package:provider/provider.dart';
 // ignore: unused_import
 //import 'package:google_fonts/google_fonts.dart';
 
+import 'model/cart.dart';
 import 'model/korisniciModel.dart';
 import 'model/notification_model.dart';
 import 'screens/add_product/add_product.dart';
@@ -74,9 +76,11 @@ class MyApp extends StatelessWidget {
     // setujSesiju();
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => Carts()),
         ChangeNotifierProvider(create: (context) => KorisniciModel()),
         ChangeNotifierProvider(create: (context) => ProizvodiModel()),
         ChangeNotifierProvider(create: (context) => KategorijeModel()),
+        ChangeNotifierProvider(create: (context) => KupovineModel()),
         ChangeNotifierProvider(create: (context) => OceneModel()),
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
         ChangeNotifierProvider(create: (context) => ListaZeljaModel()),
@@ -111,15 +115,7 @@ class MaterialAppCustom extends StatelessWidget {
         '/signup': (context) => SignUpScreen(),
         '/home': (context) => HomeScreen(),
         '/profile': (context) => MyProfileScreen(),
-        '/checkout': (context) => CheckoutScreen(
-            korisnik: korisnikInfo,
-            personalData: PersonalData(
-                adresa: "Novosadska",
-                ime: "Nikola",
-                kontakt: "0629756150",
-                opis: "opis",
-                postanskiBroj: "Kragujevac 34000",
-                privateKey: "089ywegrxzch-qw9ytpbhgpwe9")),
+        '/checkout': (context) => CheckoutScreen(),
         '/cart': (context) => CartScreen(),
         '/favorites': (context) => FavoritesScreen(),
         '/addProduct': (context) => AddProduct(),

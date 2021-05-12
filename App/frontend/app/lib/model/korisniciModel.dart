@@ -271,4 +271,15 @@ class Korisnik {
       this.brojTelefona,
       this.adresa,
       this.slika});
+
+  Korisnik.clone(Korisnik cl)
+      : this(
+            id: cl.id,
+            mail: cl.mail,
+            password: cl.password,
+            ime: cl.ime,
+            prezime: cl.prezime,
+            brojTelefona: cl.brojTelefona,
+            adresa: cl.adresa,
+            slika: cl.slika);
 }

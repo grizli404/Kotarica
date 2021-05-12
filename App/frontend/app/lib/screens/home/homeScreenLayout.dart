@@ -10,8 +10,6 @@ import 'package:flutter/material.dart';
 import '../../components/drawer.dart';
 
 class HomeScreenLayout extends StatelessWidget {
-  static GlobalKey<CartIconState> cart1 = GlobalKey<CartIconState>();
-  static GlobalKey<CartIconState> cart2 = GlobalKey<CartIconState>();
   @override
   Widget build(BuildContext context) {
     if (ResponsiveLayout.isIphone(context)) {
