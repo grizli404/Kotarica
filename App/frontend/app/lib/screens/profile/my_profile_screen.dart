@@ -490,7 +490,7 @@ class ProfileButton extends StatelessWidget {
 
 List<Container> testScroll = [
   Container(
-    height: 250,
+    height: 290,
     child: ProductCard(
         name: "Jabuke",
         price: "100",
@@ -500,7 +500,7 @@ List<Container> testScroll = [
         context: ""),
   ),
   Container(
-    height: 250,
+    height: 290,
     child: ProductCard(
         name: "Kruske",
         price: "100",
@@ -510,7 +510,7 @@ List<Container> testScroll = [
         context: ""),
   ),
   Container(
-    height: 250,
+    height: 290,
     child: ProductCard(
         name: "Sljive",
         price: "100",
