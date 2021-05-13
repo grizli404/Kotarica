@@ -61,6 +61,7 @@ class _AddProductState extends State<AddProduct> {
     selectedCat = listaRoditeljKategorija[0];
     subcategory = kModel.dajPotkategorije(selectedCat.id);
     potkategorija = subcategory[0];
+    slika = "0";
   }
 
   @override
