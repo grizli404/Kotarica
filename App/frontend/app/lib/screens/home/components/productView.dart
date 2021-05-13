@@ -27,7 +27,7 @@ class ProductView extends StatelessWidget {
             primary: false,
             // crossAxisSpacing: 5.0,
             //  mainAxisSpacing: 10.0,
-            childAspectRatio: ResponsiveLayout.isIphone(context) ? 0.7 : 0.8,
+            childAspectRatio: ResponsiveLayout.isIphone(context) ? 0.65 : 0.8,
             children: List.generate(
               listaProizvoda.length,
               (index) {
