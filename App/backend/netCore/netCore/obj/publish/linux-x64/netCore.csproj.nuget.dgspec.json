@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\beslac_lazar\\Desktop\\project_dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj": {}
+    "C:\\Users\\beslac_lazar\\Desktop\\project\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\beslac_lazar\\Desktop\\project_dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj": {
+    "C:\\Users\\beslac_lazar\\Desktop\\project\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\beslac_lazar\\Desktop\\project_dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
+        "projectUniqueName": "C:\\Users\\beslac_lazar\\Desktop\\project\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
         "projectName": "netCore",
-        "projectPath": "C:\\Users\\beslac_lazar\\Desktop\\project_dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
+        "projectPath": "C:\\Users\\beslac_lazar\\Desktop\\project\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
         "packagesPath": "C:\\Users\\beslac_lazar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\beslac_lazar\\Desktop\\project_dev\\ChainTech\\App\\backend\\netCore\\netCore\\obj\\publish\\linux-x64\\",
+        "outputPath": "C:\\Users\\beslac_lazar\\Desktop\\project\\ChainTech\\App\\backend\\netCore\\netCore\\obj\\publish\\linux-x64\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
