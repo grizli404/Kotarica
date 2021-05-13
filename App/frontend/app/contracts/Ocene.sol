@@ -8,7 +8,6 @@ contract Ocene{
         int id;
         int idKupovine;
         int idProdavca;
-        int idKategorije; //ovi podaci o proizvodu se ponavljaju zbog toga sto trenutno trebaju Maji 
         int idProizvoda;  
         int ocena;
     }
@@ -17,10 +16,10 @@ contract Ocene{
 
     mapping (int => Ocena) public ocene;
 
-    function dodajOcenu (int _idKupovine, int _idProdavca,int _idKategorije, int _idProizvoda, int _ocena) public 
+    function dodajOcenu (int _idKupovine, int _idProdavca, int _idProizvoda, int _ocena) public 
     {
         brojOcena++;
-        ocene[brojOcena] = Ocena(brojOcena, _idKupovine, _idProdavca,_idKategorije, _idProizvoda, _ocena);
+        ocene[brojOcena] = Ocena(brojOcena, _idKupovine, _idProdavca, _idProizvoda, _ocena);
     }
 
 
