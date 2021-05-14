@@ -84,7 +84,7 @@ class _BodyState extends State<Body> {
                 ProductContainer(naziv: 'Popularni proizvodi'),
                 ProductContainer(naziv: 'Preporuka'),
                 SizedBox(
-                  height: 30.0,
+                  height: isWeb ? 30.0 : 70,
                 ),
               ] else if (_isSearchState == true) ...[
                 ProductView(
@@ -344,19 +344,19 @@ class _BodyState extends State<Body> {
           items: [
             DropdownMenuItem(
                 child: Text("Cena - opadajuća",
-                    style: TextStyle(color: Theme.of(context).hoverColor)),
+                    style: TextStyle(color: Colors.black)),
                 value: 1),
             DropdownMenuItem(
                 child: Text("Cena - rasutuća",
-                    style: TextStyle(color: Theme.of(context).hoverColor)),
+                    style: TextStyle(color: Colors.black)),
                 value: 2),
             DropdownMenuItem(
                 child: Text("Datum - najnovije",
-                    style: TextStyle(color: Theme.of(context).hoverColor)),
+                    style: TextStyle(color: Colors.black)),
                 value: 3),
             DropdownMenuItem(
                 child: Text("Datum - najstarije",
-                    style: TextStyle(color: Theme.of(context).hoverColor)),
+                    style: TextStyle(color: Colors.black)),
                 value: 4)
           ],
           onChanged: (value) {

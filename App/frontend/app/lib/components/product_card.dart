@@ -116,12 +116,15 @@ class ProductCard extends StatelessWidget {
                                         : AssetImage(imgPath),
                                     fit: BoxFit.contain)))),
                     SizedBox(height: 7.0),
-                    Text(price,
+                    Text(price + ' RSD',
                         style: TextStyle(
                             color: Theme.of(context).iconTheme.color,
                             fontFamily: 'Varela',
                             fontSize: 14.0)),
                     Text(name,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
                         style: TextStyle(
                             color: Theme.of(context).hintColor,
                             fontFamily: 'Varela',

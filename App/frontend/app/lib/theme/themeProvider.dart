@@ -2,6 +2,8 @@ import 'package:app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
+import '../main.dart';
+
 class ThemeProvider extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.system;
 
@@ -34,7 +36,8 @@ class MyThemes {
     indicatorColor: Colors.black,
     bottomAppBarColor: Colors.white,
     canvasColor: Colors.white,
-    hoverColor: Colors.grey.shade800,
+    // hoverColor: Colors.grey.shade800,
+    hoverColor: ColorScheme.dark() != null && isWeb ? Colors.grey : tamnoPlava,
   );
 
   static final lightTheme = ThemeData(
@@ -50,6 +53,7 @@ class MyThemes {
     indicatorColor: kPrimaryColor,
     bottomAppBarColor: Colors.white,
     canvasColor: Colors.white,
-    hoverColor: Color(0xFF6580ad),
+    // hoverColor: Color(0xFF6580ad),
+    hoverColor: ColorScheme.light() != null && isWeb ? tamnoPlava : Colors.grey,
   );
 }

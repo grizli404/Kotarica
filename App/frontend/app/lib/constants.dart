@@ -10,4 +10,6 @@ const kPrimaryColorHover = Color(0xFF7B94BD);
 const kPrimaryLightColor = Colors.white;
 const kBackgroundColor = Colors.white;
 
+const tamnoPlava = Color(0xFF4f6993);
+
 const double kDefaultPadding = 20.0;
