@@ -24,7 +24,7 @@ class OceneModel extends ChangeNotifier {
   ContractFunction brojOcena;
   ContractFunction ocene;
   ContractFunction dodajOcenu;
-  ContractFunction _prosecnaOcenaZaProizvod;
+  ContractFunction _prosecnaOcenaZaProdavca;
   
   OceneModel() {
     inicijalnoSetovanje();
@@ -50,7 +50,7 @@ class OceneModel extends ChangeNotifier {
 
     /**************************  MOB  ********************************** */
     final response =
-        await http.get(Uri.http('147.91.204.116:11091', 'Ocene.json'));
+        await http.get(Uri.http('147.91.204.116:11091', 'OceneKorisnika.json'));
     var jsonAbi;
     if (response.statusCode == 200) {
       jsonAbi = jsonDecode(response.body);
@@ -74,15 +74,15 @@ class OceneModel extends ChangeNotifier {
 
   Future<void> getDeployedCotract() async {
     ugovor =
-        DeployedContract(ContractAbi.fromJson(abiCode, "Ocene"), adresaUgovora);
+        DeployedContract(ContractAbi.fromJson(abiCode, "OceneKorisnika"), adresaUgovora);
 
     brojOcena = ugovor.function("brojOcena");
-    ocene = ugovor.function("ocene");
+    ocene = ugovor.function("ocene2");
     dodajOcenu = ugovor.function("dodajOcenu");
-    _prosecnaOcenaZaProizvod = ugovor.function("prosecnaOcenaZaProizvod");
+    _prosecnaOcenaZaProdavca = ugovor.function("prosecnaOcenaZaProdavca");
   }
 
-  Future<void> oceniProizvod(int _idKupovine, int _idProdavca, int _idProizvoda, int _ocena) async {
+  Future<void> oceniProdavca(int _idKupca, int _idProdavca, int _ocena) async {
     await client.sendTransaction(
         credentials,
         Transaction.callContract(
@@ -90,16 +90,15 @@ class OceneModel extends ChangeNotifier {
             contract: ugovor,
             function: dodajOcenu,
             parameters: [
-              BigInt.from(_idKupovine),
+              BigInt.from(_idKupca),
               BigInt.from(_idProdavca),
-              BigInt.from(_idProizvoda),
               BigInt.from(_ocena)
             ]));
   }
 
-  Future<double> prosecnaOcenaZaProizvod(int _idProizvoda) async{
+  Future<double> prosecnaOcenaZaProizvod(int _idProdavca) async{
     var temp = await client.call(
-        contract: ugovor, function: _prosecnaOcenaZaProizvod, params: [BigInt.from(_idProizvoda)]);
+        contract: ugovor, function: _prosecnaOcenaZaProdavca, params: [BigInt.from(_idProdavca)]);
 
     BigInt tempInt = temp[0];
     int vrednost = tempInt.toInt();
@@ -184,15 +183,13 @@ class OceneModel extends ChangeNotifier {
 
 class Ocena {
   int id;
-  int idKupovine;
+  int idKupca;
   int idProdavca;
-  int idProizvoda;
   int ocena;
 
   Ocena(
       {this.id,
-      this.idKupovine,
+      this.idKupca,
       this.idProdavca,
-      this.idProizvoda,
       this.ocena});
 }

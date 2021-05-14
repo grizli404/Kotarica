@@ -32,8 +32,8 @@ class ChatInputField extends StatelessWidget {
                 color: Theme.of(context).scaffoldBackgroundColor,
                 child: TextField(
                   onSubmitted: (input) {
-                    if (_controller.text != '')
-                      sendMessage(1.toString(), _controller.text);
+                    if (_controller.text != '') sendMessage(_controller.text);
+                    print(_controller.text);
                     _controller.clear();
                   },
                   controller: _controller,
@@ -54,8 +54,8 @@ class ChatInputField extends StatelessWidget {
                 color: kPrimaryLightColor,
               ),
               onTap: () {
-                if (_controller.text != '')
-                  sendMessage(1.toString(), _controller.text);
+                if (_controller.text != '') sendMessage(_controller.text);
+                print(_controller.text.toString());
                 _controller.clear();
               },
             ),

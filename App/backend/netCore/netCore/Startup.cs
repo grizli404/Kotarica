@@ -30,10 +30,6 @@ namespace netCore
             //Povezali sa bazom
             services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=Kotarica.db"));
 
-            //Sve veze
-            //services.AddTransient<IKategorije, KategorijeRepo>();
-            //services.AddTransient<IProizvodi, ProizvodiRepo>();
-
             services.AddControllers();
 
             /*************** POCETAK TOKENA ************** */

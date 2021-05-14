@@ -30,13 +30,20 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   int _rating;
   Proizvod proizvod;
-
+  int idKorisnika;
   _BodyState(Proizvod proizvod) {
     this.proizvod = proizvod;
   }
 
+  void initKorisnik() async {
+    widget.korisnik =
+        await widget.kModel.dajKorisnikaZaId(widget.proizvod.idKorisnika);
+  }
+
   @override
   Widget build(BuildContext context) {
+    widget.kModel = Provider.of<KorisniciModel>(context);
+    widget.pModel = Provider.of<ProizvodiModel>(context);
     var cart = Provider.of<Carts>(context, listen: true);
     //KorisniciModel k = Provider.of<KorisniciModel>(context);
     // Future<Korisnik> uzmiPodatke() async {
@@ -197,14 +204,35 @@ class _BodyState extends State<Body> {
                 InkWell(
                   // posalji poruku
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ConversationScreen();
-                        },
-                      ),
-                    );
+                    if (korisnikInfo != null) {
+                      initKorisnik();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ConversationScreen(
+                                sagovornik: widget.korisnik);
+                          },
+                        ),
+                      );
+                    } else
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                              "Morate biti ulogovani da biste poslali poruku!"),
+                          duration: const Duration(milliseconds: 2000),
+                          width: MediaQuery.of(context).size.width *
+                              0.9, // Width of the SnackBar.
+                          padding: const EdgeInsets.symmetric(
+                            horizontal:
+                                8.0, // Inner padding for SnackBar content.
+                          ),
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      );
                   },
                   child: Center(
                     child: Container(

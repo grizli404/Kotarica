@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using netCore.Data;
 using netCore.Models;
-using netCore.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,66 +11,51 @@ namespace netCore.Hubs
 {
     public class ChatHub : Hub
     {
-        //public readonly static List<MessageViewModel>
-
         private readonly AppDbContext _context;
-        private readonly IMapper _mapper;
 
         public ChatHub(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task SendPrivate(string ko, string kome, string sta)
+        public async Task SendPrivate(int id, int ko, int kome, string sta)
         {
             if (!string.IsNullOrEmpty(sta.Trim()))
             {
-
-                //Ako poslata poruka nije prazna
-                var messageViewModel = new MessageViewModel()
+                Message message = new Message()
                 {
                     Ko = ko,
                     Kome = kome,
                     Sta = sta,
-                    Kada = DateTime.Now.ToLongTimeString()
+                    Kada = DateTime.Now
                 };
 
-                _context.Message.Add(new Message()
-                {
-                    Ko = int.Parse(ko),
-                    Kome = int.Parse(kome),
-                    Sta = sta,
-                    Kada = DateTime.Now
-                });
+                _context.Message.Add(message);
+                _context.SaveChanges();
 
-                await Clients.Client(kome).SendAsync("newMessage", messageViewModel);
-                await Clients.Caller.SendAsync("newMessage", messageViewModel);
+                await Clients.All.SendAsync("newMessage", message);
+                await Clients.Caller.SendAsync("sendingStatus", id);
             }
         }
 
         public IEnumerable<Message> GetMessageHistory(int ko, int kome)
         {
-            List<Message> messageHistory = _context.Message.Where(mes => (mes.Ko == ko && mes.Kome == kome) || (mes.Ko == kome && mes.Kome == ko))
+            return _context.Message.Where(mes => (mes.Ko == ko && mes.Kome == kome) || (mes.Ko == kome && mes.Kome == ko))
                 .OrderByDescending(mes => mes.Kada)
                 .AsEnumerable()
                 .Reverse()
                 .ToList();
-
-            return messageHistory;
-
-            //return _mapper.Map<IEnumerable<Message>, IEnumerable<MessageViewModel>>(messageHistory);
         }
 
-        public async Task Online(string ko)
+        public async Task Online(int ko)
         {
             await Clients.All.SendAsync("UserOnline", ko);
         }
 
-        public async Task Offline(string ko)
+        public async Task Offline(int ko)
         {
             await Clients.All.SendAsync("UserOffline", ko);
         }
-
 
         public async Task SendMessage(string from, string to, string message)
         {

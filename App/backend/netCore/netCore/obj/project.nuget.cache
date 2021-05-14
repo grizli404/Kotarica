@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XAQby7XQw2aYX33F0rVm1/te25oYdj05XUnupIHyN0ytUTJnuICFYVhkGL+YUGl/yTFz4IVWAf9zmvAOOmyMTQ==",
+  "dgSpecHash": "/Ze0tHdyT+FkctDrW9LKgGqq42Lm7Oe8cwYk8JeFpSfotJon2wl/G+ofZ8Z+LDopLDqbQ3GOiQAnIPkYrrD8mA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\beslac_lazar\\Desktop\\project_dev\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
+  "projectFilePath": "C:\\Users\\beslac_lazar\\Desktop\\project\\ChainTech\\App\\backend\\netCore\\netCore\\netCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\beslac_lazar\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\beslac_lazar\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.0.0\\microsoft.aspnetcore.authentication.jwtbearer.3.0.0.nupkg.sha512",

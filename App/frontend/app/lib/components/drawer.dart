@@ -52,9 +52,24 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
     // tokenWeb = await FlutterSession().get('jwt');
   }
 
-  ProizvodiModel proizvodi = ProizvodiModel();
+  List<Kategorija> kategorijeBezRoditelja() {
+    //  print("askdfjklasjdf");
+    List<Kategorija> kategorijeBez = <Kategorija>[];
+    //   print('1');
+    for (var i = 0; i < kategorije.kategorije.length; i++) {
+      if (kategorije.kategorije[i].idRoditelja == 0) {
+        //      print('kat ' + kategorije.kategorije[i].naziv);
+        kategorijeBez.add(kategorije.kategorije[i]);
+      }
+    }
+//    print('2');
+    return kategorijeBez;
+  }
 
+  ProizvodiModel proizvodi = ProizvodiModel();
+  List<Kategorija> noveKategorije = kategorijeBezRoditelja();
   return Container(
+      width: 300,
       color: Theme.of(context).primaryColor,
       child: SafeArea(
           child: Container(
@@ -178,102 +193,215 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
             Container(
                 padding: EdgeInsets.only(left: 15.0),
                 child: InkWell(
+                    focusColor: tamnoPlava,
                     onTap: () {
                       Navigator.pushNamed(context, '/home');
                     },
                     child: Row(
                       children: [
-                        Icon(
-                          Icons.home,
-                          size: 26,
-                        ),
+                        Icon(Icons.home,
+                            size: 26,
+                            color: !isWeb &&
+                                    Theme.of(context).colorScheme ==
+                                        ColorScheme.light()
+                                ? kPrimaryColor
+                                : Colors.white),
                         SizedBox(
                           width: 5,
                         ),
                         Text(
                           'Početna strana',
-                          style: TextStyle(fontSize: 22),
+                          style: TextStyle(
+                              fontSize: 22,
+                              color: (!isWeb &&
+                                          Theme.of(context).colorScheme ==
+                                              ColorScheme.dark()) ||
+                                      isWeb
+                                  ? Colors.white
+                                  : Colors.black),
                         ),
                       ],
                     ))),
+
+            if (korisnikInfo != null) ...[
+              SizedBox(
+                height: 10,
+              ),
+              Divider(
+                height: 5,
+                thickness: 4,
+                indent: 20,
+                endIndent: 20,
+                color: Theme.of(context).colorScheme == ColorScheme.light()
+                    ? tamnoPlava
+                    : Colors.white,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                //  height: 80,
+                padding: EdgeInsets.only(left: 15.0),
+                child: InkWell(
+                    hoverColor: Colors.grey,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AddProduct()),
+                      );
+                    },
+                    child: Row(children: [
+                      Icon(
+                        Icons.control_point,
+                        size: 26,
+                        color: !isWeb &&
+                                Theme.of(context).colorScheme ==
+                                    ColorScheme.light()
+                            ? kPrimaryColor
+                            : Colors.white,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        'Dodajte novi proizvod',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: (!isWeb &&
+                                        Theme.of(context).colorScheme ==
+                                            ColorScheme.dark()) ||
+                                    isWeb
+                                ? Colors.white
+                                : Colors.black),
+                      ),
+                    ])),
+              ),
+            ],
+            SizedBox(
+              height: 10,
+            ),
+            Divider(
+              height: 5,
+              thickness: 4,
+              indent: 20,
+              endIndent: 20,
+              color: Theme.of(context).colorScheme == ColorScheme.light()
+                  ? tamnoPlava
+                  : Colors.white,
+            ),
             SizedBox(
               height: 15,
             ),
             Container(
-              padding: EdgeInsets.only(left: 15.0),
-              child: Text(
-                'Kategorije:',
-                style: TextStyle(fontSize: 22),
-              ),
-            ),
+                padding: EdgeInsets.only(left: 15.0),
+                child: Row(children: [
+                  Icon(
+                    Icons.label_outline,
+                    size: 26,
+                    color: !isWeb &&
+                            Theme.of(context).colorScheme == ColorScheme.light()
+                        ? kPrimaryColor
+                        : Colors.white,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    'Kategorije:',
+                    style: TextStyle(
+                        fontSize: 22,
+                        color: (!isWeb &&
+                                    Theme.of(context).colorScheme ==
+                                        ColorScheme.dark()) ||
+                                isWeb
+                            ? Colors.white
+                            : Colors.black),
+                  ),
+                ])),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: kategorije.kategorije.length,
+              itemCount: noveKategorije.length,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                return ExpansionTile(
-                  //dense: true,
-                  title: MaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return ProductByCategory(
-                              listaProizvoda:
-                                  proizvodi.dajProizvodeZaKategoriju(
-                                      kategorije.kategorije[index].id),
-                              category: '${kategorije.kategorije[index].naziv}',
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(20),
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        '${kategorije.kategorije[index].naziv}',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 18,
+                return Theme(
+                    data: Theme.of(context)
+                        .copyWith(dividerColor: Colors.transparent),
+                    child: ExpansionTile(
+                      //dense: true,
+                      title: MaterialButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                // print('ind ' + index.toString());
+                                // print('kat ' + noveKategorije[index].id.toString());
+                                return ProductByCategory(
+                                  listaProizvoda:
+                                      proizvodi.dajProizvodeZaKategoriju(
+                                          noveKategorije[index + 1].id),
+                                  category:
+                                      '${noveKategorije[index + 1].naziv}',
+                                );
+                              },
+                            ),
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(20),
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            '${noveKategorije[index].naziv}',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: (!isWeb &&
+                                            Theme.of(context).colorScheme ==
+                                                ColorScheme.dark()) ||
+                                        isWeb
+                                    ? Colors.white
+                                    : Colors.black),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
 
-                  children: [
-                    prikazPotkategorija(index, kategorije, proizvodi),
-                  ],
-                );
+                      children: [
+                        prikazPotkategorija(index, kategorije, proizvodi),
+                        Divider(
+                          height: 5,
+                          thickness: 4,
+                          indent: 20,
+                          endIndent: 20,
+                          color: Theme.of(context).colorScheme ==
+                                  ColorScheme.light()
+                              ? tamnoPlava
+                              : Colors.white,
+                        ),
+                      ],
+                    ));
               },
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 15.0),
+            // Padding(
+            //   padding: EdgeInsets.only(bottom: 15.0),
+            // ),
+            SizedBox(
+              height: 10,
             ),
-            if (korisnikInfo != null && isWeb)
-              Container(
-                height: 80,
-                padding: EdgeInsets.only(left: 15.0),
-                child: InkWell(
-                  hoverColor: Colors.grey,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AddProduct()),
-                    );
-                  },
-                  child: Text(
-                    'Dodajte novi proizvod',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              ),
+            Divider(
+              height: 5,
+              thickness: 4,
+              indent: 20,
+              endIndent: 20,
+              color: Theme.of(context).colorScheme == ColorScheme.light()
+                  ? tamnoPlava
+                  : Colors.white,
+            ),
+            SizedBox(
+              height: 15,
+            ),
             korisnikInfo != null
                 ? Container(
-                    height: 80,
+                    //  height: 80,
                     padding: EdgeInsets.only(left: 15.0),
                     child: InkWell(
                       onTap: () {
@@ -320,11 +448,28 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                       },
                       child: Row(
                         children: [
+                          Icon(
+                            Icons.logout_rounded,
+                            size: 26,
+                            color: !isWeb &&
+                                    Theme.of(context).colorScheme ==
+                                        ColorScheme.light()
+                                ? kPrimaryColor
+                                : Colors.white,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
                           Text(
                             'Odjavite se',
                             style: TextStyle(
-                              fontSize: 20,
-                            ),
+                                fontSize: 20,
+                                color: (!isWeb &&
+                                            Theme.of(context).colorScheme ==
+                                                ColorScheme.dark()) ||
+                                        isWeb
+                                    ? Colors.white
+                                    : Colors.black),
                           ),
                         ],
                       ),
@@ -332,39 +477,86 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                     alignment: Alignment.centerLeft,
                   )
                 : Container(
-                    height: 80,
                     padding: EdgeInsets.only(left: 15.0),
                     child: InkWell(
-                      hoverColor: Colors.grey,
-                      onTap: () {
-                        Navigator.pushNamed(context, '/login');
-                      },
-                      child: Row(
-                        children: [
-                          Text(
-                            'Prijavite se',
-                            style: TextStyle(
-                              fontSize: 20,
+                        onTap: () {
+                          Navigator.pushNamed(context, '/login');
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.login_rounded,
+                              size: 26,
+                              color: !isWeb &&
+                                      Theme.of(context).colorScheme ==
+                                          ColorScheme.light()
+                                  ? kPrimaryColor
+                                  : Colors.white,
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    alignment: Alignment.centerLeft,
-                  ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              'Prijavite se',
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  color: (!isWeb &&
+                                              Theme.of(context).colorScheme ==
+                                                  ColorScheme.dark()) ||
+                                          isWeb
+                                      ? Colors.white
+                                      : Colors.black),
+                            ),
+                          ],
+                        ))),
+            SizedBox(
+              height: 10,
+            ),
+            Divider(
+              height: 5,
+              thickness: 4,
+              indent: 20,
+              endIndent: 20,
+              color: Theme.of(context).colorScheme == ColorScheme.light()
+                  ? tamnoPlava
+                  : Colors.white,
+            ),
+            SizedBox(
+              height: 15,
+            ),
             Container(
               padding: EdgeInsets.only(left: 15.0),
               alignment: Alignment.centerLeft,
               child: Row(
                 children: [
+                  Icon(
+                    Icons.dark_mode_rounded,
+                    size: 26,
+                    color: !isWeb &&
+                            Theme.of(context).colorScheme == ColorScheme.light()
+                        ? kPrimaryColor
+                        : Colors.white,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
                   Text('Tamna tema',
                       style: TextStyle(
-                        fontSize: 20,
-                      )),
+                          fontSize: 20,
+                          color: (!isWeb &&
+                                      Theme.of(context).colorScheme ==
+                                          ColorScheme.dark()) ||
+                                  isWeb
+                              ? Colors.white
+                              : Colors.black)),
                   ChangeThemeButton(),
                 ],
               ),
-            )
+            ),
+            if (isWeb)
+              SizedBox(
+                height: 10,
+              )
           ],
         ),
       )));
@@ -403,8 +595,13 @@ Widget prikazPotkategorija(
               '  ${potkategorije[index].naziv}',
               textAlign: TextAlign.left,
               style: TextStyle(
-                fontSize: 17,
-              ),
+                  fontSize: 17,
+                  color: (!isWeb &&
+                              Theme.of(context).colorScheme ==
+                                  ColorScheme.dark()) ||
+                          isWeb
+                      ? Colors.white
+                      : Colors.black),
             ),
           ),
         ),
