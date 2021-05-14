@@ -114,7 +114,7 @@ class _BodyState extends State<Body> {
     );
   }
 
-  void loginAction(var korisnik) async {
+  void loginAction(KorisniciModel korisnik) async {
     if (validateAndSave()) {
       //    Crypt.sha256(requestModel.password).toString();
       setState(() {

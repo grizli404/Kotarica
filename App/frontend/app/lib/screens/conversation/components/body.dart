@@ -1,20 +1,21 @@
-import 'dart:async';
-
 import 'package:app/model/chat_message.dart';
 import 'package:app/model/korisniciModel.dart';
 import 'package:flutter/material.dart';
 import 'package:signalr_core/signalr_core.dart';
 import 'chat_input_field.dart';
 import 'message.dart';
+import 'package:app/main.dart';
 
 class Body extends StatefulWidget {
+  final Korisnik sagovornik;
+
+  const Body({Key key, this.sagovornik}) : super(key: key);
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
   HubConnection hubConnection;
-  Korisnik korisnikInfo = Korisnik(id: 1);
 
   ScrollController _scrollController = ScrollController();
   List<ChatMessage> messages = [];
@@ -58,14 +59,6 @@ class _BodyState extends State<Body> {
     );
   }
 
-  List<dynamic> _invokeGetMessageHistory(String senderID, String receiverID) {
-    List<String> a = [];
-    //ovde treba da se dobije id sagovornika sa korisnikModela??vrv
-    a.add(senderID);
-    a.add(receiverID);
-    return a;
-  }
-
   void _initConnection() async {
     hubConnection = HubConnectionBuilder()
         .withUrl(_url, HttpConnectionOptions(logging: (l, m) => {print(m)}))
@@ -75,63 +68,84 @@ class _BodyState extends State<Body> {
       print("\nCONNECTION CLOSED!");
     });
     hubConnection.on('newMessage', _handleNewMessage);
-    await hubConnection.start();
-    hubConnection.state == HubConnectionState.connected
-        ? print("CONNECTED")
-        : print("CONNECTING FAILED");
-    var stream = await hubConnection.invoke('GetMessageHistory',
-        args: <dynamic>[korisnikInfo.id, korisnikInfo.id]);
-    print("PRINT:" + stream.toString());
+    hubConnection.on('sendingStatus', _handleSendingStatus);
+    await startConnection();
+    getMessageHistory(1, 1);
   }
 
-  void _handleNewMessage(var arguments) {
-    if (arguments[0]['ko'] == korisnikInfo.id.toString()) {
+  startConnection() async {
+    if (hubConnection.state == HubConnectionState.disconnected) {
+      print("Startujem konekciju");
+      await hubConnection.start();
+      print("STARTED CONNECTION");
+    } else {
+      print("Connection is open");
+    }
+  }
+
+  void _handleSendingStatus(var arguments) {
+    if (arguments[0] is int) {
       messages.forEach((element) {
-        if (arguments[0]['sta'] == element.text) {
+        if (arguments[0] == element.id) {
           setState(() {
             element.sent = true;
           });
         }
       });
     }
-    if (arguments[0]['kome'] == korisnikInfo.id.toString()) {
+  }
+
+  void _handleNewMessage(var arguments) {
+    print("primljeno...");
+    if (arguments[0]['kome'] == korisnikInfo.id) {
       setState(() {
         messages.add(new ChatMessage(
+          id: messages.length,
           senderId: arguments[0]['ko'],
           receiverId: arguments[0]['kome'],
           text: arguments[0]['sta'],
-          time: arguments[0]['kad'],
+          time: arguments[0]['kada'],
           isSender: false,
         ));
       });
     }
   }
 
-  List<dynamic> _invokeSendPrivate(
-      String senderID, String receiverID, String text) {
-    List<dynamic> a = [senderID, receiverID, text];
-    return a;
-  }
-
-  void sendPrivate(String receiverID, String text) async {
-    if (hubConnection.state == HubConnectionState.disconnected) {
-      await hubConnection.start();
-    }
+  void sendPrivate(String text) async {
+    startConnection();
+    int id;
     setState(() {
       messages.add(new ChatMessage(
-          senderId: korisnikInfo.id.toString(),
-          receiverId: receiverID,
+          id: id = messages.length,
+          senderId: korisnikInfo.id,
+          receiverId: 1,
           text: text,
           time: TimeOfDay.now().toString(),
           isSender: true,
           sent: false));
     });
-    await hubConnection.invoke('SendPrivate',
-        args: _invokeSendPrivate(
-            korisnikInfo.id.toString(), korisnikInfo.id.toString(), text));
-    var res =
-        await hubConnection.invoke('GetMessageHistory', args: <int>[1, 2]);
-    print(res.toString());
+    await hubConnection
+        .invoke('SendPrivate', args: <dynamic>[id, korisnikInfo.id, 1, text]);
+  }
+
+  void getMessageHistory(int senderId, int receiverId) async {
+    messages = [];
+    startConnection();
+    List<dynamic> res = await hubConnection
+        .invoke('GetMessageHistory', args: <dynamic>[senderId, receiverId]);
+
+    for (dynamic index in res) {
+      setState(() {
+        messages.add(new ChatMessage(
+            id: messages.length,
+            isSender: index['ko'] == korisnikInfo.id ? true : false,
+            receiverId: index['kome'],
+            senderId: index['ko'],
+            text: index['sta'],
+            time: index['kada'],
+            sent: true));
+      });
+    }
   }
 
   _scrollToBottom() {

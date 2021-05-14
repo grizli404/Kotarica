@@ -202,7 +202,7 @@ class KorisniciModel extends ChangeNotifier {
 
       BigInt bigId = k[0];
       int _id = bigId.toInt();
-      if (_id != 0) {
+      if (_id != 0 || _id != null) {
         return Korisnik(
             id: _id,
             mail: k[1],

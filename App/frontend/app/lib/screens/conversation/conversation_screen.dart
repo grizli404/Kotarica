@@ -1,13 +1,17 @@
+import 'package:app/model/korisniciModel.dart';
 import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
 class ConversationScreen extends StatelessWidget {
+  final Korisnik sagovornik;
+
+  const ConversationScreen({Key key, this.sagovornik}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: Body(),
+      body: Body(sagovornik: sagovornik),
     );
   }
 

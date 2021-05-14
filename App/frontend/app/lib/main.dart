@@ -119,7 +119,6 @@ class MaterialAppCustom extends StatelessWidget {
         '/cart': (context) => CartScreen(),
         '/favorites': (context) => FavoritesScreen(),
         '/addProduct': (context) => AddProduct(),
-        '/conversation': (context) => ConversationScreen(),
         '/chats': (context) => ChatsScreen(),
       },
       debugShowCheckedModeBanner: false,
