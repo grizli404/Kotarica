@@ -33,8 +33,8 @@ namespace netCore.Hubs
                 _context.Message.Add(message);
                 _context.SaveChanges();
 
-                await Clients.Client(kome.ToString()).SendAsync("newMessage", message);
-                await Clients.Caller.SendAsync("newMessage", id);
+                await Clients.All.SendAsync("newMessage", message);
+                await Clients.Caller.SendAsync("sendingStatus", id);
             }
         }
 
