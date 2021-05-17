@@ -49,7 +49,7 @@ class KupovineModel extends ChangeNotifier {
 
     /**************************  MOB  ********************************** */
     final response =
-        await http.get(Uri.http('147.91.204.116:11091', 'Ocene.json'));
+        await http.get(Uri.http('147.91.204.116:11091', 'Kupovine.json'));
     var jsonAbi;
     if (response.statusCode == 200) {
       jsonAbi = jsonDecode(response.body);
@@ -62,13 +62,14 @@ class KupovineModel extends ChangeNotifier {
 
     adresaUgovora =
         EthereumAddress.fromHex(jsonAbi["networks"]["5777"]["address"]);
-    //print(adresaUgovora);
+    print(adresaUgovora);
   }
 
   Future<void> getCredentials() async {
     //ovde smo dobili nasu javnu adresu uz pomocom privatnog kljuca
     credentials = await client.credentialsFromPrivateKey(privatniKljuc);
     nasaAdresa = await credentials.extractAddress();
+    print(nasaAdresa.toString());
   }
 
   Future<void> getDeployedCotract() async {
@@ -83,7 +84,7 @@ class KupovineModel extends ChangeNotifier {
         ugovor.function("daLiPostojiKupovinaBiloKogProizvoda");
   }
 
-  dodavanjeNoveKupovine(
+  Future<void> dodavanjeNoveKupovine(
       int _idProdavca, int _idKupca, int _idProizvoda, int _kolicina) async {
     await client.sendTransaction(
         credentials,

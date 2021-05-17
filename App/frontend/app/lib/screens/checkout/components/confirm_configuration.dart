@@ -10,7 +10,7 @@ import '../../../main.dart';
 class ConfirmConfiguration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var cart = Provider.of<Carts>(context, listen: true);
+    var cart = Provider.of<Carts>(context, listen: false);
     return Container(
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(20, 0, 20, 100),

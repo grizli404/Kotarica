@@ -449,7 +449,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                       child: Row(
                         children: [
                           Icon(
-                            Icons.logout_rounded,
+                            Icons.login_outlined,
                             size: 26,
                             color: !isWeb &&
                                     Theme.of(context).colorScheme ==
@@ -530,7 +530,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
               child: Row(
                 children: [
                   Icon(
-                    Icons.dark_mode_rounded,
+                    Icons.brightness_2,
                     size: 26,
                     color: !isWeb &&
                             Theme.of(context).colorScheme == ColorScheme.light()
