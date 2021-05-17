@@ -36,6 +36,9 @@ class _BodyState extends State<Body> {
 
   Future setupState() async {
     try {
+      setState(() {
+        inAsyncCall = true;
+      });
       widget.korisnik = await Provider.of<KorisniciModel>(context)
           .dajKorisnikaZaId(widget.proizvod.idKorisnika);
       widget.proizvodiKorisnika =
@@ -55,7 +58,7 @@ class _BodyState extends State<Body> {
   }
 
   Widget _build(BuildContext context) {
-    if (inAsyncCall == true) {
+    if (inAsyncCall == true || widget.korisnik == null) {
       setupState();
       return Container();
     } else {

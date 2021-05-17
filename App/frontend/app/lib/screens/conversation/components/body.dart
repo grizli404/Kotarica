@@ -70,7 +70,7 @@ class _BodyState extends State<Body> {
     hubConnection.on('newMessage', _handleNewMessage);
     hubConnection.on('sendingStatus', _handleSendingStatus);
     await startConnection();
-    getMessageHistory(1, 1);
+    getMessageHistory(korisnikInfo.id, widget.sagovornik.id);
   }
 
   startConnection() async {
@@ -124,8 +124,8 @@ class _BodyState extends State<Body> {
           isSender: true,
           sent: false));
     });
-    await hubConnection
-        .invoke('SendPrivate', args: <dynamic>[id, korisnikInfo.id, 1, text]);
+    await hubConnection.invoke('SendPrivate',
+        args: <dynamic>[id, korisnikInfo.id, widget.sagovornik.id, text]);
   }
 
   void getMessageHistory(int senderId, int receiverId) async {
