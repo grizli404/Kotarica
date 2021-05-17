@@ -106,15 +106,34 @@ class ProductCard extends StatelessWidget {
                     Hero(
                         tag: imgPath,
                         child: Container(
-                            height: 75.0,
-                            width: 75.0,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: proizvod.slika != ''
-                                        ? NetworkImage("https://ipfs.io/ipfs/" +
-                                            proizvod.slika)
-                                        : AssetImage(imgPath),
-                                    fit: BoxFit.contain)))),
+                          height: 75.0,
+                          width: 75.0,
+                          //  decoration: BoxDecoration(
+                          //      image: DecorationImage(
+                          child: proizvod.slika != ''
+                              ? Image.network(
+                                  "https://ipfs.io/ipfs/" + proizvod.slika,
+                                  fit: BoxFit.contain,
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        value: loadingProgress
+                                                    .expectedTotalBytes !=
+                                                null
+                                            ? loadingProgress
+                                                    .cumulativeBytesLoaded /
+                                                loadingProgress
+                                                    .expectedTotalBytes
+                                            : null,
+                                      ),
+                                    );
+                                  },
+                                )
+                              : AssetImage(imgPath),
+                        )),
                     SizedBox(height: 7.0),
                     Text(price + ' RSD',
                         style: TextStyle(

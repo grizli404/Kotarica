@@ -71,10 +71,15 @@ Widget labelContainer(String labelVal) {
 }
 
 Widget appsContainer(ProizvodiModel proizvodi, BuildContext context) {
+  final ScrollController _scrollController = ScrollController();
   return Container(
     height: ResponsiveLayout.isIphone(context) ? 290 : 250.0,
     //200.0,
-    child: ListView.builder(
+    child: Scrollbar(
+        //  isAlwaysShown: true,
+        //  controller: _scrollController,
+        child: ListView.builder(
+      //    controller: _scrollController,
       scrollDirection: Axis.horizontal,
       shrinkWrap: true,
       itemCount: proizvodi.listaProizvoda.length,
@@ -88,6 +93,6 @@ Widget appsContainer(ProizvodiModel proizvodi, BuildContext context) {
             context: context,
             proizvod: proizvodi.listaProizvoda[index]);
       },
-    ),
+    )),
   );
 }
