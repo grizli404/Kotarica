@@ -77,7 +77,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => Carts()),
-        ChangeNotifierProvider(create: (context) => KorisniciModel()),
+        ChangeNotifierProvider(
+          create: (context) => KorisniciModel(),
+          lazy: true,
+        ),
         ChangeNotifierProvider(create: (context) => ProizvodiModel()),
         ChangeNotifierProvider(create: (context) => KategorijeModel()),
         ChangeNotifierProvider(create: (context) => KupovineModel()),

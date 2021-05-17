@@ -32,7 +32,7 @@ class ConversationScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "WIP",
+                sagovornik.ime + ' ' + sagovornik.prezime,
                 style: TextStyle(fontSize: 16),
               )
             ],
