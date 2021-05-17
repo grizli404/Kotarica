@@ -37,8 +37,9 @@ class ProizvodiModel extends ChangeNotifier {
     await getAbi();
     await getCredentials();
     await getDeployedCotract();
-    
+
     await dajSveProizvode();
+    notifyListeners();
   }
 
   Future<void> getAbi() async {
@@ -185,19 +186,18 @@ class ProizvodiModel extends ChangeNotifier {
   //Ovo je potrebno za lajkovane proizvode
   Proizvod dajProizvodZaId(int _idProizvoda) {
     Proizvod p = Proizvod(
-      id: 0,
-      idKorisnika: 0,
-      idKategorije: 0,
-      naziv: "",
-      kolicina: 0,
-      cena: 0,
-      slika: "",
-      opis: ""
-      );
+        id: 0,
+        idKorisnika: 0,
+        idKategorije: 0,
+        naziv: "",
+        kolicina: 0,
+        cena: 0,
+        slika: "",
+        opis: "");
 
-    if(_idProizvoda > 0) {
+    if (_idProizvoda > 0) {
       for (var i = 0; i < listaProizvoda.length; i++) {
-        if(listaProizvoda[i].id == _idProizvoda){
+        if (listaProizvoda[i].id == _idProizvoda) {
           p = listaProizvoda[i];
           break;
         }
@@ -205,7 +205,6 @@ class ProizvodiModel extends ChangeNotifier {
     }
     return p;
   }
-
 }
 
 class Proizvod {

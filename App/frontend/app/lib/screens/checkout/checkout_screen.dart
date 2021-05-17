@@ -15,15 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutScreen extends StatefulWidget {
-  CheckoutScreen({
-    this.shippingConfig = true,
-    this.paymentConfig = false,
-    this.confirmConfig = false,
-  });
-  bool shippingConfig;
-  bool paymentConfig;
-  bool confirmConfig;
-  bool isApiCallProcess = false;
   Korisnik korisnik = Korisnik.clone(korisnikInfo);
   @override
   _CheckoutScreenState createState() => _CheckoutScreenState();
@@ -32,17 +23,11 @@ class CheckoutScreen extends StatefulWidget {
 class _CheckoutScreenState extends State<CheckoutScreen> {
   final formKey1 = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
-  var kupovine;
-  @override
-  initState() {
-    super.initState();
-    kupovine = KupovineModel();
-  }
-
+  bool isApiCallProcess = false;
   Widget build(BuildContext context) {
     return ProgressHUD(
       child: _build(context),
-      inAsyncCall: widget.isApiCallProcess,
+      inAsyncCall: isApiCallProcess,
       opacity: 0.3,
     );
   }
@@ -273,23 +258,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             //   )
             // ] else ...[
             FlatButton(
-              onPressed: () {
-                setState(() {
-                  widget.isApiCallProcess = true;
-                });
-                for (Cart index in carts.demoCarts) {
-                  kupovine.dodavanjeNoveKupovine(index.product.idKorisnika,
-                      korisnikInfo.id, index.product.id, index.numOfItems);
-                  print(index.product.idKorisnika.toString() +
-                      korisnikInfo.id.toString() +
-                      index.product.id.toString() +
-                      index.numOfItems.toString());
-                }
-
-                setState(() {
-                  widget.isApiCallProcess = false;
-                });
-              },
+              onPressed: () => placeOrder(carts),
               child: Row(children: [Text("Naruči"), Icon(Icons.check_rounded)]),
               color: kPrimaryLightColor,
               textColor: Theme.of(context).primaryColor,
@@ -301,41 +270,22 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     );
   }
 
-  setPrevious() {
-    if (widget.paymentConfig == true) {
-      setState(() {
-        widget.shippingConfig = true;
-        widget.paymentConfig = false;
-        widget.confirmConfig = false;
-      });
-    } else if (widget.confirmConfig == true) {
-      setState(() {
-        widget.confirmConfig = false;
-        widget.paymentConfig = true;
-        widget.shippingConfig = false;
-      });
-    }
-  }
-
-  setNext() {
-    if (widget.shippingConfig == true) {
-      setState(() {
-        widget.paymentConfig = true;
-        widget.shippingConfig = false;
-        widget.confirmConfig = false;
-      });
-    } else if (widget.paymentConfig == true) {
-      setState(() {
-        widget.confirmConfig = true;
-        widget.paymentConfig = false;
-        widget.shippingConfig = false;
-      });
-    }
-  }
-
-  void setProgressHud(bool value) {
+  placeOrder(Carts carts) async {
+    KupovineModel kupovina = Provider.of<KupovineModel>(context, listen: false);
     setState(() {
-      widget.isApiCallProcess = value;
+      isApiCallProcess = true;
+    });
+    for (Cart index in carts.demoCarts) {
+      await kupovina.dodavanjeNoveKupovine(index.product.idKorisnika,
+          korisnikInfo.id, index.product.id, index.numOfItems);
+      print(index.product.idKorisnika.toString() +
+          korisnikInfo.id.toString() +
+          index.product.id.toString() +
+          index.numOfItems.toString());
+    }
+
+    setState(() {
+      isApiCallProcess = false;
     });
   }
 }

@@ -56,6 +56,7 @@ class KorisniciModel extends ChangeNotifier {
     }*/
     // await dodajSliku(1, "promena");
     // print("promenio sam");
+    notifyListeners();
   }
 
   Future<void> getAbi() async {
