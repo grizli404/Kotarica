@@ -62,7 +62,7 @@ class _BodyState extends State<Body> {
     OceneModel ocene = Provider.of<OceneModel>(context);
     unesiOcenu(Korisnik korisnik, Proizvod proizvod, int ocena) async {
       await ocene.oceniProizvod(korisnik.id, proizvod.idKategorije, proizvod.id,
-          ocena, "komentar...");
+          ocena);
     }
 
     return ListView(
