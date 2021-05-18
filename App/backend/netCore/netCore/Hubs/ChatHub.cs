@@ -47,6 +47,24 @@ namespace netCore.Hubs
                 .ToList();
         }
 
+        /***************POMOCNA F-JA***************/
+        public string GetMessage(int ko, int kome)
+        {
+            var poruke = GetMessageHistory(ko, kome);
+            return poruke.FirstOrDefault().Sta;
+        }
+
+        public IEnumerable<Inbox> GetInbox(int id)
+        {
+            return from mes in _context.Message
+                     where mes.Ko == id || mes.Kome == id
+                     select new Inbox
+                     {
+                         idKorisnika = mes.Ko == id ? mes.Kome : mes.Ko,
+                         poslednjaPoruka = GetMessage(id, (mes.Ko == id ? mes.Kome : mes.Ko))
+                     };
+        }
+
         public async Task Online(int ko)
         {
             await Clients.All.SendAsync("UserOnline", ko);
