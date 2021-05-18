@@ -104,6 +104,13 @@ namespace netCore
                 endpoints.MapHub<ChatHub>("/ChatHub");
             });
             /*************** KRAJ CHAT-a ************** */
+
+            /*************** NOTIFICATION ************** */
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHub<ChatHub>("/Notification");
+            });
+            /*************** NOTIFICATION ************** */
         }
     }
 }
