@@ -13,6 +13,9 @@ import 'package:app/screens/checkout/components/shipping_configuration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:signalr_core/signalr_core.dart';
+
+enum payment { online, onArrival }
 
 class CheckoutScreen extends StatefulWidget {
   Korisnik korisnik = Korisnik.clone(korisnikInfo);
@@ -24,6 +27,18 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   final formKey1 = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
   bool isApiCallProcess = false;
+  KupovineModel kupovina;
+  payment character = payment.online;
+
+  @override
+  initState() {
+    super.initState();
+  }
+
+  void setChar(payment char) {
+    character = char;
+  }
+
   Widget build(BuildContext context) {
     return ProgressHUD(
       child: _build(context),
@@ -34,7 +49,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   Widget _build(BuildContext context) {
     var carts = Provider.of<Carts>(context);
-    var kupovina = Provider.of<KupovineModel>(context);
+
+    kupovina = Provider.of<KupovineModel>(context, listen: true);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -167,6 +183,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 PaymentConfiguration(
                   formKey: formKey2,
                   korisnik: widget.korisnik,
+                  setChar: setChar,
                 ),
                 // ],
                 // if (widget.confirmConfig == false) ...[
@@ -258,7 +275,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             //   )
             // ] else ...[
             FlatButton(
-              onPressed: () => placeOrder(carts),
+              disabledColor: Colors.grey,
+              onPressed:
+                  kupovina.ugovor != null ? () => placeOrder(carts) : null,
               child: Row(children: [Text("Naruči"), Icon(Icons.check_rounded)]),
               color: kPrimaryLightColor,
               textColor: Theme.of(context).primaryColor,
@@ -271,23 +290,47 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   }
 
   placeOrder(Carts carts) async {
-    KupovineModel kupovina = Provider.of<KupovineModel>(context, listen: false);
-    setState(() {
-      isApiCallProcess = true;
-    });
-    for (Cart index in carts.demoCarts) {
-      await kupovina.dodavanjeNoveKupovine(index.product.idKorisnika,
-          korisnikInfo.id, index.product.id, index.numOfItems);
-      print(index.product.idKorisnika.toString() +
-          korisnikInfo.id.toString() +
-          index.product.id.toString() +
-          index.numOfItems.toString());
-      var res = await kupovina.daLiPostojiKupovinaFunction(
-          korisnikInfo.id, index.product.idKorisnika, index.product.id);
-      print(res.toString());
+    if (validateAndSave(formKey1)) {
+      setState(() {
+        isApiCallProcess = true;
+      });
+      for (Cart index in carts.demoCarts) {
+        await kupovina
+            .dodavanjeNoveKupovine(index.product.idKorisnika, korisnikInfo.id,
+                index.product.id, index.numOfItems)
+            .timeout(const Duration(seconds: 30));
+        print(index.product.idKorisnika.toString() +
+            korisnikInfo.id.toString() +
+            index.product.id.toString() +
+            index.numOfItems.toString());
+        var res = await kupovina
+            .daLiPostojiKupovinaFunction(
+                korisnikInfo.id, index.product.idKorisnika, index.product.id)
+            .timeout(const Duration(seconds: 30));
+        print(res.toString());
+      }
+      setState(() {
+        isApiCallProcess = false;
+      });
+      showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+                title: Center(child: Text("Narudžbina poslata!")),
+                content: Icon(
+                  Icons.check_circle_outline_rounded,
+                  size: 150,
+                ),
+              ),
+          barrierDismissible: true);
     }
-    setState(() {
-      isApiCallProcess = false;
-    });
+  }
+
+  bool validateAndSave(GlobalKey<FormState> formKey) {
+    final form = formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
   }
 }

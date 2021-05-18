@@ -5,17 +5,21 @@ import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/personal_data.dart';
 import 'package:flutter/material.dart';
 
+import '../checkout_screen.dart';
+
 class PaymentConfiguration extends StatefulWidget {
   PaymentConfiguration(
-      {this.character = payment.online, this.korisnik, this.formKey});
+      {this.character = payment.online,
+      this.korisnik,
+      this.formKey,
+      this.setChar});
   final formKey;
   Korisnik korisnik;
   payment character;
+  var setChar;
   @override
   _PaymentConfigurationState createState() => _PaymentConfigurationState();
 }
-
-enum payment { online, onArrival }
 
 class _PaymentConfigurationState extends State<PaymentConfiguration> {
   @override
@@ -39,6 +43,7 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
                     onChanged: (payment value) {
                       setState(() {
                         widget.character = value;
+                        widget.setChar(value);
                       });
                     },
                   ),
@@ -50,6 +55,7 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
                     onChanged: (payment value) {
                       setState(() {
                         widget.character = value;
+                        widget.setChar(value);
                       });
                     },
                   ),
@@ -79,7 +85,7 @@ class _PaymentConfigurationState extends State<PaymentConfiguration> {
               if (widget.character == payment.onArrival) ...[
                 Padding(
                     padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Text('Placa se pouzecem')),
+                    child: Text('Plaća se pouzećem')),
               ],
             ],
           ),
