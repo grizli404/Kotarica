@@ -80,9 +80,6 @@ class _BodyState extends State<Body> {
               ),
               RoundedPasswordField(
                 hintText: 'Lozinka',
-                color: Theme.of(context).colorScheme == ColorScheme.dark()
-                    ? Theme.of(context).primaryColor
-                    : kPrimaryLightColor,
                 onChanged: (input) => _password = input,
                 validator: (input) => !(input.contains(RegExp(
                         r"(^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$)")))

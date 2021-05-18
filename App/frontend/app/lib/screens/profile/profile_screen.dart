@@ -2,16 +2,17 @@ import 'package:app/components/product_card.dart';
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/proizvodiModel.dart';
+import 'package:app/screens/conversation/conversation_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
+import '../../main.dart';
 
 class ProfileScreen extends StatelessWidget {
   final Korisnik korisnik;
   final List<Proizvod> proizvodi;
   List<Container> kartice = [];
-
   ProfileScreen({Key key, this.korisnik, this.proizvodi}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -155,23 +156,70 @@ class ProfileScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25.0),
                         color: Theme.of(context).primaryColor),
-                    child: Center(
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.chat_outlined, color: Colors.white),
-                            SizedBox(
-                              width: 10,
+                    child: InkWell(
+                      // posalji poruku
+                      onTap: () => {
+                        if (korisnikInfo != null && korisnik != null)
+                          {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return ConversationScreen(
+                                      sagovornik: korisnik);
+                                },
+                              ),
+                            )
+                          }
+                        else
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                  "Morate biti ulogovani da biste poslali poruku!"),
+                              duration: const Duration(milliseconds: 2000),
+                              width: MediaQuery.of(context).size.width *
+                                  0.9, // Width of the SnackBar.
+                              padding: const EdgeInsets.symmetric(
+                                horizontal:
+                                    8.0, // Inner padding for SnackBar content.
+                              ),
+                              behavior: SnackBarBehavior.floating,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
                             ),
-                            Text(
-                              'Pošalji poruku',
-                              style: TextStyle(
-                                  fontFamily: 'Varela',
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                          ]),
+                          )
+                      },
+                      child: Center(
+                        child: Container(
+                          width: ResponsiveLayout.isIphone(context)
+                              ? MediaQuery.of(context).size.width * 0.4
+                              : MediaQuery.of(context).size.width * 0.3,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25.0),
+                              color: Theme.of(context).primaryColor),
+                          child: Center(
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.chat_outlined,
+                                      color: Colors.white),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    'Pošalji poruku',
+                                    style: TextStyle(
+                                        fontFamily: 'Varela',
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ]),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],

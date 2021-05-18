@@ -13,22 +13,21 @@ class CartIcon extends StatelessWidget {
       builder: (context, cart, _) {
         return Stack(children: [
           IconButton(
-            icon: Icon(
-              Icons.shopping_cart_outlined,
-            ),
+            icon: Icon(Icons.shopping_cart_outlined, color: Colors.white),
             onPressed: () {
               Navigator.of(context).pushNamed('/cart');
             },
           ),
           Positioned(
-            right: 7,
+            right: 5,
             top: 5,
             child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 1),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5), color: Colors.grey),
               child: Text(
                 cart.demoCarts.length.toString(),
-                style: TextStyle(color: Theme.of(context).accentColor),
+                style: TextStyle(color: Colors.white),
               ),
             ),
           )

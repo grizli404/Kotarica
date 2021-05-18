@@ -52,7 +52,9 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      color: color,
+      color: Theme.of(context).colorScheme == ColorScheme.dark()
+          ? Theme.of(context).primaryColor
+          : kPrimaryLightColor,
       child: TextFormField(
         initialValue: value,
         validator: validator,
