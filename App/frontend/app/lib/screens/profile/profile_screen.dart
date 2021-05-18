@@ -17,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     for (Proizvod proizvod in proizvodi) {
       kartice.add(Container(
-        height: 250,
+        height: 290,
         child: new ProductCard(
           context: "",
           added: true,
@@ -68,78 +68,81 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  "Ime  ",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: kPrimaryColor,
+                        Container(
+                          width: 200,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "Ime  ",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: kPrimaryColor,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  korisnik.ime,
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "Prezime  ",
-                                  style: TextStyle(
-                                      fontSize: 16, color: kPrimaryColor),
-                                ),
-                                Text(
-                                  korisnik.prezime,
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "Adresa  ",
-                                  style: TextStyle(
-                                      fontSize: 16, color: kPrimaryColor),
-                                ),
-                                Text(
-                                  korisnik.adresa,
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "Broj telefona  ",
-                                  style: TextStyle(
-                                      fontSize: 16, color: kPrimaryColor),
-                                ),
-                                Text(
-                                  korisnik.brojTelefona,
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "Email  ",
-                                  style: TextStyle(
-                                      fontSize: 16, color: kPrimaryColor),
-                                ),
-                                Text(
-                                  korisnik.mail,
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                              ],
-                            ),
-                          ],
+                                  Text(
+                                    korisnik.ime,
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "Prezime  ",
+                                    style: TextStyle(
+                                        fontSize: 16, color: kPrimaryColor),
+                                  ),
+                                  Text(
+                                    korisnik.prezime,
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                              Wrap(
+                                children: [
+                                  Text(
+                                    "Adresa  ",
+                                    style: TextStyle(
+                                        fontSize: 16, color: kPrimaryColor),
+                                  ),
+                                  Text(
+                                    korisnik.adresa,
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "Broj telefona  ",
+                                    style: TextStyle(
+                                        fontSize: 16, color: kPrimaryColor),
+                                  ),
+                                  Text(
+                                    korisnik.brojTelefona,
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                              Wrap(
+                                children: [
+                                  Text(
+                                    "Email  ",
+                                    style: TextStyle(
+                                        fontSize: 16, color: kPrimaryColor),
+                                  ),
+                                  Text(
+                                    korisnik.mail,
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
