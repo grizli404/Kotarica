@@ -293,7 +293,7 @@ class _BodyState extends State<Body> {
                   TableRow(children: [
                     TextButton(
                         child: Text(
-                          'Korisnik:${widget.korisnik.ime} ${widget.korisnik.prezime}',
+                          'Korisnik : ${widget.korisnik.ime} ${widget.korisnik.prezime}',
                           style: TextStyle(
                               color: Theme.of(context).hintColor, fontSize: 20),
                         ),
