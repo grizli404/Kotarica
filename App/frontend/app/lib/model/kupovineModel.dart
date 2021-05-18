@@ -100,6 +100,20 @@ class KupovineModel extends ChangeNotifier {
             ]));
   }
 
+  Future<int> daLiPostojiKupovinaFunction(
+      int _idKupca, int _idProdavca, int _idProizvoda) async {
+    var temp = await client.call(
+        contract: ugovor,
+        function: daLiPostojiKupovina,
+        params: [
+          BigInt.from(_idKupca),
+          BigInt.from(_idProdavca),
+          BigInt.from(_idProizvoda)
+        ]);
+
+    return temp[0].toInt();
+  }
+
   Future<int> daLiPostojiKupovinaZaOcenjivanjeProizvoda(
       int _idKupca, int _idProdavca, int _idProizvoda) async {
     var temp = await client.call(
