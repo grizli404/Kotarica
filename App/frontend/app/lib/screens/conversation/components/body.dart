@@ -1,3 +1,4 @@
+import 'package:app/components/progress_hud.dart';
 import 'package:app/model/chat_message.dart';
 import 'package:app/model/korisniciModel.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class _BodyState extends State<Body> {
   ScrollController _scrollController = ScrollController();
   List<ChatMessage> messages = [];
   List<ChatMessage> sending = [];
+  bool inAsyncCall = true;
   String _url = "http://147.91.204.116:11094/ChatHub";
   // Widget chatInputField;
   @override
@@ -33,8 +35,12 @@ class _BodyState extends State<Body> {
     _initConnection();
   }
 
-  @override
   Widget build(BuildContext context) {
+    return ProgressHUD(child: _build(context), inAsyncCall: inAsyncCall);
+  }
+
+  @override
+  Widget _build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
     return Column(
       children: [
@@ -77,6 +83,9 @@ class _BodyState extends State<Body> {
     if (hubConnection.state == HubConnectionState.disconnected) {
       print("Startujem konekciju");
       await hubConnection.start();
+      setState(() {
+        inAsyncCall = false;
+      });
       print("STARTED CONNECTION");
     } else {
       print("Connection is open");

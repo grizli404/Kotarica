@@ -282,8 +282,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           korisnikInfo.id.toString() +
           index.product.id.toString() +
           index.numOfItems.toString());
+      var res = await kupovina.daLiPostojiKupovinaFunction(
+          korisnikInfo.id, index.product.idKorisnika, index.product.id);
+      print(res.toString());
     }
-
     setState(() {
       isApiCallProcess = false;
     });
