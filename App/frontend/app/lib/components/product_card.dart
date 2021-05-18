@@ -110,7 +110,7 @@ class ProductCard extends StatelessWidget {
                           width: 75.0,
                           //  decoration: BoxDecoration(
                           //      image: DecorationImage(
-                          child: proizvod.slika != ''
+                          child: proizvod.slika != '0'
                               ? Image.network(
                                   "https://ipfs.io/ipfs/" + proizvod.slika,
                                   fit: BoxFit.contain,
@@ -132,7 +132,7 @@ class ProductCard extends StatelessWidget {
                                     );
                                   },
                                 )
-                              : AssetImage(imgPath),
+                              : Image.asset(imgPath),
                         )),
                     SizedBox(height: 7.0),
                     Text(price + ' RSD',

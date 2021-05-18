@@ -87,7 +87,7 @@ Widget appsContainer(ProizvodiModel proizvodi, BuildContext context) {
         return ProductCard(
             name: proizvodi.listaProizvoda[index].naziv,
             price: proizvodi.listaProizvoda[index].cena.toString(),
-            imgPath: 'assets/images/cookiechoco.jpg',
+            imgPath: 'assets/images/default_product_image.png',
             added: false,
             isFavorite: false,
             context: context,
