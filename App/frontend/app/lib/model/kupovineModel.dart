@@ -36,6 +36,7 @@ class KupovineModel extends ChangeNotifier {
     await getAbi();
     await getCredentials();
     await getDeployedCotract();
+    notifyListeners();
     print(ugovor);
 
     //await oceniProizvod(1, 1, 2, 4, "Bez komentara");

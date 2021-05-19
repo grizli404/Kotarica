@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../../constants.dart';
 import '../../../main.dart';
 
 class ConfirmConfiguration extends StatelessWidget {
@@ -184,15 +185,22 @@ class CheckoutItemCard extends StatelessWidget {
           child: AspectRatio(
             aspectRatio: 1,
             child: Container(
+                clipBehavior: Clip.hardEdge,
+                // clipBehavior: Clip.hardEdge,
+                child: Image.network(
+                  "https://ipfs.io/ipfs/" + cart.product.slika,
+                  errorBuilder: (context, error, stackTrace) {
+                    return SvgPicture.asset(
+                        Theme.of(context).colorScheme == ColorScheme.dark()
+                            ? "assets/icons/shopping-basket-dark.svg"
+                            : "assets/icons/shopping-basket.svg");
+                  },
+                  fit: BoxFit.fill,
+                ),
                 decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(20),
-                    image: cart.product.slika != ''
-                        ? DecorationImage(
-                            image: NetworkImage(
-                                "https://ipfs.io/ipfs/" + cart.product.slika))
-                        : SvgPicture.asset(
-                            "assets/icons/shopping-basket.svg"))),
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  borderRadius: BorderRadius.circular(20),
+                )),
           ),
         ),
         SizedBox(

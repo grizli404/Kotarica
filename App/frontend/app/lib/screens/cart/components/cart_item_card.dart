@@ -37,12 +37,15 @@ class _CartItemCardState extends State<CartItemCard> {
                 child: Image.network(
                   "https://ipfs.io/ipfs/" + widget.cart.product.slika,
                   errorBuilder: (context, error, stackTrace) {
-                    return SvgPicture.asset("assets/icons/shopping-basket.svg");
+                    return SvgPicture.asset(
+                        Theme.of(context).colorScheme == ColorScheme.dark()
+                            ? "assets/icons/shopping-basket-dark.svg"
+                            : "assets/icons/shopping-basket.svg");
                   },
                   fit: BoxFit.fill,
                 ),
                 decoration: BoxDecoration(
-                  color: kPrimaryColor,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   borderRadius: BorderRadius.circular(20),
                 )),
           ),
