@@ -25,25 +25,27 @@ class _CartItemCardState extends State<CartItemCard> {
     var cart = Provider.of<Carts>(context, listen: true);
     Size size = MediaQuery.of(context).size;
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         SizedBox(
           width: 150,
           child: AspectRatio(
             aspectRatio: 1,
             child: Container(
+                clipBehavior: Clip.hardEdge,
+                // clipBehavior: Clip.hardEdge,
+                child: Image.network(
+                  "https://ipfs.io/ipfs/" + widget.cart.product.slika,
+                  errorBuilder: (context, error, stackTrace) {
+                    return SvgPicture.asset("assets/icons/shopping-basket.svg");
+                  },
+                  fit: BoxFit.fill,
+                ),
                 decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(20),
-                    image: widget.cart.product.slika != ''
-                        ? DecorationImage(
-                            image: NetworkImage("https://ipfs.io/ipfs/" +
-                                widget.cart.product.slika))
-                        : SvgPicture.asset(
-                            "assets/icons/shopping-basket.svg"))),
+                  color: kPrimaryColor,
+                  borderRadius: BorderRadius.circular(20),
+                )),
           ),
-        ),
-        SizedBox(
-          width: size.width * 0.05,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,6 +58,7 @@ class _CartItemCardState extends State<CartItemCard> {
                 fontWeight: FontWeight.w600,
               ),
               maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 10),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
@@ -116,9 +119,6 @@ class _CartItemCardState extends State<CartItemCard> {
               )
             ]),
           ],
-        ),
-        Expanded(
-          child: SizedBox(),
         ),
         if (isWeb) ...[
           IconButton(

@@ -36,9 +36,10 @@ class _BodyState extends State<Body> {
 
   Future setupState() async {
     try {
-      setState(() {
-        inAsyncCall = true;
-      });
+      if (inAsyncCall == false)
+        setState(() {
+          inAsyncCall = true;
+        });
       widget.korisnik = await Provider.of<KorisniciModel>(context)
           .dajKorisnikaZaId(widget.proizvod.idKorisnika);
       widget.proizvodiKorisnika =
@@ -53,13 +54,26 @@ class _BodyState extends State<Body> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget.korisnik == null || widget.proizvodiKorisnika == null)
+      setupState();
+  }
+
+  @override
+  void didUpdateWidget(covariant Body oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    this.widget.korisnik = oldWidget.korisnik;
+    this.widget.proizvodiKorisnika = oldWidget.proizvodiKorisnika;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ProgressHUD(child: _build(context), inAsyncCall: inAsyncCall);
   }
 
   Widget _build(BuildContext context) {
     if (inAsyncCall == true || widget.korisnik == null) {
-      setupState();
       return Container();
     } else {
       var cart = Provider.of<Carts>(context, listen: true);
