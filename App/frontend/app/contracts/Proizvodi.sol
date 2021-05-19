@@ -45,6 +45,15 @@ contract Proizvodi{
         brojProizvoda--;
     }
     
+    //Ako ima doboljno proizvoda na stanju skine koliko je naruceno i vrati true
+    //Ako nema dovoljno proizvoda na stanju samo vrati false
+    function smanjiPrilikomKupovine(uint _id, uint _kolicina) public returns(bool) {
+        if(proizvodi[_id].kolicina - _kolicina >= 0) {
+            proizvodi[_id].kolicina = proizvodi[_id].kolicina - _kolicina;
+            return true;
+        }
+        return false;
+    }
     
     
     function search(string memory substring) public returns(uint[] memory) {
