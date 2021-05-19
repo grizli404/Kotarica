@@ -139,7 +139,7 @@ class _BodyState extends State<Body> {
           ),
           SizedBox(height: 10.0),
           Center(
-            child: Text(widget.proizvod.cena.toString(),
+            child: Text(widget.proizvod.cena.toString() + ' RSD',
                 style: TextStyle(
                     color: Theme.of(context).hintColor,
                     fontFamily: 'Varela',
@@ -374,12 +374,12 @@ class _BodyState extends State<Body> {
     return new Swiper(
       autoplay: false,
       itemBuilder: (BuildContext context, int index) {
-        return proizvod.slika != ''
+        return proizvod.slika != '0'
             ? new Image.network(
                 "https://ipfs.io/ipfs/" + widget.proizvod.slika,
                 //  fit: BoxFit.fill,
               )
-            : new AssetImage(
+            : new Image.asset(
                 widget.assetPath,
               );
       },

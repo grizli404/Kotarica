@@ -5,11 +5,13 @@ import 'package:app/components/input_fields.dart';
 import 'package:app/components/rad_sa_slikama.dart';
 import 'package:app/main.dart';
 import 'package:app/model/proizvodiModel.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:app/model/kategorijeModel.dart';
 import '../../constants.dart';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 String slika = "0";
 
@@ -43,6 +45,8 @@ class _AddProductState extends State<AddProduct> {
   int catIndex;
   Kategorija potkategorija;
   KategorijeModel kModel;
+
+  List<String> slike = [];
 
   // void dispose() {
   //   nazivController.dispose();
@@ -99,31 +103,19 @@ class _AddProductState extends State<AddProduct> {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           fit: BoxFit.fill,
-                          image: slika != "0"
+                          image: slike != null
                               ? NetworkImage("https://ipfs.io/ipfs/" + slika)
                               : AssetImage(
                                   "assets/images/defaultProductPhoto.jpg"))),
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.add_a_photo),
-                focusColor: kPrimaryColor,
-                hoverColor: kPrimaryColorHover,
-                onPressed: () async {
-                  var file =
-                      await ImagePicker().getImage(source: ImageSource.gallery);
-                  print("Loading image...");
-                  var _image = File(file.path);
-                  print("Uploading image image...");
-                  SnackBar(
-                    content: Text("Loading image..."),
-                  );
-                  var res = await uploadImage(_image);
-                  print("image: " + res);
-                  slika = res;
-                  setState(() {});
-                },
-              ),
+                  icon: Icon(Icons.add_a_photo),
+                  focusColor: kPrimaryColor,
+                  hoverColor: kPrimaryColorHover,
+                  onPressed: () {
+                    pickImage();
+                  }),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -327,5 +319,100 @@ class _AddProductState extends State<AddProduct> {
         ),
       ),
     );
+  }
+
+  // pickImageMobile() async {
+  //   var file = await ImagePicker().getImage(source: ImageSource.gallery);
+  //   print("Loading image...");
+  //   var _image = File(file.path);
+  //   print("Uploading image image...");
+  //   SnackBar(
+  //     content: Text("Loading image..."),
+  //   );
+  //   var res = await uploadImage(_image);
+  //   print("image: " + res);
+  //   slike[1] = res;
+  //   setState(() {});
+  // }
+
+  bool loading = false;
+  static final String uploadEndPoint = 'http://147.91.204.116:11093/upload';
+  var uploadFilesCount;
+  String message = '';
+  Future<void> pickImage() async {
+    bool multiple = true;
+    var uri = Uri.parse(uploadEndPoint);
+    if (!multiple) //1 file
+    {
+      FilePickerResult result =
+          await FilePicker.platform.pickFiles(type: FileType.image);
+      if (result != null) {
+        PlatformFile file = result.files.first;
+
+        await upload(uri, file, multiple);
+      } else {
+        print("User canceled the picker");
+      }
+      setState(() {
+        loading = false;
+      });
+    } else //Multiple files
+    {
+      FilePickerResult result = await FilePicker.platform
+          .pickFiles(allowMultiple: true, type: FileType.image);
+      if (result != null) {
+        uploadFilesCount = result.files.length;
+        if (uploadFilesCount > 10)
+          print("VISE OD 10 SLIKA");
+        else {
+          for (var i in result.files) {
+            int sizeInBytes = i.bytes.lengthInBytes;
+            double sizeInMb = sizeInBytes / (1024 * 1024);
+            if (sizeInMb > 8) {
+              print("Predjen limit velicine fajla");
+            } else
+              await upload(uri, i, multiple);
+          }
+        }
+      } else {
+        print("User canceled the picker");
+      }
+    }
+    setState(() {
+      loading = false;
+    });
+  }
+
+  upload(Uri uri, PlatformFile file, bool multiple) async {
+    setState(() {
+      loading = true;
+    });
+    if (file == null) return;
+
+    Map<String, String> headers = {
+      "Accept": "multipart/form-data",
+    };
+
+    var length = uploadFilesCount;
+    http.MultipartRequest request = new http.MultipartRequest('POST', uri)
+      ..headers.addAll(headers)
+      ..files.add(
+          // replace file with your field name exampe: image
+          http.MultipartFile.fromBytes('avatar', file.bytes,
+              filename: file.name));
+
+    var respons = await http.Response.fromStream(await request.send());
+
+    if (respons.statusCode == 200) {
+      message = ' image upload with success';
+      print(message);
+
+      slike.add(respons.body);
+      slika = respons.body;
+      return;
+    } else {
+      message = ' image not upload';
+      print(message);
+    }
   }
 }

@@ -1,11 +1,15 @@
 //import 'dart:html';
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:app/components/navigationBar.dart';
 import 'package:app/components/product_card.dart';
 import 'package:app/components/rad_sa_slikama.dart';
 import 'package:app/components/star_display.dart';
 import 'package:app/model/korisniciModel.dart';
+import 'package:app/screens/add_product/add_product.dart';
+import 'package:app/screens/notifications/notification_screen.dart';
+import 'package:app/screens/products/products.dart';
+import 'package:app/screens/profile/profile_screen.dart';
 import 'package:app/screens/profile/update_profile.dart';
 import 'package:app/main.dart';
 import 'package:app/theme/themeProvider.dart';
@@ -22,7 +26,6 @@ class MyProfileScreen extends StatelessWidget {
   int reputationScore = 0;
   String profilePhoto;
   int id;
-  String profilnaSlika = "0";
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +36,6 @@ class MyProfileScreen extends StatelessWidget {
     this.address = korisnikInfo.adresa;
     this.id = korisnikInfo.id;
     this.reputationScore = 1; //funkcija
-    this.profilnaSlika = korisnikInfo.slika;
-    if (profilnaSlika == "" || profilnaSlika == null) profilnaSlika = "0";
 
     Size size = MediaQuery.maybeOf(context).size;
     return Scaffold(
@@ -54,7 +55,6 @@ class MyProfileScreen extends StatelessWidget {
         address: address,
         lName: lName,
         reputationScore: reputationScore,
-        profilnaSlika: profilnaSlika,
       ),
       bottomNavigationBar: !isWeb ? NavigationBarWidget() : null,
     );
@@ -68,7 +68,6 @@ class ProfileBody extends StatelessWidget {
   final reputationScore;
   final Size size;
   final int id;
-  final profilnaSlika;
 
   const ProfileBody({
     Key key,
@@ -78,7 +77,6 @@ class ProfileBody extends StatelessWidget {
     this.address,
     this.reputationScore,
     this.size,
-    this.profilnaSlika,
   }) : super(key: key);
 
   @override
@@ -90,7 +88,6 @@ class ProfileBody extends StatelessWidget {
         fName: fName,
         lName: lName,
         reputationScore: reputationScore,
-        profilnaSlika: profilnaSlika,
       );
     } else {
       return WideProfileBody(
@@ -109,17 +106,14 @@ class ThinProfileBody extends StatelessWidget {
   final address;
   final reputationScore;
   final int id;
-  final profilnaSlika;
-  KorisniciModel k = getKorisniciModel();
 
-  ThinProfileBody({
+  const ThinProfileBody({
     Key key,
     this.id,
     this.fName,
     this.lName,
     this.address,
     this.reputationScore,
-    @required this.profilnaSlika,
   }) : super(key: key);
 
   @override
@@ -139,19 +133,8 @@ class ThinProfileBody extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.add_photo_alternate_outlined),
                   onPressed: () async {
-                    var file = await ImagePicker()
-                        .getImage(source: ImageSource.gallery);
-                    print("Loading image...");
-                    var _image = File(file.path);
-                    print("Uploading image...");
-                    SnackBar(
-                      content: Text("Loading image..."),
-                    );
-                    var res = await uploadImage(_image);
-                    print("image: " + res);
-                    slika = res;
-                    await k.dodajSliku(id, slika);
-                    korisnikInfo.slika = slika;
+                    KorisniciModel k = new KorisniciModel();
+                    k.dodajSliku(id, slika);
                     Navigator.pop(context);
                     Navigator.push(
                       context,
@@ -179,11 +162,8 @@ class ThinProfileBody extends StatelessWidget {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: profilnaSlika != "0"
-                            ? NetworkImage(
-                                "https://ipfs.io/ipfs/" + profilnaSlika)
-                            : AssetImage(
-                                "assets/images/defaultProfilePhoto.png"),
+                        image:
+                            AssetImage("assets/images/defaultProfilePhoto.png"),
                       ),
                     ),
                   ),
@@ -277,12 +257,12 @@ class ThinProfileBody extends StatelessWidget {
               ),
               height: size.height - 40,
               child: SingleChildScrollView(
-                child: Center(
-                  child: Wrap(
-                    children: [],
+                  // child: Center(
+                  //   child: Wrap(
+                  //     children: testScroll,
+                  //   ),
+                  // ),
                   ),
-                ),
-              ),
             )
           ],
         ),
@@ -296,7 +276,6 @@ class WideProfileBody extends StatelessWidget {
   final lName;
   final address;
   final reputationScore;
-  final profilnaSlika;
 
   const WideProfileBody({
     Key key,
@@ -304,7 +283,6 @@ class WideProfileBody extends StatelessWidget {
     this.lName,
     this.address,
     this.reputationScore,
-    this.profilnaSlika,
   }) : super(key: key);
 
   @override
@@ -338,11 +316,8 @@ class WideProfileBody extends StatelessWidget {
                           shape: BoxShape.circle,
                           image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: profilnaSlika != "0"
-                                ? NetworkImage(
-                                    "https://ipfs.io/ipfs/" + profilnaSlika)
-                                : AssetImage(
-                                    "assets/images/defaultProfilePhoto.jpg"),
+                            image: AssetImage(
+                                "assets/images/defaultProfilePhoto.png"),
                           ),
                         ),
                       ),
@@ -437,12 +412,12 @@ class WideProfileBody extends StatelessWidget {
           ),
           height: size.height - 40,
           child: SingleChildScrollView(
-            child: Center(
-              child: Wrap(
-                children: testScroll,
+              // child: Center(
+              //   child: Wrap(
+              //     children: testScroll,
+              //   ),
+              // ),
               ),
-            ),
-          ),
         )
       ],
     ));
