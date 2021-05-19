@@ -1,0 +1,3784 @@
+{
+  "contractName": "ListaZelja",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "zelje",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "brojZelja",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "idKorisnika",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "idProizvoda",
+          "type": "uint256"
+        }
+      ],
+      "name": "lajkovanje",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "idKorisnika",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "idProizvoda",
+          "type": "uint256"
+        }
+      ],
+      "name": "dislajkovanje",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "idKorisnika",
+          "type": "uint256"
+        }
+      ],
+      "name": "dajLajkove",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"idKorisnika\",\"type\":\"uint256\"}],\"name\":\"dajLajkove\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"idKorisnika\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"idProizvoda\",\"type\":\"uint256\"}],\"name\":\"dislajkovanje\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"idKorisnika\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"idProizvoda\",\"type\":\"uint256\"}],\"name\":\"lajkovanje\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"zelje\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"brojZelja\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/ListaZelja.sol\":\"ListaZelja\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/ListaZelja.sol\":{\"keccak256\":\"0xc74f1fb925d611910e28f1fb90e27652532dc4d806fd3209464ac7ec7b96f2bc\",\"urls\":[\"bzz-raw://ab17bccd3309050cef86e38ba0e7f381f77ebcc38acbd2250b669ad94bc2450e\",\"dweb:/ipfs/QmdRFgpvsgAiZMoEPJVwbKkQSLry6bJREZgNyfvijypUwR\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610417806100206000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80631cf17260146100515780634519dd1f14610089578063670b04191461010c578063c39ae1d114610144575b600080fd5b6100876004803603604081101561006757600080fd5b810190808035906020019092919080359060200190929190505050610186565b005b6100b56004803603602081101561009f57600080fd5b81019080803590602001909291905050506102f0565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b838110156100f85780820151818401526020810190506100dd565b505050509050019250505060405180910390f35b6101426004803603604081101561012257600080fd5b81019080803590602001909291908035906020019092919050505061035d565b005b6101706004803603602081101561015a57600080fd5b81019080803590602001909291905050506103c4565b6040518082815260200191505060405180910390f35b60008090505b600080848152602001908152602001600020600001548110156102ea578160008085815260200190815260200160002060010182815481106101ca57fe5b906000526020600020015414156102dd5760008190505b6001600080868152602001908152602001600020600001540381101561026a57600080858152602001908152602001600020600101600182018154811061022457fe5b9060005260206000200154600080868152602001908152602001600020600101828154811061024f57fe5b906000526020600020018190555080806001019150506101e1565b50600080600085815260200190815260200160002060010160016000808781526020019081526020016000206000015403815481106102a557fe5b9060005260206000200181905550600160008085815260200190815260200160002060000160008282540392505081905550506102ec565b808060010191505061018c565b505b5050565b606060008083815260200190815260200160002060010180548060200260200160405190810160405280929190818152602001828054801561035157602002820191906000526020600020905b81548152602001906001019080831161033d575b50505050509050919050565b6001600080848152602001908152602001600020600001600082825401925050819055506000808381526020019081526020016000206001018190806001815401808255809150509060018203906000526020600020016000909192909190915055505050565b6000602052806000526040600020600091509050806000015490508156fea265627a7a72315820904133c88687403b17fb076c3ae170ec69c0ae65cafb9729501c4494f2ce75ee64736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80631cf17260146100515780634519dd1f14610089578063670b04191461010c578063c39ae1d114610144575b600080fd5b6100876004803603604081101561006757600080fd5b810190808035906020019092919080359060200190929190505050610186565b005b6100b56004803603602081101561009f57600080fd5b81019080803590602001909291905050506102f0565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b838110156100f85780820151818401526020810190506100dd565b505050509050019250505060405180910390f35b6101426004803603604081101561012257600080fd5b81019080803590602001909291908035906020019092919050505061035d565b005b6101706004803603602081101561015a57600080fd5b81019080803590602001909291905050506103c4565b6040518082815260200191505060405180910390f35b60008090505b600080848152602001908152602001600020600001548110156102ea578160008085815260200190815260200160002060010182815481106101ca57fe5b906000526020600020015414156102dd5760008190505b6001600080868152602001908152602001600020600001540381101561026a57600080858152602001908152602001600020600101600182018154811061022457fe5b9060005260206000200154600080868152602001908152602001600020600101828154811061024f57fe5b906000526020600020018190555080806001019150506101e1565b50600080600085815260200190815260200160002060010160016000808781526020019081526020016000206000015403815481106102a557fe5b9060005260206000200181905550600160008085815260200190815260200160002060000160008282540392505081905550506102ec565b808060010191505061018c565b505b5050565b606060008083815260200190815260200160002060010180548060200260200160405190810160405280929190818152602001828054801561035157602002820191906000526020600020905b81548152602001906001019080831161033d575b50505050509050919050565b6001600080848152602001908152602001600020600001600082825401925050819055506000808381526020019081526020016000206001018190806001815401808255809150509060018203906000526020600020016000909192909190915055505050565b6000602052806000526040600020600091509050806000015490508156fea265627a7a72315820904133c88687403b17fb076c3ae170ec69c0ae65cafb9729501c4494f2ce75ee64736f6c63430005100032",
+  "sourceMap": "69:1009:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:1009:3;;;;;;;",
+  "deployedSourceMap": "69:1009:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:1009:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;394:552;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;394:552:3;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;954:118;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;954:118:3;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;954:118:3;;;;;;;;;;;;;;;;;221:164;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;221:164:3;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;174:37;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;174:37:3;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;394:552;475:6;484:1;475:10;;471:468;491:5;:18;497:11;491:18;;;;;;;;;;;:28;;;487:1;:32;471:468;;;572:11;544:5;:18;550:11;544:18;;;;;;;;;;;:20;;565:1;544:23;;;;;;;;;;;;;;;;:39;541:387;;;608:6;617:1;608:10;;604:155;655:1;624:5;:18;630:11;624:18;;;;;;;;;;;:28;;;:32;620:1;:36;604:155;;;712:5;:18;718:11;712:18;;;;;;;;;;;:20;;737:1;733;:5;712:27;;;;;;;;;;;;;;;;686:5;:18;692:11;686:18;;;;;;;;;;;:20;;707:1;686:23;;;;;;;;;;;;;;;:53;;;;658:3;;;;;;;604:155;;;;834:1;777:5;:18;783:11;777:18;;;;;;;;;;;:20;;829:1;798:5;:18;804:11;798:18;;;;;;;;;;;:28;;;:32;777:54;;;;;;;;;;;;;;;:58;;;;886:1;854:5;:18;860:11;854:18;;;;;;;;;;;:28;;;:33;;;;;;;;;;;906:7;;;541:387;521:3;;;;;;;471:468;;;;394:552;;;:::o;954:118::-;1012:13;1044:5;:18;1050:11;1044:18;;;;;;;;;;;:20;;1037:27;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;954:118;;;:::o;221:164::-;327:1;295:5;:18;301:11;295:18;;;;;;;;;;;:28;;;:33;;;;;;;;;;;339:5;:18;345:11;339:18;;;;;;;;;;;:20;;365:11;339:38;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;339:38:3;;;;;;;;;;;;;;;;;;;;;;221:164;;:::o;174:37::-;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract ListaZelja {\r\n    \r\n    struct Zelja {\r\n        uint brojZelja;\r\n        uint[] p;\r\n    } \r\n    mapping ( uint => Zelja) public zelje;\r\n \r\n    function lajkovanje(uint idKorisnika, uint idProizvoda) public {\r\n        zelje[idKorisnika].brojZelja += 1;\r\n        zelje[idKorisnika].p.push(idProizvoda);\r\n    }\r\n \r\n    function dislajkovanje(uint idKorisnika, uint idProizvoda) public {\r\n        for(uint i = 0; i < zelje[idKorisnika].brojZelja; i++) {\r\n            if(zelje[idKorisnika].p[i] ==  idProizvoda) {\r\n                for(uint j = i; j < zelje[idKorisnika].brojZelja - 1; j++) {\r\n                    zelje[idKorisnika].p[j] = zelje[idKorisnika].p[j + 1];\r\n                }\r\n                zelje[idKorisnika].p[zelje[idKorisnika].brojZelja - 1] = 0;\r\n                zelje[idKorisnika].brojZelja -= 1;\r\n                return;\r\n            }\r\n        }\r\n    }\r\n\r\n    function dajLajkove(uint idKorisnika) public view returns(uint[] memory){\r\n        return zelje[idKorisnika].p;\r\n    }\r\n \r\n}",
+  "sourcePath": "C:/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/ListaZelja.sol",
+  "ast": {
+    "absolutePath": "/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/ListaZelja.sol",
+    "exportedSymbols": {
+      "ListaZelja": [
+        579
+      ]
+    },
+    "id": 580,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 443,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:32:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 579,
+        "linearizedBaseContracts": [
+          579
+        ],
+        "name": "ListaZelja",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ListaZelja.Zelja",
+            "id": 449,
+            "members": [
+              {
+                "constant": false,
+                "id": 445,
+                "name": "brojZelja",
+                "nodeType": "VariableDeclaration",
+                "scope": 449,
+                "src": "126:14:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 444,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "126:4:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 448,
+                "name": "p",
+                "nodeType": "VariableDeclaration",
+                "scope": 449,
+                "src": "151:8:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                  "typeString": "uint256[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 446,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "151:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 447,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "151:6:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                    "typeString": "uint256[]"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Zelja",
+            "nodeType": "StructDefinition",
+            "scope": 579,
+            "src": "102:65:3",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 453,
+            "name": "zelje",
+            "nodeType": "VariableDeclaration",
+            "scope": 579,
+            "src": "174:37:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+              "typeString": "mapping(uint256 => struct ListaZelja.Zelja)"
+            },
+            "typeName": {
+              "id": 452,
+              "keyType": {
+                "id": 450,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "184:4:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "174:24:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+                "typeString": "mapping(uint256 => struct ListaZelja.Zelja)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 451,
+                "name": "Zelja",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 449,
+                "src": "192:5:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Zelja_$449_storage_ptr",
+                  "typeString": "struct ListaZelja.Zelja"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 475,
+              "nodeType": "Block",
+              "src": "284:101:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 465,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 460,
+                          "name": "zelje",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 453,
+                          "src": "295:5:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+                            "typeString": "mapping(uint256 => struct ListaZelja.Zelja storage ref)"
+                          }
+                        },
+                        "id": 462,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 461,
+                          "name": "idKorisnika",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 455,
+                          "src": "301:11:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "295:18:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Zelja_$449_storage",
+                          "typeString": "struct ListaZelja.Zelja storage ref"
+                        }
+                      },
+                      "id": 463,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "brojZelja",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 445,
+                      "src": "295:28:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "+=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "31",
+                      "id": 464,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "327:1:3",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_1_by_1",
+                        "typeString": "int_const 1"
+                      },
+                      "value": "1"
+                    },
+                    "src": "295:33:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 466,
+                  "nodeType": "ExpressionStatement",
+                  "src": "295:33:3"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 472,
+                        "name": "idProizvoda",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 457,
+                        "src": "365:11:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "id": 467,
+                            "name": "zelje",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 453,
+                            "src": "339:5:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+                              "typeString": "mapping(uint256 => struct ListaZelja.Zelja storage ref)"
+                            }
+                          },
+                          "id": 469,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 468,
+                            "name": "idKorisnika",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 455,
+                            "src": "345:11:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "339:18:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Zelja_$449_storage",
+                            "typeString": "struct ListaZelja.Zelja storage ref"
+                          }
+                        },
+                        "id": 470,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "p",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 448,
+                        "src": "339:20:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
+                          "typeString": "uint256[] storage ref"
+                        }
+                      },
+                      "id": 471,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "339:25:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_uint256_$returns$_t_uint256_$",
+                        "typeString": "function (uint256) returns (uint256)"
+                      }
+                    },
+                    "id": 473,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "339:38:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 474,
+                  "nodeType": "ExpressionStatement",
+                  "src": "339:38:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 476,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "lajkovanje",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 458,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 455,
+                  "name": "idKorisnika",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 476,
+                  "src": "241:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 454,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "241:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 457,
+                  "name": "idProizvoda",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 476,
+                  "src": "259:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 456,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "259:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "240:36:3"
+            },
+            "returnParameters": {
+              "id": 459,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "284:0:3"
+            },
+            "scope": 579,
+            "src": "221:164:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 563,
+              "nodeType": "Block",
+              "src": "460:486:3",
+              "statements": [
+                {
+                  "body": {
+                    "id": 561,
+                    "nodeType": "Block",
+                    "src": "526:413:3",
+                    "statements": [
+                      {
+                        "condition": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 503,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "expression": {
+                                "argumentTypes": null,
+                                "baseExpression": {
+                                  "argumentTypes": null,
+                                  "id": 496,
+                                  "name": "zelje",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 453,
+                                  "src": "544:5:3",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+                                    "typeString": "mapping(uint256 => struct ListaZelja.Zelja storage ref)"
+                                  }
+                                },
+                                "id": 498,
+                                "indexExpression": {
+                                  "argumentTypes": null,
+                                  "id": 497,
+                                  "name": "idKorisnika",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 478,
+                                  "src": "550:11:3",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "isConstant": false,
+                                "isLValue": true,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "nodeType": "IndexAccess",
+                                "src": "544:18:3",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_struct$_Zelja_$449_storage",
+                                  "typeString": "struct ListaZelja.Zelja storage ref"
+                                }
+                              },
+                              "id": 499,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "p",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 448,
+                              "src": "544:20:3",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
+                                "typeString": "uint256[] storage ref"
+                              }
+                            },
+                            "id": 501,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 500,
+                              "name": "i",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 484,
+                              "src": "565:1:3",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "544:23:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "==",
+                          "rightExpression": {
+                            "argumentTypes": null,
+                            "id": 502,
+                            "name": "idProizvoda",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 480,
+                            "src": "572:11:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "544:39:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "falseBody": null,
+                        "id": 560,
+                        "nodeType": "IfStatement",
+                        "src": "541:387:3",
+                        "trueBody": {
+                          "id": 559,
+                          "nodeType": "Block",
+                          "src": "585:343:3",
+                          "statements": [
+                            {
+                              "body": {
+                                "id": 535,
+                                "nodeType": "Block",
+                                "src": "663:96:3",
+                                "statements": [
+                                  {
+                                    "expression": {
+                                      "argumentTypes": null,
+                                      "id": 533,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "leftHandSide": {
+                                        "argumentTypes": null,
+                                        "baseExpression": {
+                                          "argumentTypes": null,
+                                          "expression": {
+                                            "argumentTypes": null,
+                                            "baseExpression": {
+                                              "argumentTypes": null,
+                                              "id": 519,
+                                              "name": "zelje",
+                                              "nodeType": "Identifier",
+                                              "overloadedDeclarations": [],
+                                              "referencedDeclaration": 453,
+                                              "src": "686:5:3",
+                                              "typeDescriptions": {
+                                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+                                                "typeString": "mapping(uint256 => struct ListaZelja.Zelja storage ref)"
+                                              }
+                                            },
+                                            "id": 521,
+                                            "indexExpression": {
+                                              "argumentTypes": null,
+                                              "id": 520,
+                                              "name": "idKorisnika",
+                                              "nodeType": "Identifier",
+                                              "overloadedDeclarations": [],
+                                              "referencedDeclaration": 478,
+                                              "src": "692:11:3",
+                                              "typeDescriptions": {
+                                                "typeIdentifier": "t_uint256",
+                                                "typeString": "uint256"
+                                              }
+                                            },
+                                            "isConstant": false,
+                                            "isLValue": true,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "nodeType": "IndexAccess",
+                                            "src": "686:18:3",
+                                            "typeDescriptions": {
+                                              "typeIdentifier": "t_struct$_Zelja_$449_storage",
+                                              "typeString": "struct ListaZelja.Zelja storage ref"
+                                            }
+                                          },
+                                          "id": 522,
+                                          "isConstant": false,
+                                          "isLValue": true,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "memberName": "p",
+                                          "nodeType": "MemberAccess",
+                                          "referencedDeclaration": 448,
+                                          "src": "686:20:3",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
+                                            "typeString": "uint256[] storage ref"
+                                          }
+                                        },
+                                        "id": 524,
+                                        "indexExpression": {
+                                          "argumentTypes": null,
+                                          "id": 523,
+                                          "name": "j",
+                                          "nodeType": "Identifier",
+                                          "overloadedDeclarations": [],
+                                          "referencedDeclaration": 505,
+                                          "src": "707:1:3",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                          }
+                                        },
+                                        "isConstant": false,
+                                        "isLValue": true,
+                                        "isPure": false,
+                                        "lValueRequested": true,
+                                        "nodeType": "IndexAccess",
+                                        "src": "686:23:3",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_uint256",
+                                          "typeString": "uint256"
+                                        }
+                                      },
+                                      "nodeType": "Assignment",
+                                      "operator": "=",
+                                      "rightHandSide": {
+                                        "argumentTypes": null,
+                                        "baseExpression": {
+                                          "argumentTypes": null,
+                                          "expression": {
+                                            "argumentTypes": null,
+                                            "baseExpression": {
+                                              "argumentTypes": null,
+                                              "id": 525,
+                                              "name": "zelje",
+                                              "nodeType": "Identifier",
+                                              "overloadedDeclarations": [],
+                                              "referencedDeclaration": 453,
+                                              "src": "712:5:3",
+                                              "typeDescriptions": {
+                                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+                                                "typeString": "mapping(uint256 => struct ListaZelja.Zelja storage ref)"
+                                              }
+                                            },
+                                            "id": 527,
+                                            "indexExpression": {
+                                              "argumentTypes": null,
+                                              "id": 526,
+                                              "name": "idKorisnika",
+                                              "nodeType": "Identifier",
+                                              "overloadedDeclarations": [],
+                                              "referencedDeclaration": 478,
+                                              "src": "718:11:3",
+                                              "typeDescriptions": {
+                                                "typeIdentifier": "t_uint256",
+                                                "typeString": "uint256"
+                                              }
+                                            },
+                                            "isConstant": false,
+                                            "isLValue": true,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "nodeType": "IndexAccess",
+                                            "src": "712:18:3",
+                                            "typeDescriptions": {
+                                              "typeIdentifier": "t_struct$_Zelja_$449_storage",
+                                              "typeString": "struct ListaZelja.Zelja storage ref"
+                                            }
+                                          },
+                                          "id": 528,
+                                          "isConstant": false,
+                                          "isLValue": true,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "memberName": "p",
+                                          "nodeType": "MemberAccess",
+                                          "referencedDeclaration": 448,
+                                          "src": "712:20:3",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
+                                            "typeString": "uint256[] storage ref"
+                                          }
+                                        },
+                                        "id": 532,
+                                        "indexExpression": {
+                                          "argumentTypes": null,
+                                          "commonType": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                          },
+                                          "id": 531,
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "leftExpression": {
+                                            "argumentTypes": null,
+                                            "id": 529,
+                                            "name": "j",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 505,
+                                            "src": "733:1:3",
+                                            "typeDescriptions": {
+                                              "typeIdentifier": "t_uint256",
+                                              "typeString": "uint256"
+                                            }
+                                          },
+                                          "nodeType": "BinaryOperation",
+                                          "operator": "+",
+                                          "rightExpression": {
+                                            "argumentTypes": null,
+                                            "hexValue": "31",
+                                            "id": 530,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": true,
+                                            "kind": "number",
+                                            "lValueRequested": false,
+                                            "nodeType": "Literal",
+                                            "src": "737:1:3",
+                                            "subdenomination": null,
+                                            "typeDescriptions": {
+                                              "typeIdentifier": "t_rational_1_by_1",
+                                              "typeString": "int_const 1"
+                                            },
+                                            "value": "1"
+                                          },
+                                          "src": "733:5:3",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                          }
+                                        },
+                                        "isConstant": false,
+                                        "isLValue": true,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "nodeType": "IndexAccess",
+                                        "src": "712:27:3",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_uint256",
+                                          "typeString": "uint256"
+                                        }
+                                      },
+                                      "src": "686:53:3",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                      }
+                                    },
+                                    "id": 534,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "686:53:3"
+                                  }
+                                ]
+                              },
+                              "condition": {
+                                "argumentTypes": null,
+                                "commonType": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                "id": 515,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "leftExpression": {
+                                  "argumentTypes": null,
+                                  "id": 508,
+                                  "name": "j",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 505,
+                                  "src": "620:1:3",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "nodeType": "BinaryOperation",
+                                "operator": "<",
+                                "rightExpression": {
+                                  "argumentTypes": null,
+                                  "commonType": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  },
+                                  "id": 514,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "leftExpression": {
+                                    "argumentTypes": null,
+                                    "expression": {
+                                      "argumentTypes": null,
+                                      "baseExpression": {
+                                        "argumentTypes": null,
+                                        "id": 509,
+                                        "name": "zelje",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 453,
+                                        "src": "624:5:3",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+                                          "typeString": "mapping(uint256 => struct ListaZelja.Zelja storage ref)"
+                                        }
+                                      },
+                                      "id": 511,
+                                      "indexExpression": {
+                                        "argumentTypes": null,
+                                        "id": 510,
+                                        "name": "idKorisnika",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 478,
+                                        "src": "630:11:3",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_uint256",
+                                          "typeString": "uint256"
+                                        }
+                                      },
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "nodeType": "IndexAccess",
+                                      "src": "624:18:3",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_Zelja_$449_storage",
+                                        "typeString": "struct ListaZelja.Zelja storage ref"
+                                      }
+                                    },
+                                    "id": 512,
+                                    "isConstant": false,
+                                    "isLValue": true,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberName": "brojZelja",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 445,
+                                    "src": "624:28:3",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    }
+                                  },
+                                  "nodeType": "BinaryOperation",
+                                  "operator": "-",
+                                  "rightExpression": {
+                                    "argumentTypes": null,
+                                    "hexValue": "31",
+                                    "id": 513,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": true,
+                                    "kind": "number",
+                                    "lValueRequested": false,
+                                    "nodeType": "Literal",
+                                    "src": "655:1:3",
+                                    "subdenomination": null,
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_rational_1_by_1",
+                                      "typeString": "int_const 1"
+                                    },
+                                    "value": "1"
+                                  },
+                                  "src": "624:32:3",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "src": "620:36:3",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              },
+                              "id": 536,
+                              "initializationExpression": {
+                                "assignments": [
+                                  505
+                                ],
+                                "declarations": [
+                                  {
+                                    "constant": false,
+                                    "id": 505,
+                                    "name": "j",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 536,
+                                    "src": "608:6:3",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                      "id": 504,
+                                      "name": "uint",
+                                      "nodeType": "ElementaryTypeName",
+                                      "src": "608:4:3",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                      }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                  }
+                                ],
+                                "id": 507,
+                                "initialValue": {
+                                  "argumentTypes": null,
+                                  "id": 506,
+                                  "name": "i",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 484,
+                                  "src": "617:1:3",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "nodeType": "VariableDeclarationStatement",
+                                "src": "608:10:3"
+                              },
+                              "loopExpression": {
+                                "expression": {
+                                  "argumentTypes": null,
+                                  "id": 517,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "nodeType": "UnaryOperation",
+                                  "operator": "++",
+                                  "prefix": false,
+                                  "src": "658:3:3",
+                                  "subExpression": {
+                                    "argumentTypes": null,
+                                    "id": 516,
+                                    "name": "j",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 505,
+                                    "src": "658:1:3",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    }
+                                  },
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "id": 518,
+                                "nodeType": "ExpressionStatement",
+                                "src": "658:3:3"
+                              },
+                              "nodeType": "ForStatement",
+                              "src": "604:155:3"
+                            },
+                            {
+                              "expression": {
+                                "argumentTypes": null,
+                                "id": 549,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "leftHandSide": {
+                                  "argumentTypes": null,
+                                  "baseExpression": {
+                                    "argumentTypes": null,
+                                    "expression": {
+                                      "argumentTypes": null,
+                                      "baseExpression": {
+                                        "argumentTypes": null,
+                                        "id": 537,
+                                        "name": "zelje",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 453,
+                                        "src": "777:5:3",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+                                          "typeString": "mapping(uint256 => struct ListaZelja.Zelja storage ref)"
+                                        }
+                                      },
+                                      "id": 539,
+                                      "indexExpression": {
+                                        "argumentTypes": null,
+                                        "id": 538,
+                                        "name": "idKorisnika",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 478,
+                                        "src": "783:11:3",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_uint256",
+                                          "typeString": "uint256"
+                                        }
+                                      },
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "nodeType": "IndexAccess",
+                                      "src": "777:18:3",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_Zelja_$449_storage",
+                                        "typeString": "struct ListaZelja.Zelja storage ref"
+                                      }
+                                    },
+                                    "id": 540,
+                                    "isConstant": false,
+                                    "isLValue": true,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberName": "p",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 448,
+                                    "src": "777:20:3",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
+                                      "typeString": "uint256[] storage ref"
+                                    }
+                                  },
+                                  "id": 547,
+                                  "indexExpression": {
+                                    "argumentTypes": null,
+                                    "commonType": {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    "id": 546,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "leftExpression": {
+                                      "argumentTypes": null,
+                                      "expression": {
+                                        "argumentTypes": null,
+                                        "baseExpression": {
+                                          "argumentTypes": null,
+                                          "id": 541,
+                                          "name": "zelje",
+                                          "nodeType": "Identifier",
+                                          "overloadedDeclarations": [],
+                                          "referencedDeclaration": 453,
+                                          "src": "798:5:3",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+                                            "typeString": "mapping(uint256 => struct ListaZelja.Zelja storage ref)"
+                                          }
+                                        },
+                                        "id": 543,
+                                        "indexExpression": {
+                                          "argumentTypes": null,
+                                          "id": 542,
+                                          "name": "idKorisnika",
+                                          "nodeType": "Identifier",
+                                          "overloadedDeclarations": [],
+                                          "referencedDeclaration": 478,
+                                          "src": "804:11:3",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                          }
+                                        },
+                                        "isConstant": false,
+                                        "isLValue": true,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "nodeType": "IndexAccess",
+                                        "src": "798:18:3",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_struct$_Zelja_$449_storage",
+                                          "typeString": "struct ListaZelja.Zelja storage ref"
+                                        }
+                                      },
+                                      "id": 544,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "memberName": "brojZelja",
+                                      "nodeType": "MemberAccess",
+                                      "referencedDeclaration": 445,
+                                      "src": "798:28:3",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                      }
+                                    },
+                                    "nodeType": "BinaryOperation",
+                                    "operator": "-",
+                                    "rightExpression": {
+                                      "argumentTypes": null,
+                                      "hexValue": "31",
+                                      "id": 545,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "kind": "number",
+                                      "lValueRequested": false,
+                                      "nodeType": "Literal",
+                                      "src": "829:1:3",
+                                      "subdenomination": null,
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_rational_1_by_1",
+                                        "typeString": "int_const 1"
+                                      },
+                                      "value": "1"
+                                    },
+                                    "src": "798:32:3",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    }
+                                  },
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": true,
+                                  "nodeType": "IndexAccess",
+                                  "src": "777:54:3",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "nodeType": "Assignment",
+                                "operator": "=",
+                                "rightHandSide": {
+                                  "argumentTypes": null,
+                                  "hexValue": "30",
+                                  "id": 548,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "kind": "number",
+                                  "lValueRequested": false,
+                                  "nodeType": "Literal",
+                                  "src": "834:1:3",
+                                  "subdenomination": null,
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_rational_0_by_1",
+                                    "typeString": "int_const 0"
+                                  },
+                                  "value": "0"
+                                },
+                                "src": "777:58:3",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "id": 550,
+                              "nodeType": "ExpressionStatement",
+                              "src": "777:58:3"
+                            },
+                            {
+                              "expression": {
+                                "argumentTypes": null,
+                                "id": 556,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "leftHandSide": {
+                                  "argumentTypes": null,
+                                  "expression": {
+                                    "argumentTypes": null,
+                                    "baseExpression": {
+                                      "argumentTypes": null,
+                                      "id": 551,
+                                      "name": "zelje",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 453,
+                                      "src": "854:5:3",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+                                        "typeString": "mapping(uint256 => struct ListaZelja.Zelja storage ref)"
+                                      }
+                                    },
+                                    "id": 553,
+                                    "indexExpression": {
+                                      "argumentTypes": null,
+                                      "id": 552,
+                                      "name": "idKorisnika",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 478,
+                                      "src": "860:11:3",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                      }
+                                    },
+                                    "isConstant": false,
+                                    "isLValue": true,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "nodeType": "IndexAccess",
+                                    "src": "854:18:3",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_struct$_Zelja_$449_storage",
+                                      "typeString": "struct ListaZelja.Zelja storage ref"
+                                    }
+                                  },
+                                  "id": 554,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": true,
+                                  "memberName": "brojZelja",
+                                  "nodeType": "MemberAccess",
+                                  "referencedDeclaration": 445,
+                                  "src": "854:28:3",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "nodeType": "Assignment",
+                                "operator": "-=",
+                                "rightHandSide": {
+                                  "argumentTypes": null,
+                                  "hexValue": "31",
+                                  "id": 555,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "kind": "number",
+                                  "lValueRequested": false,
+                                  "nodeType": "Literal",
+                                  "src": "886:1:3",
+                                  "subdenomination": null,
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_rational_1_by_1",
+                                    "typeString": "int_const 1"
+                                  },
+                                  "value": "1"
+                                },
+                                "src": "854:33:3",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "id": 557,
+                              "nodeType": "ExpressionStatement",
+                              "src": "854:33:3"
+                            },
+                            {
+                              "expression": null,
+                              "functionReturnParameters": 482,
+                              "id": 558,
+                              "nodeType": "Return",
+                              "src": "906:7:3"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 492,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 487,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 484,
+                      "src": "487:1:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 488,
+                          "name": "zelje",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 453,
+                          "src": "491:5:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+                            "typeString": "mapping(uint256 => struct ListaZelja.Zelja storage ref)"
+                          }
+                        },
+                        "id": 490,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 489,
+                          "name": "idKorisnika",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 478,
+                          "src": "497:11:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "491:18:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Zelja_$449_storage",
+                          "typeString": "struct ListaZelja.Zelja storage ref"
+                        }
+                      },
+                      "id": 491,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "brojZelja",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 445,
+                      "src": "491:28:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "487:32:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 562,
+                  "initializationExpression": {
+                    "assignments": [
+                      484
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 484,
+                        "name": "i",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 562,
+                        "src": "475:6:3",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 483,
+                          "name": "uint",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "475:4:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 486,
+                    "initialValue": {
+                      "argumentTypes": null,
+                      "hexValue": "30",
+                      "id": 485,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "484:1:3",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "475:10:3"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 494,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "521:3:3",
+                      "subExpression": {
+                        "argumentTypes": null,
+                        "id": 493,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 484,
+                        "src": "521:1:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 495,
+                    "nodeType": "ExpressionStatement",
+                    "src": "521:3:3"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "471:468:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 564,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "dislajkovanje",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 481,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 478,
+                  "name": "idKorisnika",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 564,
+                  "src": "417:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 477,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "417:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 480,
+                  "name": "idProizvoda",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 564,
+                  "src": "435:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 479,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "435:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "416:36:3"
+            },
+            "returnParameters": {
+              "id": 482,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "460:0:3"
+            },
+            "scope": 579,
+            "src": "394:552:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 577,
+              "nodeType": "Block",
+              "src": "1026:46:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 572,
+                        "name": "zelje",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 453,
+                        "src": "1044:5:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Zelja_$449_storage_$",
+                          "typeString": "mapping(uint256 => struct ListaZelja.Zelja storage ref)"
+                        }
+                      },
+                      "id": 574,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 573,
+                        "name": "idKorisnika",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 566,
+                        "src": "1050:11:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "1044:18:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Zelja_$449_storage",
+                        "typeString": "struct ListaZelja.Zelja storage ref"
+                      }
+                    },
+                    "id": 575,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "p",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 448,
+                    "src": "1044:20:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
+                      "typeString": "uint256[] storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 571,
+                  "id": 576,
+                  "nodeType": "Return",
+                  "src": "1037:27:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 578,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "dajLajkove",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 567,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 566,
+                  "name": "idKorisnika",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 578,
+                  "src": "974:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 565,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "974:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "973:18:3"
+            },
+            "returnParameters": {
+              "id": 571,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 570,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 578,
+                  "src": "1012:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 568,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1012:4:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 569,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1012:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1011:15:3"
+            },
+            "scope": 579,
+            "src": "954:118:3",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 580,
+        "src": "69:1009:3"
+      }
+    ],
+    "src": "33:1045:3"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/ListaZelja.sol",
+      "exportedSymbols": {
+        "ListaZelja": [
+          579
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".22",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 443,
+        "name": "PragmaDirective",
+        "src": "33:32:3"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            579
+          ],
+          "name": "ListaZelja",
+          "scope": 580
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "ListaZelja.Zelja",
+              "name": "Zelja",
+              "scope": 579,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "brojZelja",
+                  "scope": 449,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 444,
+                    "name": "ElementaryTypeName",
+                    "src": "126:4:3"
+                  }
+                ],
+                "id": 445,
+                "name": "VariableDeclaration",
+                "src": "126:14:3"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "p",
+                  "scope": 449,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256[]",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "length": null,
+                      "type": "uint256[]"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 446,
+                        "name": "ElementaryTypeName",
+                        "src": "151:4:3"
+                      }
+                    ],
+                    "id": 447,
+                    "name": "ArrayTypeName",
+                    "src": "151:6:3"
+                  }
+                ],
+                "id": 448,
+                "name": "VariableDeclaration",
+                "src": "151:8:3"
+              }
+            ],
+            "id": 449,
+            "name": "StructDefinition",
+            "src": "102:65:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "zelje",
+              "scope": 579,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(uint256 => struct ListaZelja.Zelja)",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(uint256 => struct ListaZelja.Zelja)"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 450,
+                    "name": "ElementaryTypeName",
+                    "src": "184:4:3"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Zelja",
+                      "referencedDeclaration": 449,
+                      "type": "struct ListaZelja.Zelja"
+                    },
+                    "id": 451,
+                    "name": "UserDefinedTypeName",
+                    "src": "192:5:3"
+                  }
+                ],
+                "id": 452,
+                "name": "Mapping",
+                "src": "174:24:3"
+              }
+            ],
+            "id": 453,
+            "name": "VariableDeclaration",
+            "src": "174:37:3"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "lajkovanje",
+              "scope": 579,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "idKorisnika",
+                      "scope": 476,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 454,
+                        "name": "ElementaryTypeName",
+                        "src": "241:4:3"
+                      }
+                    ],
+                    "id": 455,
+                    "name": "VariableDeclaration",
+                    "src": "241:16:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "idProizvoda",
+                      "scope": 476,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 456,
+                        "name": "ElementaryTypeName",
+                        "src": "259:4:3"
+                      }
+                    ],
+                    "id": 457,
+                    "name": "VariableDeclaration",
+                    "src": "259:16:3"
+                  }
+                ],
+                "id": 458,
+                "name": "ParameterList",
+                "src": "240:36:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 459,
+                "name": "ParameterList",
+                "src": "284:0:3"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "+=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "brojZelja",
+                              "referencedDeclaration": 445,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct ListaZelja.Zelja storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 453,
+                                      "type": "mapping(uint256 => struct ListaZelja.Zelja storage ref)",
+                                      "value": "zelje"
+                                    },
+                                    "id": 460,
+                                    "name": "Identifier",
+                                    "src": "295:5:3"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 455,
+                                      "type": "uint256",
+                                      "value": "idKorisnika"
+                                    },
+                                    "id": 461,
+                                    "name": "Identifier",
+                                    "src": "301:11:3"
+                                  }
+                                ],
+                                "id": 462,
+                                "name": "IndexAccess",
+                                "src": "295:18:3"
+                              }
+                            ],
+                            "id": 463,
+                            "name": "MemberAccess",
+                            "src": "295:28:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "31",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 1",
+                              "value": "1"
+                            },
+                            "id": 464,
+                            "name": "Literal",
+                            "src": "327:1:3"
+                          }
+                        ],
+                        "id": 465,
+                        "name": "Assignment",
+                        "src": "295:33:3"
+                      }
+                    ],
+                    "id": 466,
+                    "name": "ExpressionStatement",
+                    "src": "295:33:3"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "push",
+                              "referencedDeclaration": null,
+                              "type": "function (uint256) returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "p",
+                                  "referencedDeclaration": 448,
+                                  "type": "uint256[] storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "type": "struct ListaZelja.Zelja storage ref"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 453,
+                                          "type": "mapping(uint256 => struct ListaZelja.Zelja storage ref)",
+                                          "value": "zelje"
+                                        },
+                                        "id": 467,
+                                        "name": "Identifier",
+                                        "src": "339:5:3"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 455,
+                                          "type": "uint256",
+                                          "value": "idKorisnika"
+                                        },
+                                        "id": 468,
+                                        "name": "Identifier",
+                                        "src": "345:11:3"
+                                      }
+                                    ],
+                                    "id": 469,
+                                    "name": "IndexAccess",
+                                    "src": "339:18:3"
+                                  }
+                                ],
+                                "id": 470,
+                                "name": "MemberAccess",
+                                "src": "339:20:3"
+                              }
+                            ],
+                            "id": 471,
+                            "name": "MemberAccess",
+                            "src": "339:25:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 457,
+                              "type": "uint256",
+                              "value": "idProizvoda"
+                            },
+                            "id": 472,
+                            "name": "Identifier",
+                            "src": "365:11:3"
+                          }
+                        ],
+                        "id": 473,
+                        "name": "FunctionCall",
+                        "src": "339:38:3"
+                      }
+                    ],
+                    "id": 474,
+                    "name": "ExpressionStatement",
+                    "src": "339:38:3"
+                  }
+                ],
+                "id": 475,
+                "name": "Block",
+                "src": "284:101:3"
+              }
+            ],
+            "id": 476,
+            "name": "FunctionDefinition",
+            "src": "221:164:3"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "dislajkovanje",
+              "scope": 579,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "idKorisnika",
+                      "scope": 564,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 477,
+                        "name": "ElementaryTypeName",
+                        "src": "417:4:3"
+                      }
+                    ],
+                    "id": 478,
+                    "name": "VariableDeclaration",
+                    "src": "417:16:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "idProizvoda",
+                      "scope": 564,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 479,
+                        "name": "ElementaryTypeName",
+                        "src": "435:4:3"
+                      }
+                    ],
+                    "id": 480,
+                    "name": "VariableDeclaration",
+                    "src": "435:16:3"
+                  }
+                ],
+                "id": 481,
+                "name": "ParameterList",
+                "src": "416:36:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 482,
+                "name": "ParameterList",
+                "src": "460:0:3"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "assignments": [
+                            484
+                          ]
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "constant": false,
+                              "name": "i",
+                              "scope": 562,
+                              "stateVariable": false,
+                              "storageLocation": "default",
+                              "type": "uint256",
+                              "value": null,
+                              "visibility": "internal"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "name": "uint",
+                                  "type": "uint256"
+                                },
+                                "id": 483,
+                                "name": "ElementaryTypeName",
+                                "src": "475:4:3"
+                              }
+                            ],
+                            "id": 484,
+                            "name": "VariableDeclaration",
+                            "src": "475:6:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 485,
+                            "name": "Literal",
+                            "src": "484:1:3"
+                          }
+                        ],
+                        "id": 486,
+                        "name": "VariableDeclarationStatement",
+                        "src": "475:10:3"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "<",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 484,
+                              "type": "uint256",
+                              "value": "i"
+                            },
+                            "id": 487,
+                            "name": "Identifier",
+                            "src": "487:1:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "brojZelja",
+                              "referencedDeclaration": 445,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct ListaZelja.Zelja storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 453,
+                                      "type": "mapping(uint256 => struct ListaZelja.Zelja storage ref)",
+                                      "value": "zelje"
+                                    },
+                                    "id": 488,
+                                    "name": "Identifier",
+                                    "src": "491:5:3"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 478,
+                                      "type": "uint256",
+                                      "value": "idKorisnika"
+                                    },
+                                    "id": 489,
+                                    "name": "Identifier",
+                                    "src": "497:11:3"
+                                  }
+                                ],
+                                "id": 490,
+                                "name": "IndexAccess",
+                                "src": "491:18:3"
+                              }
+                            ],
+                            "id": 491,
+                            "name": "MemberAccess",
+                            "src": "491:28:3"
+                          }
+                        ],
+                        "id": 492,
+                        "name": "BinaryOperation",
+                        "src": "487:32:3"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "++",
+                              "prefix": false,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 484,
+                                  "type": "uint256",
+                                  "value": "i"
+                                },
+                                "id": 493,
+                                "name": "Identifier",
+                                "src": "521:1:3"
+                              }
+                            ],
+                            "id": 494,
+                            "name": "UnaryOperation",
+                            "src": "521:3:3"
+                          }
+                        ],
+                        "id": 495,
+                        "name": "ExpressionStatement",
+                        "src": "521:3:3"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "falseBody": null
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "commonType": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  },
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "==",
+                                  "type": "bool"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "type": "uint256"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": true,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "member_name": "p",
+                                          "referencedDeclaration": 448,
+                                          "type": "uint256[] storage ref"
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "isConstant": false,
+                                              "isLValue": true,
+                                              "isPure": false,
+                                              "lValueRequested": false,
+                                              "type": "struct ListaZelja.Zelja storage ref"
+                                            },
+                                            "children": [
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "overloadedDeclarations": [
+                                                    null
+                                                  ],
+                                                  "referencedDeclaration": 453,
+                                                  "type": "mapping(uint256 => struct ListaZelja.Zelja storage ref)",
+                                                  "value": "zelje"
+                                                },
+                                                "id": 496,
+                                                "name": "Identifier",
+                                                "src": "544:5:3"
+                                              },
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "overloadedDeclarations": [
+                                                    null
+                                                  ],
+                                                  "referencedDeclaration": 478,
+                                                  "type": "uint256",
+                                                  "value": "idKorisnika"
+                                                },
+                                                "id": 497,
+                                                "name": "Identifier",
+                                                "src": "550:11:3"
+                                              }
+                                            ],
+                                            "id": 498,
+                                            "name": "IndexAccess",
+                                            "src": "544:18:3"
+                                          }
+                                        ],
+                                        "id": 499,
+                                        "name": "MemberAccess",
+                                        "src": "544:20:3"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 484,
+                                          "type": "uint256",
+                                          "value": "i"
+                                        },
+                                        "id": 500,
+                                        "name": "Identifier",
+                                        "src": "565:1:3"
+                                      }
+                                    ],
+                                    "id": 501,
+                                    "name": "IndexAccess",
+                                    "src": "544:23:3"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 480,
+                                      "type": "uint256",
+                                      "value": "idProizvoda"
+                                    },
+                                    "id": 502,
+                                    "name": "Identifier",
+                                    "src": "572:11:3"
+                                  }
+                                ],
+                                "id": 503,
+                                "name": "BinaryOperation",
+                                "src": "544:39:3"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "assignments": [
+                                            505
+                                          ]
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "constant": false,
+                                              "name": "j",
+                                              "scope": 536,
+                                              "stateVariable": false,
+                                              "storageLocation": "default",
+                                              "type": "uint256",
+                                              "value": null,
+                                              "visibility": "internal"
+                                            },
+                                            "children": [
+                                              {
+                                                "attributes": {
+                                                  "name": "uint",
+                                                  "type": "uint256"
+                                                },
+                                                "id": 504,
+                                                "name": "ElementaryTypeName",
+                                                "src": "608:4:3"
+                                              }
+                                            ],
+                                            "id": 505,
+                                            "name": "VariableDeclaration",
+                                            "src": "608:6:3"
+                                          },
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 484,
+                                              "type": "uint256",
+                                              "value": "i"
+                                            },
+                                            "id": 506,
+                                            "name": "Identifier",
+                                            "src": "617:1:3"
+                                          }
+                                        ],
+                                        "id": 507,
+                                        "name": "VariableDeclarationStatement",
+                                        "src": "608:10:3"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "commonType": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                          },
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "operator": "<",
+                                          "type": "bool"
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 505,
+                                              "type": "uint256",
+                                              "value": "j"
+                                            },
+                                            "id": 508,
+                                            "name": "Identifier",
+                                            "src": "620:1:3"
+                                          },
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "commonType": {
+                                                "typeIdentifier": "t_uint256",
+                                                "typeString": "uint256"
+                                              },
+                                              "isConstant": false,
+                                              "isLValue": false,
+                                              "isPure": false,
+                                              "lValueRequested": false,
+                                              "operator": "-",
+                                              "type": "uint256"
+                                            },
+                                            "children": [
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "isConstant": false,
+                                                  "isLValue": true,
+                                                  "isPure": false,
+                                                  "lValueRequested": false,
+                                                  "member_name": "brojZelja",
+                                                  "referencedDeclaration": 445,
+                                                  "type": "uint256"
+                                                },
+                                                "children": [
+                                                  {
+                                                    "attributes": {
+                                                      "argumentTypes": null,
+                                                      "isConstant": false,
+                                                      "isLValue": true,
+                                                      "isPure": false,
+                                                      "lValueRequested": false,
+                                                      "type": "struct ListaZelja.Zelja storage ref"
+                                                    },
+                                                    "children": [
+                                                      {
+                                                        "attributes": {
+                                                          "argumentTypes": null,
+                                                          "overloadedDeclarations": [
+                                                            null
+                                                          ],
+                                                          "referencedDeclaration": 453,
+                                                          "type": "mapping(uint256 => struct ListaZelja.Zelja storage ref)",
+                                                          "value": "zelje"
+                                                        },
+                                                        "id": 509,
+                                                        "name": "Identifier",
+                                                        "src": "624:5:3"
+                                                      },
+                                                      {
+                                                        "attributes": {
+                                                          "argumentTypes": null,
+                                                          "overloadedDeclarations": [
+                                                            null
+                                                          ],
+                                                          "referencedDeclaration": 478,
+                                                          "type": "uint256",
+                                                          "value": "idKorisnika"
+                                                        },
+                                                        "id": 510,
+                                                        "name": "Identifier",
+                                                        "src": "630:11:3"
+                                                      }
+                                                    ],
+                                                    "id": 511,
+                                                    "name": "IndexAccess",
+                                                    "src": "624:18:3"
+                                                  }
+                                                ],
+                                                "id": 512,
+                                                "name": "MemberAccess",
+                                                "src": "624:28:3"
+                                              },
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "hexvalue": "31",
+                                                  "isConstant": false,
+                                                  "isLValue": false,
+                                                  "isPure": true,
+                                                  "lValueRequested": false,
+                                                  "subdenomination": null,
+                                                  "token": "number",
+                                                  "type": "int_const 1",
+                                                  "value": "1"
+                                                },
+                                                "id": 513,
+                                                "name": "Literal",
+                                                "src": "655:1:3"
+                                              }
+                                            ],
+                                            "id": 514,
+                                            "name": "BinaryOperation",
+                                            "src": "624:32:3"
+                                          }
+                                        ],
+                                        "id": 515,
+                                        "name": "BinaryOperation",
+                                        "src": "620:36:3"
+                                      },
+                                      {
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "isConstant": false,
+                                              "isLValue": false,
+                                              "isPure": false,
+                                              "lValueRequested": false,
+                                              "operator": "++",
+                                              "prefix": false,
+                                              "type": "uint256"
+                                            },
+                                            "children": [
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "overloadedDeclarations": [
+                                                    null
+                                                  ],
+                                                  "referencedDeclaration": 505,
+                                                  "type": "uint256",
+                                                  "value": "j"
+                                                },
+                                                "id": 516,
+                                                "name": "Identifier",
+                                                "src": "658:1:3"
+                                              }
+                                            ],
+                                            "id": 517,
+                                            "name": "UnaryOperation",
+                                            "src": "658:3:3"
+                                          }
+                                        ],
+                                        "id": 518,
+                                        "name": "ExpressionStatement",
+                                        "src": "658:3:3"
+                                      },
+                                      {
+                                        "children": [
+                                          {
+                                            "children": [
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "isConstant": false,
+                                                  "isLValue": false,
+                                                  "isPure": false,
+                                                  "lValueRequested": false,
+                                                  "operator": "=",
+                                                  "type": "uint256"
+                                                },
+                                                "children": [
+                                                  {
+                                                    "attributes": {
+                                                      "argumentTypes": null,
+                                                      "isConstant": false,
+                                                      "isLValue": true,
+                                                      "isPure": false,
+                                                      "lValueRequested": true,
+                                                      "type": "uint256"
+                                                    },
+                                                    "children": [
+                                                      {
+                                                        "attributes": {
+                                                          "argumentTypes": null,
+                                                          "isConstant": false,
+                                                          "isLValue": true,
+                                                          "isPure": false,
+                                                          "lValueRequested": false,
+                                                          "member_name": "p",
+                                                          "referencedDeclaration": 448,
+                                                          "type": "uint256[] storage ref"
+                                                        },
+                                                        "children": [
+                                                          {
+                                                            "attributes": {
+                                                              "argumentTypes": null,
+                                                              "isConstant": false,
+                                                              "isLValue": true,
+                                                              "isPure": false,
+                                                              "lValueRequested": false,
+                                                              "type": "struct ListaZelja.Zelja storage ref"
+                                                            },
+                                                            "children": [
+                                                              {
+                                                                "attributes": {
+                                                                  "argumentTypes": null,
+                                                                  "overloadedDeclarations": [
+                                                                    null
+                                                                  ],
+                                                                  "referencedDeclaration": 453,
+                                                                  "type": "mapping(uint256 => struct ListaZelja.Zelja storage ref)",
+                                                                  "value": "zelje"
+                                                                },
+                                                                "id": 519,
+                                                                "name": "Identifier",
+                                                                "src": "686:5:3"
+                                                              },
+                                                              {
+                                                                "attributes": {
+                                                                  "argumentTypes": null,
+                                                                  "overloadedDeclarations": [
+                                                                    null
+                                                                  ],
+                                                                  "referencedDeclaration": 478,
+                                                                  "type": "uint256",
+                                                                  "value": "idKorisnika"
+                                                                },
+                                                                "id": 520,
+                                                                "name": "Identifier",
+                                                                "src": "692:11:3"
+                                                              }
+                                                            ],
+                                                            "id": 521,
+                                                            "name": "IndexAccess",
+                                                            "src": "686:18:3"
+                                                          }
+                                                        ],
+                                                        "id": 522,
+                                                        "name": "MemberAccess",
+                                                        "src": "686:20:3"
+                                                      },
+                                                      {
+                                                        "attributes": {
+                                                          "argumentTypes": null,
+                                                          "overloadedDeclarations": [
+                                                            null
+                                                          ],
+                                                          "referencedDeclaration": 505,
+                                                          "type": "uint256",
+                                                          "value": "j"
+                                                        },
+                                                        "id": 523,
+                                                        "name": "Identifier",
+                                                        "src": "707:1:3"
+                                                      }
+                                                    ],
+                                                    "id": 524,
+                                                    "name": "IndexAccess",
+                                                    "src": "686:23:3"
+                                                  },
+                                                  {
+                                                    "attributes": {
+                                                      "argumentTypes": null,
+                                                      "isConstant": false,
+                                                      "isLValue": true,
+                                                      "isPure": false,
+                                                      "lValueRequested": false,
+                                                      "type": "uint256"
+                                                    },
+                                                    "children": [
+                                                      {
+                                                        "attributes": {
+                                                          "argumentTypes": null,
+                                                          "isConstant": false,
+                                                          "isLValue": true,
+                                                          "isPure": false,
+                                                          "lValueRequested": false,
+                                                          "member_name": "p",
+                                                          "referencedDeclaration": 448,
+                                                          "type": "uint256[] storage ref"
+                                                        },
+                                                        "children": [
+                                                          {
+                                                            "attributes": {
+                                                              "argumentTypes": null,
+                                                              "isConstant": false,
+                                                              "isLValue": true,
+                                                              "isPure": false,
+                                                              "lValueRequested": false,
+                                                              "type": "struct ListaZelja.Zelja storage ref"
+                                                            },
+                                                            "children": [
+                                                              {
+                                                                "attributes": {
+                                                                  "argumentTypes": null,
+                                                                  "overloadedDeclarations": [
+                                                                    null
+                                                                  ],
+                                                                  "referencedDeclaration": 453,
+                                                                  "type": "mapping(uint256 => struct ListaZelja.Zelja storage ref)",
+                                                                  "value": "zelje"
+                                                                },
+                                                                "id": 525,
+                                                                "name": "Identifier",
+                                                                "src": "712:5:3"
+                                                              },
+                                                              {
+                                                                "attributes": {
+                                                                  "argumentTypes": null,
+                                                                  "overloadedDeclarations": [
+                                                                    null
+                                                                  ],
+                                                                  "referencedDeclaration": 478,
+                                                                  "type": "uint256",
+                                                                  "value": "idKorisnika"
+                                                                },
+                                                                "id": 526,
+                                                                "name": "Identifier",
+                                                                "src": "718:11:3"
+                                                              }
+                                                            ],
+                                                            "id": 527,
+                                                            "name": "IndexAccess",
+                                                            "src": "712:18:3"
+                                                          }
+                                                        ],
+                                                        "id": 528,
+                                                        "name": "MemberAccess",
+                                                        "src": "712:20:3"
+                                                      },
+                                                      {
+                                                        "attributes": {
+                                                          "argumentTypes": null,
+                                                          "commonType": {
+                                                            "typeIdentifier": "t_uint256",
+                                                            "typeString": "uint256"
+                                                          },
+                                                          "isConstant": false,
+                                                          "isLValue": false,
+                                                          "isPure": false,
+                                                          "lValueRequested": false,
+                                                          "operator": "+",
+                                                          "type": "uint256"
+                                                        },
+                                                        "children": [
+                                                          {
+                                                            "attributes": {
+                                                              "argumentTypes": null,
+                                                              "overloadedDeclarations": [
+                                                                null
+                                                              ],
+                                                              "referencedDeclaration": 505,
+                                                              "type": "uint256",
+                                                              "value": "j"
+                                                            },
+                                                            "id": 529,
+                                                            "name": "Identifier",
+                                                            "src": "733:1:3"
+                                                          },
+                                                          {
+                                                            "attributes": {
+                                                              "argumentTypes": null,
+                                                              "hexvalue": "31",
+                                                              "isConstant": false,
+                                                              "isLValue": false,
+                                                              "isPure": true,
+                                                              "lValueRequested": false,
+                                                              "subdenomination": null,
+                                                              "token": "number",
+                                                              "type": "int_const 1",
+                                                              "value": "1"
+                                                            },
+                                                            "id": 530,
+                                                            "name": "Literal",
+                                                            "src": "737:1:3"
+                                                          }
+                                                        ],
+                                                        "id": 531,
+                                                        "name": "BinaryOperation",
+                                                        "src": "733:5:3"
+                                                      }
+                                                    ],
+                                                    "id": 532,
+                                                    "name": "IndexAccess",
+                                                    "src": "712:27:3"
+                                                  }
+                                                ],
+                                                "id": 533,
+                                                "name": "Assignment",
+                                                "src": "686:53:3"
+                                              }
+                                            ],
+                                            "id": 534,
+                                            "name": "ExpressionStatement",
+                                            "src": "686:53:3"
+                                          }
+                                        ],
+                                        "id": 535,
+                                        "name": "Block",
+                                        "src": "663:96:3"
+                                      }
+                                    ],
+                                    "id": 536,
+                                    "name": "ForStatement",
+                                    "src": "604:155:3"
+                                  },
+                                  {
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "operator": "=",
+                                          "type": "uint256"
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "isConstant": false,
+                                              "isLValue": true,
+                                              "isPure": false,
+                                              "lValueRequested": true,
+                                              "type": "uint256"
+                                            },
+                                            "children": [
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "isConstant": false,
+                                                  "isLValue": true,
+                                                  "isPure": false,
+                                                  "lValueRequested": false,
+                                                  "member_name": "p",
+                                                  "referencedDeclaration": 448,
+                                                  "type": "uint256[] storage ref"
+                                                },
+                                                "children": [
+                                                  {
+                                                    "attributes": {
+                                                      "argumentTypes": null,
+                                                      "isConstant": false,
+                                                      "isLValue": true,
+                                                      "isPure": false,
+                                                      "lValueRequested": false,
+                                                      "type": "struct ListaZelja.Zelja storage ref"
+                                                    },
+                                                    "children": [
+                                                      {
+                                                        "attributes": {
+                                                          "argumentTypes": null,
+                                                          "overloadedDeclarations": [
+                                                            null
+                                                          ],
+                                                          "referencedDeclaration": 453,
+                                                          "type": "mapping(uint256 => struct ListaZelja.Zelja storage ref)",
+                                                          "value": "zelje"
+                                                        },
+                                                        "id": 537,
+                                                        "name": "Identifier",
+                                                        "src": "777:5:3"
+                                                      },
+                                                      {
+                                                        "attributes": {
+                                                          "argumentTypes": null,
+                                                          "overloadedDeclarations": [
+                                                            null
+                                                          ],
+                                                          "referencedDeclaration": 478,
+                                                          "type": "uint256",
+                                                          "value": "idKorisnika"
+                                                        },
+                                                        "id": 538,
+                                                        "name": "Identifier",
+                                                        "src": "783:11:3"
+                                                      }
+                                                    ],
+                                                    "id": 539,
+                                                    "name": "IndexAccess",
+                                                    "src": "777:18:3"
+                                                  }
+                                                ],
+                                                "id": 540,
+                                                "name": "MemberAccess",
+                                                "src": "777:20:3"
+                                              },
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "commonType": {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                  },
+                                                  "isConstant": false,
+                                                  "isLValue": false,
+                                                  "isPure": false,
+                                                  "lValueRequested": false,
+                                                  "operator": "-",
+                                                  "type": "uint256"
+                                                },
+                                                "children": [
+                                                  {
+                                                    "attributes": {
+                                                      "argumentTypes": null,
+                                                      "isConstant": false,
+                                                      "isLValue": true,
+                                                      "isPure": false,
+                                                      "lValueRequested": false,
+                                                      "member_name": "brojZelja",
+                                                      "referencedDeclaration": 445,
+                                                      "type": "uint256"
+                                                    },
+                                                    "children": [
+                                                      {
+                                                        "attributes": {
+                                                          "argumentTypes": null,
+                                                          "isConstant": false,
+                                                          "isLValue": true,
+                                                          "isPure": false,
+                                                          "lValueRequested": false,
+                                                          "type": "struct ListaZelja.Zelja storage ref"
+                                                        },
+                                                        "children": [
+                                                          {
+                                                            "attributes": {
+                                                              "argumentTypes": null,
+                                                              "overloadedDeclarations": [
+                                                                null
+                                                              ],
+                                                              "referencedDeclaration": 453,
+                                                              "type": "mapping(uint256 => struct ListaZelja.Zelja storage ref)",
+                                                              "value": "zelje"
+                                                            },
+                                                            "id": 541,
+                                                            "name": "Identifier",
+                                                            "src": "798:5:3"
+                                                          },
+                                                          {
+                                                            "attributes": {
+                                                              "argumentTypes": null,
+                                                              "overloadedDeclarations": [
+                                                                null
+                                                              ],
+                                                              "referencedDeclaration": 478,
+                                                              "type": "uint256",
+                                                              "value": "idKorisnika"
+                                                            },
+                                                            "id": 542,
+                                                            "name": "Identifier",
+                                                            "src": "804:11:3"
+                                                          }
+                                                        ],
+                                                        "id": 543,
+                                                        "name": "IndexAccess",
+                                                        "src": "798:18:3"
+                                                      }
+                                                    ],
+                                                    "id": 544,
+                                                    "name": "MemberAccess",
+                                                    "src": "798:28:3"
+                                                  },
+                                                  {
+                                                    "attributes": {
+                                                      "argumentTypes": null,
+                                                      "hexvalue": "31",
+                                                      "isConstant": false,
+                                                      "isLValue": false,
+                                                      "isPure": true,
+                                                      "lValueRequested": false,
+                                                      "subdenomination": null,
+                                                      "token": "number",
+                                                      "type": "int_const 1",
+                                                      "value": "1"
+                                                    },
+                                                    "id": 545,
+                                                    "name": "Literal",
+                                                    "src": "829:1:3"
+                                                  }
+                                                ],
+                                                "id": 546,
+                                                "name": "BinaryOperation",
+                                                "src": "798:32:3"
+                                              }
+                                            ],
+                                            "id": 547,
+                                            "name": "IndexAccess",
+                                            "src": "777:54:3"
+                                          },
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "hexvalue": "30",
+                                              "isConstant": false,
+                                              "isLValue": false,
+                                              "isPure": true,
+                                              "lValueRequested": false,
+                                              "subdenomination": null,
+                                              "token": "number",
+                                              "type": "int_const 0",
+                                              "value": "0"
+                                            },
+                                            "id": 548,
+                                            "name": "Literal",
+                                            "src": "834:1:3"
+                                          }
+                                        ],
+                                        "id": 549,
+                                        "name": "Assignment",
+                                        "src": "777:58:3"
+                                      }
+                                    ],
+                                    "id": 550,
+                                    "name": "ExpressionStatement",
+                                    "src": "777:58:3"
+                                  },
+                                  {
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "operator": "-=",
+                                          "type": "uint256"
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "isConstant": false,
+                                              "isLValue": true,
+                                              "isPure": false,
+                                              "lValueRequested": true,
+                                              "member_name": "brojZelja",
+                                              "referencedDeclaration": 445,
+                                              "type": "uint256"
+                                            },
+                                            "children": [
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "isConstant": false,
+                                                  "isLValue": true,
+                                                  "isPure": false,
+                                                  "lValueRequested": false,
+                                                  "type": "struct ListaZelja.Zelja storage ref"
+                                                },
+                                                "children": [
+                                                  {
+                                                    "attributes": {
+                                                      "argumentTypes": null,
+                                                      "overloadedDeclarations": [
+                                                        null
+                                                      ],
+                                                      "referencedDeclaration": 453,
+                                                      "type": "mapping(uint256 => struct ListaZelja.Zelja storage ref)",
+                                                      "value": "zelje"
+                                                    },
+                                                    "id": 551,
+                                                    "name": "Identifier",
+                                                    "src": "854:5:3"
+                                                  },
+                                                  {
+                                                    "attributes": {
+                                                      "argumentTypes": null,
+                                                      "overloadedDeclarations": [
+                                                        null
+                                                      ],
+                                                      "referencedDeclaration": 478,
+                                                      "type": "uint256",
+                                                      "value": "idKorisnika"
+                                                    },
+                                                    "id": 552,
+                                                    "name": "Identifier",
+                                                    "src": "860:11:3"
+                                                  }
+                                                ],
+                                                "id": 553,
+                                                "name": "IndexAccess",
+                                                "src": "854:18:3"
+                                              }
+                                            ],
+                                            "id": 554,
+                                            "name": "MemberAccess",
+                                            "src": "854:28:3"
+                                          },
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "hexvalue": "31",
+                                              "isConstant": false,
+                                              "isLValue": false,
+                                              "isPure": true,
+                                              "lValueRequested": false,
+                                              "subdenomination": null,
+                                              "token": "number",
+                                              "type": "int_const 1",
+                                              "value": "1"
+                                            },
+                                            "id": 555,
+                                            "name": "Literal",
+                                            "src": "886:1:3"
+                                          }
+                                        ],
+                                        "id": 556,
+                                        "name": "Assignment",
+                                        "src": "854:33:3"
+                                      }
+                                    ],
+                                    "id": 557,
+                                    "name": "ExpressionStatement",
+                                    "src": "854:33:3"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "expression": null,
+                                      "functionReturnParameters": 482
+                                    },
+                                    "id": 558,
+                                    "name": "Return",
+                                    "src": "906:7:3"
+                                  }
+                                ],
+                                "id": 559,
+                                "name": "Block",
+                                "src": "585:343:3"
+                              }
+                            ],
+                            "id": 560,
+                            "name": "IfStatement",
+                            "src": "541:387:3"
+                          }
+                        ],
+                        "id": 561,
+                        "name": "Block",
+                        "src": "526:413:3"
+                      }
+                    ],
+                    "id": 562,
+                    "name": "ForStatement",
+                    "src": "471:468:3"
+                  }
+                ],
+                "id": 563,
+                "name": "Block",
+                "src": "460:486:3"
+              }
+            ],
+            "id": 564,
+            "name": "FunctionDefinition",
+            "src": "394:552:3"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "dajLajkove",
+              "scope": 579,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "idKorisnika",
+                      "scope": 578,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 565,
+                        "name": "ElementaryTypeName",
+                        "src": "974:4:3"
+                      }
+                    ],
+                    "id": 566,
+                    "name": "VariableDeclaration",
+                    "src": "974:16:3"
+                  }
+                ],
+                "id": 567,
+                "name": "ParameterList",
+                "src": "973:18:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 578,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "uint256[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "uint256[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint",
+                              "type": "uint256"
+                            },
+                            "id": 568,
+                            "name": "ElementaryTypeName",
+                            "src": "1012:4:3"
+                          }
+                        ],
+                        "id": 569,
+                        "name": "ArrayTypeName",
+                        "src": "1012:6:3"
+                      }
+                    ],
+                    "id": 570,
+                    "name": "VariableDeclaration",
+                    "src": "1012:13:3"
+                  }
+                ],
+                "id": 571,
+                "name": "ParameterList",
+                "src": "1011:15:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 571
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "member_name": "p",
+                          "referencedDeclaration": 448,
+                          "type": "uint256[] storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "type": "struct ListaZelja.Zelja storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 453,
+                                  "type": "mapping(uint256 => struct ListaZelja.Zelja storage ref)",
+                                  "value": "zelje"
+                                },
+                                "id": 572,
+                                "name": "Identifier",
+                                "src": "1044:5:3"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 566,
+                                  "type": "uint256",
+                                  "value": "idKorisnika"
+                                },
+                                "id": 573,
+                                "name": "Identifier",
+                                "src": "1050:11:3"
+                              }
+                            ],
+                            "id": 574,
+                            "name": "IndexAccess",
+                            "src": "1044:18:3"
+                          }
+                        ],
+                        "id": 575,
+                        "name": "MemberAccess",
+                        "src": "1044:20:3"
+                      }
+                    ],
+                    "id": 576,
+                    "name": "Return",
+                    "src": "1037:27:3"
+                  }
+                ],
+                "id": 577,
+                "name": "Block",
+                "src": "1026:46:3"
+              }
+            ],
+            "id": 578,
+            "name": "FunctionDefinition",
+            "src": "954:118:3"
+          }
+        ],
+        "id": 579,
+        "name": "ContractDefinition",
+        "src": "69:1009:3"
+      }
+    ],
+    "id": 580,
+    "name": "SourceUnit",
+    "src": "33:1045:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xe69F199A477C1E071F8c3d3C8e93A93C6603a7a7",
+      "transactionHash": "0xb300c204f02bbccb3b467895ddf7a209881c45ea2b22d0f1e1c94af3e1cce258"
+    }
+  },
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-05-11T20:35:08.123Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
