@@ -79,11 +79,11 @@ class _AddProductState extends State<AddProduct> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Dodavanje proizvoda"),
-        backgroundColor: kPrimaryColor,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(36),
-        )),
+        backgroundColor: Theme.of(context).primaryColor,
+        // shape: RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.vertical(
+        //   bottom: Radius.circular(36),
+        // )),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -95,7 +95,7 @@ class _AddProductState extends State<AddProduct> {
                 height: 210,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: kPrimaryColor,
+                  color: Theme.of(context).primaryColor,
                 ),
                 child: Container(
                   margin: EdgeInsets.all(10),
@@ -114,7 +114,7 @@ class _AddProductState extends State<AddProduct> {
               ),
               IconButton(
                   icon: Icon(Icons.add_a_photo),
-                  focusColor: kPrimaryColor,
+                  focusColor: Theme.of(context).primaryColor,
                   hoverColor: kPrimaryColorHover,
                   onPressed: () {
                     pickImages();
@@ -207,7 +207,8 @@ class _AddProductState extends State<AddProduct> {
                           value: value,
                           child: Text(
                             value.naziv,
-                            style: TextStyle(color: kPrimaryColor),
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
                           ));
                     }).toList(),
                     onChanged: (Kategorija newCat) {
@@ -228,7 +229,8 @@ class _AddProductState extends State<AddProduct> {
                           value: value,
                           child: Text(
                             value.naziv,
-                            style: TextStyle(color: kPrimaryColor),
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
                           ));
                     }).toList(),
                     onChanged: (Kategorija newCat) {
@@ -246,7 +248,7 @@ class _AddProductState extends State<AddProduct> {
                   "Postavi proizvod",
                   style: TextStyle(color: Colors.white),
                 ),
-                color: kPrimaryColor,
+                color: Theme.of(context).primaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                 ),
@@ -305,8 +307,6 @@ class _AddProductState extends State<AddProduct> {
                         "," +
                         opisController.text);
 
-                    List<String> s = [""]; //TREBA LISTA SLIKA DA SE DODA
-
                     pModel.dodajProizvod(
                         korisnikInfo.id,
                         1, // TREBA ID KATEGORIJE DA SE STAVI
@@ -315,7 +315,7 @@ class _AddProductState extends State<AddProduct> {
                         int.parse(kolicinaController.text),
                         "kom", // TREBA MERNA JEDINICA DA SE STAVI
                         int.parse(cenaController.text),
-                        s,
+                        slike,
                         opisController.text);
                     print("Uspesno dodavanje");
                   }
@@ -415,6 +415,7 @@ class _AddProductState extends State<AddProduct> {
     if (respons.statusCode == 200) {
       setState(() {
         message = ' image upload with success';
+        print(message);
       });
       return;
     } else

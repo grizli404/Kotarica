@@ -11,7 +11,7 @@ import 'ether_setup.dart';
 class ProizvodiModel extends ChangeNotifier {
   List<Proizvod> listaProizvoda = [];
 
-  List<String> split(Pattern pattern){}
+  List<String> split(Pattern pattern) {}
 
   Web3Client client;
 
@@ -98,15 +98,23 @@ class ProizvodiModel extends ChangeNotifier {
     _smanji = ugovor.event("smanji");
   }
 
-  Future<void> dodajProizvod(int _idKorisnika, int _idKategorija, int _idPotkategorije, String _naziv,
-      int _kolicina, String jedinica, int _cena, List<String> _slike, String _opis) async {
-
-    String _idKategorije = _idKategorija.toString() + "|" + _idPotkategorije.toString();
+  Future<void> dodajProizvod(
+      int _idKorisnika,
+      int _idKategorija,
+      int _idPotkategorije,
+      String _naziv,
+      int _kolicina,
+      String jedinica,
+      int _cena,
+      List<String> _slike,
+      String _opis) async {
+    String _idKategorije =
+        _idKategorija.toString() + "|" + _idPotkategorije.toString();
     String cenaJedinica = _cena.toString() + "|" + jedinica;
     String _slika = "";
 
     for (var i = 0; i < _slike.length; i++) {
-      slika += _slike[i] + "|";
+      _slika += _slike[i] + "|";
     }
 
     await client.sendTransaction(
@@ -159,8 +167,9 @@ class ProizvodiModel extends ChangeNotifier {
       cena_jedinica = cena_jedinica.split("|");
       int cena = int.parse(cena_jedinica[0]);
 
-      List<String> s = [""];
+      List<String> s = [];
       var slike = proizvod[6];
+      slike = slike.split("|");
       for (var i = 0; i < slike.length; i++) {
         s.add(slike[i]);
       }
@@ -271,7 +280,6 @@ class ProizvodiModel extends ChangeNotifier {
 
     print(povratna.hashCode);
   }
-
 }
 
 class Proizvod {
