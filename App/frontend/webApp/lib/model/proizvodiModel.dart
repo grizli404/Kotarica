@@ -36,8 +36,8 @@ class ProizvodiModel extends ChangeNotifier {
   }
 
   Future<void> inicijalnoSetovanje() async {
-    client = Web3Client(/*rpcUrl*/"http://192.168.0.24:7545", http.Client(), socketConnector: () {
-      return IOWebSocketChannel.connect(/*wsUrl*/"ws://192.168.0.24:7545/").cast<String>();
+    client = Web3Client(rpcUrl, http.Client(), socketConnector: () {
+      return IOWebSocketChannel.connect(wsUrl).cast<String>();
     });
 
     await getAbi();

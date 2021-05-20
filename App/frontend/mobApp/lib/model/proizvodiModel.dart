@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app/screens/add_product/add_product.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
@@ -9,6 +10,8 @@ import 'ether_setup.dart';
 
 class ProizvodiModel extends ChangeNotifier {
   List<Proizvod> listaProizvoda = [];
+
+  List<String> split(Pattern pattern){}
 
   Web3Client client;
 
@@ -24,6 +27,9 @@ class ProizvodiModel extends ChangeNotifier {
   ContractFunction proizvodi;
   ContractFunction _dodajProizvod;
   ContractFunction proizvodiKorisnika;
+  ContractFunction _smanjiPrilikomKupovine;
+
+  ContractEvent _smanji;
 
   ProizvodiModel() {
     inicijalnoSetovanje();
@@ -39,13 +45,18 @@ class ProizvodiModel extends ChangeNotifier {
     await getDeployedCotract();
 
     await dajSveProizvode();
+
+    print("Dosao sam dovde");
+    //await smanjiPrilikomKupovine(1, 1);
+    print("zavrsio sam");
+
     notifyListeners();
   }
 
   Future<void> getAbi() async {
     /**************************  WEB  ********************************** */
     // String abiStringFile =
-    //     await rootBundle.loadString("assets/src/Proizvodi.json");
+    //     await rootBundle.loadString("src/abis/Proizvodi.json");
     // var jsonAbi = jsonDecode(abiStringFile);
     /**************************  WEB  ********************************** */
 
@@ -82,10 +93,22 @@ class ProizvodiModel extends ChangeNotifier {
     proizvodi = ugovor.function("proizvodi");
     _dodajProizvod = ugovor.function("dodajProizvod");
     proizvodiKorisnika = ugovor.function("dajProizvodeZaKorisnika");
+    _smanjiPrilikomKupovine = ugovor.function("smanjiPrilikomKupovine");
+    //Event
+    _smanji = ugovor.event("smanji");
   }
 
-  Future<void> dodajProizvod(int _idKorisnika, int _idKategorije, String _naziv,
-      int _kolicina, int _cena, String _slika, String _opis) async {
+  Future<void> dodajProizvod(int _idKorisnika, int _idKategorija, int _idPotkategorije, String _naziv,
+      int _kolicina, String jedinica, int _cena, List<String> _slike, String _opis) async {
+
+    String _idKategorije = _idKategorija.toString() + "|" + _idPotkategorije.toString();
+    String cenaJedinica = _cena.toString() + "|" + jedinica;
+    String _slika = "";
+
+    for (var i = 0; i < _slike.length; i++) {
+      slika += _slike[i] + "|";
+    }
+
     await client.sendTransaction(
         credentials,
         Transaction.callContract(
@@ -94,10 +117,10 @@ class ProizvodiModel extends ChangeNotifier {
             function: _dodajProizvod,
             parameters: [
               BigInt.from(_idKorisnika),
-              BigInt.from(_idKategorije),
+              _idKategorije,
               _naziv,
               BigInt.from(_kolicina),
-              BigInt.from(_cena),
+              cenaJedinica,
               _slika,
               _opis
             ]));
@@ -111,9 +134,7 @@ class ProizvodiModel extends ChangeNotifier {
     int brojP = tempInt.toInt();
 
     int _idKorisnika = 0;
-    int _idKategorije = 0;
     int _kolicina = 0;
-    int _cena = 0;
 
     listaProizvoda.clear();
 
@@ -123,24 +144,39 @@ class ProizvodiModel extends ChangeNotifier {
 
       tempInt = proizvod[1];
       _idKorisnika = tempInt.toInt();
-      tempInt = proizvod[2];
-      _idKategorije = tempInt.toInt();
+
+      var kategorija_potkategorija = proizvod[2];
+      kategorija_potkategorija = kategorija_potkategorija.toString();
+      kategorija_potkategorija = kategorija_potkategorija.split("|");
+      int kat = int.parse(kategorija_potkategorija[0]);
+      int potk = int.parse(kategorija_potkategorija[1]);
+
       tempInt = proizvod[4];
       _kolicina = tempInt.toInt();
-      tempInt = proizvod[5];
-      _cena = tempInt.toInt();
+
+      var cena_jedinica = proizvod[5];
+      cena_jedinica = cena_jedinica.toString();
+      cena_jedinica = cena_jedinica.split("|");
+      int cena = int.parse(cena_jedinica[0]);
+
+      List<String> s = [""];
+      var slike = proizvod[6];
+      for (var i = 0; i < slike.length; i++) {
+        s.add(slike[i]);
+      }
 
       if (_idKorisnika > 0) {
         listaProizvoda.add(Proizvod(
             id: i,
             idKorisnika: _idKorisnika,
-            idKategorije: _idKategorije,
+            idKategorije: kat,
+            idPotkategorije: potk,
             naziv: proizvod[3],
             kolicina: _kolicina,
-            cena: _cena,
-            slika: proizvod[6],
+            jedinica: cena_jedinica[1],
+            cena: cena,
+            slika: s,
             opis: proizvod[7]));
-        //print(proizvod[3]);
       }
     }
 
@@ -175,6 +211,20 @@ class ProizvodiModel extends ChangeNotifier {
     return proizvodiKat;
   }
 
+  List<Proizvod> dajProizvodeZaPotkategoriju(int _idKategorije) {
+    List<Proizvod> proizvodiKat = [];
+
+    if (listaProizvoda.length > 0) {
+      for (var i = 0; i < listaProizvoda.length; i++) {
+        if (listaProizvoda[i].idPotkategorije == _idKategorije) {
+          proizvodiKat.add(listaProizvoda[i]);
+          print(proizvodiKat[proizvodiKat.length - 1].naziv);
+        }
+      }
+    }
+    return proizvodiKat;
+  }
+
   List<Proizvod> search(String input) {
     List<Proizvod> result;
     result.clear();
@@ -191,8 +241,9 @@ class ProizvodiModel extends ChangeNotifier {
         idKategorije: 0,
         naziv: "",
         kolicina: 0,
+        jedinica: "",
         cena: 0,
-        slika: "",
+        slika: [],
         opis: "");
 
     if (_idProizvoda > 0) {
@@ -205,24 +256,44 @@ class ProizvodiModel extends ChangeNotifier {
     }
     return p;
   }
+
+  Future<bool> smanjiPrilikomKupovine(int _idProizoda, int _kolicina) async {
+    var povratna = await client.sendTransaction(
+        credentials,
+        Transaction.callContract(
+            maxGas: 6721975,
+            contract: ugovor,
+            function: _smanjiPrilikomKupovine,
+            parameters: [
+              BigInt.from(_idProizoda),
+              BigInt.from(_kolicina),
+            ]));
+
+    print(povratna.hashCode);
+  }
+
 }
 
 class Proizvod {
   int id;
   int idKorisnika;
   int idKategorije;
+  int idPotkategorije;
   String naziv;
   int kolicina;
+  String jedinica;
   int cena;
-  String slika;
+  List<String> slika;
   String opis;
 
   Proizvod(
       {this.id,
       this.idKorisnika,
       this.idKategorije,
+      this.idPotkategorije,
       this.naziv,
       this.kolicina,
+      this.jedinica,
       this.cena,
       this.slika,
       this.opis});
