@@ -274,9 +274,10 @@ class _BodyState extends State<Body> {
       //  print(response);
       // print(jwt.toString());
       if (response != 0 && jwt != 'false') {
-        !isWeb
-            ? Token.setSecureStorage("jwt", jwt)
-            : await FlutterSession().set("jwt", jwt);
+        Token.setToken = jwt;
+        // !isWeb
+        //     ? Token.setSecureStorage("jwt", jwt)
+        //     : await FlutterSession().set("jwt", jwt);
         // print('TOKEN');
         // print('jwt ' + jwt);
         var token = json.decode(
@@ -284,7 +285,6 @@ class _BodyState extends State<Body> {
 
         // print('token sub ' + token['unique_name']);
 
-        if (!isWeb) Token.jwt = jwt;
         korisnikInfo = await korisnik.vratiKorisnikaMail(token['unique_name']);
         //print('korisnikInfo ' + korisnikInfo.ime);
         Navigator.popAndPushNamed(context, '/home', arguments: {});
