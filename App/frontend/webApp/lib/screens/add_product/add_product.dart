@@ -77,11 +77,11 @@ class _AddProductState extends State<AddProduct> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Dodavanje proizvoda"),
-        backgroundColor: kPrimaryColor,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(36),
-        )),
+        backgroundColor: Theme.of(context).primaryColor,
+        // shape: RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.vertical(
+        //   bottom: Radius.circular(36),
+        // )),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -93,7 +93,7 @@ class _AddProductState extends State<AddProduct> {
                 height: 210,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: kPrimaryColor,
+                  color: Theme.of(context).primaryColor,
                 ),
                 child: Container(
                   margin: EdgeInsets.all(10),
@@ -111,7 +111,7 @@ class _AddProductState extends State<AddProduct> {
               ),
               IconButton(
                   icon: Icon(Icons.add_a_photo),
-                  focusColor: kPrimaryColor,
+                  focusColor: Theme.of(context).primaryColor,
                   hoverColor: kPrimaryColorHover,
                   onPressed: () {
                     pickImage();
@@ -204,7 +204,8 @@ class _AddProductState extends State<AddProduct> {
                           value: value,
                           child: Text(
                             value.naziv,
-                            style: TextStyle(color: kPrimaryColor),
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
                           ));
                     }).toList(),
                     onChanged: (Kategorija newCat) {
@@ -225,7 +226,8 @@ class _AddProductState extends State<AddProduct> {
                           value: value,
                           child: Text(
                             value.naziv,
-                            style: TextStyle(color: kPrimaryColor),
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
                           ));
                     }).toList(),
                     onChanged: (Kategorija newCat) {
@@ -302,7 +304,6 @@ class _AddProductState extends State<AddProduct> {
                         "," +
                         opisController.text);
 
-                    List<String> slike = []; // OVDE TREBA DA SE SMESTE STRINGOVI SLIKA
                     pModel.dodajProizvod(
                         korisnikInfo.id,
                         1, //OVDE TREBA ID KATEGORIJE
