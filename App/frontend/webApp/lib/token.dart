@@ -1,36 +1,41 @@
 import 'dart:convert';
+import 'dart:html';
 import 'package:app/model/korisniciModel.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'main.dart';
 
 class Token {
-  static final storage = new FlutterSecureStorage();
-  static String jwt;
+  static set setToken(String value) => window.sessionStorage["jwt"] = value;
+  static String get jwt => window.sessionStorage["jwt"];
+  static set deleteToken(String value) => window.sessionStorage["jwt"] = null;
 
-  static void setSecureStorage(String key, String data) async {
-    await storage.write(key: key, value: data);
-    jwt = await storage.read(key: "jwt");
-    print('SET SECURE STORAGE');
-    // print(jwt);
-  }
+  // static final storage = new FlutterSecureStorage();
+  // static String jwt;
 
-  static Future<String> getSecureStorage(String key) async {
-    return await storage.read(key: key);
-  }
+  // static void setSecureStorage(String key, String data) async {
+  //   await storage.write(key: key, value: data);
+  //   jwt = await storage.read(key: "jwt");
+  //   print('SET SECURE STORAGE');
+  //   // print(jwt);
+  // }
 
-  static Future<String> get jwtOrEmpty async {
-    // var jwt = await storage.read(key: "jwt");
-    jwt = await getSecureStorage('jwt');
-    if (jwt == null) return "";
-    var token = json.decode(
-        ascii.decode(base64.decode(base64.normalize(jwt.split('.')[1]))));
+  // static Future<String> getSecureStorage(String key) async {
+  //   return await storage.read(key: key);
+  // }
 
-    if (DateTime.fromMillisecondsSinceEpoch(token["exp"] * 1000)
-        .isAfter(DateTime.now())) {
-      return jwt;
-    }
+  // static Future<String> get jwtOrEmpty async {
+  //   // var jwt = await storage.read(key: "jwt");
+  //   jwt = await getSecureStorage('jwt');
+  //   if (jwt == null) return "";
+  //   var token = json.decode(
+  //       ascii.decode(base64.decode(base64.normalize(jwt.split('.')[1]))));
 
-    return "";
-  }
+  //   if (DateTime.fromMillisecondsSinceEpoch(token["exp"] * 1000)
+  //       .isAfter(DateTime.now())) {
+  //     return jwt;
+  //   }
+
+  //   return "";
+  // }
 }

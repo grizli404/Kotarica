@@ -44,20 +44,27 @@ Widget labelContainer(String labelVal) {
       mainAxisAlignment:
           isWeb ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Expanded(
-            child: Divider(
-          height: 5,
-          thickness: 4,
-        )),
-        Text(
-          '     ' + labelVal + '      ',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27.0),
-        ),
-        Expanded(
-            child: Divider(
-          height: 5,
-          thickness: 4,
-        ))
+        if (isWeb) ...[
+          Expanded(
+              child: Divider(
+            height: 5,
+            thickness: 4,
+          )),
+          Text(
+            '     ' + labelVal + '      ',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27.0),
+          ),
+          Expanded(
+              child: Divider(
+            height: 5,
+            thickness: 4,
+          ))
+        ] else if (!isWeb) ...[
+          Text(
+            ' ' + labelVal,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+          ),
+        ]
       ],
     ),
   );
