@@ -18,7 +18,8 @@ class HomeScreenLayout extends StatelessWidget {
         body: Body(proizvodi: ProizvodiModel().listaProizvoda),
         drawer: ListenToDrawerEvent(),
         extendBody: true,
-        bottomNavigationBar: !isWeb ? NavigationBarWidget() : null,
+        bottomNavigationBar:
+            ResponsiveLayout.isIphone(context) ? NavigationBarWidget() : null,
       );
     } else {
       return Scaffold(

@@ -106,6 +106,28 @@ class _BodyState extends State<Body> {
                   prikaziProizvode(listaFilter)
               ]
             ] else if (widget.category != null) ...[
+              Padding(
+                  padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                          child: Divider(
+                        height: 5,
+                        thickness: 4,
+                      )),
+                      Text(
+                        '     ' + widget.category + '      ',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 27.0),
+                      ),
+                      Expanded(
+                          child: Divider(
+                        height: 5,
+                        thickness: 4,
+                      )),
+                    ],
+                  )),
               if (_isSearchState == false &&
                   _isSortChanged == false &&
                   _isFilterChanged == false) ...[
@@ -157,9 +179,15 @@ class _BodyState extends State<Body> {
 
   Widget prikaziProizvode(List<Proizvod> proizvodi) {
     if (_value == 1) {
-      return Text('nije uradjeno');
+      // cena opadajuca
+      proizvodi.sort((a, b) => a.cena.compareTo(b.cena));
+      Iterable inReverse = proizvodi.reversed;
+      var listaReverse = inReverse.toList();
+      return ProductView(listaProizvoda: listaReverse);
     } else if (_value == 2) {
-      return Text('nije uradjeno');
+      // cena rastuca
+      proizvodi.sort((a, b) => a.cena.compareTo(b.cena));
+      return ProductView(listaProizvoda: proizvodi);
     } else if (_value == 3) {
       // najnoviji
       return ProductView(listaProizvoda: proizvodi);

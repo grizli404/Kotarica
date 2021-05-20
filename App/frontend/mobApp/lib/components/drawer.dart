@@ -339,30 +339,38 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                                 return ProductByCategory(
                                   listaProizvoda:
                                       proizvodi.dajProizvodeZaKategoriju(
-                                          noveKategorije[index + 1].id),
-                                  category:
-                                      '${noveKategorije[index + 1].naziv}',
+                                          noveKategorije[index].id),
+                                  category: '${noveKategorije[index].naziv}',
                                 );
                               },
                             ),
                           );
                         },
                         child: Container(
-                          padding: EdgeInsets.all(20),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            '${noveKategorije[index].naziv}',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: (!isWeb &&
-                                            Theme.of(context).colorScheme ==
-                                                ColorScheme.dark()) ||
-                                        isWeb
-                                    ? Colors.white
-                                    : Colors.black),
-                          ),
-                        ),
+                            padding: EdgeInsets.all(20),
+                            alignment: Alignment.topLeft,
+                            child: Row(children: [
+                              Icon(
+                                Icons.circle,
+                                size: 13,
+                                //color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                '${noveKategorije[index].naziv}',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: (!isWeb &&
+                                                Theme.of(context).colorScheme ==
+                                                    ColorScheme.dark()) ||
+                                            isWeb
+                                        ? Colors.white
+                                        : Colors.black),
+                              ),
+                            ])),
                       ),
 
                       children: [
@@ -589,21 +597,33 @@ Widget prikazPotkategorija(
             );
           },
           child: Container(
-            padding: EdgeInsets.all(20),
-            alignment: Alignment.topLeft,
-            child: Text(
-              '  ${potkategorije[index].naziv}',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontSize: 17,
-                  color: (!isWeb &&
-                              Theme.of(context).colorScheme ==
-                                  ColorScheme.dark()) ||
-                          isWeb
-                      ? Colors.white
-                      : Colors.black),
-            ),
-          ),
+              padding: EdgeInsets.all(20),
+              alignment: Alignment.topLeft,
+              child: Row(children: [
+                SizedBox(
+                  width: 5,
+                ),
+                Icon(
+                  Icons.circle_outlined,
+                  size: 15,
+                  // color: Colors.white,
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  '  ${potkategorije[index].naziv}',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 15,
+                      color: (!isWeb &&
+                                  Theme.of(context).colorScheme ==
+                                      ColorScheme.dark()) ||
+                              isWeb
+                          ? Colors.white
+                          : Colors.black),
+                ),
+              ])),
         ),
       );
     },

@@ -1,6 +1,7 @@
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/add_product/add_product.dart';
+import 'package:app/screens/home/components/body.dart';
 import 'package:app/screens/products/products_by_category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
@@ -45,10 +46,10 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
   zatvoriSesiju() async {
     korisnikInfo = null;
     //  print('jwt  ' + Token.jwt);
-    !isWeb
-        ? await Token.storage.delete(key: "jwt")
-        : await FlutterSession().set('jwt', '');
-
+    // !isWeb
+    //     ? await Token.storage.delete(key: "jwt")
+    //     : await FlutterSession().set('jwt', '');
+    Token.deleteToken = "";
     // tokenWeb = await FlutterSession().get('jwt');
   }
 
@@ -327,42 +328,58 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                     data: Theme.of(context)
                         .copyWith(dividerColor: Colors.transparent),
                     child: ExpansionTile(
+                      //key: PageStorageKey<String>(noveKategorije[index].naziv),
                       //dense: true,
                       title: MaterialButton(
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) {
                                 // print('ind ' + index.toString());
                                 // print('kat ' + noveKategorije[index].id.toString());
                                 return ProductByCategory(
+                                  category: noveKategorije[index].naziv,
                                   listaProizvoda:
                                       proizvodi.dajProizvodeZaKategoriju(
-                                          noveKategorije[index + 1].id),
-                                  category:
-                                      '${noveKategorije[index + 1].naziv}',
+                                          noveKategorije[index].id),
                                 );
+                                // return ProductByCategory(
+                                //   listaProizvoda:
+                                //       proizvodi.dajProizvodeZaKategoriju(
+                                //           noveKategorije[index + 1].id),
+                                //   category:
+                                //       '${noveKategorije[index + 1].naziv}',
+                                // );
                               },
                             ),
                           );
                         },
                         child: Container(
-                          padding: EdgeInsets.all(20),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            '${noveKategorije[index].naziv}',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: (!isWeb &&
-                                            Theme.of(context).colorScheme ==
-                                                ColorScheme.dark()) ||
-                                        isWeb
-                                    ? Colors.white
-                                    : Colors.black),
-                          ),
-                        ),
+                            padding: EdgeInsets.all(15),
+                            alignment: Alignment.topLeft,
+                            child: Row(children: [
+                              Icon(
+                                Icons.circle,
+                                size: 13,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                ' ${noveKategorije[index].naziv}',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: (!isWeb &&
+                                                Theme.of(context).colorScheme ==
+                                                    ColorScheme.dark()) ||
+                                            isWeb
+                                        ? Colors.white
+                                        : Colors.black),
+                              ),
+                            ])),
                       ),
 
                       children: [
@@ -575,7 +592,7 @@ Widget prikazPotkategorija(
         dense: true,
         title: MaterialButton(
           onPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) {
@@ -589,21 +606,33 @@ Widget prikazPotkategorija(
             );
           },
           child: Container(
-            padding: EdgeInsets.all(20),
-            alignment: Alignment.topLeft,
-            child: Text(
-              '  ${potkategorije[index].naziv}',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontSize: 17,
-                  color: (!isWeb &&
-                              Theme.of(context).colorScheme ==
-                                  ColorScheme.dark()) ||
-                          isWeb
-                      ? Colors.white
-                      : Colors.black),
-            ),
-          ),
+              padding: EdgeInsets.all(20),
+              alignment: Alignment.topLeft,
+              child: Row(children: [
+                SizedBox(
+                  width: 5,
+                ),
+                Icon(
+                  Icons.circle_outlined,
+                  size: 15,
+                  color: Colors.white,
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  '  ${potkategorije[index].naziv}',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 15,
+                      color: (!isWeb &&
+                                  Theme.of(context).colorScheme ==
+                                      ColorScheme.dark()) ||
+                              isWeb
+                          ? Colors.white
+                          : Colors.black),
+                ),
+              ])),
         ),
       );
     },

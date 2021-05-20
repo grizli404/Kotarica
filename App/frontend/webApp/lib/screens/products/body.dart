@@ -390,7 +390,7 @@ class _BodyState extends State<Body> {
       itemBuilder: (BuildContext context, int index) {
         return proizvod.slika != '0'
             ? new Image.network(
-                "https://ipfs.io/ipfs/" + widget.proizvod.slika[0],
+                "https://ipfs.io/ipfs/" + widget.proizvod.slika,
                 //  fit: BoxFit.fill,
               )
             : new Image.asset(
