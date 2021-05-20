@@ -125,6 +125,45 @@ class KupovineModel extends ChangeNotifier {
     return temp[0].toInt();
   }
 
+  List<int> najprodavanije(
+      List<Kupovina> listaKupovina, List<Proizvod> listaProizvoda) {
+    List<Popularnost> idNajpopularnijih = [];
+    idNajpopularnijih.clear();
+
+    var brProizvoda = listaProizvoda.length;
+    var brKupovina = listaKupovina.length;
+    for (var i = 1; i < brProizvoda; i++) {
+      idNajpopularnijih[i].id = i;
+      idNajpopularnijih[i].brKupovina = 0;
+    }
+
+    for (var i = 1; i <= brKupovina; i++) {
+      for (var j = 1; j <= brProizvoda; j++) {
+        if (listaKupovina[i].idProizvoda == listaProizvoda[j].id) {
+          idNajpopularnijih[j].brKupovina++;
+          break;
+        }
+      }
+    }
+    Popularnost pom;
+    for (var i = 1; i < brKupovina; i++) {
+      for (var j = i + 1; j <= brKupovina; j++) {
+        if (idNajpopularnijih[i].brKupovina < idNajpopularnijih[j].brKupovina) {
+          pom = idNajpopularnijih[i];
+          idNajpopularnijih[i] = idNajpopularnijih[j];
+          idNajpopularnijih[j] = pom;
+        }
+      }
+    }
+
+    List<int> prvihDvadeset = [];
+    for (var i = 1; i <= 20; i++) {
+      prvihDvadeset.add(idNajpopularnijih[i].id);
+    }
+
+    return prvihDvadeset;
+  }
+
 }
 
 class Kupovina {
@@ -140,4 +179,12 @@ class Kupovina {
       this.idProdavca,
       this.idProizvoda,
       this.kolicina});
+}
+
+
+class Popularnost {
+  int id;
+  int brKupovina;
+
+  Popularnost({this.id, this.brKupovina});
 }
