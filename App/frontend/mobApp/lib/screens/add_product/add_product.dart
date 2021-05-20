@@ -304,13 +304,18 @@ class _AddProductState extends State<AddProduct> {
                         cenaController.text +
                         "," +
                         opisController.text);
+
+                    List<String> s = [""]; //TREBA LISTA SLIKA DA SE DODA
+
                     pModel.dodajProizvod(
                         korisnikInfo.id,
+                        1, // TREBA ID KATEGORIJE DA SE STAVI
                         potkategorija.id,
                         nazivController.text,
                         int.parse(kolicinaController.text),
+                        "kom", // TREBA MERNA JEDINICA DA SE STAVI
                         int.parse(cenaController.text),
-                        slika,
+                        s,
                         opisController.text);
                     print("Uspesno dodavanje");
                   }
