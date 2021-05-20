@@ -5,9 +5,11 @@ import 'package:app/components/input_fields.dart';
 import 'package:app/components/rad_sa_slikama.dart';
 import 'package:app/main.dart';
 import 'package:app/model/proizvodiModel.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:flutter_absolute_path/flutter_absolute_path.dart';
+
 import 'package:image_picker/image_picker.dart';
 import 'package:app/model/kategorijeModel.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 import '../../constants.dart';
 
 import 'package:flutter/material.dart';
@@ -103,8 +105,9 @@ class _AddProductState extends State<AddProduct> {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           fit: BoxFit.fill,
-                          image: slike != null
-                              ? NetworkImage("https://ipfs.io/ipfs/" + slika)
+                          image: slike.isNotEmpty
+                              ? NetworkImage(
+                                  "https://ipfs.io/ipfs/" + slike.first)
                               : AssetImage(
                                   "assets/images/defaultProductPhoto.jpg"))),
                 ),
@@ -114,7 +117,7 @@ class _AddProductState extends State<AddProduct> {
                   focusColor: kPrimaryColor,
                   hoverColor: kPrimaryColorHover,
                   onPressed: () {
-                    pickImage();
+                    pickImages();
                   }),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -337,82 +340,81 @@ class _AddProductState extends State<AddProduct> {
 
   bool loading = false;
   static final String uploadEndPoint = 'http://147.91.204.116:11093/upload';
-  var uploadFilesCount;
-  String message = '';
-  Future<void> pickImage() async {
-    bool multiple = true;
-    var uri = Uri.parse(uploadEndPoint);
-    if (!multiple) //1 file
-    {
-      FilePickerResult result =
-          await FilePicker.platform.pickFiles(type: FileType.image);
-      if (result != null) {
-        PlatformFile file = result.files.first;
 
-        await upload(uri, file, multiple);
-      } else {
-        print("User canceled the picker");
-      }
-      setState(() {
-        loading = false;
-      });
-    } else //Multiple files
-    {
-      FilePickerResult result = await FilePicker.platform
-          .pickFiles(allowMultiple: true, type: FileType.image);
-      if (result != null) {
-        uploadFilesCount = result.files.length;
-        if (uploadFilesCount > 10)
-          print("VISE OD 10 SLIKA");
-        else {
-          for (var i in result.files) {
-            int sizeInBytes = i.bytes.lengthInBytes;
-            double sizeInMb = sizeInBytes / (1024 * 1024);
-            if (sizeInMb > 8) {
-              print("Predjen limit velicine fajla");
-            } else
-              await upload(uri, i, multiple);
-          }
-        }
-      } else {
-        print("User canceled the picker");
-      }
+  Future<File> file;
+  String status = '';
+  String base64Image;
+  File tmpFile;
+  String errMessage = 'Greška pri otpremanju slike';
+
+  File _image;
+  String message = '';
+  List<File> f = List();
+
+  List<Asset> imagesAsset = List<Asset>();
+  //replace the url by your url
+  // your rest api url 'http://your_ip_adress/project_path' ///adresa racunara
+  // bool loading1 = false;
+
+  Future<void> pickImages() async {
+    List<Asset> resultList = List<Asset>();
+    slike.clear();
+    try {
+      resultList = await MultiImagePicker.pickImages(
+        maxImages: 10,
+        //enableCamera: true,
+        selectedAssets: imagesAsset,
+      );
+    } on Exception catch (e) {
+      print(e);
     }
+    //asset to image
+    for (int i = 0; i < resultList.length; i++) {
+      var path =
+          await FlutterAbsolutePath.getAbsolutePath(resultList[i].identifier);
+      f.add(File(path));
+    }
+
+    for (int i = 0; i < f.length; i++) {
+      upload(f[i]);
+    }
+
     setState(() {
-      loading = false;
+      imagesAsset = resultList;
     });
   }
 
-  upload(Uri uri, PlatformFile file, bool multiple) async {
+  upload(File file) async {
+    if (file == null) return;
     setState(() {
       loading = true;
     });
-    if (file == null) return;
-
     Map<String, String> headers = {
       "Accept": "multipart/form-data",
     };
-
-    var length = uploadFilesCount;
+    var uri = Uri.parse(uploadEndPoint);
+    var length = await file.length();
     http.MultipartRequest request = new http.MultipartRequest('POST', uri)
       ..headers.addAll(headers)
       ..files.add(
-          // replace file with your field name exampe: image
-          http.MultipartFile.fromBytes('avatar', file.bytes,
-              filename: file.name));
-
+        // replace file with your field name exampe: image
+        http.MultipartFile('avatar', file.openRead(), length,
+            filename: 'test.png'),
+      );
     var respons = await http.Response.fromStream(await request.send());
-
+    slika = respons.body;
+    slike.add(respons.body);
+    setState(() {
+      loading = false;
+    });
     if (respons.statusCode == 200) {
-      message = ' image upload with success';
-      print(message);
-
-      slike.add(respons.body);
-      slika = respons.body;
+      setState(() {
+        message = ' image upload with success';
+      });
       return;
-    } else {
-      message = ' image not upload';
-      print(message);
-    }
+    } else
+      setState(() {
+        message = ' image not upload';
+      });
   }
 }
