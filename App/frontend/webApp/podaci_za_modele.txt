@@ -1,0 +1,32 @@
+truffle migrate //Ako prvi put pokrecemo
+truffle migrate --reset //Ako smo samo nesto dodali ili izmenili
+
+truffle console //Ulazimo u konzolu
+
+
+//Korisnici
+k = await Korisnici.deployed()
+kor = await k.dodajKorisnika("mika.mikic@gmail.com", "mika123", "Mika", "Mikic", "06123456789", "Karadjordjeva 33")
+kor = await k.dodajKorisnika("pera.peric@gmail.com", "pera123", "Pera", "Peric", "06987654321", "Atinska 25")
+
+
+//Kategorije
+k = await Kategorije.deployed()
+kat = await k.dodajKategoriju(0, "Hrana")
+kat = await k.dodajKategoriju(0, "Pice")
+kat = await k.dodajKategoriju(0, "Garderoba")
+
+
+//Proizvodi
+p = await Proizvodi.deployed()
+pro = await p.dodajProizvod(1, 1, "Jaja", 1500, 10, "", "")
+pro = await p.dodajProizvod(1, 1, "Ajvar", 500, 750, "", "")
+pro = await p.dodajProizvod(1, 1, "Kobasice", 250, 350, "", "")
+pro = await p.dodajProizvod(1, 1, "Domaca jaja", 500, 12, "", "")
+pro = await p.dodajProizvod(1, 2, "Sok od zove", 200, 150, "", "")
+pro = await p.dodajProizvod(1, 2, "Sok od jabuke", 400, 120, "", "")
+pro = await p.dodajProizvod(1, 2, "Sok od visnje", 300, 140, "", "")
+pro = await p.dodajProizvod(1, 2, "Vocni jogurt", 100, 100, "", "")
+pro = await p.dodajProizvod(1, 2, "Cokoladno mleko", 150, 150, "", "")
+pro = await p.dodajProizvod(1, 3, "Pantalone", 500, 3500, "", "")
+pro = await p.dodajProizvod(1, 3, "Duks", 500, 2000, "", "")

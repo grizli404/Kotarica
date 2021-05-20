@@ -1,0 +1,1855 @@
+{
+  "contractName": "Notifications",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "brojPorudzbina",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "notifikacije",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "idKorisnika",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "idProizvoda",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "nazivProizvoda",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "kolicina",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "ime",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "brojTelefona",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "adresa",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_idKorisnika",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_idProizvoda",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_nazivProizvoda",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_kolicina",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_ime",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_telefon",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_adresa",
+          "type": "string"
+        }
+      ],
+      "name": "dodajNotifikaciju",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"brojPorudzbina\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_idKorisnika\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_idProizvoda\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_nazivProizvoda\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_kolicina\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_ime\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_telefon\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_adresa\",\"type\":\"string\"}],\"name\":\"dodajNotifikaciju\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"notifikacije\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"idKorisnika\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"idProizvoda\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"nazivProizvoda\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"kolicina\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"ime\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"brojTelefona\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"adresa\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Notifications.sol\":\"Notifications\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Notifications.sol\":{\"keccak256\":\"0xd0a733554a8d6de7cd6c2fa775b94bb8c52e0d6a068364dfbff0ae3a19746257\",\"urls\":[\"bzz-raw://259f88dadd5014b45f541c6c97af86a352cf0c2b5624e45cd2520abe55f8611a\",\"dweb:/ipfs/QmQPpLrvSB7PYBTPtaDqb1TUJQX78oSEhzN5g5d2FdDhT6\"]}},\"version\":1}",
+  "bytecode": "0x60806040526000805534801561001457600080fd5b5061099a806100246000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c8063843c1a7e146100465780639c4517821461024d5780639cb2df68146104eb575b600080fd5b6100726004803603602081101561005c57600080fd5b8101908080359060200190929190505050610509565b604051808981526020018881526020018781526020018060200186815260200180602001806020018060200185810385528a818151815260200191508051906020019080838360005b838110156100d65780820151818401526020810190506100bb565b50505050905090810190601f1680156101035780820380516001836020036101000a031916815260200191505b50858103845288818151815260200191508051906020019080838360005b8381101561013c578082015181840152602081019050610121565b50505050905090810190601f1680156101695780820380516001836020036101000a031916815260200191505b50858103835287818151815260200191508051906020019080838360005b838110156101a2578082015181840152602081019050610187565b50505050905090810190601f1680156101cf5780820380516001836020036101000a031916815260200191505b50858103825286818151815260200191508051906020019080838360005b838110156102085780820151818401526020810190506101ed565b50505050905090810190601f1680156102355780820380516001836020036101000a031916815260200191505b509c5050505050505050505050505060405180910390f35b6104e9600480360360e081101561026357600080fd5b8101908080359060200190929190803590602001909291908035906020019064010000000081111561029457600080fd5b8201836020820111156102a657600080fd5b803590602001918460018302840111640100000000831117156102c857600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290803590602001909291908035906020019064010000000081111561033557600080fd5b82018360208201111561034757600080fd5b8035906020019184600183028401116401000000008311171561036957600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290803590602001906401000000008111156103cc57600080fd5b8201836020820111156103de57600080fd5b8035906020019184600183028401116401000000008311171561040057600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561046357600080fd5b82018360208201111561047557600080fd5b8035906020019184600183028401116401000000008311171561049757600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506107b1565b005b6104f36108ba565b6040518082815260200191505060405180910390f35b6001602052806000526040600020600091509050806000015490806001015490806002015490806003018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105c75780601f1061059c576101008083540402835291602001916105c7565b820191906000526020600020905b8154815290600101906020018083116105aa57829003601f168201915b505050505090806004015490806005018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561066b5780601f106106405761010080835404028352916020019161066b565b820191906000526020600020905b81548152906001019060200180831161064e57829003601f168201915b505050505090806006018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156107095780601f106106de57610100808354040283529160200191610709565b820191906000526020600020905b8154815290600101906020018083116106ec57829003601f168201915b505050505090806007018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156107a75780601f1061077c576101008083540402835291602001916107a7565b820191906000526020600020905b81548152906001019060200180831161078a57829003601f168201915b5050505050905088565b60008081548092919060010191905055506040518061010001604052806000548152602001888152602001878152602001868152602001858152602001848152602001838152602001828152506001600080548152602001908152602001600020600082015181600001556020820151816001015560408201518160020155606082015181600301908051906020019061084c9291906108c0565b506080820151816004015560a08201518160050190805190602001906108739291906108c0565b5060c08201518160060190805190602001906108909291906108c0565b5060e08201518160070190805190602001906108ad9291906108c0565b5090505050505050505050565b60005481565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061090157805160ff191683800117855561092f565b8280016001018555821561092f579182015b8281111561092e578251825591602001919060010190610913565b5b50905061093c9190610940565b5090565b61096291905b8082111561095e576000816000905550600101610946565b5090565b9056fea265627a7a72315820ed66a31470580bd16931450420f966bf256334fc93d793e9ab894781baf57d9a64736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c8063843c1a7e146100465780639c4517821461024d5780639cb2df68146104eb575b600080fd5b6100726004803603602081101561005c57600080fd5b8101908080359060200190929190505050610509565b604051808981526020018881526020018781526020018060200186815260200180602001806020018060200185810385528a818151815260200191508051906020019080838360005b838110156100d65780820151818401526020810190506100bb565b50505050905090810190601f1680156101035780820380516001836020036101000a031916815260200191505b50858103845288818151815260200191508051906020019080838360005b8381101561013c578082015181840152602081019050610121565b50505050905090810190601f1680156101695780820380516001836020036101000a031916815260200191505b50858103835287818151815260200191508051906020019080838360005b838110156101a2578082015181840152602081019050610187565b50505050905090810190601f1680156101cf5780820380516001836020036101000a031916815260200191505b50858103825286818151815260200191508051906020019080838360005b838110156102085780820151818401526020810190506101ed565b50505050905090810190601f1680156102355780820380516001836020036101000a031916815260200191505b509c5050505050505050505050505060405180910390f35b6104e9600480360360e081101561026357600080fd5b8101908080359060200190929190803590602001909291908035906020019064010000000081111561029457600080fd5b8201836020820111156102a657600080fd5b803590602001918460018302840111640100000000831117156102c857600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290803590602001909291908035906020019064010000000081111561033557600080fd5b82018360208201111561034757600080fd5b8035906020019184600183028401116401000000008311171561036957600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290803590602001906401000000008111156103cc57600080fd5b8201836020820111156103de57600080fd5b8035906020019184600183028401116401000000008311171561040057600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561046357600080fd5b82018360208201111561047557600080fd5b8035906020019184600183028401116401000000008311171561049757600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506107b1565b005b6104f36108ba565b6040518082815260200191505060405180910390f35b6001602052806000526040600020600091509050806000015490806001015490806002015490806003018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105c75780601f1061059c576101008083540402835291602001916105c7565b820191906000526020600020905b8154815290600101906020018083116105aa57829003601f168201915b505050505090806004015490806005018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561066b5780601f106106405761010080835404028352916020019161066b565b820191906000526020600020905b81548152906001019060200180831161064e57829003601f168201915b505050505090806006018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156107095780601f106106de57610100808354040283529160200191610709565b820191906000526020600020905b8154815290600101906020018083116106ec57829003601f168201915b505050505090806007018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156107a75780601f1061077c576101008083540402835291602001916107a7565b820191906000526020600020905b81548152906001019060200180831161078a57829003601f168201915b5050505050905088565b60008081548092919060010191905055506040518061010001604052806000548152602001888152602001878152602001868152602001858152602001848152602001838152602001828152506001600080548152602001908152602001600020600082015181600001556020820151816001015560408201518160020155606082015181600301908051906020019061084c9291906108c0565b506080820151816004015560a08201518160050190805190602001906108739291906108c0565b5060c08201518160060190805190602001906108909291906108c0565b5060e08201518160070190805190602001906108ad9291906108c0565b5090505050505050505050565b60005481565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061090157805160ff191683800117855561092f565b8280016001018555821561092f579182015b8281111561092e578251825591602001919060010190610913565b5b50905061093c9190610940565b5090565b61096291905b8082111561095e576000816000905550600101610946565b5090565b9056fea265627a7a72315820ed66a31470580bd16931450420f966bf256334fc93d793e9ab894781baf57d9a64736f6c63430005100032",
+  "sourceMap": "69:1001:5:-;;;475:1;446:30;;69:1001;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:1001:5;;;;;;;",
+  "deployedSourceMap": "69:1001:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:1001:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;485:50;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;485:50:5;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;485:50:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;485:50:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;485:50:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;485:50:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;544:521;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;544:521:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;544:521:5;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;544:521:5;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;544:521:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;544:521:5;;;;;;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;544:521:5;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;544:521:5;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;544:521:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;544:521:5;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;544:521:5;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;544:521:5;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;544:521:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;544:521:5;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;544:521:5;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;544:521:5;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;544:521:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;544:521:5;;;;;;;;;;;;;;;:::i;:::-;;446:30;;;:::i;:::-;;;;;;;;;;;;;;;;;;;485:50;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;544:521::-;775:14;;:16;;;;;;;;;;;;;833:224;;;;;;;;860:14;;833:224;;;;889:12;833:224;;;;916:12;833:224;;;;943:15;833:224;;;;973:9;833:224;;;;997:4;833:224;;;;1016:8;833:224;;;;1039:7;833:224;;;802:12;:28;815:14;;802:28;;;;;;;;;;;:255;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;544:521;;;;;;;:::o;446:30::-;;;;:::o;69:1001::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract Notifications {\r\n\r\n    struct Notification{\r\n        uint id;\r\n        uint idKorisnika;\r\n        uint idProizvoda;\r\n        string nazivProizvoda;\r\n        uint kolicina;\r\n        string ime; //Ime osobe koja je narucila proizvod\r\n        string brojTelefona; // telefon osobe koja je narucila\r\n        string adresa; // adresa gde treba da se isporuci\r\n    }\r\n\r\n    uint public brojPorudzbina = 0;\r\n\r\n    mapping (uint => Notification) public notifikacije;\r\n\r\n    function dodajNotifikaciju(uint _idKorisnika, uint  _idProizvoda, string memory _nazivProizvoda,\r\n                                uint _kolicina, string memory _ime, string memory _telefon, string memory _adresa) public {\r\n        brojPorudzbina++;\r\n        notifikacije[brojPorudzbina] = Notification(\r\n            brojPorudzbina,\r\n            _idKorisnika,\r\n            _idProizvoda,\r\n            _nazivProizvoda,\r\n            _kolicina,\r\n            _ime,\r\n            _telefon,\r\n            _adresa\r\n        );\r\n    }\r\n\r\n}",
+  "sourcePath": "C:/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Notifications.sol",
+  "ast": {
+    "absolutePath": "/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Notifications.sol",
+    "exportedSymbols": {
+      "Notifications": [
+        675
+      ]
+    },
+    "id": 676,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 614,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:32:5"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 675,
+        "linearizedBaseContracts": [
+          675
+        ],
+        "name": "Notifications",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Notifications.Notification",
+            "id": 631,
+            "members": [
+              {
+                "constant": false,
+                "id": 616,
+                "name": "id",
+                "nodeType": "VariableDeclaration",
+                "scope": 631,
+                "src": "131:7:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 615,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "131:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 618,
+                "name": "idKorisnika",
+                "nodeType": "VariableDeclaration",
+                "scope": 631,
+                "src": "149:16:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 617,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "149:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 620,
+                "name": "idProizvoda",
+                "nodeType": "VariableDeclaration",
+                "scope": 631,
+                "src": "176:16:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 619,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "176:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 622,
+                "name": "nazivProizvoda",
+                "nodeType": "VariableDeclaration",
+                "scope": 631,
+                "src": "203:21:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 621,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "203:6:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 624,
+                "name": "kolicina",
+                "nodeType": "VariableDeclaration",
+                "scope": 631,
+                "src": "235:13:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 623,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "235:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 626,
+                "name": "ime",
+                "nodeType": "VariableDeclaration",
+                "scope": 631,
+                "src": "259:10:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 625,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "259:6:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 628,
+                "name": "brojTelefona",
+                "nodeType": "VariableDeclaration",
+                "scope": 631,
+                "src": "318:19:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 627,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "318:6:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 630,
+                "name": "adresa",
+                "nodeType": "VariableDeclaration",
+                "scope": 631,
+                "src": "382:13:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 629,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "382:6:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Notification",
+            "nodeType": "StructDefinition",
+            "scope": 675,
+            "src": "101:337:5",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 634,
+            "name": "brojPorudzbina",
+            "nodeType": "VariableDeclaration",
+            "scope": 675,
+            "src": "446:30:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 632,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "446:4:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "30",
+              "id": 633,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "475:1:5",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_0_by_1",
+                "typeString": "int_const 0"
+              },
+              "value": "0"
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 638,
+            "name": "notifikacije",
+            "nodeType": "VariableDeclaration",
+            "scope": 675,
+            "src": "485:50:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Notification_$631_storage_$",
+              "typeString": "mapping(uint256 => struct Notifications.Notification)"
+            },
+            "typeName": {
+              "id": 637,
+              "keyType": {
+                "id": 635,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "494:4:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "485:30:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Notification_$631_storage_$",
+                "typeString": "mapping(uint256 => struct Notifications.Notification)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 636,
+                "name": "Notification",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 631,
+                "src": "502:12:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Notification_$631_storage_ptr",
+                  "typeString": "struct Notifications.Notification"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 673,
+              "nodeType": "Block",
+              "src": "764:301:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 656,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "775:16:5",
+                    "subExpression": {
+                      "argumentTypes": null,
+                      "id": 655,
+                      "name": "brojPorudzbina",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 634,
+                      "src": "775:14:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 657,
+                  "nodeType": "ExpressionStatement",
+                  "src": "775:16:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 671,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 658,
+                        "name": "notifikacije",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 638,
+                        "src": "802:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Notification_$631_storage_$",
+                          "typeString": "mapping(uint256 => struct Notifications.Notification storage ref)"
+                        }
+                      },
+                      "id": 660,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 659,
+                        "name": "brojPorudzbina",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 634,
+                        "src": "815:14:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "802:28:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Notification_$631_storage",
+                        "typeString": "struct Notifications.Notification storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 662,
+                          "name": "brojPorudzbina",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 634,
+                          "src": "860:14:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 663,
+                          "name": "_idKorisnika",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 640,
+                          "src": "889:12:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 664,
+                          "name": "_idProizvoda",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 642,
+                          "src": "916:12:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 665,
+                          "name": "_nazivProizvoda",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 644,
+                          "src": "943:15:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 666,
+                          "name": "_kolicina",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 646,
+                          "src": "973:9:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 667,
+                          "name": "_ime",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 648,
+                          "src": "997:4:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 668,
+                          "name": "_telefon",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 650,
+                          "src": "1016:8:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 669,
+                          "name": "_adresa",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 652,
+                          "src": "1039:7:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        ],
+                        "id": 661,
+                        "name": "Notification",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 631,
+                        "src": "833:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_Notification_$631_storage_ptr_$",
+                          "typeString": "type(struct Notifications.Notification storage pointer)"
+                        }
+                      },
+                      "id": 670,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "833:224:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Notification_$631_memory",
+                        "typeString": "struct Notifications.Notification memory"
+                      }
+                    },
+                    "src": "802:255:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Notification_$631_storage",
+                      "typeString": "struct Notifications.Notification storage ref"
+                    }
+                  },
+                  "id": 672,
+                  "nodeType": "ExpressionStatement",
+                  "src": "802:255:5"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 674,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "dodajNotifikaciju",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 653,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 640,
+                  "name": "_idKorisnika",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 674,
+                  "src": "571:17:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 639,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "571:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 642,
+                  "name": "_idProizvoda",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 674,
+                  "src": "590:18:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 641,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "590:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 644,
+                  "name": "_nazivProizvoda",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 674,
+                  "src": "610:29:5",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 643,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "610:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 646,
+                  "name": "_kolicina",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 674,
+                  "src": "674:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 645,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "674:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 648,
+                  "name": "_ime",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 674,
+                  "src": "690:18:5",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 647,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "690:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 650,
+                  "name": "_telefon",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 674,
+                  "src": "710:22:5",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 649,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "710:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 652,
+                  "name": "_adresa",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 674,
+                  "src": "734:21:5",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 651,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "734:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "570:186:5"
+            },
+            "returnParameters": {
+              "id": 654,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "764:0:5"
+            },
+            "scope": 675,
+            "src": "544:521:5",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 676,
+        "src": "69:1001:5"
+      }
+    ],
+    "src": "33:1037:5"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Notifications.sol",
+      "exportedSymbols": {
+        "Notifications": [
+          675
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".22",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 614,
+        "name": "PragmaDirective",
+        "src": "33:32:5"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            675
+          ],
+          "name": "Notifications",
+          "scope": 676
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "Notifications.Notification",
+              "name": "Notification",
+              "scope": 675,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "id",
+                  "scope": 631,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 615,
+                    "name": "ElementaryTypeName",
+                    "src": "131:4:5"
+                  }
+                ],
+                "id": 616,
+                "name": "VariableDeclaration",
+                "src": "131:7:5"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "idKorisnika",
+                  "scope": 631,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 617,
+                    "name": "ElementaryTypeName",
+                    "src": "149:4:5"
+                  }
+                ],
+                "id": 618,
+                "name": "VariableDeclaration",
+                "src": "149:16:5"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "idProizvoda",
+                  "scope": 631,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 619,
+                    "name": "ElementaryTypeName",
+                    "src": "176:4:5"
+                  }
+                ],
+                "id": 620,
+                "name": "VariableDeclaration",
+                "src": "176:16:5"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "nazivProizvoda",
+                  "scope": 631,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 621,
+                    "name": "ElementaryTypeName",
+                    "src": "203:6:5"
+                  }
+                ],
+                "id": 622,
+                "name": "VariableDeclaration",
+                "src": "203:21:5"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "kolicina",
+                  "scope": 631,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 623,
+                    "name": "ElementaryTypeName",
+                    "src": "235:4:5"
+                  }
+                ],
+                "id": 624,
+                "name": "VariableDeclaration",
+                "src": "235:13:5"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "ime",
+                  "scope": 631,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 625,
+                    "name": "ElementaryTypeName",
+                    "src": "259:6:5"
+                  }
+                ],
+                "id": 626,
+                "name": "VariableDeclaration",
+                "src": "259:10:5"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "brojTelefona",
+                  "scope": 631,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 627,
+                    "name": "ElementaryTypeName",
+                    "src": "318:6:5"
+                  }
+                ],
+                "id": 628,
+                "name": "VariableDeclaration",
+                "src": "318:19:5"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "adresa",
+                  "scope": 631,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 629,
+                    "name": "ElementaryTypeName",
+                    "src": "382:6:5"
+                  }
+                ],
+                "id": 630,
+                "name": "VariableDeclaration",
+                "src": "382:13:5"
+              }
+            ],
+            "id": 631,
+            "name": "StructDefinition",
+            "src": "101:337:5"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "brojPorudzbina",
+              "scope": 675,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint",
+                  "type": "uint256"
+                },
+                "id": 632,
+                "name": "ElementaryTypeName",
+                "src": "446:4:5"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "30",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 0",
+                  "value": "0"
+                },
+                "id": 633,
+                "name": "Literal",
+                "src": "475:1:5"
+              }
+            ],
+            "id": 634,
+            "name": "VariableDeclaration",
+            "src": "446:30:5"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "notifikacije",
+              "scope": 675,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(uint256 => struct Notifications.Notification)",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(uint256 => struct Notifications.Notification)"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 635,
+                    "name": "ElementaryTypeName",
+                    "src": "494:4:5"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Notification",
+                      "referencedDeclaration": 631,
+                      "type": "struct Notifications.Notification"
+                    },
+                    "id": 636,
+                    "name": "UserDefinedTypeName",
+                    "src": "502:12:5"
+                  }
+                ],
+                "id": 637,
+                "name": "Mapping",
+                "src": "485:30:5"
+              }
+            ],
+            "id": 638,
+            "name": "VariableDeclaration",
+            "src": "485:50:5"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "dodajNotifikaciju",
+              "scope": 675,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_idKorisnika",
+                      "scope": 674,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 639,
+                        "name": "ElementaryTypeName",
+                        "src": "571:4:5"
+                      }
+                    ],
+                    "id": 640,
+                    "name": "VariableDeclaration",
+                    "src": "571:17:5"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_idProizvoda",
+                      "scope": 674,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 641,
+                        "name": "ElementaryTypeName",
+                        "src": "590:4:5"
+                      }
+                    ],
+                    "id": 642,
+                    "name": "VariableDeclaration",
+                    "src": "590:18:5"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_nazivProizvoda",
+                      "scope": 674,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 643,
+                        "name": "ElementaryTypeName",
+                        "src": "610:6:5"
+                      }
+                    ],
+                    "id": 644,
+                    "name": "VariableDeclaration",
+                    "src": "610:29:5"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_kolicina",
+                      "scope": 674,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 645,
+                        "name": "ElementaryTypeName",
+                        "src": "674:4:5"
+                      }
+                    ],
+                    "id": 646,
+                    "name": "VariableDeclaration",
+                    "src": "674:14:5"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_ime",
+                      "scope": 674,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 647,
+                        "name": "ElementaryTypeName",
+                        "src": "690:6:5"
+                      }
+                    ],
+                    "id": 648,
+                    "name": "VariableDeclaration",
+                    "src": "690:18:5"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_telefon",
+                      "scope": 674,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 649,
+                        "name": "ElementaryTypeName",
+                        "src": "710:6:5"
+                      }
+                    ],
+                    "id": 650,
+                    "name": "VariableDeclaration",
+                    "src": "710:22:5"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_adresa",
+                      "scope": 674,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 651,
+                        "name": "ElementaryTypeName",
+                        "src": "734:6:5"
+                      }
+                    ],
+                    "id": 652,
+                    "name": "VariableDeclaration",
+                    "src": "734:21:5"
+                  }
+                ],
+                "id": 653,
+                "name": "ParameterList",
+                "src": "570:186:5"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 654,
+                "name": "ParameterList",
+                "src": "764:0:5"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "++",
+                          "prefix": false,
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 634,
+                              "type": "uint256",
+                              "value": "brojPorudzbina"
+                            },
+                            "id": 655,
+                            "name": "Identifier",
+                            "src": "775:14:5"
+                          }
+                        ],
+                        "id": 656,
+                        "name": "UnaryOperation",
+                        "src": "775:16:5"
+                      }
+                    ],
+                    "id": 657,
+                    "name": "ExpressionStatement",
+                    "src": "775:16:5"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "struct Notifications.Notification storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "struct Notifications.Notification storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 638,
+                                  "type": "mapping(uint256 => struct Notifications.Notification storage ref)",
+                                  "value": "notifikacije"
+                                },
+                                "id": 658,
+                                "name": "Identifier",
+                                "src": "802:12:5"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 634,
+                                  "type": "uint256",
+                                  "value": "brojPorudzbina"
+                                },
+                                "id": 659,
+                                "name": "Identifier",
+                                "src": "815:14:5"
+                              }
+                            ],
+                            "id": 660,
+                            "name": "IndexAccess",
+                            "src": "802:28:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": true,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "struct Notifications.Notification memory",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 631,
+                                  "type": "type(struct Notifications.Notification storage pointer)",
+                                  "value": "Notification"
+                                },
+                                "id": 661,
+                                "name": "Identifier",
+                                "src": "833:12:5"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 634,
+                                  "type": "uint256",
+                                  "value": "brojPorudzbina"
+                                },
+                                "id": 662,
+                                "name": "Identifier",
+                                "src": "860:14:5"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 640,
+                                  "type": "uint256",
+                                  "value": "_idKorisnika"
+                                },
+                                "id": 663,
+                                "name": "Identifier",
+                                "src": "889:12:5"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 642,
+                                  "type": "uint256",
+                                  "value": "_idProizvoda"
+                                },
+                                "id": 664,
+                                "name": "Identifier",
+                                "src": "916:12:5"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 644,
+                                  "type": "string memory",
+                                  "value": "_nazivProizvoda"
+                                },
+                                "id": 665,
+                                "name": "Identifier",
+                                "src": "943:15:5"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 646,
+                                  "type": "uint256",
+                                  "value": "_kolicina"
+                                },
+                                "id": 666,
+                                "name": "Identifier",
+                                "src": "973:9:5"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 648,
+                                  "type": "string memory",
+                                  "value": "_ime"
+                                },
+                                "id": 667,
+                                "name": "Identifier",
+                                "src": "997:4:5"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 650,
+                                  "type": "string memory",
+                                  "value": "_telefon"
+                                },
+                                "id": 668,
+                                "name": "Identifier",
+                                "src": "1016:8:5"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 652,
+                                  "type": "string memory",
+                                  "value": "_adresa"
+                                },
+                                "id": 669,
+                                "name": "Identifier",
+                                "src": "1039:7:5"
+                              }
+                            ],
+                            "id": 670,
+                            "name": "FunctionCall",
+                            "src": "833:224:5"
+                          }
+                        ],
+                        "id": 671,
+                        "name": "Assignment",
+                        "src": "802:255:5"
+                      }
+                    ],
+                    "id": 672,
+                    "name": "ExpressionStatement",
+                    "src": "802:255:5"
+                  }
+                ],
+                "id": 673,
+                "name": "Block",
+                "src": "764:301:5"
+              }
+            ],
+            "id": 674,
+            "name": "FunctionDefinition",
+            "src": "544:521:5"
+          }
+        ],
+        "id": 675,
+        "name": "ContractDefinition",
+        "src": "69:1001:5"
+      }
+    ],
+    "id": 676,
+    "name": "SourceUnit",
+    "src": "33:1037:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x0D133FA22A7eAc6b6f2eEC9113881bf0498566bc",
+      "transactionHash": "0x0756c9a8b2415380c3d1fc2f756c7746f43e743b3580b11e5d6451dbd02e1f89"
+    }
+  },
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-05-11T20:35:08.958Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
