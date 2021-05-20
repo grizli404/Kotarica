@@ -145,25 +145,25 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"brojKupovina\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_idKupca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idProdavca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idProizvoda\",\"type\":\"int256\"}],\"name\":\"daLiPostojiKupovina\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_idKupca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idProdavca\",\"type\":\"int256\"}],\"name\":\"daLiPostojiKupovinaBiloKogProizvoda\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_idProdavca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idKupca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idProizvoda\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_kolicina\",\"type\":\"int256\"}],\"name\":\"dodajKupovinu\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"name\":\"kupovine\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"id\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idProdavca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idKupca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idProizvoda\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"kolicina\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Kupovine.sol\":\"Kupovine\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Kupovine.sol\":{\"keccak256\":\"0x92b4911ad810b02acb3cbd395470ca097a49e77e3974af32475380358834e140\",\"urls\":[\"bzz-raw://7b4fb7a7360af3e73210cd309f17728acb0b7193847c789f04c10151a0784e03\",\"dweb:/ipfs/QmUgRZkdbLuc3oXcZDrCd5MwZMit8MgxRrXmnHh49R3SFw\"]}},\"version\":1}",
-  "bytecode": "0x60806040526000805534801561001457600080fd5b506103c6806100246000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c806357e4d0141461005c5780639739fb7e146100a8578063ae1abfc0146100f4578063c8a6e86b1461014a578063e272e8d414610168575b600080fd5b6100a66004803603608081101561007257600080fd5b81019080803590602001909291908035906020019092919080359060200190929190803590602001909291905050506101c6565b005b6100de600480360360408110156100be57600080fd5b81019080803590602001909291908035906020019092919050505061024f565b6040518082815260200191505060405180910390f35b6101346004803603606081101561010a57600080fd5b810190808035906020019092919080359060200190929190803590602001909291905050506102c1565b6040518082815260200191505060405180910390f35b610152610355565b6040518082815260200191505060405180910390f35b6101946004803603602081101561017e57600080fd5b810190808035906020019092919050505061035b565b604051808681526020018581526020018481526020018381526020018281526020019550505050505060405180910390f35b60008081548092919060010191905055506040518060a001604052806000548152602001858152602001848152602001838152602001828152506001600080548152602001908152602001600020600082015181600001556020820151816001015560408201518160020155606082015181600301556080820151816004015590505050505050565b600080600190505b60005481136102b55760016000828152602001908152602001600020600201548414801561029a5750600160008281526020019081526020016000206001015483145b156102a857809150506102bb565b8080600101915050610257565b50600090505b92915050565b600080600190505b60005481136103485760016000828152602001908152602001600020600201548514801561030c5750600160008281526020019081526020016000206001015484145b801561032d5750600160008281526020019081526020016000206003015483145b1561033b578091505061034e565b80806001019150506102c9565b50600090505b9392505050565b60005481565b6001602052806000526040600020600091509050806000015490806001015490806002015490806003015490806004015490508556fea265627a7a7231582030ac7d9838773d895a38b537adb84d1058673f58ed17c73a4fecf89dc7135a4964736f6c63430005100032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c806357e4d0141461005c5780639739fb7e146100a8578063ae1abfc0146100f4578063c8a6e86b1461014a578063e272e8d414610168575b600080fd5b6100a66004803603608081101561007257600080fd5b81019080803590602001909291908035906020019092919080359060200190929190803590602001909291905050506101c6565b005b6100de600480360360408110156100be57600080fd5b81019080803590602001909291908035906020019092919050505061024f565b6040518082815260200191505060405180910390f35b6101346004803603606081101561010a57600080fd5b810190808035906020019092919080359060200190929190803590602001909291905050506102c1565b6040518082815260200191505060405180910390f35b610152610355565b6040518082815260200191505060405180910390f35b6101946004803603602081101561017e57600080fd5b810190808035906020019092919050505061035b565b604051808681526020018581526020018481526020018381526020018281526020019550505050505060405180910390f35b60008081548092919060010191905055506040518060a001604052806000548152602001858152602001848152602001838152602001828152506001600080548152602001908152602001600020600082015181600001556020820151816001015560408201518160020155606082015181600301556080820151816004015590505050505050565b600080600190505b60005481136102b55760016000828152602001908152602001600020600201548414801561029a5750600160008281526020019081526020016000206001015483145b156102a857809150506102bb565b8080600101915050610257565b50600090505b92915050565b600080600190505b60005481136103485760016000828152602001908152602001600020600201548514801561030c5750600160008281526020019081526020016000206001015484145b801561032d5750600160008281526020019081526020016000206003015483145b1561033b578091505061034e565b80806001019150506102c9565b50600090505b9392505050565b60005481565b6001602052806000526040600020600091509050806000015490806001015490806002015490806003015490806004015490508556fea265627a7a7231582030ac7d9838773d895a38b537adb84d1058673f58ed17c73a4fecf89dc7135a4964736f6c63430005100032",
-  "sourceMap": "69:1497:11:-;;;271:1;245:27;;69:1497;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:1497:11;;;;;;;",
-  "deployedSourceMap": "69:1497:11:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:1497:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;331:240;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;331:240:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;1245:314;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1245:314:11;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;709:359;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;709:359:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;245:27;;;:::i;:::-;;;;;;;;;;;;;;;;;;;281:41;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;281:41:11;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;331:240;443:12;;:14;;;;;;;;;;;;;493:70;;;;;;;;502:12;;493:70;;;;516:11;493:70;;;;529:8;493:70;;;;539:12;493:70;;;;553:9;493:70;;;468:8;:22;477:12;;468:22;;;;;;;;;;;:95;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;331:240;;;;:::o;1245:314::-;1343:3;1369:5;1377:1;1369:9;;1364:169;1385:12;;1380:1;:17;1364:169;;1434:8;:11;1443:1;1434:11;;;;;;;;;;;:19;;;1422:8;:31;:72;;;;;1472:8;:11;1481:1;1472:11;;;;;;;;;;;:22;;;1457:11;:37;1422:72;1419:102;;;1520:1;1513:8;;;;;1419:102;1399:3;;;;;;;1364:169;;;;1550:1;1543:8;;1245:314;;;;;:::o;709:359::-;809:3;835:5;843:1;835:9;;830:212;851:12;;846:1;:17;830:212;;900:8;:11;909:1;900:11;;;;;;;;;;;:19;;;888:8;:31;:72;;;;;938:8;:11;947:1;938:11;;;;;;;;;;;:22;;;923:11;:37;888:72;:115;;;;;980:8;:11;989:1;980:11;;;;;;;;;;;:23;;;964:12;:39;888:115;885:145;;;1029:1;1022:8;;;;;885:145;865:3;;;;;;;830:212;;;;1059:1;1052:8;;709:359;;;;;;:::o;245:27::-;;;;:::o;281:41::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"brojKupovina\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_idKupca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idProdavca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idProizvoda\",\"type\":\"int256\"}],\"name\":\"daLiPostojiKupovina\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_idKupca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idProdavca\",\"type\":\"int256\"}],\"name\":\"daLiPostojiKupovinaBiloKogProizvoda\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_idProdavca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idKupca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_idProizvoda\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_kolicina\",\"type\":\"int256\"}],\"name\":\"dodajKupovinu\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"name\":\"kupovine\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"id\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idProdavca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idKupca\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"idProizvoda\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"kolicina\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/beslac_lazar/Desktop/najnoviije/ChainTech/App/frontend/webApp/contracts/Kupovine.sol\":\"Kupovine\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/beslac_lazar/Desktop/najnoviije/ChainTech/App/frontend/webApp/contracts/Kupovine.sol\":{\"keccak256\":\"0x92b4911ad810b02acb3cbd395470ca097a49e77e3974af32475380358834e140\",\"urls\":[\"bzz-raw://7b4fb7a7360af3e73210cd309f17728acb0b7193847c789f04c10151a0784e03\",\"dweb:/ipfs/QmUgRZkdbLuc3oXcZDrCd5MwZMit8MgxRrXmnHh49R3SFw\"]}},\"version\":1}",
+  "bytecode": "0x60806040526000805534801561001457600080fd5b506103c6806100246000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c806357e4d0141461005c5780639739fb7e146100a8578063ae1abfc0146100f4578063c8a6e86b1461014a578063e272e8d414610168575b600080fd5b6100a66004803603608081101561007257600080fd5b81019080803590602001909291908035906020019092919080359060200190929190803590602001909291905050506101c6565b005b6100de600480360360408110156100be57600080fd5b81019080803590602001909291908035906020019092919050505061024f565b6040518082815260200191505060405180910390f35b6101346004803603606081101561010a57600080fd5b810190808035906020019092919080359060200190929190803590602001909291905050506102c1565b6040518082815260200191505060405180910390f35b610152610355565b6040518082815260200191505060405180910390f35b6101946004803603602081101561017e57600080fd5b810190808035906020019092919050505061035b565b604051808681526020018581526020018481526020018381526020018281526020019550505050505060405180910390f35b60008081548092919060010191905055506040518060a001604052806000548152602001858152602001848152602001838152602001828152506001600080548152602001908152602001600020600082015181600001556020820151816001015560408201518160020155606082015181600301556080820151816004015590505050505050565b600080600190505b60005481136102b55760016000828152602001908152602001600020600201548414801561029a5750600160008281526020019081526020016000206001015483145b156102a857809150506102bb565b8080600101915050610257565b50600090505b92915050565b600080600190505b60005481136103485760016000828152602001908152602001600020600201548514801561030c5750600160008281526020019081526020016000206001015484145b801561032d5750600160008281526020019081526020016000206003015483145b1561033b578091505061034e565b80806001019150506102c9565b50600090505b9392505050565b60005481565b6001602052806000526040600020600091509050806000015490806001015490806002015490806003015490806004015490508556fea265627a7a72315820294eba5c6590cc9262134831a70b89eb4d6768cc6a5b1725b99c1da5d6da333264736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c806357e4d0141461005c5780639739fb7e146100a8578063ae1abfc0146100f4578063c8a6e86b1461014a578063e272e8d414610168575b600080fd5b6100a66004803603608081101561007257600080fd5b81019080803590602001909291908035906020019092919080359060200190929190803590602001909291905050506101c6565b005b6100de600480360360408110156100be57600080fd5b81019080803590602001909291908035906020019092919050505061024f565b6040518082815260200191505060405180910390f35b6101346004803603606081101561010a57600080fd5b810190808035906020019092919080359060200190929190803590602001909291905050506102c1565b6040518082815260200191505060405180910390f35b610152610355565b6040518082815260200191505060405180910390f35b6101946004803603602081101561017e57600080fd5b810190808035906020019092919050505061035b565b604051808681526020018581526020018481526020018381526020018281526020019550505050505060405180910390f35b60008081548092919060010191905055506040518060a001604052806000548152602001858152602001848152602001838152602001828152506001600080548152602001908152602001600020600082015181600001556020820151816001015560408201518160020155606082015181600301556080820151816004015590505050505050565b600080600190505b60005481136102b55760016000828152602001908152602001600020600201548414801561029a5750600160008281526020019081526020016000206001015483145b156102a857809150506102bb565b8080600101915050610257565b50600090505b92915050565b600080600190505b60005481136103485760016000828152602001908152602001600020600201548514801561030c5750600160008281526020019081526020016000206001015484145b801561032d5750600160008281526020019081526020016000206003015483145b1561033b578091505061034e565b80806001019150506102c9565b50600090505b9392505050565b60005481565b6001602052806000526040600020600091509050806000015490806001015490806002015490806003015490806004015490508556fea265627a7a72315820294eba5c6590cc9262134831a70b89eb4d6768cc6a5b1725b99c1da5d6da333264736f6c63430005100032",
+  "sourceMap": "69:1497:2:-;;;271:1;245:27;;69:1497;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:1497:2;;;;;;;",
+  "deployedSourceMap": "69:1497:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;69:1497:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;331:240;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;331:240:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;1245:314;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1245:314:2;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;709:359;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;709:359:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;245:27;;;:::i;:::-;;;;;;;;;;;;;;;;;;;281:41;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;281:41:2;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;331:240;443:12;;:14;;;;;;;;;;;;;493:70;;;;;;;;502:12;;493:70;;;;516:11;493:70;;;;529:8;493:70;;;;539:12;493:70;;;;553:9;493:70;;;468:8;:22;477:12;;468:22;;;;;;;;;;;:95;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;331:240;;;;:::o;1245:314::-;1343:3;1369:5;1377:1;1369:9;;1364:169;1385:12;;1380:1;:17;1364:169;;1434:8;:11;1443:1;1434:11;;;;;;;;;;;:19;;;1422:8;:31;:72;;;;;1472:8;:11;1481:1;1472:11;;;;;;;;;;;:22;;;1457:11;:37;1422:72;1419:102;;;1520:1;1513:8;;;;;1419:102;1399:3;;;;;;;1364:169;;;;1550:1;1543:8;;1245:314;;;;;:::o;709:359::-;809:3;835:5;843:1;835:9;;830:212;851:12;;846:1;:17;830:212;;900:8;:11;909:1;900:11;;;;;;;;;;;:19;;;888:8;:31;:72;;;;;938:8;:11;947:1;938:11;;;;;;;;;;;:22;;;923:11;:37;888:72;:115;;;;;980:8;:11;989:1;980:11;;;;;;;;;;;:23;;;964:12;:39;888:115;885:145;;;1029:1;1022:8;;;;;885:145;865:3;;;;;;;830:212;;;;1059:1;1052:8;;709:359;;;;;;:::o;245:27::-;;;;:::o;281:41::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract Kupovine{\r\n\r\n    struct Kupovina\r\n    {\r\n        int id;\r\n        int idProdavca;\r\n        int idKupca;\r\n        int idProizvoda;\r\n        int kolicina;\r\n    }\r\n\r\n    int public brojKupovina = 0;\r\n\r\n    mapping (int => Kupovina) public kupovine;\r\n\r\n    function dodajKupovinu (int _idProdavca, int _idKupca, int _idProizvoda, int _kolicina) public \r\n    {\r\n        brojKupovina++;\r\n        kupovine[brojKupovina] = Kupovina(brojKupovina, _idProdavca, _idKupca, _idProizvoda, _kolicina);\r\n    }\r\n\r\n    //Pre davanja ocene za proizvod, mora se proveriti da li postoji kupovina tog proizvoda od strane onog koji hoce da da ocenu\r\n    function daLiPostojiKupovina (int _idKupca, int _idProdavca, int _idProizvoda) public view returns (int)\r\n    {\r\n        for (int i = 1; i <= brojKupovina; i++) {\r\n            if(_idKupca == kupovine[i].idKupca && _idProdavca == kupovine[i].idProdavca && _idProizvoda == kupovine[i].idProizvoda)\r\n                return i;\r\n        }\r\n        return 0;\r\n    }\r\n\r\n    //Pre davanja ocene za prodavca, mora se proveriti da li postoji kupovina nekog proizvoda od strane onog koji hoce da da ocenu\r\n    //od onog kome zeli da da ocenu\r\n    function daLiPostojiKupovinaBiloKogProizvoda (int _idKupca, int _idProdavca) public view returns (int)\r\n    {\r\n        for (int i = 1; i <= brojKupovina; i++) {\r\n            if(_idKupca == kupovine[i].idKupca && _idProdavca == kupovine[i].idProdavca)\r\n                return i;\r\n        }\r\n        return 0;\r\n    }\r\n\r\n\r\n}",
-  "sourcePath": "C:/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Kupovine.sol",
+  "sourcePath": "C:/Users/beslac_lazar/Desktop/najnoviije/ChainTech/App/frontend/webApp/contracts/Kupovine.sol",
   "ast": {
-    "absolutePath": "/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Kupovine.sol",
+    "absolutePath": "/C/Users/beslac_lazar/Desktop/najnoviije/ChainTech/App/frontend/webApp/contracts/Kupovine.sol",
     "exportedSymbols": {
       "Kupovine": [
-        1720
+        441
       ]
     },
-    "id": 1721,
+    "id": 442,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1585,
+        "id": 306,
         "literals": [
           "solidity",
           ">=",
@@ -174,7 +174,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "33:32:11"
+        "src": "33:32:2"
       },
       {
         "baseContracts": [],
@@ -182,24 +182,24 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1720,
+        "id": 441,
         "linearizedBaseContracts": [
-          1720
+          441
         ],
         "name": "Kupovine",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "Kupovine.Kupovina",
-            "id": 1596,
+            "id": 317,
             "members": [
               {
                 "constant": false,
-                "id": 1587,
+                "id": 308,
                 "name": "id",
                 "nodeType": "VariableDeclaration",
-                "scope": 1596,
-                "src": "127:6:11",
+                "scope": 317,
+                "src": "127:6:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -207,10 +207,10 @@
                   "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 1586,
+                  "id": 307,
                   "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "127:3:11",
+                  "src": "127:3:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_int256",
                     "typeString": "int256"
@@ -221,11 +221,11 @@
               },
               {
                 "constant": false,
-                "id": 1589,
+                "id": 310,
                 "name": "idProdavca",
                 "nodeType": "VariableDeclaration",
-                "scope": 1596,
-                "src": "144:14:11",
+                "scope": 317,
+                "src": "144:14:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -233,10 +233,10 @@
                   "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 1588,
+                  "id": 309,
                   "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "144:3:11",
+                  "src": "144:3:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_int256",
                     "typeString": "int256"
@@ -247,11 +247,11 @@
               },
               {
                 "constant": false,
-                "id": 1591,
+                "id": 312,
                 "name": "idKupca",
                 "nodeType": "VariableDeclaration",
-                "scope": 1596,
-                "src": "169:11:11",
+                "scope": 317,
+                "src": "169:11:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -259,10 +259,10 @@
                   "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 1590,
+                  "id": 311,
                   "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "169:3:11",
+                  "src": "169:3:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_int256",
                     "typeString": "int256"
@@ -273,11 +273,11 @@
               },
               {
                 "constant": false,
-                "id": 1593,
+                "id": 314,
                 "name": "idProizvoda",
                 "nodeType": "VariableDeclaration",
-                "scope": 1596,
-                "src": "191:15:11",
+                "scope": 317,
+                "src": "191:15:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -285,10 +285,10 @@
                   "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 1592,
+                  "id": 313,
                   "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "191:3:11",
+                  "src": "191:3:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_int256",
                     "typeString": "int256"
@@ -299,11 +299,11 @@
               },
               {
                 "constant": false,
-                "id": 1595,
+                "id": 316,
                 "name": "kolicina",
                 "nodeType": "VariableDeclaration",
-                "scope": 1596,
-                "src": "217:12:11",
+                "scope": 317,
+                "src": "217:12:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -311,10 +311,10 @@
                   "typeString": "int256"
                 },
                 "typeName": {
-                  "id": 1594,
+                  "id": 315,
                   "name": "int",
                   "nodeType": "ElementaryTypeName",
-                  "src": "217:3:11",
+                  "src": "217:3:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_int256",
                     "typeString": "int256"
@@ -326,17 +326,17 @@
             ],
             "name": "Kupovina",
             "nodeType": "StructDefinition",
-            "scope": 1720,
-            "src": "95:142:11",
+            "scope": 441,
+            "src": "95:142:2",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 1599,
+            "id": 320,
             "name": "brojKupovina",
             "nodeType": "VariableDeclaration",
-            "scope": 1720,
-            "src": "245:27:11",
+            "scope": 441,
+            "src": "245:27:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -344,10 +344,10 @@
               "typeString": "int256"
             },
             "typeName": {
-              "id": 1597,
+              "id": 318,
               "name": "int",
               "nodeType": "ElementaryTypeName",
-              "src": "245:3:11",
+              "src": "245:3:2",
               "typeDescriptions": {
                 "typeIdentifier": "t_int256",
                 "typeString": "int256"
@@ -356,14 +356,14 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "30",
-              "id": 1598,
+              "id": 319,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "271:1:11",
+              "src": "271:1:2",
               "subdenomination": null,
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_0_by_1",
@@ -375,44 +375,44 @@
           },
           {
             "constant": false,
-            "id": 1603,
+            "id": 324,
             "name": "kupovine",
             "nodeType": "VariableDeclaration",
-            "scope": 1720,
-            "src": "281:41:11",
+            "scope": 441,
+            "src": "281:41:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$1596_storage_$",
+              "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$317_storage_$",
               "typeString": "mapping(int256 => struct Kupovine.Kupovina)"
             },
             "typeName": {
-              "id": 1602,
+              "id": 323,
               "keyType": {
-                "id": 1600,
+                "id": 321,
                 "name": "int",
                 "nodeType": "ElementaryTypeName",
-                "src": "290:3:11",
+                "src": "290:3:2",
                 "typeDescriptions": {
                   "typeIdentifier": "t_int256",
                   "typeString": "int256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "281:25:11",
+              "src": "281:25:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$1596_storage_$",
+                "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$317_storage_$",
                 "typeString": "mapping(int256 => struct Kupovine.Kupovina)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 1601,
+                "id": 322,
                 "name": "Kupovina",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 1596,
-                "src": "297:8:11",
+                "referencedDeclaration": 317,
+                "src": "297:8:2",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Kupovina_$1596_storage_ptr",
+                  "typeIdentifier": "t_struct$_Kupovina_$317_storage_ptr",
                   "typeString": "struct Kupovine.Kupovina"
                 }
               }
@@ -422,14 +422,14 @@
           },
           {
             "body": {
-              "id": 1629,
+              "id": 350,
               "nodeType": "Block",
-              "src": "432:139:11",
+              "src": "432:139:2",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1615,
+                    "id": 336,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -437,15 +437,15 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "443:14:11",
+                    "src": "443:14:2",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 1614,
+                      "id": 335,
                       "name": "brojKupovina",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1599,
-                      "src": "443:12:11",
+                      "referencedDeclaration": 320,
+                      "src": "443:12:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
                         "typeString": "int256"
@@ -456,14 +456,14 @@
                       "typeString": "int256"
                     }
                   },
-                  "id": 1616,
+                  "id": 337,
                   "nodeType": "ExpressionStatement",
-                  "src": "443:14:11"
+                  "src": "443:14:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1627,
+                    "id": 348,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -472,26 +472,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1617,
+                        "id": 338,
                         "name": "kupovine",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1603,
-                        "src": "468:8:11",
+                        "referencedDeclaration": 324,
+                        "src": "468:8:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$1596_storage_$",
+                          "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$317_storage_$",
                           "typeString": "mapping(int256 => struct Kupovine.Kupovina storage ref)"
                         }
                       },
-                      "id": 1619,
+                      "id": 340,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 1618,
+                        "id": 339,
                         "name": "brojKupovina",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1599,
-                        "src": "477:12:11",
+                        "referencedDeclaration": 320,
+                        "src": "477:12:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
                           "typeString": "int256"
@@ -502,9 +502,9 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "468:22:11",
+                      "src": "468:22:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Kupovina_$1596_storage",
+                        "typeIdentifier": "t_struct$_Kupovina_$317_storage",
                         "typeString": "struct Kupovine.Kupovina storage ref"
                       }
                     },
@@ -515,12 +515,12 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 1621,
+                          "id": 342,
                           "name": "brojKupovina",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1599,
-                          "src": "502:12:11",
+                          "referencedDeclaration": 320,
+                          "src": "502:12:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -528,12 +528,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 1622,
+                          "id": 343,
                           "name": "_idProdavca",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1605,
-                          "src": "516:11:11",
+                          "referencedDeclaration": 326,
+                          "src": "516:11:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -541,12 +541,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 1623,
+                          "id": 344,
                           "name": "_idKupca",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1607,
-                          "src": "529:8:11",
+                          "referencedDeclaration": 328,
+                          "src": "529:8:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -554,12 +554,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 1624,
+                          "id": 345,
                           "name": "_idProizvoda",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1609,
-                          "src": "539:12:11",
+                          "referencedDeclaration": 330,
+                          "src": "539:12:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -567,12 +567,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 1625,
+                          "id": 346,
                           "name": "_kolicina",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1611,
-                          "src": "553:9:11",
+                          "referencedDeclaration": 332,
+                          "src": "553:9:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -602,18 +602,18 @@
                             "typeString": "int256"
                           }
                         ],
-                        "id": 1620,
+                        "id": 341,
                         "name": "Kupovina",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1596,
-                        "src": "493:8:11",
+                        "referencedDeclaration": 317,
+                        "src": "493:8:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_Kupovina_$1596_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_Kupovina_$317_storage_ptr_$",
                           "typeString": "type(struct Kupovine.Kupovina storage pointer)"
                         }
                       },
-                      "id": 1626,
+                      "id": 347,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -621,42 +621,42 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "493:70:11",
+                      "src": "493:70:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Kupovina_$1596_memory",
+                        "typeIdentifier": "t_struct$_Kupovina_$317_memory",
                         "typeString": "struct Kupovine.Kupovina memory"
                       }
                     },
-                    "src": "468:95:11",
+                    "src": "468:95:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Kupovina_$1596_storage",
+                      "typeIdentifier": "t_struct$_Kupovina_$317_storage",
                       "typeString": "struct Kupovine.Kupovina storage ref"
                     }
                   },
-                  "id": 1628,
+                  "id": 349,
                   "nodeType": "ExpressionStatement",
-                  "src": "468:95:11"
+                  "src": "468:95:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 1630,
+            "id": 351,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "dodajKupovinu",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1612,
+              "id": 333,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1605,
+                  "id": 326,
                   "name": "_idProdavca",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1630,
-                  "src": "355:15:11",
+                  "scope": 351,
+                  "src": "355:15:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -664,10 +664,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 1604,
+                    "id": 325,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "355:3:11",
+                    "src": "355:3:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -678,11 +678,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1607,
+                  "id": 328,
                   "name": "_idKupca",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1630,
-                  "src": "372:12:11",
+                  "scope": 351,
+                  "src": "372:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -690,10 +690,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 1606,
+                    "id": 327,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "372:3:11",
+                    "src": "372:3:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -704,11 +704,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1609,
+                  "id": 330,
                   "name": "_idProizvoda",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1630,
-                  "src": "386:16:11",
+                  "scope": 351,
+                  "src": "386:16:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -716,10 +716,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 1608,
+                    "id": 329,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "386:3:11",
+                    "src": "386:3:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -730,11 +730,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1611,
+                  "id": 332,
                   "name": "_kolicina",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1630,
-                  "src": "404:13:11",
+                  "scope": 351,
+                  "src": "404:13:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -742,10 +742,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 1610,
+                    "id": 331,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "404:3:11",
+                    "src": "404:3:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -755,31 +755,31 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "354:64:11"
+              "src": "354:64:2"
             },
             "returnParameters": {
-              "id": 1613,
+              "id": 334,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "432:0:11"
+              "src": "432:0:2"
             },
-            "scope": 1720,
-            "src": "331:240:11",
+            "scope": 441,
+            "src": "331:240:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 1678,
+              "id": 399,
               "nodeType": "Block",
-              "src": "819:249:11",
+              "src": "819:249:2",
               "statements": [
                 {
                   "body": {
-                    "id": 1674,
+                    "id": 395,
                     "nodeType": "Block",
-                    "src": "870:172:11",
+                    "src": "870:172:2",
                     "statements": [
                       {
                         "condition": {
@@ -788,7 +788,7 @@
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
                           },
-                          "id": 1670,
+                          "id": 391,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -799,7 +799,7 @@
                               "typeIdentifier": "t_bool",
                               "typeString": "bool"
                             },
-                            "id": 1663,
+                            "id": 384,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -810,19 +810,19 @@
                                 "typeIdentifier": "t_int256",
                                 "typeString": "int256"
                               },
-                              "id": 1656,
+                              "id": 377,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
                               "lValueRequested": false,
                               "leftExpression": {
                                 "argumentTypes": null,
-                                "id": 1651,
+                                "id": 372,
                                 "name": "_idKupca",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1632,
-                                "src": "888:8:11",
+                                "referencedDeclaration": 353,
+                                "src": "888:8:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_int256",
                                   "typeString": "int256"
@@ -836,26 +836,26 @@
                                   "argumentTypes": null,
                                   "baseExpression": {
                                     "argumentTypes": null,
-                                    "id": 1652,
+                                    "id": 373,
                                     "name": "kupovine",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 1603,
-                                    "src": "900:8:11",
+                                    "referencedDeclaration": 324,
+                                    "src": "900:8:2",
                                     "typeDescriptions": {
-                                      "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$1596_storage_$",
+                                      "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$317_storage_$",
                                       "typeString": "mapping(int256 => struct Kupovine.Kupovina storage ref)"
                                     }
                                   },
-                                  "id": 1654,
+                                  "id": 375,
                                   "indexExpression": {
                                     "argumentTypes": null,
-                                    "id": 1653,
+                                    "id": 374,
                                     "name": "i",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 1642,
-                                    "src": "909:1:11",
+                                    "referencedDeclaration": 363,
+                                    "src": "909:1:2",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_int256",
                                       "typeString": "int256"
@@ -866,27 +866,27 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "nodeType": "IndexAccess",
-                                  "src": "900:11:11",
+                                  "src": "900:11:2",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_struct$_Kupovina_$1596_storage",
+                                    "typeIdentifier": "t_struct$_Kupovina_$317_storage",
                                     "typeString": "struct Kupovine.Kupovina storage ref"
                                   }
                                 },
-                                "id": 1655,
+                                "id": 376,
                                 "isConstant": false,
                                 "isLValue": true,
                                 "isPure": false,
                                 "lValueRequested": false,
                                 "memberName": "idKupca",
                                 "nodeType": "MemberAccess",
-                                "referencedDeclaration": 1591,
-                                "src": "900:19:11",
+                                "referencedDeclaration": 312,
+                                "src": "900:19:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_int256",
                                   "typeString": "int256"
                                 }
                               },
-                              "src": "888:31:11",
+                              "src": "888:31:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bool",
                                 "typeString": "bool"
@@ -900,19 +900,19 @@
                                 "typeIdentifier": "t_int256",
                                 "typeString": "int256"
                               },
-                              "id": 1662,
+                              "id": 383,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
                               "lValueRequested": false,
                               "leftExpression": {
                                 "argumentTypes": null,
-                                "id": 1657,
+                                "id": 378,
                                 "name": "_idProdavca",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1634,
-                                "src": "923:11:11",
+                                "referencedDeclaration": 355,
+                                "src": "923:11:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_int256",
                                   "typeString": "int256"
@@ -926,26 +926,26 @@
                                   "argumentTypes": null,
                                   "baseExpression": {
                                     "argumentTypes": null,
-                                    "id": 1658,
+                                    "id": 379,
                                     "name": "kupovine",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 1603,
-                                    "src": "938:8:11",
+                                    "referencedDeclaration": 324,
+                                    "src": "938:8:2",
                                     "typeDescriptions": {
-                                      "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$1596_storage_$",
+                                      "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$317_storage_$",
                                       "typeString": "mapping(int256 => struct Kupovine.Kupovina storage ref)"
                                     }
                                   },
-                                  "id": 1660,
+                                  "id": 381,
                                   "indexExpression": {
                                     "argumentTypes": null,
-                                    "id": 1659,
+                                    "id": 380,
                                     "name": "i",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 1642,
-                                    "src": "947:1:11",
+                                    "referencedDeclaration": 363,
+                                    "src": "947:1:2",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_int256",
                                       "typeString": "int256"
@@ -956,33 +956,33 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "nodeType": "IndexAccess",
-                                  "src": "938:11:11",
+                                  "src": "938:11:2",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_struct$_Kupovina_$1596_storage",
+                                    "typeIdentifier": "t_struct$_Kupovina_$317_storage",
                                     "typeString": "struct Kupovine.Kupovina storage ref"
                                   }
                                 },
-                                "id": 1661,
+                                "id": 382,
                                 "isConstant": false,
                                 "isLValue": true,
                                 "isPure": false,
                                 "lValueRequested": false,
                                 "memberName": "idProdavca",
                                 "nodeType": "MemberAccess",
-                                "referencedDeclaration": 1589,
-                                "src": "938:22:11",
+                                "referencedDeclaration": 310,
+                                "src": "938:22:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_int256",
                                   "typeString": "int256"
                                 }
                               },
-                              "src": "923:37:11",
+                              "src": "923:37:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bool",
                                 "typeString": "bool"
                               }
                             },
-                            "src": "888:72:11",
+                            "src": "888:72:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bool",
                               "typeString": "bool"
@@ -996,19 +996,19 @@
                               "typeIdentifier": "t_int256",
                               "typeString": "int256"
                             },
-                            "id": 1669,
+                            "id": 390,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftExpression": {
                               "argumentTypes": null,
-                              "id": 1664,
+                              "id": 385,
                               "name": "_idProizvoda",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1636,
-                              "src": "964:12:11",
+                              "referencedDeclaration": 357,
+                              "src": "964:12:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_int256",
                                 "typeString": "int256"
@@ -1022,26 +1022,26 @@
                                 "argumentTypes": null,
                                 "baseExpression": {
                                   "argumentTypes": null,
-                                  "id": 1665,
+                                  "id": 386,
                                   "name": "kupovine",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 1603,
-                                  "src": "980:8:11",
+                                  "referencedDeclaration": 324,
+                                  "src": "980:8:2",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$1596_storage_$",
+                                    "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$317_storage_$",
                                     "typeString": "mapping(int256 => struct Kupovine.Kupovina storage ref)"
                                   }
                                 },
-                                "id": 1667,
+                                "id": 388,
                                 "indexExpression": {
                                   "argumentTypes": null,
-                                  "id": 1666,
+                                  "id": 387,
                                   "name": "i",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 1642,
-                                  "src": "989:1:11",
+                                  "referencedDeclaration": 363,
+                                  "src": "989:1:2",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_int256",
                                     "typeString": "int256"
@@ -1052,60 +1052,60 @@
                                 "isPure": false,
                                 "lValueRequested": false,
                                 "nodeType": "IndexAccess",
-                                "src": "980:11:11",
+                                "src": "980:11:2",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_struct$_Kupovina_$1596_storage",
+                                  "typeIdentifier": "t_struct$_Kupovina_$317_storage",
                                   "typeString": "struct Kupovine.Kupovina storage ref"
                                 }
                               },
-                              "id": 1668,
+                              "id": 389,
                               "isConstant": false,
                               "isLValue": true,
                               "isPure": false,
                               "lValueRequested": false,
                               "memberName": "idProizvoda",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 1593,
-                              "src": "980:23:11",
+                              "referencedDeclaration": 314,
+                              "src": "980:23:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_int256",
                                 "typeString": "int256"
                               }
                             },
-                            "src": "964:39:11",
+                            "src": "964:39:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bool",
                               "typeString": "bool"
                             }
                           },
-                          "src": "888:115:11",
+                          "src": "888:115:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
                           }
                         },
                         "falseBody": null,
-                        "id": 1673,
+                        "id": 394,
                         "nodeType": "IfStatement",
-                        "src": "885:145:11",
+                        "src": "885:145:2",
                         "trueBody": {
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1671,
+                            "id": 392,
                             "name": "i",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1642,
-                            "src": "1029:1:11",
+                            "referencedDeclaration": 363,
+                            "src": "1029:1:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_int256",
                               "typeString": "int256"
                             }
                           },
-                          "functionReturnParameters": 1640,
-                          "id": 1672,
+                          "functionReturnParameters": 361,
+                          "id": 393,
                           "nodeType": "Return",
-                          "src": "1022:8:11"
+                          "src": "1022:8:2"
                         }
                       }
                     ]
@@ -1116,19 +1116,19 @@
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
                     },
-                    "id": 1647,
+                    "id": 368,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1645,
+                      "id": 366,
                       "name": "i",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1642,
-                      "src": "846:1:11",
+                      "referencedDeclaration": 363,
+                      "src": "846:1:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
                         "typeString": "int256"
@@ -1138,36 +1138,36 @@
                     "operator": "<=",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 1646,
+                      "id": 367,
                       "name": "brojKupovina",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1599,
-                      "src": "851:12:11",
+                      "referencedDeclaration": 320,
+                      "src": "851:12:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
                         "typeString": "int256"
                       }
                     },
-                    "src": "846:17:11",
+                    "src": "846:17:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 1675,
+                  "id": 396,
                   "initializationExpression": {
                     "assignments": [
-                      1642
+                      363
                     ],
                     "declarations": [
                       {
                         "constant": false,
-                        "id": 1642,
+                        "id": 363,
                         "name": "i",
                         "nodeType": "VariableDeclaration",
-                        "scope": 1675,
-                        "src": "835:5:11",
+                        "scope": 396,
+                        "src": "835:5:2",
                         "stateVariable": false,
                         "storageLocation": "default",
                         "typeDescriptions": {
@@ -1175,10 +1175,10 @@
                           "typeString": "int256"
                         },
                         "typeName": {
-                          "id": 1641,
+                          "id": 362,
                           "name": "int",
                           "nodeType": "ElementaryTypeName",
-                          "src": "835:3:11",
+                          "src": "835:3:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -1188,18 +1188,18 @@
                         "visibility": "internal"
                       }
                     ],
-                    "id": 1644,
+                    "id": 365,
                     "initialValue": {
                       "argumentTypes": null,
                       "hexValue": "31",
-                      "id": 1643,
+                      "id": 364,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "843:1:11",
+                      "src": "843:1:2",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_1_by_1",
@@ -1208,12 +1208,12 @@
                       "value": "1"
                     },
                     "nodeType": "VariableDeclarationStatement",
-                    "src": "835:9:11"
+                    "src": "835:9:2"
                   },
                   "loopExpression": {
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1649,
+                      "id": 370,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1221,15 +1221,15 @@
                       "nodeType": "UnaryOperation",
                       "operator": "++",
                       "prefix": false,
-                      "src": "865:3:11",
+                      "src": "865:3:2",
                       "subExpression": {
                         "argumentTypes": null,
-                        "id": 1648,
+                        "id": 369,
                         "name": "i",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1642,
-                        "src": "865:1:11",
+                        "referencedDeclaration": 363,
+                        "src": "865:1:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
                           "typeString": "int256"
@@ -1240,25 +1240,25 @@
                         "typeString": "int256"
                       }
                     },
-                    "id": 1650,
+                    "id": 371,
                     "nodeType": "ExpressionStatement",
-                    "src": "865:3:11"
+                    "src": "865:3:2"
                   },
                   "nodeType": "ForStatement",
-                  "src": "830:212:11"
+                  "src": "830:212:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "30",
-                    "id": 1676,
+                    "id": 397,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "1059:1:11",
+                    "src": "1059:1:2",
                     "subdenomination": null,
                     "typeDescriptions": {
                       "typeIdentifier": "t_rational_0_by_1",
@@ -1266,31 +1266,31 @@
                     },
                     "value": "0"
                   },
-                  "functionReturnParameters": 1640,
-                  "id": 1677,
+                  "functionReturnParameters": 361,
+                  "id": 398,
                   "nodeType": "Return",
-                  "src": "1052:8:11"
+                  "src": "1052:8:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 1679,
+            "id": 400,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "daLiPostojiKupovina",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1637,
+              "id": 358,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1632,
+                  "id": 353,
                   "name": "_idKupca",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1679,
-                  "src": "739:12:11",
+                  "scope": 400,
+                  "src": "739:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1298,10 +1298,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 1631,
+                    "id": 352,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "739:3:11",
+                    "src": "739:3:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -1312,11 +1312,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1634,
+                  "id": 355,
                   "name": "_idProdavca",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1679,
-                  "src": "753:15:11",
+                  "scope": 400,
+                  "src": "753:15:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1324,10 +1324,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 1633,
+                    "id": 354,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "753:3:11",
+                    "src": "753:3:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -1338,11 +1338,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1636,
+                  "id": 357,
                   "name": "_idProizvoda",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1679,
-                  "src": "770:16:11",
+                  "scope": 400,
+                  "src": "770:16:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1350,10 +1350,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 1635,
+                    "id": 356,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "770:3:11",
+                    "src": "770:3:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -1363,19 +1363,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "738:49:11"
+              "src": "738:49:2"
             },
             "returnParameters": {
-              "id": 1640,
+              "id": 361,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1639,
+                  "id": 360,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1679,
-                  "src": "809:3:11",
+                  "scope": 400,
+                  "src": "809:3:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1383,10 +1383,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 1638,
+                    "id": 359,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "809:3:11",
+                    "src": "809:3:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -1396,25 +1396,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "808:5:11"
+              "src": "808:5:2"
             },
-            "scope": 1720,
-            "src": "709:359:11",
+            "scope": 441,
+            "src": "709:359:2",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 1718,
+              "id": 439,
               "nodeType": "Block",
-              "src": "1353:206:11",
+              "src": "1353:206:2",
               "statements": [
                 {
                   "body": {
-                    "id": 1714,
+                    "id": 435,
                     "nodeType": "Block",
-                    "src": "1404:129:11",
+                    "src": "1404:129:2",
                     "statements": [
                       {
                         "condition": {
@@ -1423,7 +1423,7 @@
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
                           },
-                          "id": 1710,
+                          "id": 431,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1434,19 +1434,19 @@
                               "typeIdentifier": "t_int256",
                               "typeString": "int256"
                             },
-                            "id": 1703,
+                            "id": 424,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftExpression": {
                               "argumentTypes": null,
-                              "id": 1698,
+                              "id": 419,
                               "name": "_idKupca",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1681,
-                              "src": "1422:8:11",
+                              "referencedDeclaration": 402,
+                              "src": "1422:8:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_int256",
                                 "typeString": "int256"
@@ -1460,26 +1460,26 @@
                                 "argumentTypes": null,
                                 "baseExpression": {
                                   "argumentTypes": null,
-                                  "id": 1699,
+                                  "id": 420,
                                   "name": "kupovine",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 1603,
-                                  "src": "1434:8:11",
+                                  "referencedDeclaration": 324,
+                                  "src": "1434:8:2",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$1596_storage_$",
+                                    "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$317_storage_$",
                                     "typeString": "mapping(int256 => struct Kupovine.Kupovina storage ref)"
                                   }
                                 },
-                                "id": 1701,
+                                "id": 422,
                                 "indexExpression": {
                                   "argumentTypes": null,
-                                  "id": 1700,
+                                  "id": 421,
                                   "name": "i",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 1689,
-                                  "src": "1443:1:11",
+                                  "referencedDeclaration": 410,
+                                  "src": "1443:1:2",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_int256",
                                     "typeString": "int256"
@@ -1490,27 +1490,27 @@
                                 "isPure": false,
                                 "lValueRequested": false,
                                 "nodeType": "IndexAccess",
-                                "src": "1434:11:11",
+                                "src": "1434:11:2",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_struct$_Kupovina_$1596_storage",
+                                  "typeIdentifier": "t_struct$_Kupovina_$317_storage",
                                   "typeString": "struct Kupovine.Kupovina storage ref"
                                 }
                               },
-                              "id": 1702,
+                              "id": 423,
                               "isConstant": false,
                               "isLValue": true,
                               "isPure": false,
                               "lValueRequested": false,
                               "memberName": "idKupca",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 1591,
-                              "src": "1434:19:11",
+                              "referencedDeclaration": 312,
+                              "src": "1434:19:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_int256",
                                 "typeString": "int256"
                               }
                             },
-                            "src": "1422:31:11",
+                            "src": "1422:31:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bool",
                               "typeString": "bool"
@@ -1524,19 +1524,19 @@
                               "typeIdentifier": "t_int256",
                               "typeString": "int256"
                             },
-                            "id": 1709,
+                            "id": 430,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftExpression": {
                               "argumentTypes": null,
-                              "id": 1704,
+                              "id": 425,
                               "name": "_idProdavca",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1683,
-                              "src": "1457:11:11",
+                              "referencedDeclaration": 404,
+                              "src": "1457:11:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_int256",
                                 "typeString": "int256"
@@ -1550,26 +1550,26 @@
                                 "argumentTypes": null,
                                 "baseExpression": {
                                   "argumentTypes": null,
-                                  "id": 1705,
+                                  "id": 426,
                                   "name": "kupovine",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 1603,
-                                  "src": "1472:8:11",
+                                  "referencedDeclaration": 324,
+                                  "src": "1472:8:2",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$1596_storage_$",
+                                    "typeIdentifier": "t_mapping$_t_int256_$_t_struct$_Kupovina_$317_storage_$",
                                     "typeString": "mapping(int256 => struct Kupovine.Kupovina storage ref)"
                                   }
                                 },
-                                "id": 1707,
+                                "id": 428,
                                 "indexExpression": {
                                   "argumentTypes": null,
-                                  "id": 1706,
+                                  "id": 427,
                                   "name": "i",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 1689,
-                                  "src": "1481:1:11",
+                                  "referencedDeclaration": 410,
+                                  "src": "1481:1:2",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_int256",
                                     "typeString": "int256"
@@ -1580,60 +1580,60 @@
                                 "isPure": false,
                                 "lValueRequested": false,
                                 "nodeType": "IndexAccess",
-                                "src": "1472:11:11",
+                                "src": "1472:11:2",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_struct$_Kupovina_$1596_storage",
+                                  "typeIdentifier": "t_struct$_Kupovina_$317_storage",
                                   "typeString": "struct Kupovine.Kupovina storage ref"
                                 }
                               },
-                              "id": 1708,
+                              "id": 429,
                               "isConstant": false,
                               "isLValue": true,
                               "isPure": false,
                               "lValueRequested": false,
                               "memberName": "idProdavca",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 1589,
-                              "src": "1472:22:11",
+                              "referencedDeclaration": 310,
+                              "src": "1472:22:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_int256",
                                 "typeString": "int256"
                               }
                             },
-                            "src": "1457:37:11",
+                            "src": "1457:37:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bool",
                               "typeString": "bool"
                             }
                           },
-                          "src": "1422:72:11",
+                          "src": "1422:72:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
                           }
                         },
                         "falseBody": null,
-                        "id": 1713,
+                        "id": 434,
                         "nodeType": "IfStatement",
-                        "src": "1419:102:11",
+                        "src": "1419:102:2",
                         "trueBody": {
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1711,
+                            "id": 432,
                             "name": "i",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1689,
-                            "src": "1520:1:11",
+                            "referencedDeclaration": 410,
+                            "src": "1520:1:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_int256",
                               "typeString": "int256"
                             }
                           },
-                          "functionReturnParameters": 1687,
-                          "id": 1712,
+                          "functionReturnParameters": 408,
+                          "id": 433,
                           "nodeType": "Return",
-                          "src": "1513:8:11"
+                          "src": "1513:8:2"
                         }
                       }
                     ]
@@ -1644,19 +1644,19 @@
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
                     },
-                    "id": 1694,
+                    "id": 415,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1692,
+                      "id": 413,
                       "name": "i",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1689,
-                      "src": "1380:1:11",
+                      "referencedDeclaration": 410,
+                      "src": "1380:1:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
                         "typeString": "int256"
@@ -1666,36 +1666,36 @@
                     "operator": "<=",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 1693,
+                      "id": 414,
                       "name": "brojKupovina",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1599,
-                      "src": "1385:12:11",
+                      "referencedDeclaration": 320,
+                      "src": "1385:12:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int256",
                         "typeString": "int256"
                       }
                     },
-                    "src": "1380:17:11",
+                    "src": "1380:17:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 1715,
+                  "id": 436,
                   "initializationExpression": {
                     "assignments": [
-                      1689
+                      410
                     ],
                     "declarations": [
                       {
                         "constant": false,
-                        "id": 1689,
+                        "id": 410,
                         "name": "i",
                         "nodeType": "VariableDeclaration",
-                        "scope": 1715,
-                        "src": "1369:5:11",
+                        "scope": 436,
+                        "src": "1369:5:2",
                         "stateVariable": false,
                         "storageLocation": "default",
                         "typeDescriptions": {
@@ -1703,10 +1703,10 @@
                           "typeString": "int256"
                         },
                         "typeName": {
-                          "id": 1688,
+                          "id": 409,
                           "name": "int",
                           "nodeType": "ElementaryTypeName",
-                          "src": "1369:3:11",
+                          "src": "1369:3:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_int256",
                             "typeString": "int256"
@@ -1716,18 +1716,18 @@
                         "visibility": "internal"
                       }
                     ],
-                    "id": 1691,
+                    "id": 412,
                     "initialValue": {
                       "argumentTypes": null,
                       "hexValue": "31",
-                      "id": 1690,
+                      "id": 411,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1377:1:11",
+                      "src": "1377:1:2",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_1_by_1",
@@ -1736,12 +1736,12 @@
                       "value": "1"
                     },
                     "nodeType": "VariableDeclarationStatement",
-                    "src": "1369:9:11"
+                    "src": "1369:9:2"
                   },
                   "loopExpression": {
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1696,
+                      "id": 417,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1749,15 +1749,15 @@
                       "nodeType": "UnaryOperation",
                       "operator": "++",
                       "prefix": false,
-                      "src": "1399:3:11",
+                      "src": "1399:3:2",
                       "subExpression": {
                         "argumentTypes": null,
-                        "id": 1695,
+                        "id": 416,
                         "name": "i",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1689,
-                        "src": "1399:1:11",
+                        "referencedDeclaration": 410,
+                        "src": "1399:1:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
                           "typeString": "int256"
@@ -1768,25 +1768,25 @@
                         "typeString": "int256"
                       }
                     },
-                    "id": 1697,
+                    "id": 418,
                     "nodeType": "ExpressionStatement",
-                    "src": "1399:3:11"
+                    "src": "1399:3:2"
                   },
                   "nodeType": "ForStatement",
-                  "src": "1364:169:11"
+                  "src": "1364:169:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "30",
-                    "id": 1716,
+                    "id": 437,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "1550:1:11",
+                    "src": "1550:1:2",
                     "subdenomination": null,
                     "typeDescriptions": {
                       "typeIdentifier": "t_rational_0_by_1",
@@ -1794,31 +1794,31 @@
                     },
                     "value": "0"
                   },
-                  "functionReturnParameters": 1687,
-                  "id": 1717,
+                  "functionReturnParameters": 408,
+                  "id": 438,
                   "nodeType": "Return",
-                  "src": "1543:8:11"
+                  "src": "1543:8:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 1719,
+            "id": 440,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "daLiPostojiKupovinaBiloKogProizvoda",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1684,
+              "id": 405,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1681,
+                  "id": 402,
                   "name": "_idKupca",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1719,
-                  "src": "1291:12:11",
+                  "scope": 440,
+                  "src": "1291:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1826,10 +1826,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 1680,
+                    "id": 401,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1291:3:11",
+                    "src": "1291:3:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -1840,11 +1840,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1683,
+                  "id": 404,
                   "name": "_idProdavca",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1719,
-                  "src": "1305:15:11",
+                  "scope": 440,
+                  "src": "1305:15:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1852,10 +1852,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 1682,
+                    "id": 403,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1305:3:11",
+                    "src": "1305:3:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -1865,19 +1865,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1290:31:11"
+              "src": "1290:31:2"
             },
             "returnParameters": {
-              "id": 1687,
+              "id": 408,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1686,
+                  "id": 407,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1719,
-                  "src": "1343:3:11",
+                  "scope": 440,
+                  "src": "1343:3:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1885,10 +1885,10 @@
                     "typeString": "int256"
                   },
                   "typeName": {
-                    "id": 1685,
+                    "id": 406,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1343:3:11",
+                    "src": "1343:3:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -1898,27 +1898,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1342:5:11"
+              "src": "1342:5:2"
             },
-            "scope": 1720,
-            "src": "1245:314:11",
+            "scope": 441,
+            "src": "1245:314:2",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1721,
-        "src": "69:1497:11"
+        "scope": 442,
+        "src": "69:1497:2"
       }
     ],
-    "src": "33:1533:11"
+    "src": "33:1533:2"
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "/C/Users/beslac_lazar/Desktop/project_dev/ChainTech/App/frontend/app/contracts/Kupovine.sol",
+      "absolutePath": "/C/Users/beslac_lazar/Desktop/najnoviije/ChainTech/App/frontend/webApp/contracts/Kupovine.sol",
       "exportedSymbols": {
         "Kupovine": [
-          1720
+          441
         ]
       }
     },
@@ -1935,9 +1935,9 @@
             ".0"
           ]
         },
-        "id": 1585,
+        "id": 306,
         "name": "PragmaDirective",
-        "src": "33:32:11"
+        "src": "33:32:2"
       },
       {
         "attributes": {
@@ -1951,17 +1951,17 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            1720
+            441
           ],
           "name": "Kupovine",
-          "scope": 1721
+          "scope": 442
         },
         "children": [
           {
             "attributes": {
               "canonicalName": "Kupovine.Kupovina",
               "name": "Kupovina",
-              "scope": 1720,
+              "scope": 441,
               "visibility": "public"
             },
             "children": [
@@ -1969,7 +1969,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "id",
-                  "scope": 1596,
+                  "scope": 317,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -1982,20 +1982,20 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 1586,
+                    "id": 307,
                     "name": "ElementaryTypeName",
-                    "src": "127:3:11"
+                    "src": "127:3:2"
                   }
                 ],
-                "id": 1587,
+                "id": 308,
                 "name": "VariableDeclaration",
-                "src": "127:6:11"
+                "src": "127:6:2"
               },
               {
                 "attributes": {
                   "constant": false,
                   "name": "idProdavca",
-                  "scope": 1596,
+                  "scope": 317,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -2008,20 +2008,20 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 1588,
+                    "id": 309,
                     "name": "ElementaryTypeName",
-                    "src": "144:3:11"
+                    "src": "144:3:2"
                   }
                 ],
-                "id": 1589,
+                "id": 310,
                 "name": "VariableDeclaration",
-                "src": "144:14:11"
+                "src": "144:14:2"
               },
               {
                 "attributes": {
                   "constant": false,
                   "name": "idKupca",
-                  "scope": 1596,
+                  "scope": 317,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -2034,20 +2034,20 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 1590,
+                    "id": 311,
                     "name": "ElementaryTypeName",
-                    "src": "169:3:11"
+                    "src": "169:3:2"
                   }
                 ],
-                "id": 1591,
+                "id": 312,
                 "name": "VariableDeclaration",
-                "src": "169:11:11"
+                "src": "169:11:2"
               },
               {
                 "attributes": {
                   "constant": false,
                   "name": "idProizvoda",
-                  "scope": 1596,
+                  "scope": 317,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -2060,20 +2060,20 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 1592,
+                    "id": 313,
                     "name": "ElementaryTypeName",
-                    "src": "191:3:11"
+                    "src": "191:3:2"
                   }
                 ],
-                "id": 1593,
+                "id": 314,
                 "name": "VariableDeclaration",
-                "src": "191:15:11"
+                "src": "191:15:2"
               },
               {
                 "attributes": {
                   "constant": false,
                   "name": "kolicina",
-                  "scope": 1596,
+                  "scope": 317,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "int256",
@@ -2086,25 +2086,25 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 1594,
+                    "id": 315,
                     "name": "ElementaryTypeName",
-                    "src": "217:3:11"
+                    "src": "217:3:2"
                   }
                 ],
-                "id": 1595,
+                "id": 316,
                 "name": "VariableDeclaration",
-                "src": "217:12:11"
+                "src": "217:12:2"
               }
             ],
-            "id": 1596,
+            "id": 317,
             "name": "StructDefinition",
-            "src": "95:142:11"
+            "src": "95:142:2"
           },
           {
             "attributes": {
               "constant": false,
               "name": "brojKupovina",
-              "scope": 1720,
+              "scope": 441,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "int256",
@@ -2116,9 +2116,9 @@
                   "name": "int",
                   "type": "int256"
                 },
-                "id": 1597,
+                "id": 318,
                 "name": "ElementaryTypeName",
-                "src": "245:3:11"
+                "src": "245:3:2"
               },
               {
                 "attributes": {
@@ -2133,20 +2133,20 @@
                   "type": "int_const 0",
                   "value": "0"
                 },
-                "id": 1598,
+                "id": 319,
                 "name": "Literal",
-                "src": "271:1:11"
+                "src": "271:1:2"
               }
             ],
-            "id": 1599,
+            "id": 320,
             "name": "VariableDeclaration",
-            "src": "245:27:11"
+            "src": "245:27:2"
           },
           {
             "attributes": {
               "constant": false,
               "name": "kupovine",
-              "scope": 1720,
+              "scope": 441,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(int256 => struct Kupovine.Kupovina)",
@@ -2164,30 +2164,30 @@
                       "name": "int",
                       "type": "int256"
                     },
-                    "id": 1600,
+                    "id": 321,
                     "name": "ElementaryTypeName",
-                    "src": "290:3:11"
+                    "src": "290:3:2"
                   },
                   {
                     "attributes": {
                       "contractScope": null,
                       "name": "Kupovina",
-                      "referencedDeclaration": 1596,
+                      "referencedDeclaration": 317,
                       "type": "struct Kupovine.Kupovina"
                     },
-                    "id": 1601,
+                    "id": 322,
                     "name": "UserDefinedTypeName",
-                    "src": "297:8:11"
+                    "src": "297:8:2"
                   }
                 ],
-                "id": 1602,
+                "id": 323,
                 "name": "Mapping",
-                "src": "281:25:11"
+                "src": "281:25:2"
               }
             ],
-            "id": 1603,
+            "id": 324,
             "name": "VariableDeclaration",
-            "src": "281:41:11"
+            "src": "281:41:2"
           },
           {
             "attributes": {
@@ -2199,7 +2199,7 @@
                 null
               ],
               "name": "dodajKupovinu",
-              "scope": 1720,
+              "scope": 441,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -2211,7 +2211,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_idProdavca",
-                      "scope": 1630,
+                      "scope": 351,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -2224,20 +2224,20 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 1604,
+                        "id": 325,
                         "name": "ElementaryTypeName",
-                        "src": "355:3:11"
+                        "src": "355:3:2"
                       }
                     ],
-                    "id": 1605,
+                    "id": 326,
                     "name": "VariableDeclaration",
-                    "src": "355:15:11"
+                    "src": "355:15:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_idKupca",
-                      "scope": 1630,
+                      "scope": 351,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -2250,20 +2250,20 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 1606,
+                        "id": 327,
                         "name": "ElementaryTypeName",
-                        "src": "372:3:11"
+                        "src": "372:3:2"
                       }
                     ],
-                    "id": 1607,
+                    "id": 328,
                     "name": "VariableDeclaration",
-                    "src": "372:12:11"
+                    "src": "372:12:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_idProizvoda",
-                      "scope": 1630,
+                      "scope": 351,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -2276,20 +2276,20 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 1608,
+                        "id": 329,
                         "name": "ElementaryTypeName",
-                        "src": "386:3:11"
+                        "src": "386:3:2"
                       }
                     ],
-                    "id": 1609,
+                    "id": 330,
                     "name": "VariableDeclaration",
-                    "src": "386:16:11"
+                    "src": "386:16:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_kolicina",
-                      "scope": 1630,
+                      "scope": 351,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -2302,19 +2302,19 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 1610,
+                        "id": 331,
                         "name": "ElementaryTypeName",
-                        "src": "404:3:11"
+                        "src": "404:3:2"
                       }
                     ],
-                    "id": 1611,
+                    "id": 332,
                     "name": "VariableDeclaration",
-                    "src": "404:13:11"
+                    "src": "404:13:2"
                   }
                 ],
-                "id": 1612,
+                "id": 333,
                 "name": "ParameterList",
-                "src": "354:64:11"
+                "src": "354:64:2"
               },
               {
                 "attributes": {
@@ -2323,9 +2323,9 @@
                   ]
                 },
                 "children": [],
-                "id": 1613,
+                "id": 334,
                 "name": "ParameterList",
-                "src": "432:0:11"
+                "src": "432:0:2"
               },
               {
                 "children": [
@@ -2349,23 +2349,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1599,
+                              "referencedDeclaration": 320,
                               "type": "int256",
                               "value": "brojKupovina"
                             },
-                            "id": 1614,
+                            "id": 335,
                             "name": "Identifier",
-                            "src": "443:12:11"
+                            "src": "443:12:2"
                           }
                         ],
-                        "id": 1615,
+                        "id": 336,
                         "name": "UnaryOperation",
-                        "src": "443:14:11"
+                        "src": "443:14:2"
                       }
                     ],
-                    "id": 1616,
+                    "id": 337,
                     "name": "ExpressionStatement",
-                    "src": "443:14:11"
+                    "src": "443:14:2"
                   },
                   {
                     "children": [
@@ -2396,13 +2396,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1603,
+                                  "referencedDeclaration": 324,
                                   "type": "mapping(int256 => struct Kupovine.Kupovina storage ref)",
                                   "value": "kupovine"
                                 },
-                                "id": 1617,
+                                "id": 338,
                                 "name": "Identifier",
-                                "src": "468:8:11"
+                                "src": "468:8:2"
                               },
                               {
                                 "attributes": {
@@ -2410,18 +2410,18 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1599,
+                                  "referencedDeclaration": 320,
                                   "type": "int256",
                                   "value": "brojKupovina"
                                 },
-                                "id": 1618,
+                                "id": 339,
                                 "name": "Identifier",
-                                "src": "477:12:11"
+                                "src": "477:12:2"
                               }
                             ],
-                            "id": 1619,
+                            "id": 340,
                             "name": "IndexAccess",
-                            "src": "468:22:11"
+                            "src": "468:22:2"
                           },
                           {
                             "attributes": {
@@ -2465,13 +2465,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1596,
+                                  "referencedDeclaration": 317,
                                   "type": "type(struct Kupovine.Kupovina storage pointer)",
                                   "value": "Kupovina"
                                 },
-                                "id": 1620,
+                                "id": 341,
                                 "name": "Identifier",
-                                "src": "493:8:11"
+                                "src": "493:8:2"
                               },
                               {
                                 "attributes": {
@@ -2479,13 +2479,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1599,
+                                  "referencedDeclaration": 320,
                                   "type": "int256",
                                   "value": "brojKupovina"
                                 },
-                                "id": 1621,
+                                "id": 342,
                                 "name": "Identifier",
-                                "src": "502:12:11"
+                                "src": "502:12:2"
                               },
                               {
                                 "attributes": {
@@ -2493,13 +2493,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1605,
+                                  "referencedDeclaration": 326,
                                   "type": "int256",
                                   "value": "_idProdavca"
                                 },
-                                "id": 1622,
+                                "id": 343,
                                 "name": "Identifier",
-                                "src": "516:11:11"
+                                "src": "516:11:2"
                               },
                               {
                                 "attributes": {
@@ -2507,13 +2507,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1607,
+                                  "referencedDeclaration": 328,
                                   "type": "int256",
                                   "value": "_idKupca"
                                 },
-                                "id": 1623,
+                                "id": 344,
                                 "name": "Identifier",
-                                "src": "529:8:11"
+                                "src": "529:8:2"
                               },
                               {
                                 "attributes": {
@@ -2521,13 +2521,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1609,
+                                  "referencedDeclaration": 330,
                                   "type": "int256",
                                   "value": "_idProizvoda"
                                 },
-                                "id": 1624,
+                                "id": 345,
                                 "name": "Identifier",
-                                "src": "539:12:11"
+                                "src": "539:12:2"
                               },
                               {
                                 "attributes": {
@@ -2535,38 +2535,38 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1611,
+                                  "referencedDeclaration": 332,
                                   "type": "int256",
                                   "value": "_kolicina"
                                 },
-                                "id": 1625,
+                                "id": 346,
                                 "name": "Identifier",
-                                "src": "553:9:11"
+                                "src": "553:9:2"
                               }
                             ],
-                            "id": 1626,
+                            "id": 347,
                             "name": "FunctionCall",
-                            "src": "493:70:11"
+                            "src": "493:70:2"
                           }
                         ],
-                        "id": 1627,
+                        "id": 348,
                         "name": "Assignment",
-                        "src": "468:95:11"
+                        "src": "468:95:2"
                       }
                     ],
-                    "id": 1628,
+                    "id": 349,
                     "name": "ExpressionStatement",
-                    "src": "468:95:11"
+                    "src": "468:95:2"
                   }
                 ],
-                "id": 1629,
+                "id": 350,
                 "name": "Block",
-                "src": "432:139:11"
+                "src": "432:139:2"
               }
             ],
-            "id": 1630,
+            "id": 351,
             "name": "FunctionDefinition",
-            "src": "331:240:11"
+            "src": "331:240:2"
           },
           {
             "attributes": {
@@ -2578,7 +2578,7 @@
                 null
               ],
               "name": "daLiPostojiKupovina",
-              "scope": 1720,
+              "scope": 441,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "public"
@@ -2590,7 +2590,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_idKupca",
-                      "scope": 1679,
+                      "scope": 400,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -2603,20 +2603,20 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 1631,
+                        "id": 352,
                         "name": "ElementaryTypeName",
-                        "src": "739:3:11"
+                        "src": "739:3:2"
                       }
                     ],
-                    "id": 1632,
+                    "id": 353,
                     "name": "VariableDeclaration",
-                    "src": "739:12:11"
+                    "src": "739:12:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_idProdavca",
-                      "scope": 1679,
+                      "scope": 400,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -2629,20 +2629,20 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 1633,
+                        "id": 354,
                         "name": "ElementaryTypeName",
-                        "src": "753:3:11"
+                        "src": "753:3:2"
                       }
                     ],
-                    "id": 1634,
+                    "id": 355,
                     "name": "VariableDeclaration",
-                    "src": "753:15:11"
+                    "src": "753:15:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_idProizvoda",
-                      "scope": 1679,
+                      "scope": 400,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -2655,19 +2655,19 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 1635,
+                        "id": 356,
                         "name": "ElementaryTypeName",
-                        "src": "770:3:11"
+                        "src": "770:3:2"
                       }
                     ],
-                    "id": 1636,
+                    "id": 357,
                     "name": "VariableDeclaration",
-                    "src": "770:16:11"
+                    "src": "770:16:2"
                   }
                 ],
-                "id": 1637,
+                "id": 358,
                 "name": "ParameterList",
-                "src": "738:49:11"
+                "src": "738:49:2"
               },
               {
                 "children": [
@@ -2675,7 +2675,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1679,
+                      "scope": 400,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -2688,19 +2688,19 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 1638,
+                        "id": 359,
                         "name": "ElementaryTypeName",
-                        "src": "809:3:11"
+                        "src": "809:3:2"
                       }
                     ],
-                    "id": 1639,
+                    "id": 360,
                     "name": "VariableDeclaration",
-                    "src": "809:3:11"
+                    "src": "809:3:2"
                   }
                 ],
-                "id": 1640,
+                "id": 361,
                 "name": "ParameterList",
-                "src": "808:5:11"
+                "src": "808:5:2"
               },
               {
                 "children": [
@@ -2709,7 +2709,7 @@
                       {
                         "attributes": {
                           "assignments": [
-                            1642
+                            363
                           ]
                         },
                         "children": [
@@ -2717,7 +2717,7 @@
                             "attributes": {
                               "constant": false,
                               "name": "i",
-                              "scope": 1675,
+                              "scope": 396,
                               "stateVariable": false,
                               "storageLocation": "default",
                               "type": "int256",
@@ -2730,14 +2730,14 @@
                                   "name": "int",
                                   "type": "int256"
                                 },
-                                "id": 1641,
+                                "id": 362,
                                 "name": "ElementaryTypeName",
-                                "src": "835:3:11"
+                                "src": "835:3:2"
                               }
                             ],
-                            "id": 1642,
+                            "id": 363,
                             "name": "VariableDeclaration",
-                            "src": "835:5:11"
+                            "src": "835:5:2"
                           },
                           {
                             "attributes": {
@@ -2752,14 +2752,14 @@
                               "type": "int_const 1",
                               "value": "1"
                             },
-                            "id": 1643,
+                            "id": 364,
                             "name": "Literal",
-                            "src": "843:1:11"
+                            "src": "843:1:2"
                           }
                         ],
-                        "id": 1644,
+                        "id": 365,
                         "name": "VariableDeclarationStatement",
-                        "src": "835:9:11"
+                        "src": "835:9:2"
                       },
                       {
                         "attributes": {
@@ -2782,13 +2782,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1642,
+                              "referencedDeclaration": 363,
                               "type": "int256",
                               "value": "i"
                             },
-                            "id": 1645,
+                            "id": 366,
                             "name": "Identifier",
-                            "src": "846:1:11"
+                            "src": "846:1:2"
                           },
                           {
                             "attributes": {
@@ -2796,18 +2796,18 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1599,
+                              "referencedDeclaration": 320,
                               "type": "int256",
                               "value": "brojKupovina"
                             },
-                            "id": 1646,
+                            "id": 367,
                             "name": "Identifier",
-                            "src": "851:12:11"
+                            "src": "851:12:2"
                           }
                         ],
-                        "id": 1647,
+                        "id": 368,
                         "name": "BinaryOperation",
-                        "src": "846:17:11"
+                        "src": "846:17:2"
                       },
                       {
                         "children": [
@@ -2829,23 +2829,23 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1642,
+                                  "referencedDeclaration": 363,
                                   "type": "int256",
                                   "value": "i"
                                 },
-                                "id": 1648,
+                                "id": 369,
                                 "name": "Identifier",
-                                "src": "865:1:11"
+                                "src": "865:1:2"
                               }
                             ],
-                            "id": 1649,
+                            "id": 370,
                             "name": "UnaryOperation",
-                            "src": "865:3:11"
+                            "src": "865:3:2"
                           }
                         ],
-                        "id": 1650,
+                        "id": 371,
                         "name": "ExpressionStatement",
-                        "src": "865:3:11"
+                        "src": "865:3:2"
                       },
                       {
                         "children": [
@@ -2905,13 +2905,13 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1632,
+                                              "referencedDeclaration": 353,
                                               "type": "int256",
                                               "value": "_idKupca"
                                             },
-                                            "id": 1651,
+                                            "id": 372,
                                             "name": "Identifier",
-                                            "src": "888:8:11"
+                                            "src": "888:8:2"
                                           },
                                           {
                                             "attributes": {
@@ -2921,7 +2921,7 @@
                                               "isPure": false,
                                               "lValueRequested": false,
                                               "member_name": "idKupca",
-                                              "referencedDeclaration": 1591,
+                                              "referencedDeclaration": 312,
                                               "type": "int256"
                                             },
                                             "children": [
@@ -2941,13 +2941,13 @@
                                                       "overloadedDeclarations": [
                                                         null
                                                       ],
-                                                      "referencedDeclaration": 1603,
+                                                      "referencedDeclaration": 324,
                                                       "type": "mapping(int256 => struct Kupovine.Kupovina storage ref)",
                                                       "value": "kupovine"
                                                     },
-                                                    "id": 1652,
+                                                    "id": 373,
                                                     "name": "Identifier",
-                                                    "src": "900:8:11"
+                                                    "src": "900:8:2"
                                                   },
                                                   {
                                                     "attributes": {
@@ -2955,28 +2955,28 @@
                                                       "overloadedDeclarations": [
                                                         null
                                                       ],
-                                                      "referencedDeclaration": 1642,
+                                                      "referencedDeclaration": 363,
                                                       "type": "int256",
                                                       "value": "i"
                                                     },
-                                                    "id": 1653,
+                                                    "id": 374,
                                                     "name": "Identifier",
-                                                    "src": "909:1:11"
+                                                    "src": "909:1:2"
                                                   }
                                                 ],
-                                                "id": 1654,
+                                                "id": 375,
                                                 "name": "IndexAccess",
-                                                "src": "900:11:11"
+                                                "src": "900:11:2"
                                               }
                                             ],
-                                            "id": 1655,
+                                            "id": 376,
                                             "name": "MemberAccess",
-                                            "src": "900:19:11"
+                                            "src": "900:19:2"
                                           }
                                         ],
-                                        "id": 1656,
+                                        "id": 377,
                                         "name": "BinaryOperation",
-                                        "src": "888:31:11"
+                                        "src": "888:31:2"
                                       },
                                       {
                                         "attributes": {
@@ -2999,13 +2999,13 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1634,
+                                              "referencedDeclaration": 355,
                                               "type": "int256",
                                               "value": "_idProdavca"
                                             },
-                                            "id": 1657,
+                                            "id": 378,
                                             "name": "Identifier",
-                                            "src": "923:11:11"
+                                            "src": "923:11:2"
                                           },
                                           {
                                             "attributes": {
@@ -3015,7 +3015,7 @@
                                               "isPure": false,
                                               "lValueRequested": false,
                                               "member_name": "idProdavca",
-                                              "referencedDeclaration": 1589,
+                                              "referencedDeclaration": 310,
                                               "type": "int256"
                                             },
                                             "children": [
@@ -3035,13 +3035,13 @@
                                                       "overloadedDeclarations": [
                                                         null
                                                       ],
-                                                      "referencedDeclaration": 1603,
+                                                      "referencedDeclaration": 324,
                                                       "type": "mapping(int256 => struct Kupovine.Kupovina storage ref)",
                                                       "value": "kupovine"
                                                     },
-                                                    "id": 1658,
+                                                    "id": 379,
                                                     "name": "Identifier",
-                                                    "src": "938:8:11"
+                                                    "src": "938:8:2"
                                                   },
                                                   {
                                                     "attributes": {
@@ -3049,33 +3049,33 @@
                                                       "overloadedDeclarations": [
                                                         null
                                                       ],
-                                                      "referencedDeclaration": 1642,
+                                                      "referencedDeclaration": 363,
                                                       "type": "int256",
                                                       "value": "i"
                                                     },
-                                                    "id": 1659,
+                                                    "id": 380,
                                                     "name": "Identifier",
-                                                    "src": "947:1:11"
+                                                    "src": "947:1:2"
                                                   }
                                                 ],
-                                                "id": 1660,
+                                                "id": 381,
                                                 "name": "IndexAccess",
-                                                "src": "938:11:11"
+                                                "src": "938:11:2"
                                               }
                                             ],
-                                            "id": 1661,
+                                            "id": 382,
                                             "name": "MemberAccess",
-                                            "src": "938:22:11"
+                                            "src": "938:22:2"
                                           }
                                         ],
-                                        "id": 1662,
+                                        "id": 383,
                                         "name": "BinaryOperation",
-                                        "src": "923:37:11"
+                                        "src": "923:37:2"
                                       }
                                     ],
-                                    "id": 1663,
+                                    "id": 384,
                                     "name": "BinaryOperation",
-                                    "src": "888:72:11"
+                                    "src": "888:72:2"
                                   },
                                   {
                                     "attributes": {
@@ -3098,13 +3098,13 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1636,
+                                          "referencedDeclaration": 357,
                                           "type": "int256",
                                           "value": "_idProizvoda"
                                         },
-                                        "id": 1664,
+                                        "id": 385,
                                         "name": "Identifier",
-                                        "src": "964:12:11"
+                                        "src": "964:12:2"
                                       },
                                       {
                                         "attributes": {
@@ -3114,7 +3114,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "idProizvoda",
-                                          "referencedDeclaration": 1593,
+                                          "referencedDeclaration": 314,
                                           "type": "int256"
                                         },
                                         "children": [
@@ -3134,13 +3134,13 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 1603,
+                                                  "referencedDeclaration": 324,
                                                   "type": "mapping(int256 => struct Kupovine.Kupovina storage ref)",
                                                   "value": "kupovine"
                                                 },
-                                                "id": 1665,
+                                                "id": 386,
                                                 "name": "Identifier",
-                                                "src": "980:8:11"
+                                                "src": "980:8:2"
                                               },
                                               {
                                                 "attributes": {
@@ -3148,37 +3148,37 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 1642,
+                                                  "referencedDeclaration": 363,
                                                   "type": "int256",
                                                   "value": "i"
                                                 },
-                                                "id": 1666,
+                                                "id": 387,
                                                 "name": "Identifier",
-                                                "src": "989:1:11"
+                                                "src": "989:1:2"
                                               }
                                             ],
-                                            "id": 1667,
+                                            "id": 388,
                                             "name": "IndexAccess",
-                                            "src": "980:11:11"
+                                            "src": "980:11:2"
                                           }
                                         ],
-                                        "id": 1668,
+                                        "id": 389,
                                         "name": "MemberAccess",
-                                        "src": "980:23:11"
+                                        "src": "980:23:2"
                                       }
                                     ],
-                                    "id": 1669,
+                                    "id": 390,
                                     "name": "BinaryOperation",
-                                    "src": "964:39:11"
+                                    "src": "964:39:2"
                                   }
                                 ],
-                                "id": 1670,
+                                "id": 391,
                                 "name": "BinaryOperation",
-                                "src": "888:115:11"
+                                "src": "888:115:2"
                               },
                               {
                                 "attributes": {
-                                  "functionReturnParameters": 1640
+                                  "functionReturnParameters": 361
                                 },
                                 "children": [
                                   {
@@ -3187,37 +3187,37 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1642,
+                                      "referencedDeclaration": 363,
                                       "type": "int256",
                                       "value": "i"
                                     },
-                                    "id": 1671,
+                                    "id": 392,
                                     "name": "Identifier",
-                                    "src": "1029:1:11"
+                                    "src": "1029:1:2"
                                   }
                                 ],
-                                "id": 1672,
+                                "id": 393,
                                 "name": "Return",
-                                "src": "1022:8:11"
+                                "src": "1022:8:2"
                               }
                             ],
-                            "id": 1673,
+                            "id": 394,
                             "name": "IfStatement",
-                            "src": "885:145:11"
+                            "src": "885:145:2"
                           }
                         ],
-                        "id": 1674,
+                        "id": 395,
                         "name": "Block",
-                        "src": "870:172:11"
+                        "src": "870:172:2"
                       }
                     ],
-                    "id": 1675,
+                    "id": 396,
                     "name": "ForStatement",
-                    "src": "830:212:11"
+                    "src": "830:212:2"
                   },
                   {
                     "attributes": {
-                      "functionReturnParameters": 1640
+                      "functionReturnParameters": 361
                     },
                     "children": [
                       {
@@ -3233,24 +3233,24 @@
                           "type": "int_const 0",
                           "value": "0"
                         },
-                        "id": 1676,
+                        "id": 397,
                         "name": "Literal",
-                        "src": "1059:1:11"
+                        "src": "1059:1:2"
                       }
                     ],
-                    "id": 1677,
+                    "id": 398,
                     "name": "Return",
-                    "src": "1052:8:11"
+                    "src": "1052:8:2"
                   }
                 ],
-                "id": 1678,
+                "id": 399,
                 "name": "Block",
-                "src": "819:249:11"
+                "src": "819:249:2"
               }
             ],
-            "id": 1679,
+            "id": 400,
             "name": "FunctionDefinition",
-            "src": "709:359:11"
+            "src": "709:359:2"
           },
           {
             "attributes": {
@@ -3262,7 +3262,7 @@
                 null
               ],
               "name": "daLiPostojiKupovinaBiloKogProizvoda",
-              "scope": 1720,
+              "scope": 441,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "public"
@@ -3274,7 +3274,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_idKupca",
-                      "scope": 1719,
+                      "scope": 440,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -3287,20 +3287,20 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 1680,
+                        "id": 401,
                         "name": "ElementaryTypeName",
-                        "src": "1291:3:11"
+                        "src": "1291:3:2"
                       }
                     ],
-                    "id": 1681,
+                    "id": 402,
                     "name": "VariableDeclaration",
-                    "src": "1291:12:11"
+                    "src": "1291:12:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_idProdavca",
-                      "scope": 1719,
+                      "scope": 440,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -3313,19 +3313,19 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 1682,
+                        "id": 403,
                         "name": "ElementaryTypeName",
-                        "src": "1305:3:11"
+                        "src": "1305:3:2"
                       }
                     ],
-                    "id": 1683,
+                    "id": 404,
                     "name": "VariableDeclaration",
-                    "src": "1305:15:11"
+                    "src": "1305:15:2"
                   }
                 ],
-                "id": 1684,
+                "id": 405,
                 "name": "ParameterList",
-                "src": "1290:31:11"
+                "src": "1290:31:2"
               },
               {
                 "children": [
@@ -3333,7 +3333,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1719,
+                      "scope": 440,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "int256",
@@ -3346,19 +3346,19 @@
                           "name": "int",
                           "type": "int256"
                         },
-                        "id": 1685,
+                        "id": 406,
                         "name": "ElementaryTypeName",
-                        "src": "1343:3:11"
+                        "src": "1343:3:2"
                       }
                     ],
-                    "id": 1686,
+                    "id": 407,
                     "name": "VariableDeclaration",
-                    "src": "1343:3:11"
+                    "src": "1343:3:2"
                   }
                 ],
-                "id": 1687,
+                "id": 408,
                 "name": "ParameterList",
-                "src": "1342:5:11"
+                "src": "1342:5:2"
               },
               {
                 "children": [
@@ -3367,7 +3367,7 @@
                       {
                         "attributes": {
                           "assignments": [
-                            1689
+                            410
                           ]
                         },
                         "children": [
@@ -3375,7 +3375,7 @@
                             "attributes": {
                               "constant": false,
                               "name": "i",
-                              "scope": 1715,
+                              "scope": 436,
                               "stateVariable": false,
                               "storageLocation": "default",
                               "type": "int256",
@@ -3388,14 +3388,14 @@
                                   "name": "int",
                                   "type": "int256"
                                 },
-                                "id": 1688,
+                                "id": 409,
                                 "name": "ElementaryTypeName",
-                                "src": "1369:3:11"
+                                "src": "1369:3:2"
                               }
                             ],
-                            "id": 1689,
+                            "id": 410,
                             "name": "VariableDeclaration",
-                            "src": "1369:5:11"
+                            "src": "1369:5:2"
                           },
                           {
                             "attributes": {
@@ -3410,14 +3410,14 @@
                               "type": "int_const 1",
                               "value": "1"
                             },
-                            "id": 1690,
+                            "id": 411,
                             "name": "Literal",
-                            "src": "1377:1:11"
+                            "src": "1377:1:2"
                           }
                         ],
-                        "id": 1691,
+                        "id": 412,
                         "name": "VariableDeclarationStatement",
-                        "src": "1369:9:11"
+                        "src": "1369:9:2"
                       },
                       {
                         "attributes": {
@@ -3440,13 +3440,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1689,
+                              "referencedDeclaration": 410,
                               "type": "int256",
                               "value": "i"
                             },
-                            "id": 1692,
+                            "id": 413,
                             "name": "Identifier",
-                            "src": "1380:1:11"
+                            "src": "1380:1:2"
                           },
                           {
                             "attributes": {
@@ -3454,18 +3454,18 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1599,
+                              "referencedDeclaration": 320,
                               "type": "int256",
                               "value": "brojKupovina"
                             },
-                            "id": 1693,
+                            "id": 414,
                             "name": "Identifier",
-                            "src": "1385:12:11"
+                            "src": "1385:12:2"
                           }
                         ],
-                        "id": 1694,
+                        "id": 415,
                         "name": "BinaryOperation",
-                        "src": "1380:17:11"
+                        "src": "1380:17:2"
                       },
                       {
                         "children": [
@@ -3487,23 +3487,23 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1689,
+                                  "referencedDeclaration": 410,
                                   "type": "int256",
                                   "value": "i"
                                 },
-                                "id": 1695,
+                                "id": 416,
                                 "name": "Identifier",
-                                "src": "1399:1:11"
+                                "src": "1399:1:2"
                               }
                             ],
-                            "id": 1696,
+                            "id": 417,
                             "name": "UnaryOperation",
-                            "src": "1399:3:11"
+                            "src": "1399:3:2"
                           }
                         ],
-                        "id": 1697,
+                        "id": 418,
                         "name": "ExpressionStatement",
-                        "src": "1399:3:11"
+                        "src": "1399:3:2"
                       },
                       {
                         "children": [
@@ -3548,13 +3548,13 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1681,
+                                          "referencedDeclaration": 402,
                                           "type": "int256",
                                           "value": "_idKupca"
                                         },
-                                        "id": 1698,
+                                        "id": 419,
                                         "name": "Identifier",
-                                        "src": "1422:8:11"
+                                        "src": "1422:8:2"
                                       },
                                       {
                                         "attributes": {
@@ -3564,7 +3564,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "idKupca",
-                                          "referencedDeclaration": 1591,
+                                          "referencedDeclaration": 312,
                                           "type": "int256"
                                         },
                                         "children": [
@@ -3584,13 +3584,13 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 1603,
+                                                  "referencedDeclaration": 324,
                                                   "type": "mapping(int256 => struct Kupovine.Kupovina storage ref)",
                                                   "value": "kupovine"
                                                 },
-                                                "id": 1699,
+                                                "id": 420,
                                                 "name": "Identifier",
-                                                "src": "1434:8:11"
+                                                "src": "1434:8:2"
                                               },
                                               {
                                                 "attributes": {
@@ -3598,28 +3598,28 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 1689,
+                                                  "referencedDeclaration": 410,
                                                   "type": "int256",
                                                   "value": "i"
                                                 },
-                                                "id": 1700,
+                                                "id": 421,
                                                 "name": "Identifier",
-                                                "src": "1443:1:11"
+                                                "src": "1443:1:2"
                                               }
                                             ],
-                                            "id": 1701,
+                                            "id": 422,
                                             "name": "IndexAccess",
-                                            "src": "1434:11:11"
+                                            "src": "1434:11:2"
                                           }
                                         ],
-                                        "id": 1702,
+                                        "id": 423,
                                         "name": "MemberAccess",
-                                        "src": "1434:19:11"
+                                        "src": "1434:19:2"
                                       }
                                     ],
-                                    "id": 1703,
+                                    "id": 424,
                                     "name": "BinaryOperation",
-                                    "src": "1422:31:11"
+                                    "src": "1422:31:2"
                                   },
                                   {
                                     "attributes": {
@@ -3642,13 +3642,13 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1683,
+                                          "referencedDeclaration": 404,
                                           "type": "int256",
                                           "value": "_idProdavca"
                                         },
-                                        "id": 1704,
+                                        "id": 425,
                                         "name": "Identifier",
-                                        "src": "1457:11:11"
+                                        "src": "1457:11:2"
                                       },
                                       {
                                         "attributes": {
@@ -3658,7 +3658,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "idProdavca",
-                                          "referencedDeclaration": 1589,
+                                          "referencedDeclaration": 310,
                                           "type": "int256"
                                         },
                                         "children": [
@@ -3678,13 +3678,13 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 1603,
+                                                  "referencedDeclaration": 324,
                                                   "type": "mapping(int256 => struct Kupovine.Kupovina storage ref)",
                                                   "value": "kupovine"
                                                 },
-                                                "id": 1705,
+                                                "id": 426,
                                                 "name": "Identifier",
-                                                "src": "1472:8:11"
+                                                "src": "1472:8:2"
                                               },
                                               {
                                                 "attributes": {
@@ -3692,37 +3692,37 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 1689,
+                                                  "referencedDeclaration": 410,
                                                   "type": "int256",
                                                   "value": "i"
                                                 },
-                                                "id": 1706,
+                                                "id": 427,
                                                 "name": "Identifier",
-                                                "src": "1481:1:11"
+                                                "src": "1481:1:2"
                                               }
                                             ],
-                                            "id": 1707,
+                                            "id": 428,
                                             "name": "IndexAccess",
-                                            "src": "1472:11:11"
+                                            "src": "1472:11:2"
                                           }
                                         ],
-                                        "id": 1708,
+                                        "id": 429,
                                         "name": "MemberAccess",
-                                        "src": "1472:22:11"
+                                        "src": "1472:22:2"
                                       }
                                     ],
-                                    "id": 1709,
+                                    "id": 430,
                                     "name": "BinaryOperation",
-                                    "src": "1457:37:11"
+                                    "src": "1457:37:2"
                                   }
                                 ],
-                                "id": 1710,
+                                "id": 431,
                                 "name": "BinaryOperation",
-                                "src": "1422:72:11"
+                                "src": "1422:72:2"
                               },
                               {
                                 "attributes": {
-                                  "functionReturnParameters": 1687
+                                  "functionReturnParameters": 408
                                 },
                                 "children": [
                                   {
@@ -3731,37 +3731,37 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1689,
+                                      "referencedDeclaration": 410,
                                       "type": "int256",
                                       "value": "i"
                                     },
-                                    "id": 1711,
+                                    "id": 432,
                                     "name": "Identifier",
-                                    "src": "1520:1:11"
+                                    "src": "1520:1:2"
                                   }
                                 ],
-                                "id": 1712,
+                                "id": 433,
                                 "name": "Return",
-                                "src": "1513:8:11"
+                                "src": "1513:8:2"
                               }
                             ],
-                            "id": 1713,
+                            "id": 434,
                             "name": "IfStatement",
-                            "src": "1419:102:11"
+                            "src": "1419:102:2"
                           }
                         ],
-                        "id": 1714,
+                        "id": 435,
                         "name": "Block",
-                        "src": "1404:129:11"
+                        "src": "1404:129:2"
                       }
                     ],
-                    "id": 1715,
+                    "id": 436,
                     "name": "ForStatement",
-                    "src": "1364:169:11"
+                    "src": "1364:169:2"
                   },
                   {
                     "attributes": {
-                      "functionReturnParameters": 1687
+                      "functionReturnParameters": 408
                     },
                     "children": [
                       {
@@ -3777,34 +3777,34 @@
                           "type": "int_const 0",
                           "value": "0"
                         },
-                        "id": 1716,
+                        "id": 437,
                         "name": "Literal",
-                        "src": "1550:1:11"
+                        "src": "1550:1:2"
                       }
                     ],
-                    "id": 1717,
+                    "id": 438,
                     "name": "Return",
-                    "src": "1543:8:11"
+                    "src": "1543:8:2"
                   }
                 ],
-                "id": 1718,
+                "id": 439,
                 "name": "Block",
-                "src": "1353:206:11"
+                "src": "1353:206:2"
               }
             ],
-            "id": 1719,
+            "id": 440,
             "name": "FunctionDefinition",
-            "src": "1245:314:11"
+            "src": "1245:314:2"
           }
         ],
-        "id": 1720,
+        "id": 441,
         "name": "ContractDefinition",
-        "src": "69:1497:11"
+        "src": "69:1497:2"
       }
     ],
-    "id": 1721,
+    "id": 442,
     "name": "SourceUnit",
-    "src": "33:1533:11"
+    "src": "33:1533:2"
   },
   "compiler": {
     "name": "solc",
@@ -3814,12 +3814,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x740C39Fcdcbdc232846c15d126dFAd2854F90467",
-      "transactionHash": "0x9df01443b44f2dd98b622a7b21bf7ef231fa668074d522f31cda7337867f7114"
+      "address": "0x78feE21aEC7c382b1E4b1250214b4bEA45204a6E",
+      "transactionHash": "0x77ac9b8722d4d53e34ec8728e4cabc1c600af020e017e57fca2269ef721880a8"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-05-17T14:23:22.416Z",
+  "updatedAt": "2021-05-20T17:17:20.398Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

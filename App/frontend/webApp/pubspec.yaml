@@ -65,6 +65,7 @@ flutter:
     - assets/src/Ocene.json
     - assets/src/Kupovine.json
     - assets/src/ListaZelja.json
+    - src/abis/Proizvodi.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
     // print(FlutterSession().get('email').toString());
     var korisnici = KorisniciModel();
     //var kategorije = KategorijeModel();
-    //var proizvodi = ProizvodiModel();
+    var proizvodi = ProizvodiModel();
     //var ocene = OceneModel();
     //var lista = NotifikacijeModel();
     // setujSesiju();

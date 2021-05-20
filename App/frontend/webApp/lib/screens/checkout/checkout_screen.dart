@@ -304,7 +304,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             index.product.id.toString() +
             index.numOfItems.toString());
         var res = await kupovina
-            .daLiPostojiKupovinaFunction(
+            .daLiPostojiKupovinaZaOcenjivanjeProizvoda(
                 korisnikInfo.id, index.product.idKorisnika, index.product.id)
             .timeout(const Duration(seconds: 30));
         print(res.toString());

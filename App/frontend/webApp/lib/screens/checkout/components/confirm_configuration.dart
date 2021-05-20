@@ -188,7 +188,7 @@ class CheckoutItemCard extends StatelessWidget {
                 clipBehavior: Clip.hardEdge,
                 // clipBehavior: Clip.hardEdge,
                 child: Image.network(
-                  "https://ipfs.io/ipfs/" + cart.product.slika,
+                  "https://ipfs.io/ipfs/" + cart.product.slika[0],
                   errorBuilder: (context, error, stackTrace) {
                     return SvgPicture.asset(
                         Theme.of(context).colorScheme == ColorScheme.dark()
