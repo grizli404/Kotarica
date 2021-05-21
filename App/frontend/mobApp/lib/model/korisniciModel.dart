@@ -31,6 +31,7 @@ class KorisniciModel extends ChangeNotifier {
   ContractFunction proveriUsername;
   ContractFunction dodajKorisnika;
   ContractFunction _dodajSliku;
+  ContractFunction _izmeniKorisnika;
 
   Web3Client client;
 
@@ -56,6 +57,7 @@ class KorisniciModel extends ChangeNotifier {
     }*/
     // await dodajSliku(1, "promena");
     // print("promenio sam");
+    //await izmeniKorisnika(4, "Milos", "Ivanovic", "0000000000", "Nepoznata, 12, 34000");
     notifyListeners();
   }
 
@@ -104,6 +106,7 @@ class KorisniciModel extends ChangeNotifier {
     proveriUsername = ugovor.function("proveriUsername");
     dodajKorisnika = ugovor.function("dodajKorisnika");
     _dodajSliku = ugovor.function("dodajSliku");
+    _izmeniKorisnika = ugovor.function("izmeniKorisnika");
   }
 
   //Logovanje
@@ -157,9 +160,6 @@ class KorisniciModel extends ChangeNotifier {
           adresa: k[6],
           slika: k[7]);
     }
-
-    print(kor.ime);
-    print(kor.mail);
 
     return kor;
   }
@@ -225,6 +225,18 @@ class KorisniciModel extends ChangeNotifier {
             contract: ugovor,
             function: _dodajSliku,
             parameters: [BigInt.from(id), slika]));
+  }
+
+  Future<void> izmeniKorisnika(int _idKorisnika, String ime, String prezime,
+                                String broj, String adresa) async {
+     await client.sendTransaction(
+          credentials,
+          Transaction.callContract(
+              maxGas: 6721975,
+              contract: ugovor,
+              function: _izmeniKorisnika,
+              parameters: [BigInt.from(_idKorisnika), ime, prezime,
+                                      broj, adresa]));
   }
 
   static Map<String, String> header = {
