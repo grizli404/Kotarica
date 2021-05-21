@@ -195,7 +195,7 @@ class CheckoutItemCard extends StatelessWidget {
                             ? "assets/icons/shopping-basket-dark.svg"
                             : "assets/icons/shopping-basket.svg");
                   },
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
                 decoration: BoxDecoration(
                   color: Theme.of(context).scaffoldBackgroundColor,

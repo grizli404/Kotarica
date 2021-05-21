@@ -235,7 +235,9 @@ class _BodyState extends State<Body> {
                   SizedBox(width: 20.0),
                   InkWell(
                     // posalji poruku
-                    onTap: () => buildConvo(),
+                    onTap: widget.korisnik.id != korisnikInfo.id
+                        ? () => buildConvo()
+                        : null,
                     child: Center(
                       child: Container(
                         width: ResponsiveLayout.isIphone(context)
@@ -389,17 +391,20 @@ class _BodyState extends State<Body> {
       autoplay: false,
       itemBuilder: (BuildContext context, int index) {
         if (proizvod.slika.isNotEmpty) {
+          // for (int i = 0; i < proizvod.slika.length; i++) {
           return new Image.network(
             "https://ipfs.io/ipfs/" + widget.proizvod.slika[index],
             //  fit: BoxFit.fill,
           );
+          //}
         } else {
           return new Image.asset(
             widget.assetPath,
           );
         }
+        //return null;
       },
-      itemCount: 3,
+      itemCount: proizvod.slika.isNotEmpty ? proizvod.slika.length : 1,
       viewportFraction: 0.8,
       scale: 0.9,
       pagination: new SwiperPagination(
