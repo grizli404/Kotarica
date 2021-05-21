@@ -2,6 +2,7 @@ import 'package:app/components/progress_hud.dart';
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/main.dart';
 import 'package:app/model/korisniciModel.dart';
+import 'package:app/model/kupovineModel.dart';
 import 'package:app/model/oceneModel.dart';
 import 'package:app/screens/conversation/conversation_screen.dart';
 import 'package:app/screens/profile/profile_screen.dart';
@@ -91,11 +92,22 @@ class _BodyState extends State<Body> {
       //     return null;
       // }
 
-      // OceneModel ocene = Provider.of<OceneModel>(context);
-      // unesiOcenu(Korisnik korisnik, Proizvod proizvod, int ocena) async {
-      //   await ocene.oceniProizvod(korisnik.id, proizvod.idKategorije, proizvod.id,
-      //       ocena, "komentar...");
-      // }
+      KupovineModel kupovine = Provider.of<KupovineModel>(context);
+      OceneModel ocene = Provider.of<OceneModel>(context);
+      unesiOcenu(Korisnik korisnik, Proizvod proizvod, int ocena) async {
+        int daLiPostojikupovina =
+            await kupovine.daLiPostojiKupovinaZaOcenjivanjeProizvoda(
+                korisnik.id, proizvod.idKorisnika, proizvod.id);
+        if (daLiPostojikupovina != 0) {
+          await ocene.oceniProizvod(
+              daLiPostojikupovina, proizvod.idKorisnika, proizvod.id, ocena);
+          print('uneta ocena ' + _rating.toString());
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text("Uneli ste ocenu!")));
+        } else
+          return ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text("Niste kupili proizvod!")));
+      }
 
       return ListView(
         children: [
@@ -108,7 +120,18 @@ class _BodyState extends State<Body> {
             margin: EdgeInsets.only(left: 25),
             child: Row(
               children: [
-                Text('5', style: TextStyle(fontSize: 20)),
+                //   Text('5', style: TextStyle(fontSize: 20)),
+
+                FutureBuilder(
+                  future: ocene.prosecnaOcenaZaProizvod(widget.proizvod.id),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Text('${snapshot.data}',
+                          style: TextStyle(fontSize: 20));
+                    } else
+                      return Text('0', style: TextStyle(fontSize: 20));
+                  },
+                ),
                 Icon(
                   Icons.star,
                   color: Theme.of(context).primaryColor,
@@ -235,9 +258,10 @@ class _BodyState extends State<Body> {
                   SizedBox(width: 20.0),
                   InkWell(
                     // posalji poruku
-                    onTap: widget.korisnik.id != korisnikInfo.id
-                        ? () => buildConvo()
-                        : null,
+                    // onTap: widget.korisnik.id != korisnikInfo.id
+                    //     ? () => buildConvo()
+                    //     : null,
+                    onTap: () => buildConvo(),
                     child: Center(
                       child: Container(
                         width: ResponsiveLayout.isIphone(context)
@@ -286,10 +310,7 @@ class _BodyState extends State<Body> {
               // Korisnik k = await uzmiPodatke();
               if (korisnikInfo != null) {
                 // unesi ocenu
-                // unesiOcenu(korisnikInfo, widget.proizvod, _rating);
-                print('uneta ocena ' + _rating.toString());
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text("Uneli ste ocenu!")));
+                unesiOcenu(korisnikInfo, widget.proizvod, _rating);
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text(
@@ -404,7 +425,7 @@ class _BodyState extends State<Body> {
         }
         //return null;
       },
-      itemCount: proizvod.slika.isNotEmpty ? proizvod.slika.length : 1,
+      itemCount: proizvod.slika.isNotEmpty ? proizvod.slika.length - 1 : 1,
       viewportFraction: 0.8,
       scale: 0.9,
       pagination: new SwiperPagination(
