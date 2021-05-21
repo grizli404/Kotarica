@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
 import 'ether_setup.dart';
+import 'package:app/model/proizvodiModel.dart';
 
 class KupovineModel extends ChangeNotifier {
   Credentials credentials;
@@ -36,8 +37,6 @@ class KupovineModel extends ChangeNotifier {
     await getAbi();
     await getCredentials();
     await getDeployedCotract();
-    notifyListeners();
-    print(ugovor);
 
     //await oceniProizvod(1, 1, 2, 4, "Bez komentara");
   }
@@ -63,14 +62,13 @@ class KupovineModel extends ChangeNotifier {
 
     adresaUgovora =
         EthereumAddress.fromHex(jsonAbi["networks"]["5777"]["address"]);
-    print(adresaUgovora);
+    //print(adresaUgovora);
   }
 
   Future<void> getCredentials() async {
     //ovde smo dobili nasu javnu adresu uz pomocom privatnog kljuca
     credentials = await client.credentialsFromPrivateKey(privatniKljuc);
     nasaAdresa = await credentials.extractAddress();
-    print(nasaAdresa.toString());
   }
 
   Future<void> getDeployedCotract() async {
@@ -85,7 +83,7 @@ class KupovineModel extends ChangeNotifier {
         ugovor.function("daLiPostojiKupovinaBiloKogProizvoda");
   }
 
-  Future<void> dodavanjeNoveKupovine(
+  dodavanjeNoveKupovine(
       int _idProdavca, int _idKupca, int _idProizvoda, int _kolicina) async {
     await client.sendTransaction(
         credentials,
@@ -99,20 +97,6 @@ class KupovineModel extends ChangeNotifier {
               BigInt.from(_idProizvoda),
               BigInt.from(_kolicina)
             ]));
-  }
-
-  Future<int> daLiPostojiKupovinaFunction(
-      int _idKupca, int _idProdavca, int _idProizvoda) async {
-    var temp = await client.call(
-        contract: ugovor,
-        function: daLiPostojiKupovina,
-        params: [
-          BigInt.from(_idKupca),
-          BigInt.from(_idProdavca),
-          BigInt.from(_idProizvoda)
-        ]);
-
-    return temp[0].toInt();
   }
 
   Future<int> daLiPostojiKupovinaZaOcenjivanjeProizvoda(
@@ -138,6 +122,45 @@ class KupovineModel extends ChangeNotifier {
 
     return temp[0].toInt();
   }
+
+  List<int> najprodavanije(
+      List<Kupovina> listaKupovina, List<Proizvod> listaProizvoda) {
+    List<Popularnost> idNajpopularnijih = [];
+    idNajpopularnijih.clear();
+
+    var brProizvoda = listaProizvoda.length;
+    var brKupovina = listaKupovina.length;
+    for (var i = 1; i < brProizvoda; i++) {
+      idNajpopularnijih[i].id = i;
+      idNajpopularnijih[i].brKupovina = 0;
+    }
+
+    for (var i = 1; i <= brKupovina; i++) {
+      for (var j = 1; j <= brProizvoda; j++) {
+        if (listaKupovina[i].idProizvoda == listaProizvoda[j].id) {
+          idNajpopularnijih[j].brKupovina++;
+          break;
+        }
+      }
+    }
+    Popularnost pom;
+    for (var i = 1; i < brKupovina; i++) {
+      for (var j = i + 1; j <= brKupovina; j++) {
+        if (idNajpopularnijih[i].brKupovina < idNajpopularnijih[j].brKupovina) {
+          pom = idNajpopularnijih[i];
+          idNajpopularnijih[i] = idNajpopularnijih[j];
+          idNajpopularnijih[j] = pom;
+        }
+      }
+    }
+
+    List<int> prvihDvadeset = [];
+    for (var i = 1; i <= 20; i++) {
+      prvihDvadeset.add(idNajpopularnijih[i].id);
+    }
+
+    return prvihDvadeset;
+  }
 }
 
 class Kupovina {
@@ -153,4 +176,11 @@ class Kupovina {
       this.idProdavca,
       this.idProizvoda,
       this.kolicina});
+}
+
+class Popularnost {
+  int id;
+  int brKupovina;
+
+  Popularnost({this.id, this.brKupovina});
 }
