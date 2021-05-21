@@ -123,8 +123,8 @@ class KupovineModel extends ChangeNotifier {
     return temp[0].toInt();
   }
 
-  List<int> najprodavanije(
-      List<Kupovina> listaKupovina, List<Proizvod> listaProizvoda) {
+  Future<List<int>> najprodavanije(
+      List<Kupovina> listaKupovina, List<Proizvod> listaProizvoda) async {
     List<Popularnost> idNajpopularnijih = [];
     idNajpopularnijih.clear();
 
@@ -144,8 +144,8 @@ class KupovineModel extends ChangeNotifier {
       }
     }
     Popularnost pom;
-    for (var i = 1; i < brKupovina; i++) {
-      for (var j = i + 1; j <= brKupovina; j++) {
+    for (var i = 1; i < brProizvoda; i++) {
+      for (var j = i + 1; j <= brProizvoda; j++) {
         if (idNajpopularnijih[i].brKupovina < idNajpopularnijih[j].brKupovina) {
           pom = idNajpopularnijih[i];
           idNajpopularnijih[i] = idNajpopularnijih[j];

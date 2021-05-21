@@ -3,6 +3,7 @@ import 'package:app/components/responsive_layout.dart';
 import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/conversation/conversation_screen.dart';
+import 'package:app/screens/home/components/productView.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+          //  margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
           child: Column(
             children: [
               Wrap(
@@ -149,6 +150,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
+                    margin: EdgeInsets.only(left: 15),
                     width: ResponsiveLayout.isIphone(context)
                         ? MediaQuery.of(context).size.width * 0.4
                         : MediaQuery.of(context).size.width * 0.3,
@@ -236,7 +238,10 @@ class ProfileScreen extends StatelessWidget {
                   style: TextStyle(color: kPrimaryColor, fontSize: 20),
                 ),
               ),
-              Wrap(children: kartice),
+              //  Wrap(children: kartice),
+              ProductView(
+                listaProizvoda: proizvodi,
+              )
             ],
           ),
         ),
