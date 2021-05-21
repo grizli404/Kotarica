@@ -260,10 +260,11 @@ class _BodyState extends State<Body> {
                   SizedBox(width: 20.0),
                   InkWell(
                     // posalji poruku
-                    onTap: () => buildConvo(),
-                    // onTap: widget.korisnik.id != korisnikInfo.id
-                    //     ? () => buildConvo()
-                    //     : null,
+                    onTap: korisnikInfo != null
+                        ? widget.korisnik.id != korisnikInfo.id
+                            ? () => buildConvo()
+                            : null
+                        : null,
                     child: Center(
                       child: Container(
                         width: ResponsiveLayout.isIphone(context)

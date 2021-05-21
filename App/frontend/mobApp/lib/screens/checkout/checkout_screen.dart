@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:app/components/progress_hud.dart';
 import 'package:app/constants.dart';
 import 'package:app/model/cart.dart';
 import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/kupovineModel.dart';
+import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/checkout/components/confirm_configuration.dart';
 import 'package:app/screens/checkout/components/payment_configuration.dart';
 import 'package:app/screens/checkout/components/shipping_configuration.dart';
@@ -26,6 +29,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   final formKey2 = GlobalKey<FormState>();
   bool isApiCallProcess = false;
   KupovineModel kupovina;
+  ProizvodiModel proizvodi;
   payment character = payment.online;
 
   @override
@@ -47,7 +51,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   Widget _build(BuildContext context) {
     var carts = Provider.of<Carts>(context);
-
+    proizvodi = Provider.of<ProizvodiModel>(context, listen: true);
     kupovina = Provider.of<KupovineModel>(context, listen: true);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -274,8 +278,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             // ] else ...[
             FlatButton(
               disabledColor: Colors.grey,
-              onPressed:
-                  kupovina.ugovor != null ? () => placeOrder(carts) : null,
+              onPressed: kupovina.ugovor != null
+                  ? proizvodi.ugovor != null
+                      ? () => placeOrder(carts)
+                      : null
+                  : null,
               child: Row(children: [Text("Naruči"), Icon(Icons.check_rounded)]),
               color: kPrimaryLightColor,
               textColor: Theme.of(context).primaryColor,
@@ -292,29 +299,32 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       setState(() {
         isApiCallProcess = true;
       });
+      List<Cart> kupljeni = [];
       for (Cart index in carts.demoCarts) {
         try {
-          await kupovina
-              .dodavanjeNoveKupovine(index.product.idKorisnika, korisnikInfo.id,
-                  index.product.id, index.numOfItems)
+          bool ind = await proizvodi
+              .smanjiPrilikomKupovine(index.product.id, index.numOfItems)
               .timeout(const Duration(seconds: 30));
-          print(index.product.idKorisnika.toString() +
-              korisnikInfo.id.toString() +
-              index.product.id.toString() +
-              index.numOfItems.toString());
-          var res = await kupovina
-              .daLiPostojiKupovinaZaOcenjivanjeProizvoda(
-                  korisnikInfo.id, index.product.idKorisnika, index.product.id)
-              .timeout(const Duration(seconds: 30));
-          await hubConnection.invoke('Notifikacija', args: <dynamic>[
-            korisnikInfo.ime,
-            korisnikInfo.brojTelefona,
-            korisnikInfo.adresa,
-            index.product.naziv,
-            index.numOfItems,
-            index.product.idKorisnika
-          ]);
-          print(res.toString());
+
+          if (ind) {
+            kupljeni.add(index);
+            await kupovina
+                .dodavanjeNoveKupovine(index.product.idKorisnika,
+                    korisnikInfo.id, index.product.id, index.numOfItems)
+                .timeout(const Duration(seconds: 30));
+            var res = await kupovina
+                .daLiPostojiKupovinaZaOcenjivanjeProizvoda(korisnikInfo.id,
+                    index.product.idKorisnika, index.product.id)
+                .timeout(const Duration(seconds: 30));
+            await hubConnection.invoke('Notifikacija', args: <dynamic>[
+              korisnikInfo.ime,
+              korisnikInfo.brojTelefona,
+              korisnikInfo.adresa,
+              index.product.naziv,
+              index.numOfItems,
+              index.product.idKorisnika
+            ]);
+          }
         } catch (e) {
           print(e);
         }
@@ -322,17 +332,26 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       setState(() {
         isApiCallProcess = false;
       });
-
+      var string = '';
+      kupljeni.forEach((element) {
+        string += element.product.naziv;
+        string += ', ';
+      });
       showDialog(
           context: context,
           builder: (_) => AlertDialog(
-                title: Center(child: Text("Narudžbina poslata!")),
+                title: Center(child: Text("Narudžbina poslata:")),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
                       Icons.check_circle_outline_rounded,
                       size: 150,
+                    ),
+                    Text(
+                      string,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     if (character == payment.onArrival)
                       Text("Plaća se pouzećem!")
