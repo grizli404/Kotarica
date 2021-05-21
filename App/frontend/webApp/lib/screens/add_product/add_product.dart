@@ -45,6 +45,8 @@ class _AddProductState extends State<AddProduct> {
   int catIndex;
   Kategorija potkategorija;
   KategorijeModel kModel;
+  List<String> jediniceMere;
+  String jedinicaMere;
 
   List<String> slike = [];
 
@@ -66,6 +68,8 @@ class _AddProductState extends State<AddProduct> {
     subcategory = kModel.dajPotkategorije(selectedCat.id);
     potkategorija = subcategory[0];
     slika = "0";
+    jediniceMere = ["kg", "l", "kom", "cm"];
+    jedinicaMere = jediniceMere[0];
   }
 
   @override
@@ -136,24 +140,54 @@ class _AddProductState extends State<AddProduct> {
                   )
                 ],
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  InputFieldNotValidated(
-                      myController: kolicinaController,
-                      title: "Kolicina",
-                      maxLen: 10),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 30),
-                    child: Opacity(
-                      opacity: opacityKolicina,
-                      child: Text(
-                        textKolicina,
-                        style: TextStyle(color: Colors.red),
-                      ),
+                    width: size.width - 200,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        InputFieldNotValidated(
+                            myController: kolicinaController,
+                            title: "Kolicina",
+                            maxLen: 10),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 30),
+                          child: Opacity(
+                            opacity: opacityKolicina,
+                            child: Text(
+                              textKolicina,
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  )
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 0, 40, 0),
+                    child: DropdownButton<String>(
+                      value: jedinicaMere,
+                      items: jediniceMere.map((String value) {
+                        print("Doropdown kategorija");
+                        return new DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColor),
+                            ));
+                      }).toList(),
+                      onChanged: (String newJedinica) {
+                        print("Nova Jedinica mere: " + newJedinica);
+                        setState(() {
+                          jedinicaMere = newJedinica;
+                        });
+                      },
+                    ),
+                  ),
                 ],
               ),
               Column(
@@ -304,18 +338,24 @@ class _AddProductState extends State<AddProduct> {
                         "," +
                         opisController.text);
 
+                    _openLoadingDialog(context);
                     pModel.dodajProizvod(
                         korisnikInfo.id,
-                        1, //OVDE TREBA ID KATEGORIJE
+                        selectedCat.id,
                         potkategorija.id,
                         nazivController.text,
                         int.parse(kolicinaController.text),
-                        "kg", // OVDE TREBA DA SE STAVI JEDINICA
+                        jedinicaMere,
                         int.parse(cenaController.text),
                         slike,
                         opisController.text);
+                    Navigator.pop(context);
                     print("Uspesno dodavanje");
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Postavljen proizvod"),
+                    ));
                   }
+
                   setState(() {});
                 },
               )
@@ -420,4 +460,16 @@ class _AddProductState extends State<AddProduct> {
       print(message);
     }
   }
+}
+
+void _openLoadingDialog(BuildContext context) {
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        content: CircularProgressIndicator(),
+      );
+    },
+  );
 }

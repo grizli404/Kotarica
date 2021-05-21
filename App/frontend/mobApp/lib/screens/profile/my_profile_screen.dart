@@ -1,21 +1,10 @@
 //import 'dart:html';
-import 'dart:io';
-import 'package:flutter_absolute_path/flutter_absolute_path.dart';
-import 'package:http/http.dart' as http;
+import 'package:app/model/proizvodiModel.dart';
 import 'package:app/components/navigationBar.dart';
 import 'package:app/components/product_card.dart';
-import 'package:app/components/rad_sa_slikama.dart';
 import 'package:app/components/star_display.dart';
-import 'package:app/model/korisniciModel.dart';
-import 'package:app/screens/add_product/add_product.dart';
-import 'package:app/screens/notifications/notification_screen.dart';
-import 'package:app/screens/products/products.dart';
-import 'package:app/screens/profile/profile_screen.dart';
 import 'package:app/screens/profile/update_profile.dart';
 import 'package:app/main.dart';
-import 'package:app/theme/themeProvider.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
 
 import '../../constants.dart';
 
@@ -28,29 +17,56 @@ class MyProfileScreen extends StatelessWidget {
   int reputationScore = 0;
   String profilePhoto;
   int id;
+  List<Proizvod> proizvodi = [];
+  List<Container> proizvodiKartice = [];
+
+  MyProfileScreen() {
+    if (korisnikInfo != null) {
+      this.fName = korisnikInfo.ime;
+      this.lName = korisnikInfo.prezime;
+      this.address = korisnikInfo.adresa;
+      this.id = korisnikInfo.id;
+      this.reputationScore = 1;
+      proizvodi = proizvodiModel.dajProizvodeZaKorisnika(this.id);
+      print("Ime:" + this.fName + " id:" + this.id.toString());
+      print("Broj proizvoda:" + proizvodi.length.toString());
+      for (Proizvod proizvod in proizvodi) {
+        print("Proizvod: " + proizvod.naziv);
+        proizvodiKartice.add(Container(
+            height: 290,
+            child: ProductCard(
+              added: true,
+              context: "",
+              isFavorite: false,
+              name: proizvod.naziv,
+              price: proizvod.cena.toString(),
+              proizvod: proizvod,
+              imgPath: proizvod.slika[0],
+            )));
+      }
+    } else {
+      print("Nije ulogovan korisnik");
+      //na login.
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     if (korisnikInfo != null) print(korisnikInfo.ime);
-
-    this.fName = korisnikInfo.ime;
-    this.lName = korisnikInfo.prezime;
-    this.address = korisnikInfo.adresa;
-    this.id = korisnikInfo.id;
-    this.reputationScore = 1; //funkcija
 
     Size size = MediaQuery.maybeOf(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text("Profil"),
         centerTitle: true,
-        backgroundColor: kPrimaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
         // shape: RoundedRectangleBorder(
         //     borderRadius: BorderRadius.vertical(
         //   bottom: Radius.circular(36),
         // )),
       ),
       body: ProfileBody(
+        proizvodiKartice: proizvodiKartice,
         size: size,
         id: id,
         fName: fName,
@@ -64,6 +80,7 @@ class MyProfileScreen extends StatelessWidget {
 }
 
 class ProfileBody extends StatelessWidget {
+  final List<Container> proizvodiKartice;
   final fName;
   final lName;
   final address;
@@ -79,12 +96,14 @@ class ProfileBody extends StatelessWidget {
     this.address,
     this.reputationScore,
     this.size,
+    this.proizvodiKartice,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (size.width < 550) {
       return ThinProfileBody(
+        proizvodiKartice: proizvodiKartice,
         id: id,
         address: address,
         fName: fName,
@@ -93,6 +112,7 @@ class ProfileBody extends StatelessWidget {
       );
     } else {
       return WideProfileBody(
+        proizvoidKartice: proizvodiKartice,
         address: address,
         fName: fName,
         lName: lName,
@@ -103,6 +123,7 @@ class ProfileBody extends StatelessWidget {
 }
 
 class ThinProfileBody extends StatelessWidget {
+  final List<Container> proizvodiKartice;
   final fName;
   final lName;
   final address;
@@ -116,6 +137,7 @@ class ThinProfileBody extends StatelessWidget {
     this.lName,
     this.address,
     this.reputationScore,
+    this.proizvodiKartice,
   }) : super(key: key);
 
   @override
@@ -134,18 +156,7 @@ class ThinProfileBody extends StatelessWidget {
               children: [
                 IconButton(
                   icon: Icon(Icons.add_photo_alternate_outlined),
-                  onPressed: () async {
-                    pickImages();
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return MyProfileScreen();
-                        },
-                      ),
-                    );
-                  },
+                  onPressed: () async {},
                 ),
                 Container(
                   margin: EdgeInsets.all(20),
@@ -153,7 +164,7 @@ class ThinProfileBody extends StatelessWidget {
                   height: 210,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                   ),
                   child: Container(
                     margin: EdgeInsets.all(10),
@@ -169,33 +180,6 @@ class ThinProfileBody extends StatelessWidget {
                     ),
                   ),
                 ),
-                // IconButton(
-                //   icon: Icon(Icons.add_photo_alternate_outlined),
-                //   onPressed: () async {
-                //     var file = await ImagePicker()
-                //         .getImage(source: ImageSource.gallery);
-                //     print("Loading image...");
-                //     var _image = File(file.path);
-                //     print("Uploading image image...");
-                //     SnackBar(
-                //       content: Text("Loading image..."),
-                //     );
-                //     var res = await uploadImage(_image);
-                //     print("image: " + res);
-                //     slika = res;
-                //     KorisniciModel k = new KorisniciModel();
-                //     k.dodajSliku(id, slika);
-                //     Navigator.pop(context);
-                //     Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //         builder: (context) {
-                //           return MyProfileScreen();
-                //         },
-                //       ),
-                //     );
-                //   },
-                // )
               ],
             ),
             Container(
@@ -244,9 +228,9 @@ class ThinProfileBody extends StatelessWidget {
             Container(
               margin: EdgeInsets.all(20),
               decoration:
-                  BoxDecoration(color: Colors.grey.shade900, boxShadow: [
+                  BoxDecoration(color: Theme.of(context).cardColor, boxShadow: [
                 BoxShadow(
-                  color: Colors.black,
+                  color: Colors.grey[850],
                   spreadRadius: 5,
                   blurRadius: 7,
                   offset: Offset(0, 3),
@@ -258,94 +242,17 @@ class ThinProfileBody extends StatelessWidget {
               ),
               height: size.height - 40,
               child: SingleChildScrollView(
-                  // child: Center(
-                  //   child: Wrap(
-                  //     children: testScroll,
-                  //   ),
-                  // ),
+                child: Center(
+                  child: Wrap(
+                    children: proizvodiKartice,
                   ),
+                ),
+              ),
             )
           ],
         ),
       ),
     );
-  }
-
-  bool loading = false;
-  static final String uploadEndPoint = 'http://147.91.204.116:11093/upload';
-  Future<File> file;
-  String status = '';
-  String base64Image;
-  File tmpFile;
-  String errMessage = 'Greška pri otpremanju slike';
-
-  File _image;
-  String message = '';
-
-  List<Asset> imagesAsset = List<Asset>();
-  //replace the url by your url
-  // your rest api url 'http://your_ip_adress/project_path' ///adresa racunara
-  // bool loading1 = false;
-
-  Future<void> pickImages() async {
-    List<Asset> resultList = List<Asset>();
-
-    try {
-      resultList = await MultiImagePicker.pickImages(
-        maxImages: 1,
-        //enableCamera: true,
-        selectedAssets: imagesAsset,
-      );
-    } on Exception catch (e) {
-      print(e);
-    }
-    //asset to image
-    for (int i = 0; i < resultList.length; i++) {
-      var path =
-          await FlutterAbsolutePath.getAbsolutePath(resultList[i].identifier);
-      _image = File(path);
-    }
-
-    upload(_image);
-
-    imagesAsset = resultList;
-  }
-
-  upload(File file) async {
-    if (file == null) return;
-    //  setState(() {
-    loading = true;
-    //   });
-    Map<String, String> headers = {
-      "Accept": "multipart/form-data",
-    };
-    var uri = Uri.parse(uploadEndPoint);
-    var length = await file.length();
-    http.MultipartRequest request = new http.MultipartRequest('POST', uri)
-      ..headers.addAll(headers)
-      ..files.add(
-        // replace file with your field name exampe: image
-        http.MultipartFile('avatar', file.openRead(), length,
-            filename: 'test.png'),
-      );
-    var respons = await http.Response.fromStream(await request.send());
-    slika = respons.body;
-    print('slika u profilu: ' + slika);
-    print('id ' + id.toString());
-    KorisniciModel k = new KorisniciModel();
-    k.dodajSliku(id, slika);
-    // setState(() {
-    loading = false;
-    //   });
-    if (respons.statusCode == 200) {
-      //   setState(() {
-      message = ' image upload with success';
-      //    });
-      return;
-    } else
-      //   setState(() {
-      message = ' image not upload';
-    //    });
   }
 }
 
@@ -354,13 +261,14 @@ class WideProfileBody extends StatelessWidget {
   final lName;
   final address;
   final reputationScore;
-
+  final List<Container> proizvoidKartice;
   const WideProfileBody({
     Key key,
     this.fName,
     this.lName,
     this.address,
     this.reputationScore,
+    this.proizvoidKartice,
   }) : super(key: key);
 
   @override
@@ -476,9 +384,10 @@ class WideProfileBody extends StatelessWidget {
             )),
         Container(
           margin: EdgeInsets.all(20),
-          decoration: BoxDecoration(color: Colors.grey.shade900, boxShadow: [
+          decoration:
+              BoxDecoration(color: Theme.of(context).cardColor, boxShadow: [
             BoxShadow(
-              color: Colors.black,
+              color: Colors.grey[850],
               spreadRadius: 5,
               blurRadius: 7,
               offset: Offset(0, 3),
@@ -490,12 +399,12 @@ class WideProfileBody extends StatelessWidget {
           ),
           height: size.height - 40,
           child: SingleChildScrollView(
-              // child: Center(
-              //   child: Wrap(
-              //     children: testScroll,
-              //   ),
-              // ),
+            child: Center(
+              child: Wrap(
+                children: proizvoidKartice,
               ),
+            ),
+          ),
         )
       ],
     ));
@@ -522,7 +431,7 @@ class ProfileButton extends StatelessWidget {
           children: [
             Icon(
               Icons.settings,
-              color: kPrimaryColor,
+              color: Theme.of(context).primaryColor,
             ),
             Text(
               "Izmeni Profil",
@@ -533,8 +442,16 @@ class ProfileButton extends StatelessWidget {
           ],
         ),
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey[850],
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3),
+            ),
+          ],
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: Colors.grey[900],
+          color: Theme.of(context).cardColor,
         ),
       ),
       onTap: () {

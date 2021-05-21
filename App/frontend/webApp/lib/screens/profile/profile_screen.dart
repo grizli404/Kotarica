@@ -30,6 +30,7 @@ class ProfileScreen extends StatelessWidget {
         ),
       ));
     }
+    print(korisnik.slika);
     return Scaffold(
       appBar: AppBar(
         title: Text(korisnik.prezime + " " + korisnik.ime),
@@ -63,8 +64,11 @@ class ProfileScreen extends StatelessWidget {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                 fit: BoxFit.fill,
-                                image: AssetImage(
-                                    "assets/images/defaultProfilePhoto.png"),
+                                image: korisnik.slika != null
+                                    ? NetworkImage("https://ipfs.io/ipfs/" +
+                                        korisnik.slika)
+                                    : AssetImage(
+                                        "assets/images/defaultProfilePhoto.png"),
                               ),
                             ),
                           ),
