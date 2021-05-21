@@ -152,7 +152,6 @@ class _AppRootState extends State<AppRoot> {
       print(exception);
       print("\nCONNECTION CLOSED!");
     });
-
     hubConnection.on('novaNotifikacija', _handleNewNotification);
     await startConnection();
   }
@@ -168,15 +167,19 @@ class _AppRootState extends State<AppRoot> {
   }
 
   _handleNewNotification(var arguments) {
-    try {
-      showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-              title: Icon(Icons.notifications),
-              content: Text("${arguments[0]['poruka']}")),
-          barrierDismissible: true);
-    } catch (e) {
-      print(e);
+    if (korisnikInfo != null) {
+      if (korisnikInfo.id == arguments[0]['kome']) {
+        try {
+          showDialog(
+              context: context,
+              builder: (_) => AlertDialog(
+                  title: Icon(Icons.notifications),
+                  content: Text("${arguments[0]['poruka']}")),
+              barrierDismissible: true);
+        } catch (e) {
+          print(e);
+        }
+      }
     }
   }
 

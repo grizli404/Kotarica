@@ -40,6 +40,13 @@ class _BodyState extends State<Body> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    hubConnection.stop();
+  }
+
+  @override
   Widget _build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
     return Column(
