@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
 import 'ether_setup.dart';
+import 'package:app/model/proizvodiModel.dart';
 
 class OceneModel extends ChangeNotifier {
   List<Ocena> listaOcena = [];
@@ -25,7 +26,7 @@ class OceneModel extends ChangeNotifier {
   ContractFunction ocene;
   ContractFunction dodajOcenu;
   ContractFunction _prosecnaOcenaZaProizvod;
-  
+
   OceneModel() {
     inicijalnoSetovanje();
   }
@@ -46,7 +47,7 @@ class OceneModel extends ChangeNotifier {
     /**************************  WEB  ********************************** */
     // String abiStringFile = await rootBundle.loadString("assets/src/Ocene.json");
     // var jsonAbi = jsonDecode(abiStringFile);
-   /**************************  WEB  ********************************** */
+    /**************************  WEB  ********************************** */
 
     /**************************  MOB  ********************************** */
     final response =
@@ -82,7 +83,8 @@ class OceneModel extends ChangeNotifier {
     _prosecnaOcenaZaProizvod = ugovor.function("prosecnaOcenaZaProizvod");
   }
 
-  Future<void> oceniProizvod(int _idKupovine, int _idProdavca, int _idProizvoda, int _ocena) async {
+  Future<void> oceniProizvod(
+      int _idKupovine, int _idProdavca, int _idProizvoda, int _ocena) async {
     await client.sendTransaction(
         credentials,
         Transaction.callContract(
@@ -97,9 +99,11 @@ class OceneModel extends ChangeNotifier {
             ]));
   }
 
-  Future<double> prosecnaOcenaZaProizvod(int _idProizvoda) async{
+  Future<double> prosecnaOcenaZaProizvod(int _idProizvoda) async {
     var temp = await client.call(
-        contract: ugovor, function: _prosecnaOcenaZaProizvod, params: [BigInt.from(_idProizvoda)]);
+        contract: ugovor,
+        function: _prosecnaOcenaZaProizvod,
+        params: [BigInt.from(_idProizvoda)]);
 
     BigInt tempInt = temp[0];
     int vrednost = tempInt.toInt();
@@ -180,6 +184,36 @@ class OceneModel extends ChangeNotifier {
     //csvFile.writeAsString(csv);
   }
   */
+  Future<List<int>> preporuka(
+      List<Ocena> listaOcena, List<Proizvod> listaProizvoda) async {
+    List<ProsecnaOcena> prosecneOcene = [];
+    prosecneOcene.clear();
+
+    var brProizvoda = listaProizvoda.length;
+
+    for (var i = 1; i < brProizvoda; i++) {
+      prosecneOcene[i].id = i;
+      prosecneOcene[i].ocena = await prosecnaOcenaZaProizvod(i);
+    }
+
+    ProsecnaOcena pom;
+    for (var i = 1; i < brProizvoda; i++) {
+      for (var j = i + 1; j <= brProizvoda; j++) {
+        if (prosecneOcene[i].ocena < prosecneOcene[j].ocena) {
+          pom = prosecneOcene[i];
+          prosecneOcene[i] = prosecneOcene[j];
+          prosecneOcene[j] = pom;
+        }
+      }
+    }
+
+    List<int> prvihDvadeset = [];
+    for (var i = 1; i <= 20; i++) {
+      prvihDvadeset.add(prosecneOcene[i].id);
+    }
+
+    return prvihDvadeset;
+  }
 }
 
 class Ocena {
@@ -195,4 +229,11 @@ class Ocena {
       this.idProdavca,
       this.idProizvoda,
       this.ocena});
+}
+
+class ProsecnaOcena {
+  int id;
+  double ocena;
+
+  ProsecnaOcena({this.id, this.ocena});
 }
