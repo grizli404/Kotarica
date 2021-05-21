@@ -108,7 +108,7 @@ namespace netCore
             /*************** NOTIFICATION ************** */
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<ChatHub>("/Notification");
+                endpoints.MapHub<Notification>("/Notification");
             });
             /*************** NOTIFICATION ************** */
         }

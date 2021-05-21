@@ -613,7 +613,7 @@ Widget prikazPotkategorija(
                   width: 5,
                 ),
                 Icon(
-                  Icons.circle,
+                  Icons.circle, //circle_outlined //LAZAR PROMENIO JER NIJE HTELO DA POKRENE
                   size: 15,
                   color: Colors.white,
                 ),
