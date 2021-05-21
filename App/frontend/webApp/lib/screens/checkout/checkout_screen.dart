@@ -1,19 +1,17 @@
-import 'package:app/components/customAppBar.dart';
 import 'package:app/components/progress_hud.dart';
 import 'package:app/constants.dart';
-import 'package:app/main.dart';
 import 'package:app/model/cart.dart';
 import 'package:app/model/korisniciModel.dart';
 import 'package:app/model/kupovineModel.dart';
-import 'package:app/model/personal_data.dart';
-import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/checkout/components/confirm_configuration.dart';
 import 'package:app/screens/checkout/components/payment_configuration.dart';
 import 'package:app/screens/checkout/components/shipping_configuration.dart';
+import 'package:app/screens/home/homeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:signalr_core/signalr_core.dart';
+
+import '../../main.dart';
 
 enum payment { online, onArrival }
 
@@ -295,30 +293,52 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         isApiCallProcess = true;
       });
       for (Cart index in carts.demoCarts) {
-        await kupovina
-            .dodavanjeNoveKupovine(index.product.idKorisnika, korisnikInfo.id,
-                index.product.id, index.numOfItems)
-            .timeout(const Duration(seconds: 30));
-        print(index.product.idKorisnika.toString() +
-            korisnikInfo.id.toString() +
-            index.product.id.toString() +
-            index.numOfItems.toString());
-        var res = await kupovina
-            .daLiPostojiKupovinaZaOcenjivanjeProizvoda(
-                korisnikInfo.id, index.product.idKorisnika, index.product.id)
-            .timeout(const Duration(seconds: 30));
-        print(res.toString());
+        try {
+          await kupovina
+              .dodavanjeNoveKupovine(index.product.idKorisnika, korisnikInfo.id,
+                  index.product.id, index.numOfItems)
+              .timeout(const Duration(seconds: 30));
+          print(index.product.idKorisnika.toString() +
+              korisnikInfo.id.toString() +
+              index.product.id.toString() +
+              index.numOfItems.toString());
+          var res = await kupovina
+              .daLiPostojiKupovinaZaOcenjivanjeProizvoda(
+                  korisnikInfo.id, index.product.idKorisnika, index.product.id)
+              .timeout(const Duration(seconds: 30));
+          await hubConnection.invoke('Notifikacija', args: <dynamic>[
+            korisnikInfo.ime,
+            korisnikInfo.brojTelefona,
+            korisnikInfo.adresa,
+            index.product.naziv,
+            index.numOfItems,
+            index.product.idKorisnika
+          ]);
+          print(res.toString());
+        } catch (e) {
+          print(e);
+        }
       }
       setState(() {
         isApiCallProcess = false;
       });
+
       showDialog(
           context: context,
           builder: (_) => AlertDialog(
                 title: Center(child: Text("Narudžbina poslata!")),
-                content: Icon(
-                  Icons.check_circle_outline_rounded,
-                  size: 150,
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.check_circle_outline_rounded,
+                      size: 150,
+                    ),
+                    if (character == payment.onArrival)
+                      Text("Plaća se pouzećem!")
+                    else if (character == payment.online)
+                      Text("Naplaćeno sa Ethereum naloga")
+                  ],
                 ),
               ),
           barrierDismissible: true);

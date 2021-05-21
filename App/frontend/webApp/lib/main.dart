@@ -20,6 +20,7 @@ import 'package:app/theme/themeProvider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:signalr_core/signalr_core.dart';
 // ignore: unused_import
 //import 'package:google_fonts/google_fonts.dart';
 
@@ -103,8 +104,10 @@ ProizvodiModel getProizvodiModel() {
   return proizvodiModel;
 }
 
+HubConnection hubConnection;
+
 class MaterialAppCustom extends StatelessWidget {
-  const MaterialAppCustom({
+  MaterialAppCustom({
     Key key,
   }) : super(key: key);
 
@@ -129,7 +132,62 @@ class MaterialAppCustom extends StatelessWidget {
       themeMode: themeProvider.themeMode,
       theme: MyThemes.lightTheme,
       darkTheme: MyThemes.darkTheme,
-      home: HomeScreen(),
+      home: AppRoot(),
     );
+  }
+}
+
+class AppRoot extends StatefulWidget {
+  @override
+  _AppRootState createState() => _AppRootState();
+}
+
+class _AppRootState extends State<AppRoot> {
+  String _url = "http://147.91.204.116:11094/Notification";
+  void _initConnection() async {
+    hubConnection = HubConnectionBuilder()
+        .withUrl(_url, HttpConnectionOptions(logging: (l, m) => {print(m)}))
+        .build();
+    hubConnection.onclose((exception) {
+      print(exception);
+      print("\nCONNECTION CLOSED!");
+    });
+
+    hubConnection.on('novaNotifikacija', _handleNewNotification);
+    await startConnection();
+  }
+
+  startConnection() async {
+    if (hubConnection.state == HubConnectionState.disconnected) {
+      print("Startujem konekciju");
+      await hubConnection.start();
+      print("STARTED CONNECTION");
+    } else {
+      print("Connection is open");
+    }
+  }
+
+  _handleNewNotification(var arguments) {
+    try {
+      showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+              title: Icon(Icons.notifications),
+              content: Text("${arguments[0]['poruka']}")),
+          barrierDismissible: true);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initConnection();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return HomeScreen();
   }
 }

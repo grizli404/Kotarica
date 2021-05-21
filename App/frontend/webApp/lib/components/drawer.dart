@@ -613,7 +613,7 @@ Widget prikazPotkategorija(
                   width: 5,
                 ),
                 Icon(
-                  Icons.circle_outlined,
+                  Icons.circle,
                   size: 15,
                   color: Colors.white,
                 ),
