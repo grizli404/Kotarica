@@ -388,16 +388,21 @@ class _BodyState extends State<Body> {
     return new Swiper(
       autoplay: false,
       itemBuilder: (BuildContext context, int index) {
-        return proizvod.slika != '0'
-            ? new Image.network(
-                "https://ipfs.io/ipfs/" + widget.proizvod.slika[0],
-                //  fit: BoxFit.fill,
-              )
-            : new Image.asset(
-                widget.assetPath,
-              );
+        if (proizvod.slika.isNotEmpty) {
+          // for (int i = 0; i < proizvod.slika.length; i++) {
+          return new Image.network(
+            "https://ipfs.io/ipfs/" + widget.proizvod.slika[index],
+            //  fit: BoxFit.fill,
+          );
+          //}
+        } else {
+          return new Image.asset(
+            widget.assetPath,
+          );
+        }
+        //return null;
       },
-      itemCount: 3,
+      itemCount: proizvod.slika.isNotEmpty ? proizvod.slika.length : 1,
       viewportFraction: 0.8,
       scale: 0.9,
       pagination: new SwiperPagination(

@@ -1,5 +1,6 @@
 //import 'dart:html';
 import 'dart:io';
+import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 import 'package:http/http.dart' as http;
 import 'package:app/components/navigationBar.dart';
 import 'package:app/components/product_card.dart';
@@ -14,6 +15,7 @@ import 'package:app/screens/profile/update_profile.dart';
 import 'package:app/main.dart';
 import 'package:app/theme/themeProvider.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 
 import '../../constants.dart';
 
@@ -107,7 +109,7 @@ class ThinProfileBody extends StatelessWidget {
   final reputationScore;
   final int id;
 
-  const ThinProfileBody({
+  ThinProfileBody({
     Key key,
     this.id,
     this.fName,
@@ -133,8 +135,7 @@ class ThinProfileBody extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.add_photo_alternate_outlined),
                   onPressed: () async {
-                    KorisniciModel k = new KorisniciModel();
-                    k.dodajSliku(id, slika);
+                    pickImages();
                     Navigator.pop(context);
                     Navigator.push(
                       context,
@@ -268,6 +269,83 @@ class ThinProfileBody extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  bool loading = false;
+  static final String uploadEndPoint = 'http://147.91.204.116:11093/upload';
+  Future<File> file;
+  String status = '';
+  String base64Image;
+  File tmpFile;
+  String errMessage = 'Greška pri otpremanju slike';
+
+  File _image;
+  String message = '';
+
+  List<Asset> imagesAsset = List<Asset>();
+  //replace the url by your url
+  // your rest api url 'http://your_ip_adress/project_path' ///adresa racunara
+  // bool loading1 = false;
+
+  Future<void> pickImages() async {
+    List<Asset> resultList = List<Asset>();
+
+    try {
+      resultList = await MultiImagePicker.pickImages(
+        maxImages: 1,
+        //enableCamera: true,
+        selectedAssets: imagesAsset,
+      );
+    } on Exception catch (e) {
+      print(e);
+    }
+    //asset to image
+    for (int i = 0; i < resultList.length; i++) {
+      var path =
+          await FlutterAbsolutePath.getAbsolutePath(resultList[i].identifier);
+      _image = File(path);
+    }
+
+    upload(_image);
+
+    imagesAsset = resultList;
+  }
+
+  upload(File file) async {
+    if (file == null) return;
+    //  setState(() {
+    loading = true;
+    //   });
+    Map<String, String> headers = {
+      "Accept": "multipart/form-data",
+    };
+    var uri = Uri.parse(uploadEndPoint);
+    var length = await file.length();
+    http.MultipartRequest request = new http.MultipartRequest('POST', uri)
+      ..headers.addAll(headers)
+      ..files.add(
+        // replace file with your field name exampe: image
+        http.MultipartFile('avatar', file.openRead(), length,
+            filename: 'test.png'),
+      );
+    var respons = await http.Response.fromStream(await request.send());
+    slika = respons.body;
+    print('slika u profilu: ' + slika);
+    print('id ' + id.toString());
+    KorisniciModel k = new KorisniciModel();
+    k.dodajSliku(id, slika);
+    // setState(() {
+    loading = false;
+    //   });
+    if (respons.statusCode == 200) {
+      //   setState(() {
+      message = ' image upload with success';
+      //    });
+      return;
+    } else
+      //   setState(() {
+      message = ' image not upload';
+    //    });
   }
 }
 
