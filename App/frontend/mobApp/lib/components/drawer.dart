@@ -589,7 +589,7 @@ Widget prikazPotkategorija(
                 builder: (context) {
                   return ProductByCategory(
                     listaProizvoda: proizvodi
-                        .dajProizvodeZaKategoriju(potkategorije[index].id),
+                        .dajProizvodeZaPotkategoriju(potkategorije[index].id),
                     category: '${potkategorije[index].naziv}',
                   );
                 },

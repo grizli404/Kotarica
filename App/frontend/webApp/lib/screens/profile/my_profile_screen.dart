@@ -1,5 +1,6 @@
 //import 'dart:html';
 import 'dart:io';
+
 import 'package:http/http.dart' as http;
 import 'package:app/components/navigationBar.dart';
 import 'package:app/components/product_card.dart';
@@ -107,7 +108,7 @@ class ThinProfileBody extends StatelessWidget {
   final reputationScore;
   final int id;
 
-  const ThinProfileBody({
+  ThinProfileBody({
     Key key,
     this.id,
     this.fName,
@@ -133,8 +134,6 @@ class ThinProfileBody extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.add_photo_alternate_outlined),
                   onPressed: () async {
-                    KorisniciModel k = new KorisniciModel();
-                    k.dodajSliku(id, slika);
                     Navigator.pop(context);
                     Navigator.push(
                       context,
