@@ -12,156 +12,72 @@
     {
         "id": 3,
         "idRoditelja": 0,
-        "kategorija": "Zdrava hrana"
+        "kategorija": "Mesno"
     },
     {
         "id": 4,
         "idRoditelja": 0,
-        "kategorija": "Mesno"
-    },
-    {
-        "id": 5,
-        "idRoditelja": 0,
         "kategorija": "Mlečno"
     },
     {
-        "id": 6,
+        "id": 5,
         "idRoditelja": 1,
         "kategorija": "Voće"
     },
     {
-        "id": 7,
+        "id": 6,
         "idRoditelja": 1,
         "kategorija": "Povrće"
     },
     {
-        "id": 8,
+        "id": 7,
         "idRoditelja": 1,
         "kategorija": "Bilje i gljive"
     },
     {
-        "id": 9,
-        "idRoditelja": 1,
-        "kategorija": "Očišćeno i ceđeno"
-    },
-    {
-        "id": 10,
-        "idRoditelja": 1,
-        "kategorija": "Domaći proizvodi"
-    },
-    {
-        "id": 11,
-        "idRoditelja": 2,
-        "kategorija": "Ajvar"
-    },
-    {
-        "id": 12,
-        "idRoditelja": 2,
-        "kategorija": "Ratluk"
-    },
-    {
-        "id": 13,
-        "idRoditelja": 2,
-        "kategorija": "Jaja"
-    },
-    {
-        "id": 14,
+        "id": 8,
         "idRoditelja": 2,
         "kategorija": "Slatka i Džemovi"
     },
     {
-        "id": 15,
+        "id": 9,
         "idRoditelja": 2,
         "kategorija": "Medenjaci i kolači"
     },
     {
-        "id": 16,
+        "id": 10,
         "idRoditelja": 2,
         "kategorija": "Domaći sokovi"
     },
     {
-        "id": 17,
+        "id": 11,
         "idRoditelja": 2,
-        "kategorija": "Čajevi"
+        "kategorija": "Alkohol"
     },
     {
-        "id": 18,
+        "id": 12,
         "idRoditelja": 2,
         "kategorija": "Zimnica"
     },
+    
     {
-        "id": 19,
+        "id": 12,
         "idRoditelja": 3,
-        "kategorija": "Barovi"
-    },
-    {
-        "id": 20,
-        "idRoditelja": 3,
-        "kategorija": "Hlebovi"
-    },
-    {
-        "id": 21,
-        "idRoditelja": 3,
-        "kategorija": "Zrnasto i sušeno"
-    },
-    {
-        "id": 22,
-        "idRoditelja": 3,
-        "kategorija": "Dodaci ishrani"
-    },
-    {
-        "id": 23,
-        "idRoditelja": 3,
-        "kategorija": "Grickalice"
-    },
-    {
-        "id": 24,
-        "idRoditelja": 3,
-        "kategorija": "Namazi"
-    },
-    {
-        "id": 25,
-        "idRoditelja": 3,
-        "kategorija": "Sirće i ulje"
-    },
-    {
-        "id": 26,
-        "idRoditelja": 3,
-        "kategorija": "Pčelinji proizvodi"
-    },
-    {
-        "id": 27,
-        "idRoditelja": 4,
         "kategorija": "Suhomesnato"
     },
     {
-        "id": 28,
-        "idRoditelja": 4,
-        "kategorija": "Suhomesnato slajs"
-    },
-    {
-        "id": 29,
-        "idRoditelja": 4,
+        "id": 14,
+        "idRoditelja": 3,
         "kategorija": "Kobasice"
     },
     {
-        "id": 30,
-        "idRoditelja": 4,
-        "kategorija": "Čvarci i mast"
-    },
-    {
-        "id": 31,
-        "idRoditelja": 4,
+        "id": 15,
+        "idRoditelja": 3,
         "kategorija": "Riblji proizvodi"
     },
     {
-        "id": 32,
-        "idRoditelja": 5,
-        "kategorija": "Mleko i prerađevine"
-    },
-    {
-        "id": 33,
-        "idRoditelja": 5,
+        "id": 16,
+        "idRoditelja": 4,
         "kategorija": "Sirevi i kajmak"
     }
 ]

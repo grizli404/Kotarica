@@ -426,7 +426,7 @@ class _BodyState extends State<Body> {
         }
         //return null;
       },
-      itemCount: proizvod.slika.isNotEmpty ? proizvod.slika.length - 1 : 1,
+      itemCount: proizvod.slika.isNotEmpty ? proizvod.slika.length : 1,
       viewportFraction: 0.8,
       scale: 0.9,
       pagination: new SwiperPagination(
