@@ -47,23 +47,49 @@ namespace netCore.Hubs
                 .ToList();
         }
 
+
+        //public string GetMessage(int ko, int kome)
+        //{
+        //    var poruke = GetMessageHistory(ko, kome);
+        //    return poruke.FirstOrDefault().Sta;
+        //}
+
+        //public IEnumerable<Inbox> GetInbox(int id)
+        //{
+        //    return from mes in _context.Message
+        //             where mes.Ko == id || mes.Kome == id
+        //             select new Inbox
+        //             {
+        //                 idKorisnika = mes.Ko == id ? mes.Kome : mes.Ko,
+        //                 poslednjaPoruka = GetMessage(id, (mes.Ko == id ? mes.Kome : mes.Ko))
+        //             };
+        //}
+
+
         /***************POMOCNA F-JA***************/
-        public string GetMessage(int ko, int kome)
+        public List<int> GetConnectedPeopleWithUser(int user)
         {
-            var poruke = GetMessageHistory(ko, kome);
-            return poruke.FirstOrDefault().Sta;
+            return _context.Message.Where(m => (m.Ko == user) || (m.Kome == user)).Select(m => m.Kome == user ? m.Ko : m.Kome).Distinct().ToList();
         }
 
-        public IEnumerable<Inbox> GetInbox(int id)
+
+        public IEnumerable<Message> GetInbox(int user)
         {
-            return from mes in _context.Message
-                     where mes.Ko == id || mes.Kome == id
-                     select new Inbox
-                     {
-                         idKorisnika = mes.Ko == id ? mes.Kome : mes.Ko,
-                         poslednjaPoruka = GetMessage(id, (mes.Ko == id ? mes.Kome : mes.Ko))
-                     };
+            List<int> lista = GetConnectedPeopleWithUser(user);
+
+
+            List<Message> mess = new List<Message>();
+            Message m;
+            foreach (var item in lista)
+            {
+                m = _context.Message.OrderByDescending(m => m.Kada).Where(m => (m.Ko == item && m.Kome == user) || (m.Kome == item && m.Ko == user)).FirstOrDefault();
+                mess.Add(m);
+            }
+
+            IEnumerable<Message> ms = mess;
+            return ms;
         }
+
 
         public async Task Online(int ko)
         {
