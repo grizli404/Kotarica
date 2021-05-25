@@ -62,7 +62,7 @@ class ProizvodiModel extends ChangeNotifier {
 
     /**************************  MOB  ********************************** */
     final response =
-        await http.get(Uri.http('147.91.204.116:11091', 'Proizvodi.json'));
+        await http.get(Uri.http('147.91.204.116:11096', 'Proizvodi.json'));
     var jsonAbi;
     if (response.statusCode == 200) {
       jsonAbi = jsonDecode(response.body);

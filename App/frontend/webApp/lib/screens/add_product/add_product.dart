@@ -381,7 +381,7 @@ class _AddProductState extends State<AddProduct> {
   // }
 
   bool loading = false;
-  static final String uploadEndPoint = 'http://147.91.204.116:11093/upload';
+  static final String uploadEndPoint = 'http://147.91.204.116:11099/upload';
   var uploadFilesCount;
   String message = '';
   Future<void> pickImage() async {

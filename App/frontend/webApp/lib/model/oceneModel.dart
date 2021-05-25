@@ -51,7 +51,7 @@ class OceneModel extends ChangeNotifier {
 
     /**************************  MOB  ********************************** */
     final response =
-        await http.get(Uri.http('147.91.204.116:11091', 'Ocene.json'));
+        await http.get(Uri.http('147.91.204.116:11096', 'Ocene.json'));
     var jsonAbi;
     if (response.statusCode == 200) {
       jsonAbi = jsonDecode(response.body);

@@ -71,7 +71,7 @@ class KorisniciModel extends ChangeNotifier {
 
     /**************************  MOB  ********************************** */
     final response =
-        await http.get(Uri.http('147.91.204.116:11091', 'Korisnici.json'));
+        await http.get(Uri.http('147.91.204.116:11096', 'Korisnici.json'));
     var jsonAbi;
     if (response.statusCode == 200) {
       jsonAbi = jsonDecode(response.body);
