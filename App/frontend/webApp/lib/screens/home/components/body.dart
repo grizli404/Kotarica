@@ -65,6 +65,11 @@ class _BodyState extends State<Body> {
                   napraviDugme(),
                   Text('/'),
                   dugmePonisti(),
+                  if (filterError)
+                    Text(
+                      'Morate uneti maksimalnu cenu.',
+                      style: TextStyle(color: Colors.red),
+                    )
                   //SizedBox(width: MediaQuery.of(context).size.width - 1000),
                 ],
               ),
@@ -86,24 +91,22 @@ class _BodyState extends State<Body> {
                 SizedBox(
                   height: isWeb ? 30.0 : 70,
                 ),
-              ] else if (_isSearchState == true) ...[
+              ],
+              if (_isSearchState == true) ...[
                 ProductView(
                   listaProizvoda: widget.proizvodi,
                 ),
-              ] else if (_isSortChanged == true) ...[
-                if (_isFilterChanged == false)
-                  prikaziProizvode(widget.proizvodi)
-                else
-                  ProductView(
-                    listaProizvoda: listaFilter,
-                  )
-              ] else if (_isFilterChanged == true) ...[
-                if (_isSortChanged == false)
-                  ProductView(
-                    listaProizvoda: listaFilter,
-                  )
-                else
-                  prikaziProizvode(listaFilter)
+              ] else if (_isFilterChanged == true &&
+                  _isSortChanged == false) ...[
+                ProductView(
+                  listaProizvoda: listaFilter,
+                )
+              ] else if (_isSortChanged == true &&
+                  _isFilterChanged == false) ...[
+                prikaziProizvode(widget.proizvodi)
+              ] else if (_isFilterChanged == true &&
+                  _isSortChanged == true) ...[
+                prikaziProizvode(listaFilter)
               ]
             ] else if (widget.category != null) ...[
               Padding(
@@ -131,30 +134,24 @@ class _BodyState extends State<Body> {
               if (_isSearchState == false &&
                   _isSortChanged == false &&
                   _isFilterChanged == false) ...[
+                ProductView(listaProizvoda: widget.proizvodi),
+                SizedBox(height: 30.0),
+              ],
+              if (_isSearchState == true) ...[
                 ProductView(
                   listaProizvoda: widget.proizvodi,
                 ),
-                SizedBox(
-                  height: 30.0,
-                ),
-              ] else if (_isSearchState == true) ...[
+              ] else if (_isFilterChanged == true &&
+                  _isSortChanged == false) ...[
                 ProductView(
-                  listaProizvoda: widget.proizvodi,
-                ),
-              ] else if (_isSortChanged == true) ...[
-                if (_isFilterChanged == false)
-                  prikaziProizvode(widget.proizvodi)
-                else
-                  ProductView(
-                    listaProizvoda: listaFilter,
-                  )
-              ] else if (_isFilterChanged == true) ...[
-                if (_isSortChanged == false)
-                  ProductView(
-                    listaProizvoda: listaFilter,
-                  )
-                else
-                  prikaziProizvode(listaFilter)
+                  listaProizvoda: listaFilter,
+                )
+              ] else if (_isSortChanged == true &&
+                  _isFilterChanged == false) ...[
+                prikaziProizvode(widget.proizvodi)
+              ] else if (_isFilterChanged == true &&
+                  _isSortChanged == true) ...[
+                prikaziProizvode(listaFilter)
               ]
             ]
           ],
@@ -178,6 +175,7 @@ class _BodyState extends State<Body> {
   }
 
   Widget prikaziProizvode(List<Proizvod> proizvodi) {
+    // print('value ' + _value.toString());
     if (_value == 1) {
       // cena opadajuca
       proizvodi.sort((a, b) => a.cena.compareTo(b.cena));
@@ -197,6 +195,8 @@ class _BodyState extends State<Body> {
       var listaReverse = inReverse.toList();
       return ProductView(listaProizvoda: listaReverse);
     }
+
+    return null;
   }
 
   Widget napraviPopUpZaMobile() {
@@ -237,16 +237,31 @@ class _BodyState extends State<Body> {
     );
   }
 
+  bool filterError = false;
+
   Widget napraviDugme() {
     return MaterialButton(
       child: Text('Primeni'),
       onPressed: () {
-        if (controllerMax.text != null && controllerMin.text != null) {
+        if (controllerMin.text != '' && controllerMax.text != '') {
           List<Proizvod> lista = filterFunction(
               num.tryParse(controllerMin.text),
               num.tryParse(controllerMax.text),
               widget.proizvodi);
           displayFilterProducts(lista);
+        }
+        if (controllerMin.text == '' && controllerMax.text != '') {
+          controllerMin.text = 0.toString();
+          List<Proizvod> lista = filterFunction(
+              num.tryParse(controllerMin.text),
+              num.tryParse(controllerMax.text),
+              widget.proizvodi);
+          displayFilterProducts(lista);
+        }
+        if (controllerMax.text == '' && controllerMin.text != '') {
+          setState(() {
+            filterError = true;
+          });
         }
       },
     );
@@ -257,6 +272,7 @@ class _BodyState extends State<Body> {
       onPressed: () {
         setState(() {
           _isFilterChanged = false;
+          filterError = false;
           controllerMax.clear();
           controllerMin.clear();
         });
