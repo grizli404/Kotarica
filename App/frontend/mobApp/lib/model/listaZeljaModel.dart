@@ -54,7 +54,7 @@ class ListaZeljaModel extends ChangeNotifier {
 
     /**************************  MOB  ********************************** */
     final response =
-        await http.get(Uri.http('147.91.204.116:11091', 'ListaZelja.json'));
+        await http.get(Uri.http('147.91.204.116:11096', 'ListaZelja.json'));
     var jsonAbi;
 
     if (response.statusCode == 200) {

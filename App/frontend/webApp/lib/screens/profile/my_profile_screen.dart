@@ -269,7 +269,7 @@ class ThinProfileBody extends StatelessWidget {
     );
   }
 
-  static final String uploadEndPoint = "http://147.91.204.116:11093/upload";
+  static final String uploadEndPoint = "http://147.91.204.116:11099/upload";
   Future<File> file;
   String status = '';
   String base64Image;
