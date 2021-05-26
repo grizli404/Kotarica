@@ -27,7 +27,7 @@ class NavigationBarWidget extends StatelessWidget {
               color: Theme.of(context).bottomAppBarColor,
               onPressed: () {
                 ModalRoute.of(context).settings.name == "/home"
-                    ? Navigator.pushNamed(context, "/home")
+                    ? Navigator.pushReplacementNamed(context, "/home")
                     : Navigator.popAndPushNamed(context, "/home");
               },
               icon: Icon(Icons.home_rounded),

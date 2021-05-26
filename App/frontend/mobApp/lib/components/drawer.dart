@@ -93,13 +93,31 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                                 children: [
                                   InkWell(
                                       onTap: () {
-                                        Navigator.pushNamed(context, '/home');
+                                        // print("nesto " +
+                                        //     ModalRoute.of(context)
+                                        //         .settings
+                                        //         .name
+                                        //         .toString());
+
+                                        ModalRoute.of(context).settings.name ==
+                                                "/home"
+                                            ? Navigator.pushReplacementNamed(
+                                                context, "/home")
+                                            : Navigator.popAndPushNamed(
+                                                context, "/home");
                                       },
                                       child: Row(children: [
                                         IconButton(
                                           onPressed: () {
-                                            Navigator.pushNamed(
-                                                context, '/home');
+                                            ModalRoute.of(context)
+                                                        .settings
+                                                        .name ==
+                                                    "/home"
+                                                ? Navigator
+                                                    .pushReplacementNamed(
+                                                        context, "/home")
+                                                : Navigator.popAndPushNamed(
+                                                    context, "/home");
                                           },
                                           icon: SvgPicture.asset(Theme.of(
                                                           context)
@@ -151,12 +169,24 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                               children: [
                                 InkWell(
                                     onTap: () {
-                                      Navigator.pushNamed(context, '/home');
+                                      ModalRoute.of(context).settings.name ==
+                                              "/home"
+                                          ? Navigator.pushReplacementNamed(
+                                              context, "/home")
+                                          : Navigator.popAndPushNamed(
+                                              context, "/home");
                                     },
                                     child: Row(children: [
                                       IconButton(
                                         onPressed: () {
-                                          Navigator.pushNamed(context, '/home');
+                                          ModalRoute.of(context)
+                                                      .settings
+                                                      .name ==
+                                                  "/home"
+                                              ? Navigator.pushReplacementNamed(
+                                                  context, "/home")
+                                              : Navigator.popAndPushNamed(
+                                                  context, "/home");
                                         },
                                         icon: SvgPicture.asset(Theme.of(context)
                                                     .colorScheme ==
@@ -195,7 +225,9 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                 child: InkWell(
                     focusColor: tamnoPlava,
                     onTap: () {
-                      Navigator.pushNamed(context, '/home');
+                      ModalRoute.of(context).settings.name == "/home"
+                          ? Navigator.pushReplacementNamed(context, "/home")
+                          : Navigator.popAndPushNamed(context, "/home");
                     },
                     child: Row(
                       children: [
@@ -330,7 +362,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                       //dense: true,
                       title: MaterialButton(
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) {
@@ -583,7 +615,7 @@ Widget prikazPotkategorija(
         dense: true,
         title: MaterialButton(
           onPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) {
