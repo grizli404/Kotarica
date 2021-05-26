@@ -1,3 +1,4 @@
+import 'package:app/main.dart';
 import 'package:app/model/notification_model.dart';
 import 'package:app/screens/notifications/components/notification_bar.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,21 @@ class NotificationScreen extends StatefulWidget {
 }
 
 class NotificationScreenState extends State<NotificationScreen> {
+  List<dynamic> res = [];
+  @override
+  void initState() {
+    super.initState();
+    _getNotifications();
+  }
+
+  _getNotifications() async {
+    res = await hubConnection
+        .invoke("GetNotificationsHistory", args: <dynamic>[korisnikInfo.id]);
+    for (dynamic index in res) {
+      print(index);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +52,7 @@ class NotificationScreenState extends State<NotificationScreen> {
             final notification = notificationList[index];
             return Dismissible(
               key: Key(notification.nazivProizoda),
-              child: NotificationBar(
-                message: notification.nazivProizoda
-              ),
+              child: NotificationBar(message: notification.nazivProizoda),
               onDismissed: (direction) {
                 setState(() {
                   notificationList.removeAt(index);
