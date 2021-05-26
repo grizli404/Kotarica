@@ -331,6 +331,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       }
       setState(() {
         isApiCallProcess = false;
+        carts.removeAll();
       });
       var string = '';
       kupljeni.forEach((element) {

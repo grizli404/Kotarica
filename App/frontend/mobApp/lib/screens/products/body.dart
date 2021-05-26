@@ -260,11 +260,7 @@ class _BodyState extends State<Body> {
                   SizedBox(width: 20.0),
                   InkWell(
                     // posalji poruku
-                    onTap: korisnikInfo != null
-                        ? widget.korisnik.id != korisnikInfo.id
-                            ? () => buildConvo()
-                            : null
-                        : null,
+                    onTap: () => buildConvo(),
                     child: Center(
                       child: Container(
                         width: ResponsiveLayout.isIphone(context)
@@ -384,30 +380,34 @@ class _BodyState extends State<Body> {
 
   void buildConvo() {
     if (korisnikInfo != null && widget.korisnik != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return ConversationScreen(sagovornik: widget.korisnik);
-          },
-        ),
-      );
-    } else
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Morate biti ulogovani da biste poslali poruku!"),
-          duration: const Duration(milliseconds: 2000),
-          width:
-              MediaQuery.of(context).size.width * 0.9, // Width of the SnackBar.
-          padding: const EdgeInsets.symmetric(
-            horizontal: 8.0, // Inner padding for SnackBar content.
+      if (korisnikInfo.id != widget.korisnik.id)
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return ConversationScreen(sagovornik: widget.korisnik);
+            },
           ),
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
+        );
+      else {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Ne možete sebi poslati poruku"),
+            duration: const Duration(milliseconds: 1500),
+            width: MediaQuery.of(context).size.width *
+                0.9, // Width of the SnackBar.
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0, // Inner padding for SnackBar content.
+            ),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
           ),
-        ),
-      );
+        );
+      }
+    } else if (korisnikInfo == null) Navigator.of(context).pushNamed('/login');
   }
 
   Swiper imageSlider(context, Proizvod proizvod) {

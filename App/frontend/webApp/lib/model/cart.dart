@@ -23,6 +23,11 @@ class Carts extends ChangeNotifier {
     notifyListeners();
   }
 
+  void removeAll() {
+    demoCarts.clear();
+    notifyListeners();
+  }
+
   double sumTotal(List<Cart> demoCarts) {
     double total = 0;
     demoCarts.forEach((Cart cart) {

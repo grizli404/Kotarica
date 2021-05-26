@@ -143,7 +143,7 @@ class AppRoot extends StatefulWidget {
 }
 
 class _AppRootState extends State<AppRoot> {
-  String _url = "http://147.91.204.116:11094/Notification";
+  String _url = "http://147.91.204.116:11098/Notification";
   void _initConnection() async {
     hubConnection = HubConnectionBuilder()
         .withUrl(_url, HttpConnectionOptions(logging: (l, m) => {print(m)}))
@@ -152,6 +152,11 @@ class _AppRootState extends State<AppRoot> {
       print(exception);
       print("\nCONNECTION CLOSED!");
     });
+    try {
+      hubConnection.on('novaNotifikacija', _handleNewNotification);
+    } catch (e) {
+      print(e);
+    }
     hubConnection.on('novaNotifikacija', _handleNewNotification);
     await startConnection();
   }
