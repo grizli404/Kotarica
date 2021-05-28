@@ -36,7 +36,13 @@ class NavigationBarWidget extends StatelessWidget {
               icon: Icon(Icons.favorite_rounded),
               color: Theme.of(context).bottomAppBarColor,
               onPressed: () {
-                Navigator.pushNamed(context, '/favorites');
+                if (korisnikInfo != null)
+                  Navigator.pushNamed(context, '/favorites');
+                else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("Morate biti prijavljeni."),
+                  ));
+                }
               },
             ),
             korisnikInfo != null
