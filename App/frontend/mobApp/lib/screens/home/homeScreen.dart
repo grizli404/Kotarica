@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      body: Body(proizvodi: ProizvodiModel().listaProizvoda),
+      body: Body(),
       drawer: ListenToDrawerEvent(),
       extendBody: true,
       bottomNavigationBar: NavigationBarWidget(),

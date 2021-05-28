@@ -414,7 +414,7 @@ class _BodyState extends State<Body> {
     return new Swiper(
       autoplay: false,
       itemBuilder: (BuildContext context, int index) {
-        if (proizvod.slika.isNotEmpty) {
+        if (proizvod.slika.isNotEmpty && proizvod.slika[0] != "") {
           // for (int i = 0; i < proizvod.slika.length; i++) {
           return new Image.network(
             "https://ipfs.io/ipfs/" + widget.proizvod.slika[index],

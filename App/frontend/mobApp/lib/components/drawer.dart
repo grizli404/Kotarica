@@ -369,10 +369,11 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                                 // print('ind ' + index.toString());
                                 // print('kat ' + noveKategorije[index].id.toString());
                                 return ProductByCategory(
-                                  listaProizvoda:
-                                      proizvodi.dajProizvodeZaKategoriju(
-                                          noveKategorije[index].id),
+                                  //    listaProizvoda:
+                                  //       proizvodi.dajProizvodeZaKategoriju(
+                                  //             noveKategorije[index].id),
                                   category: '${noveKategorije[index].naziv}',
+                                  categoryId: noveKategorije[index].id,
                                 );
                               },
                             ),
@@ -620,9 +621,11 @@ Widget prikazPotkategorija(
               MaterialPageRoute(
                 builder: (context) {
                   return ProductByCategory(
-                    listaProizvoda: proizvodi
-                        .dajProizvodeZaPotkategoriju(potkategorije[index].id),
+                    // listaProizvoda: proizvodi
+                    //     .dajProizvodeZaPotkategoriju(potkategorije[index].id),
                     category: '${potkategorije[index].naziv}',
+                    categoryId: potkategorije[index].idRoditelja,
+                    potkategorijaId: potkategorije[index].id,
                   );
                 },
               ),

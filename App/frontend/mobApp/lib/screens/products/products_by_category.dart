@@ -9,19 +9,26 @@ import 'package:flutter/material.dart';
 
 class ProductByCategory extends StatelessWidget {
   final String category;
+  int categoryId;
+  int potkategorijaId;
   final List<Proizvod> listaProizvoda;
-  ProductByCategory({
-    //Key key,
-    @required this.category,
-    this.listaProizvoda,
-  });
+  ProductByCategory(
+      {this.potkategorijaId,
+      //Key key,
+      @required this.category,
+      this.listaProizvoda,
+      this.categoryId});
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     return Scaffold(
       body: ResponsiveLayout(
         iphone: ProductCategoryLayout(
-            category: category, listaProizvoda: listaProizvoda),
+          category: category,
+          listaProizvoda: listaProizvoda,
+          categoryId: categoryId,
+          potkategorijaId: potkategorijaId,
+        ),
         ipad: Row(
           children: [
             // Expanded(
@@ -32,7 +39,11 @@ class ProductByCategory extends StatelessWidget {
             Expanded(
               flex: _size.width > 1200 && _size.width < 1340 ? 6 : 3,
               child: ProductCategoryLayout(
-                  category: category, listaProizvoda: listaProizvoda),
+                category: category,
+                listaProizvoda: listaProizvoda,
+                categoryId: categoryId,
+                potkategorijaId: potkategorijaId,
+              ),
             ),
           ],
         ),
@@ -47,7 +58,11 @@ class ProductByCategory extends StatelessWidget {
             Expanded(
               flex: _size.width > 1340 ? 6 : 3,
               child: ProductCategoryLayout(
-                  category: category, listaProizvoda: listaProizvoda),
+                category: category,
+                listaProizvoda: listaProizvoda,
+                categoryId: categoryId,
+                potkategorijaId: potkategorijaId,
+              ),
             ),
 
             // Padding(

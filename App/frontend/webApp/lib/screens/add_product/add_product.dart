@@ -13,7 +13,7 @@ import '../../constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-String slika = "0";
+String slika = "";
 
 String textNaziv = "";
 double opacityNaziv = 0.0;
@@ -67,7 +67,7 @@ class _AddProductState extends State<AddProduct> {
     selectedCat = listaRoditeljKategorija[0];
     subcategory = kModel.dajPotkategorije(selectedCat.id);
     potkategorija = subcategory[0];
-    slika = "0";
+    slika = "";
     jediniceMere = ["kg", "l", "kom", "cm"];
     jedinicaMere = jediniceMere[0];
   }
@@ -107,7 +107,7 @@ class _AddProductState extends State<AddProduct> {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           fit: BoxFit.fill,
-                          image: slike != null
+                          image: slika != ""
                               ? NetworkImage("https://ipfs.io/ipfs/" + slika)
                               : AssetImage(
                                   "assets/images/defaultProductPhoto.jpg"))),
