@@ -178,7 +178,10 @@ class _BodyState extends State<Body> {
           ),
           SizedBox(height: 10.0),
           Center(
-            child: Text(widget.proizvod.cena.toString() + ' RSD',
+            child: Text(
+                widget.proizvod.cena.toString() +
+                    ' RSD / ' +
+                    widget.proizvod.jedinica,
                 style: TextStyle(
                     color: Theme.of(context).hintColor,
                     fontFamily: 'Varela',
