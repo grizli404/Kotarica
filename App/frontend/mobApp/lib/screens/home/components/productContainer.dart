@@ -66,7 +66,7 @@ Widget labelContainer(String labelVal) {
 Widget appsContainer(ProizvodiModel proizvodi, BuildContext context) {
   final ScrollController _scrollController = ScrollController();
   return Container(
-    height: ResponsiveLayout.isIphone(context) ? 290 : 250.0,
+    height: ResponsiveLayout.isIphone(context) ? 300 : 250.0,
     //200.0,
     child: Scrollbar(
         //  isAlwaysShown: true,
