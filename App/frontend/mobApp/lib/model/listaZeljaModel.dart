@@ -114,6 +114,7 @@ class ListaZeljaModel extends ChangeNotifier {
   }
 
   Future<void> dajLajkove(int _idKorisnika) async {
+    listaLajkovanihProizvoda.clear();
     List lz = await client.call(
         contract: ugovor,
         function: _dajLajkove,

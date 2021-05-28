@@ -110,7 +110,8 @@ class ProductCard extends StatelessWidget {
                           width: 75.0,
                           //  decoration: BoxDecoration(
                           //      image: DecorationImage(
-                          child: proizvod.slika.isNotEmpty
+                          child: proizvod.slika.isNotEmpty &&
+                                  proizvod.slika[0] != ""
                               ? Image.network(
                                   "https://ipfs.io/ipfs/" +
                                       proizvod.slika.first,

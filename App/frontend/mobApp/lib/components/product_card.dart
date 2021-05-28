@@ -57,7 +57,7 @@ class ProductCard extends StatelessWidget {
             },
             child: Container(
                 width: ResponsiveLayout.isIphone(context) ? 180 : 180,
-                height: ResponsiveLayout.isIphone(context) ? 210 : 250,
+             //   height: ResponsiveLayout.isIphone(context) ? 210 : 250,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
                     border: Border.all(

@@ -22,20 +22,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       elevation: 0,
-      leading: ResponsiveLayout.isIphone(context)
-          ? Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                  icon: SvgPicture.asset('assets/icons/menu.svg'),
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  tooltip:
-                      MaterialLocalizations.of(context).openAppDrawerTooltip,
-                );
-              },
-            )
-          : new Container(),
+      leading: Builder(
+        builder: (BuildContext context) {
+          return IconButton(
+            icon: SvgPicture.asset('assets/icons/menu.svg'),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          );
+        },
+      ),
       actions: [
         Row(
           children: [
@@ -54,19 +51,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                   )),
             ],
-            !ResponsiveLayout.isIphone(context)
-                ? IconButton(
-                    icon: Icon(
-                      Icons.person_outline,
-                    ),
-                    onPressed: () {
-                      if (korisnikInfo != null) {
-                        Navigator.pushNamed(context, '/profile');
-                      } else {
-                        Navigator.pushNamed(context, '/login');
-                      }
-                    })
-                : Container(),
+            //  IconButton(
+            //           icon: Icon(
+            //             Icons.person_outline,
+            //           ),
+            //           onPressed: () {
+            //             if (korisnikInfo != null) {
+            //               Navigator.pushNamed(context, '/profile');
+            //             } else {
+            //               Navigator.pushNamed(context, '/login');
+            //             }
+            //           })
+
             if (korisnikInfo != null && isWeb) ...[
               IconButton(
                   icon: Icon(
@@ -83,18 +79,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     );
                   }),
             ],
-            !ResponsiveLayout.isIphone(context)
-                ? IconButton(
-                    icon: Icon(
-                      Icons.favorite_outline_rounded,
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/favorites');
-                    })
-                : Container(),
+            // !ResponsiveLayout.isIphone(context)
+            //     ? IconButton(
+            //         icon: Icon(
+            //           Icons.favorite_outline_rounded,
+            //         ),
+            //         onPressed: () {
+            //           Navigator.pushNamed(context, '/favorites');
+            //         })
+            //     : Container(),
             if (isWeb) CartIcon(),
-            if (korisnikInfo != null && ResponsiveLayout.isIphone(context))
-              CartIcon(),
+            if (korisnikInfo != null && !isWeb) CartIcon(),
             !ResponsiveLayout.isIphone(context)
                 ? SizedBox(
                     width: 15,
