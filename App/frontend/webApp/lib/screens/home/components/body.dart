@@ -1,6 +1,7 @@
 //import 'dart:html';
 
 import 'package:app/components/filter.dart';
+import 'package:app/components/progress_hud.dart';
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/home/components/productContainer.dart';
@@ -17,8 +18,11 @@ import 'headerWithSearchBox.dart';
 class Body extends StatefulWidget {
   List<Proizvod> proizvodi;
   final String category;
+  final int categoryId;
+  final int potkategorijaId;
+  ProizvodiModel pModel;
 
-  Body({this.category, this.proizvodi});
+  Body({this.category, this.proizvodi, this.categoryId, this.potkategorijaId});
   @override
   _BodyState createState() => _BodyState();
 }
@@ -30,134 +34,189 @@ class _BodyState extends State<Body> {
   int _value;
   bool _isSortChanged = false;
   bool _isFilterChanged = false;
+  bool inAsyncCall = true;
   TextEditingController controllerMin = new TextEditingController();
   TextEditingController controllerMax = new TextEditingController();
+
+  Future setupState() async {
+    try {
+      if (inAsyncCall == false)
+        setState(() {
+          inAsyncCall = true;
+        });
+
+      if (widget.category == null) {
+        if (widget.proizvodi != null) widget.proizvodi.clear();
+        widget.pModel = Provider.of<ProizvodiModel>(context);
+        await widget.pModel.dajSveProizvode();
+        widget.proizvodi = widget.pModel.listaProizvoda;
+      }
+      if (widget.category != null) {
+        if (widget.proizvodi != null) widget.proizvodi.clear();
+        widget.pModel = Provider.of<ProizvodiModel>(context);
+
+        if (widget.potkategorijaId == null)
+          widget.proizvodi =
+              widget.pModel.dajProizvodeZaKategoriju(widget.categoryId);
+        if (widget.potkategorijaId != null)
+          widget.proizvodi =
+              widget.pModel.dajProizvodeZaPotkategoriju(widget.potkategorijaId);
+      }
+
+      setState(() {
+        inAsyncCall = false;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget.proizvodi == null) setupState();
+  }
+
+  @override
+  void didUpdateWidget(covariant Body oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    this.widget.proizvodi = oldWidget.proizvodi;
+  }
+
   @override
   Widget build(BuildContext context) {
-    var proizvodi = Provider.of<ProizvodiModel>(context);
-    Size size = MediaQuery.maybeOf(context).size;
-    return Container(
-      //height: constraints.maxHeight,
-      child: SingleChildScrollView(
-        //padding: EdgeInsets.symmetric(horizontal: 200.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            //  Text('${widget.category}'),
-            HeaderWithSearchBox(
-              size: size,
-              displayProducts: displayProducts,
-              searchController: TextEditingController(),
-              proizvodi: proizvodi.listaProizvoda,
-            ),
-            if (isWeb) ...[
-              SizedBox(
-                height: 10,
+    return ProgressHUD(child: _build(context), inAsyncCall: inAsyncCall);
+  }
+
+  Widget _build(BuildContext context) {
+    if (inAsyncCall == true || widget.proizvodi == null) {
+      return Container();
+    } else {
+      // var proizvodi = Provider.of<ProizvodiModel>(context);
+      Size size = MediaQuery.maybeOf(context).size;
+      return Container(
+        //height: constraints.maxHeight,
+        child: SingleChildScrollView(
+          //padding: EdgeInsets.symmetric(horizontal: 200.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              //  Text('${widget.category}'),
+              HeaderWithSearchBox(
+                size: size,
+                displayProducts: displayProducts,
+                searchController: TextEditingController(),
+                proizvodi: widget.proizvodi,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(width: 10),
-                  napraviSort(),
-                  SizedBox(width: 30),
-                  opsegCeneText(),
-                  napraviFilter(),
-                  napraviDugme(),
-                  Text('/'),
-                  dugmePonisti(),
-                  if (filterError)
-                    Text(
-                      'Morate uneti maksimalnu cenu.',
-                      style: TextStyle(color: Colors.red),
-                    )
-                  //SizedBox(width: MediaQuery.of(context).size.width - 1000),
-                ],
-              ),
-            ] else ...[
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                napraviPopUpZaMobile(),
-                napraviSort(),
-              ]),
-            ],
-            if (widget.category == null) ...[
-              if (_isSearchState == false &&
-                  _isSortChanged == false &&
-                  _isFilterChanged == false) ...[
-                //SizedBox(height: kDefaultPadding),
-                //ProductView(),
-                ProductContainer(naziv: 'Najnoviji proizvodi'),
-                ProductContainer(naziv: 'Popularni proizvodi'),
-                ProductContainer(naziv: 'Preporuka'),
+              if (isWeb) ...[
                 SizedBox(
-                  height: isWeb ? 30.0 : 70,
+                  height: 10,
                 ),
-              ],
-              if (_isSearchState == true) ...[
-                ProductView(
-                  listaProizvoda: widget.proizvodi,
-                ),
-              ] else if (_isFilterChanged == true &&
-                  _isSortChanged == false) ...[
-                ProductView(
-                  listaProizvoda: listaFilter,
-                )
-              ] else if (_isSortChanged == true &&
-                  _isFilterChanged == false) ...[
-                prikaziProizvode(widget.proizvodi)
-              ] else if (_isFilterChanged == true &&
-                  _isSortChanged == true) ...[
-                prikaziProizvode(listaFilter)
-              ]
-            ] else if (widget.category != null) ...[
-              Padding(
-                  padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          child: Divider(
-                        height: 5,
-                        thickness: 4,
-                      )),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(width: 10),
+                    napraviSort(),
+                    SizedBox(width: 30),
+                    opsegCeneText(),
+                    napraviFilter(),
+                    napraviDugme(),
+                    Text('/'),
+                    dugmePonisti(),
+                    if (filterError)
                       Text(
-                        '     ' + widget.category + '      ',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 27.0),
-                      ),
-                      Expanded(
-                          child: Divider(
-                        height: 5,
-                        thickness: 4,
-                      )),
-                    ],
-                  )),
-              if (_isSearchState == false &&
-                  _isSortChanged == false &&
-                  _isFilterChanged == false) ...[
-                ProductView(listaProizvoda: widget.proizvodi),
-                SizedBox(height: 30.0),
-              ],
-              if (_isSearchState == true) ...[
-                ProductView(
-                  listaProizvoda: widget.proizvodi,
+                        'Morate uneti maksimalnu cenu.',
+                        style: TextStyle(color: Colors.red),
+                      )
+                    //SizedBox(width: MediaQuery.of(context).size.width - 1000),
+                  ],
                 ),
-              ] else if (_isFilterChanged == true &&
-                  _isSortChanged == false) ...[
-                ProductView(
-                  listaProizvoda: listaFilter,
-                )
-              ] else if (_isSortChanged == true &&
-                  _isFilterChanged == false) ...[
-                prikaziProizvode(widget.proizvodi)
-              ] else if (_isFilterChanged == true &&
-                  _isSortChanged == true) ...[
-                prikaziProizvode(listaFilter)
+              ] else ...[
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  napraviPopUpZaMobile(),
+                  napraviSort(),
+                ]),
+              ],
+              if (widget.category == null) ...[
+                if (_isSearchState == false &&
+                    _isSortChanged == false &&
+                    _isFilterChanged == false) ...[
+                  //SizedBox(height: kDefaultPadding),
+                  //ProductView(),
+                  ProductContainer(naziv: 'Najnoviji proizvodi'),
+                  ProductContainer(naziv: 'Popularni proizvodi'),
+                  ProductContainer(naziv: 'Preporuka'),
+                  SizedBox(
+                    height: isWeb ? 30.0 : 70,
+                  ),
+                ],
+                if (_isSearchState == true) ...[
+                  ProductView(
+                    listaProizvoda: widget.proizvodi,
+                  ),
+                ] else if (_isFilterChanged == true &&
+                    _isSortChanged == false) ...[
+                  ProductView(
+                    listaProizvoda: listaFilter,
+                  )
+                ] else if (_isSortChanged == true &&
+                    _isFilterChanged == false) ...[
+                  prikaziProizvode(widget.proizvodi)
+                ] else if (_isFilterChanged == true &&
+                    _isSortChanged == true) ...[
+                  prikaziProizvode(listaFilter)
+                ]
+              ] else if (widget.category != null) ...[
+                Padding(
+                    padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                            child: Divider(
+                          height: 5,
+                          thickness: 4,
+                        )),
+                        Text(
+                          '     ' + widget.category + '      ',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 27.0),
+                        ),
+                        Expanded(
+                            child: Divider(
+                          height: 5,
+                          thickness: 4,
+                        )),
+                      ],
+                    )),
+                if (_isSearchState == false &&
+                    _isSortChanged == false &&
+                    _isFilterChanged == false) ...[
+                  ProductView(listaProizvoda: widget.proizvodi),
+                  SizedBox(height: 30.0),
+                ],
+                if (_isSearchState == true) ...[
+                  ProductView(
+                    listaProizvoda: widget.proizvodi,
+                  ),
+                ] else if (_isFilterChanged == true &&
+                    _isSortChanged == false) ...[
+                  ProductView(
+                    listaProizvoda: listaFilter,
+                  )
+                ] else if (_isSortChanged == true &&
+                    _isFilterChanged == false) ...[
+                  prikaziProizvode(widget.proizvodi)
+                ] else if (_isFilterChanged == true &&
+                    _isSortChanged == true) ...[
+                  prikaziProizvode(listaFilter)
+                ]
               ]
-            ]
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   void displayProducts(List<Proizvod> displayLista) {

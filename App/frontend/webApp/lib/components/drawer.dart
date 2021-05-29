@@ -339,11 +339,11 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                                 // print('ind ' + index.toString());
                                 // print('kat ' + noveKategorije[index].id.toString());
                                 return ProductByCategory(
-                                  category: noveKategorije[index].naziv,
-                                  listaProizvoda:
-                                      proizvodi.dajProizvodeZaKategoriju(
-                                          noveKategorije[index].id),
-                                );
+                                    category: noveKategorije[index].naziv,
+                                    //        listaProizvoda:
+                                    //            proizvodi.dajProizvodeZaKategoriju(
+                                    //                noveKategorije[index].id),
+                                    categoryId: noveKategorije[index].id);
                                 // return ProductByCategory(
                                 //   listaProizvoda:
                                 //       proizvodi.dajProizvodeZaKategoriju(
@@ -597,10 +597,10 @@ Widget prikazPotkategorija(
               MaterialPageRoute(
                 builder: (context) {
                   return ProductByCategory(
-                    listaProizvoda: proizvodi
-                        .dajProizvodeZaPotkategoriju(potkategorije[index].id),
-                    category: '${potkategorije[index].naziv}',
-                  );
+                      //  listaProizvoda: proizvodi
+                      //      .dajProizvodeZaPotkategoriju(potkategorije[index].id),
+                      category: '${potkategorije[index].naziv}',
+                      potkategorijaId: potkategorije[index].id);
                 },
               ),
             );
@@ -613,7 +613,8 @@ Widget prikazPotkategorija(
                   width: 5,
                 ),
                 Icon(
-                  Icons.circle, //circle_outlined //LAZAR PROMENIO JER NIJE HTELO DA POKRENE
+                  Icons
+                      .circle, //circle_outlined //LAZAR PROMENIO JER NIJE HTELO DA POKRENE
                   size: 15,
                   color: Colors.white,
                 ),

@@ -34,7 +34,7 @@ class ProductView extends StatelessWidget {
                 return ProductCard(
                     name: listaProizvoda[index].naziv,
                     price: listaProizvoda[index].cena.toString(),
-                    imgPath: 'assets/images/cookiechoco.jpg',
+                    imgPath: 'assets/images/default_product_image.png',
                     added: false,
                     isFavorite: false,
                     context: context,
