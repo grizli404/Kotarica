@@ -121,3 +121,4 @@ C:\Users\beslac_lazar\Desktop\najnoviije\ChainTech\App\backend\netCore\netCore\o
 C:\Users\beslac_lazar\Desktop\najnoviije\ChainTech\App\backend\netCore\netCore\obj\Release\netcoreapp3.0\linux-x64\netCore.dll
 C:\Users\beslac_lazar\Desktop\najnoviije\ChainTech\App\backend\netCore\netCore\obj\Release\netcoreapp3.0\linux-x64\netCore.pdb
 C:\Users\beslac_lazar\Desktop\najnoviije\ChainTech\App\backend\netCore\netCore\obj\Release\netcoreapp3.0\linux-x64\netCore.genruntimeconfig.cache
+C:\Users\beslac_lazar\Desktop\najnoviije\ChainTech\App\backend\netCore\netCore\bin\Release\netcoreapp3.0\linux-x64\Microsoft.EntityFrameworkCore.Design.dll

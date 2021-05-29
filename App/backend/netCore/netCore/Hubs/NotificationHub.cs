@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace netCore.Hubs
 {
-    public class Notification : Hub
+    public class NotificationHub : Hub
     {
         private readonly AppDbContext _context;
 
-        public Notification(AppDbContext context)
+        public NotificationHub(AppDbContext context)
         {
             _context = context;
         }
@@ -21,7 +21,7 @@ namespace netCore.Hubs
         {
             String message = "" + ime + " je naručio " + kolicina + " komada Vašeg proizvoda " + sta + "\n\nInformacije o isporuci:\nIme = " + ime + "\nBroj telefona = " + broj + "\nAdresa za isporuku = " + adresa;
 
-            Notifications poruka = new Notifications(kome, message);
+            Notification poruka = new Notification(kome, message);
 
             _context.Notif.Add(poruka);
             _context.SaveChanges();
@@ -29,7 +29,7 @@ namespace netCore.Hubs
             await Clients.All.SendAsync("novaNotifikacija", poruka);
         }
 
-        public IEnumerable<Notifications> GetNotificationsHistory(int id)
+        public IEnumerable<Notification> GetNotificationsHistory(int id)
         {
             return _context.Notif.Where(n => n.kome == id)
                 .AsEnumerable()
