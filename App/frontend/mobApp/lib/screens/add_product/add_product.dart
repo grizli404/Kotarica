@@ -405,7 +405,7 @@ class _AddProductState extends State<AddProduct> {
     try {
       resultList = await MultiImagePicker.pickImages(
         maxImages: 10,
-        //enableCamera: true,
+        enableCamera: true,
         selectedAssets: imagesAsset,
       );
     } on Exception catch (e) {
