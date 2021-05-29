@@ -15,7 +15,7 @@ class HomeScreenLayout extends StatelessWidget {
     if (ResponsiveLayout.isIphone(context)) {
       return Scaffold(
         appBar: CustomAppBar(),
-        body: Body(proizvodi: ProizvodiModel().listaProizvoda),
+        body: Body(),
         drawer: ListenToDrawerEvent(),
         extendBody: true,
         bottomNavigationBar:
@@ -24,7 +24,7 @@ class HomeScreenLayout extends StatelessWidget {
     } else {
       return Scaffold(
         appBar: CustomAppBar(),
-        body: Body(proizvodi: ProizvodiModel().listaProizvoda),
+        body: Body(),
       );
     }
   }

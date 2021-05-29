@@ -10,10 +10,14 @@ import 'package:flutter/material.dart';
 class ProductByCategory extends StatelessWidget {
   final String category;
   final List<Proizvod> listaProizvoda;
+  int categoryId;
+  int potkategorijaId;
   ProductByCategory({
     //Key key,
     @required this.category,
     this.listaProizvoda,
+    this.categoryId,
+    this.potkategorijaId,
   });
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,9 @@ class ProductByCategory extends StatelessWidget {
     return Scaffold(
       body: ResponsiveLayout(
         iphone: ProductCategoryLayout(
-            category: category, listaProizvoda: listaProizvoda),
+            category: category,
+            categoryId: categoryId,
+            potkategorijaId: potkategorijaId),
         ipad: Row(
           children: [
             // Expanded(
@@ -32,7 +38,9 @@ class ProductByCategory extends StatelessWidget {
             Expanded(
               flex: _size.width > 1200 && _size.width < 1340 ? 6 : 3,
               child: ProductCategoryLayout(
-                  category: category, listaProizvoda: listaProizvoda),
+                  category: category,
+                  categoryId: categoryId,
+                  potkategorijaId: potkategorijaId),
             ),
           ],
         ),
@@ -47,7 +55,9 @@ class ProductByCategory extends StatelessWidget {
             Expanded(
               flex: _size.width > 1340 ? 6 : 3,
               child: ProductCategoryLayout(
-                  category: category, listaProizvoda: listaProizvoda),
+                  category: category,
+                  categoryId: categoryId,
+                  potkategorijaId: potkategorijaId),
             ),
 
             // Padding(

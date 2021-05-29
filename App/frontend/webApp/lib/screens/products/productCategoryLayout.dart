@@ -11,7 +11,13 @@ import '../../components/drawer.dart';
 class ProductCategoryLayout extends StatelessWidget {
   String category;
   List<Proizvod> listaProizvoda;
-  ProductCategoryLayout({this.category, this.listaProizvoda});
+  int categoryId;
+  int potkategorijaId;
+  ProductCategoryLayout(
+      {this.category,
+      this.listaProizvoda,
+      this.categoryId,
+      this.potkategorijaId});
   @override
   Widget build(BuildContext context) {
     if (ResponsiveLayout.isIphone(context)) {
@@ -19,7 +25,9 @@ class ProductCategoryLayout extends StatelessWidget {
         appBar: CustomAppBar(),
         body: Body(
           category: category,
-          proizvodi: listaProizvoda,
+          //  proizvodi: listaProizvoda,
+          categoryId: categoryId,
+          potkategorijaId: potkategorijaId,
         ),
         drawer: ListenToDrawerEvent(),
         extendBody: true,
@@ -30,7 +38,9 @@ class ProductCategoryLayout extends StatelessWidget {
         appBar: CustomAppBar(),
         body: Body(
           category: category,
-          proizvodi: listaProizvoda,
+          //    proizvodi: listaProizvoda,
+          categoryId: categoryId,
+          potkategorijaId: potkategorijaId,
         ),
       );
     }
