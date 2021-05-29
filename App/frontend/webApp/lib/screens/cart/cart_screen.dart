@@ -205,7 +205,7 @@ class CheckOutCard extends StatelessWidget {
                         ? ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text("Nemate proizvode u korpi!"),
-                              duration: const Duration(milliseconds: 2000),
+                              duration: const Duration(milliseconds: 5000),
                               width: MediaQuery.of(context).size.width *
                                   0.9, // Width of the SnackBar.
                               padding: const EdgeInsets.symmetric(
@@ -218,8 +218,7 @@ class CheckOutCard extends StatelessWidget {
                               ),
                             ),
                           )
-                        : Navigator.popAndPushNamed(context, '/checkout',
-                            arguments: {});
+                        : filter(context, cart);
               },
               textColor: kPrimaryColor,
               color: Colors.white,
@@ -228,5 +227,28 @@ class CheckOutCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  filter(BuildContext context, var cart) {
+    List<Cart> uklonjeni;
+    uklonjeni = cart.filter();
+    if (uklonjeni.length != 0) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Iz korpe su automatski uklonjeni vaši proizvodi!"),
+          duration: const Duration(milliseconds: 5000),
+          width:
+              MediaQuery.of(context).size.width * 0.9, // Width of the SnackBar.
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8.0, // Inner padding for SnackBar content.
+          ),
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+        ),
+      );
+    }
+    Navigator.popAndPushNamed(context, '/checkout', arguments: {});
   }
 }
