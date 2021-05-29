@@ -31,6 +31,7 @@ class RoundedInputField extends StatelessWidget {
         validator: validator,
         onChanged: onChanged,
         decoration: InputDecoration(
+          errorMaxLines: 2,
           icon: icon == null
               ? null
               : Icon(
