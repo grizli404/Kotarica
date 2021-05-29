@@ -1,3 +1,4 @@
+import 'package:app/main.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/home/homeScreenLayout.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +7,22 @@ import 'proizvodiModel.dart';
 
 class Carts extends ChangeNotifier {
   List<Cart> demoCarts = [];
+
+  List<Cart> filter() {
+    List<Cart> t = [];
+    for (var element in demoCarts) {
+      if (korisnikInfo != null) {
+        if (korisnikInfo.id == element.product.idKorisnika) t.add(element);
+      }
+    }
+    if (t.length != 0) {
+      for (var element in t) {
+        demoCarts.remove(element);
+      }
+    }
+    notifyListeners();
+    return t;
+  }
 
   void dodajProizvod(Proizvod proizvod, int n) {
     bool ind = true;
