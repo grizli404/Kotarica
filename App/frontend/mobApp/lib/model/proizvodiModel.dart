@@ -176,6 +176,10 @@ class ProizvodiModel extends ChangeNotifier {
         s.add(slike[i]);
       }
 
+      if(s.length > 1) {
+        s.removeAt(s.length - 1);
+      }
+
       if (_idKorisnika > 0) {
         listaProizvoda.add(Proizvod(
             id: i,
