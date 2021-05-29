@@ -1,6 +1,7 @@
 import 'package:app/components/text_field_container.dart';
 import 'package:app/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class RoundedInputField extends StatelessWidget {
   final String hintText;
@@ -10,6 +11,7 @@ class RoundedInputField extends StatelessWidget {
   final Color color;
   final String value;
   final double sizeQ;
+  final TextInputType keyboardType;
   const RoundedInputField({
     Key key,
     this.hintText,
@@ -19,6 +21,7 @@ class RoundedInputField extends StatelessWidget {
     this.color = kPrimaryLightColor,
     this.value = '',
     this.sizeQ = 0.8,
+    this.keyboardType,
   }) : super(key: key);
 
   @override
@@ -27,6 +30,7 @@ class RoundedInputField extends StatelessWidget {
       sizeQ: sizeQ,
       color: color,
       child: TextFormField(
+        keyboardType: keyboardType,
         initialValue: value,
         validator: validator,
         onChanged: onChanged,

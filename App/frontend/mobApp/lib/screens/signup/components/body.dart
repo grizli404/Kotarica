@@ -170,6 +170,7 @@ class _BodyState extends State<Body> {
                 )
               ],
               RoundedInputField(
+                keyboardType: TextInputType.number,
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Theme.of(context).primaryColor
                     : kPrimaryLightColor,
