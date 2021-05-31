@@ -1,16 +1,14 @@
+import 'package:app/screens/conversation/components/message.dart';
+
+import 'korisniciModel.dart';
+
 class Chat {
-  final String name, image, time;
+  final String image, time, message;
+  Korisnik sagovornik;
   Chat({
-    this.name,
+    this.sagovornik,
     this.image,
+    this.message,
     this.time,
   });
 }
-
-List chatsData = [
-  Chat(name: "DSFF", image: '', time: ''),
-  Chat(name: "DSFF", image: '', time: ''),
-  Chat(name: "DSFF", image: '', time: ''),
-  Chat(name: "DSFF", image: '', time: ''),
-  Chat(name: "DSFF", image: '', time: ''),
-];

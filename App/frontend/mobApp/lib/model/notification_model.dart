@@ -10,7 +10,6 @@ import 'package:web_socket_channel/io.dart';
 
 import 'ether_setup.dart';
 
-
 Proizvod demoProizvod = Proizvod(
     cena: 100,
     id: 10,
@@ -19,19 +18,14 @@ Proizvod demoProizvod = Proizvod(
     kolicina: 10,
     naziv: "jaja-test");
 
-List<Notification> notificationList = [
-  // Notification(message: "Narudzbina1", id: 1, proizvod: demoProizvod),
-  // Notification(message: "Narudzbina2", id: 1),
-];
+List<Notification> notificationList = [];
 
 void dismissAllNotifications() {
   notificationList.clear();
   //remove from block or cookie implementation
 }
 
-
-class NotifikacijeModel extends ChangeNotifier{
-
+class NotifikacijeModel extends ChangeNotifier {
   List<Notification> listaSvihNotifikacija;
 
   Web3Client client;
@@ -53,24 +47,25 @@ class NotifikacijeModel extends ChangeNotifier{
   }
 
   Future<void> inicijalnoSetovanje() async {
-    client = Web3Client("http://192.168.0.24:7545", http.Client(), socketConnector: () {
-      return IOWebSocketChannel.connect("ws://192.168.0.24:7545/").cast<String>();
+    client = Web3Client("http://192.168.0.24:7545", http.Client(),
+        socketConnector: () {
+      return IOWebSocketChannel.connect("ws://192.168.0.24:7545/")
+          .cast<String>();
     });
 
-    
     await getAbi();
     await getCredentials();
     await getDeployedCotract();
 
     await dajSveNotifikacije();
-
   }
 
   Future<void> getAbi() async {
     /**************************  WEB  ********************************** */
-    String abiStringFile = await rootBundle.loadString("src/abis/Notifications.json");
+    String abiStringFile =
+        await rootBundle.loadString("src/abis/Notifications.json");
     var jsonAbi = jsonDecode(abiStringFile);
-   /**************************  WEB  ********************************** */
+    /**************************  WEB  ********************************** */
 
     /**************************  MOB  ********************************** */
     // final response =
@@ -82,7 +77,6 @@ class NotifikacijeModel extends ChangeNotifier{
     //   throw Exception('Failed to load data from server');
     // }
     /**************************  MOB  ********************************** */
-
 
     abiCode = jsonEncode(jsonAbi["abi"]);
 
@@ -101,34 +95,39 @@ class NotifikacijeModel extends ChangeNotifier{
     ugovor = DeployedContract(
         ContractAbi.fromJson(abiCode, "Notifications"), adresaUgovora);
 
-      _brojPorudzbina = ugovor.function("brojPorudzbina");
-      _notifikacije = ugovor.function("notifikacije");
-      _dodajNotifikacije = ugovor.function("dodajNotifikaciju");
+    _brojPorudzbina = ugovor.function("brojPorudzbina");
+    _notifikacije = ugovor.function("notifikacije");
+    _dodajNotifikacije = ugovor.function("dodajNotifikaciju");
   }
 
-  Future<void> dodajNotifikacije(int idKorisnika, int idProizvoda, String nazivProizvoda,
-                                  int kolicina, String ime, String telefon, String adresa) async {
+  Future<void> dodajNotifikacije(
+      int idKorisnika,
+      int idProizvoda,
+      String nazivProizvoda,
+      int kolicina,
+      String ime,
+      String telefon,
+      String adresa) async {
     await client.sendTransaction(
-      credentials,
-      Transaction.callContract(
-        maxGas: 6721975,
-        contract: ugovor,
-        function: _dodajNotifikacije,
-        parameters: [
-          BigInt.from(idKorisnika),
-          BigInt.from(idProizvoda),
-          nazivProizvoda,
-          BigInt.from(kolicina),
-          ime,
-          telefon,
-          adresa
-        ]));
-
+        credentials,
+        Transaction.callContract(
+            maxGas: 6721975,
+            contract: ugovor,
+            function: _dodajNotifikacije,
+            parameters: [
+              BigInt.from(idKorisnika),
+              BigInt.from(idProizvoda),
+              nazivProizvoda,
+              BigInt.from(kolicina),
+              ime,
+              telefon,
+              adresa
+            ]));
   }
 
   Future<void> dajSveNotifikacije() async {
     var temp = await client
-      .call(contract: ugovor, function: _brojPorudzbina, params: []);
+        .call(contract: ugovor, function: _brojPorudzbina, params: []);
 
     BigInt tempInt = temp[0];
     int ukupno = tempInt.toInt();
@@ -152,16 +151,14 @@ class NotifikacijeModel extends ChangeNotifier{
       _kolicina = tempInt.toInt();
 
       listaSvihNotifikacija.add(Notification(
-        idKorisnika: _idKorisnika,
-        idProizvoda: _idProizvoda,
-        nazivProizoda: notifikacija[3],
-        kolicina: _kolicina,
-        ime: notifikacija[5],
-        telefon: notifikacija[6],
-        adresa: notifikacija[7]
-      ));
+          idKorisnika: _idKorisnika,
+          idProizvoda: _idProizvoda,
+          nazivProizoda: notifikacija[3],
+          kolicina: _kolicina,
+          ime: notifikacija[5],
+          telefon: notifikacija[6],
+          adresa: notifikacija[7]));
     }
-
   }
 
   List<Notification> dajNotifikacijeZaKorisnika(int _idKorisnika) {
@@ -176,11 +173,9 @@ class NotifikacijeModel extends ChangeNotifier{
     }
     return notif;
   }
-
 }
 
 class Notification {
-
   int idKorisnika;
   int idProizvoda;
   String nazivProizoda;
@@ -189,13 +184,12 @@ class Notification {
   String telefon;
   String adresa;
 
-  Notification({
-    this.idKorisnika,
-    this.idProizvoda,
-    this.nazivProizoda,
-    this.kolicina,
-    this.ime,
-    this.telefon,
-    this.adresa
-    });
+  Notification(
+      {this.idKorisnika,
+      this.idProizvoda,
+      this.nazivProizoda,
+      this.kolicina,
+      this.ime,
+      this.telefon,
+      this.adresa});
 }

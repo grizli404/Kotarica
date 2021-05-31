@@ -1,6 +1,7 @@
 import 'package:app/components/responsive_layout.dart';
 import 'package:app/model/proizvodiModel.dart';
 import 'package:app/screens/add_product/add_product.dart';
+import 'package:app/screens/chats/chats_screen.dart';
 import 'package:app/screens/home/components/body.dart';
 import 'package:app/screens/products/products_by_category.dart';
 import 'package:flutter/material.dart';
@@ -266,6 +267,58 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                       ),
                       Text(
                         'Dodajte novi proizvod',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: (!isWeb &&
+                                        Theme.of(context).colorScheme ==
+                                            ColorScheme.dark()) ||
+                                    isWeb
+                                ? Colors.white
+                                : Colors.black),
+                      ),
+                    ])),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Divider(
+                height: 5,
+                thickness: 4,
+                indent: 20,
+                endIndent: 20,
+                color: Theme.of(context).colorScheme == ColorScheme.light()
+                    ? tamnoPlava
+                    : Colors.white,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                //  height: 80,
+                padding: EdgeInsets.only(left: 15.0),
+                child: InkWell(
+                    hoverColor: Colors.grey,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ChatsScreen()),
+                      );
+                    },
+                    child: Row(children: [
+                      Icon(
+                        Icons.chat,
+                        size: 26,
+                        color: !isWeb &&
+                                Theme.of(context).colorScheme ==
+                                    ColorScheme.light()
+                            ? kPrimaryColor
+                            : Colors.white,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        'Inboks',
                         style: TextStyle(
                             fontSize: 20,
                             color: (!isWeb &&
