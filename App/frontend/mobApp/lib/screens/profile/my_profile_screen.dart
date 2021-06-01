@@ -156,7 +156,12 @@ class ThinProfileBody extends StatelessWidget {
               children: [
                 IconButton(
                   icon: Icon(Icons.add_photo_alternate_outlined),
-                  onPressed: () async {},
+                  onPressed: () async {
+                    // await pickImage(false);
+                    // int i;
+                    // i = await korisniciModel.dodajSliku(korisnikInfo.id, slika);
+                    // print("Zavrsio :" + i.toString());
+                  },
                 ),
                 Container(
                   margin: EdgeInsets.all(20),
@@ -225,29 +230,41 @@ class ThinProfileBody extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.all(20),
-              decoration:
-                  BoxDecoration(color: Theme.of(context).cardColor, boxShadow: [
-                BoxShadow(
-                  color: Colors.grey[850],
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3),
+            Column(
+              children: [
+                Text(
+                  "Proizvodi:",
+                  style: TextStyle(fontSize: 32, color: kPrimaryColor),
                 ),
-              ]),
-              constraints: BoxConstraints(
-                maxWidth: size.width - 10,
-                minWidth: size.width - 20,
-              ),
-              height: size.height - 40,
-              child: SingleChildScrollView(
-                child: Center(
-                  child: Wrap(
-                    children: proizvodiKartice,
+                Divider(
+                  color: kPrimaryColor,
+                ),
+                Container(
+                  margin: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey[850],
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3),
+                        ),
+                      ]),
+                  constraints: BoxConstraints(
+                    maxWidth: size.width - 10,
+                    minWidth: size.width - 20,
+                  ),
+                  height: size.height - 40,
+                  child: SingleChildScrollView(
+                    child: Center(
+                      child: Wrap(
+                        children: proizvodiKartice,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             )
           ],
         ),
@@ -278,133 +295,142 @@ class WideProfileBody extends StatelessWidget {
         child: Row(
       children: [
         Container(
-            margin: EdgeInsets.all(10),
-            width: 300,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(20),
-                      width: 210,
-                      height: 210,
+          margin: EdgeInsets.all(10),
+          width: 300,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    width: 210,
+                    height: 210,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: kPrimaryColor,
+                    ),
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      width: 200,
+                      height: 200,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: kPrimaryColor,
-                      ),
-                      child: Container(
-                        margin: EdgeInsets.all(10),
-                        width: 200,
-                        height: 200,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage(
-                                "assets/images/defaultProfilePhoto.png"),
-                          ),
+                        image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage(
+                              "assets/images/defaultProfilePhoto.png"),
                         ),
                       ),
                     ),
-                    // IconButton(
-                    //   icon: Icon(Icons.add_photo_alternate_outlined),
-                    //   onPressed: () async {
-                    //     var file = await ImagePicker()
-                    //         .getImage(source: ImageSource.gallery);
-                    //     print("Loading image...");
-                    //     var _image = File(file.path);
-                    //     print("Uploading image image...");
-                    //     SnackBar(
-                    //       content: Text("Loading image..."),
-                    //     );
-                    //     var res = await uploadImage(_image);
-                    //     print("image: " + res);
-                    //     slika = res;
-                    //     KorisniciModel k = new KorisniciModel();
-                    //     k.dodajSliku(id, slika);
-                    //     Navigator.pop(context);
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //         builder: (context) {
-                    //           return MyProfileScreen();
-                    //         },
-                    //       ),
-                    //     );
-                    //   },
-                    // )
+                  ),
+                  // IconButton(
+                  //   icon: Icon(Icons.add_photo_alternate_outlined),
+                  //   onPressed: () async {
+                  //     var file = await ImagePicker()
+                  //         .getImage(source: ImageSource.gallery);
+                  //     print("Loading image...");
+                  //     var _image = File(file.path);
+                  //     print("Uploading image image...");
+                  //     SnackBar(
+                  //       content: Text("Loading image..."),
+                  //     );
+                  //     var res = await uploadImage(_image);
+                  //     print("image: " + res);
+                  //     slika = res;
+                  //     KorisniciModel k = new KorisniciModel();
+                  //     k.dodajSliku(id, slika);
+                  //     Navigator.pop(context);
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (context) {
+                  //           return MyProfileScreen();
+                  //         },
+                  //       ),
+                  //     );
+                  //   },
+                  // )
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Ime i prezime",
+                      style: TextStyle(fontSize: 32, color: kPrimaryColor),
+                    ),
+                    Text(fName + " " + lName,
+                        style: TextStyle(fontSize: 26, color: Colors.grey)),
+                    Divider(
+                      color: kPrimaryColor,
+                    ),
+                    Text(
+                      "Adresa",
+                      style: TextStyle(fontSize: 32, color: kPrimaryColor),
+                    ),
+                    Text(address,
+                        style: TextStyle(fontSize: 26, color: Colors.grey)),
+                    Divider(
+                      color: kPrimaryColor,
+                    ),
+                    Text(
+                      "Reputacija",
+                      style: TextStyle(fontSize: 32, color: kPrimaryColor),
+                    ),
+                    StarDisplayWidget(
+                        filledStar: Icon(Icons.star),
+                        unfilledStar: Icon(Icons.star_border),
+                        value: reputationScore),
+                    Divider(
+                      color: kPrimaryColor,
+                    ),
+                    ProfileButton(
+                      fName: fName,
+                      lName: lName,
+                      address: address,
+                    )
                   ],
                 ),
-                Container(
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Ime i prezime",
-                        style: TextStyle(fontSize: 32, color: kPrimaryColor),
-                      ),
-                      Text(fName + " " + lName,
-                          style: TextStyle(fontSize: 26, color: Colors.grey)),
-                      Divider(
-                        color: kPrimaryColor,
-                      ),
-                      Text(
-                        "Adresa",
-                        style: TextStyle(fontSize: 32, color: kPrimaryColor),
-                      ),
-                      Text(address,
-                          style: TextStyle(fontSize: 26, color: Colors.grey)),
-                      Divider(
-                        color: kPrimaryColor,
-                      ),
-                      Text(
-                        "Reputacija",
-                        style: TextStyle(fontSize: 32, color: kPrimaryColor),
-                      ),
-                      StarDisplayWidget(
-                          filledStar: Icon(Icons.star),
-                          unfilledStar: Icon(Icons.star_border),
-                          value: reputationScore),
-                      Divider(
-                        color: kPrimaryColor,
-                      ),
-                      ProfileButton(
-                        fName: fName,
-                        lName: lName,
-                        address: address,
-                      )
-                    ],
-                  ),
-                )
-              ],
-            )),
-        Container(
-          margin: EdgeInsets.all(20),
-          decoration:
-              BoxDecoration(color: Theme.of(context).cardColor, boxShadow: [
-            BoxShadow(
-              color: Colors.grey[850],
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3),
-            ),
-          ]),
-          constraints: BoxConstraints(
-            maxWidth: size.width - 360,
-            minWidth: size.width - 370,
+              )
+            ],
           ),
-          height: size.height - 40,
-          child: SingleChildScrollView(
-            child: Center(
-              child: Wrap(
-                children: proizvoidKartice,
+        ),
+        Column(
+          children: [
+            Text(
+              "Proizvodi:",
+              style: TextStyle(fontSize: 32, color: kPrimaryColor),
+            ),
+            Container(
+              margin: EdgeInsets.all(20),
+              decoration:
+                  BoxDecoration(color: Theme.of(context).cardColor, boxShadow: [
+                BoxShadow(
+                  color: Colors.grey[850],
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
+                ),
+              ]),
+              constraints: BoxConstraints(
+                maxWidth: size.width - 360,
+                minWidth: size.width - 370,
+              ),
+              height: size.height - 140,
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Wrap(
+                    children: proizvoidKartice,
+                  ),
+                ),
               ),
             ),
-          ),
+          ],
         )
       ],
     ));
@@ -462,6 +488,7 @@ class ProfileButton extends StatelessWidget {
               return UpdateProfileForm(
                 fName: fName,
                 lName: lName,
+                broj: korisnikInfo.brojTelefona,
                 address: address,
               );
             },
