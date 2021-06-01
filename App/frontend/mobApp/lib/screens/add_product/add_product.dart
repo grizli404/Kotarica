@@ -5,17 +5,15 @@ import 'package:app/components/input_fields.dart';
 import 'package:app/components/rad_sa_slikama.dart';
 import 'package:app/main.dart';
 import 'package:app/model/proizvodiModel.dart';
-import 'package:flutter_absolute_path/flutter_absolute_path.dart';
-
+import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:app/model/kategorijeModel.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
 import '../../constants.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-String slika = "0";
+String slika = "";
 
 String textNaziv = "";
 double opacityNaziv = 0.0;
@@ -69,7 +67,7 @@ class _AddProductState extends State<AddProduct> {
     selectedCat = listaRoditeljKategorija[0];
     subcategory = kModel.dajPotkategorije(selectedCat.id);
     potkategorija = subcategory[0];
-    slika = "0";
+    slika = "";
     jediniceMere = ["kg", "l", "kom", "cm"];
     jedinicaMere = jediniceMere[0];
   }
@@ -109,9 +107,8 @@ class _AddProductState extends State<AddProduct> {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           fit: BoxFit.fill,
-                          image: slike.isNotEmpty
-                              ? NetworkImage(
-                                  "https://ipfs.io/ipfs/" + slike.first)
+                          image: slika != ""
+                              ? NetworkImage("https://ipfs.io/ipfs/" + slika)
                               : AssetImage(
                                   "assets/images/defaultProductPhoto.jpg"))),
                 ),
@@ -121,7 +118,7 @@ class _AddProductState extends State<AddProduct> {
                   focusColor: Theme.of(context).primaryColor,
                   hoverColor: kPrimaryColorHover,
                   onPressed: () {
-                    pickImages();
+                    pickImage();
                   }),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -170,7 +167,7 @@ class _AddProductState extends State<AddProduct> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                    margin: EdgeInsets.fromLTRB(0, 0, 40, 0),
                     child: DropdownButton<String>(
                       value: jedinicaMere,
                       items: jediniceMere.map((String value) {
@@ -282,13 +279,13 @@ class _AddProductState extends State<AddProduct> {
                   "Postavi proizvod",
                   style: TextStyle(color: Colors.white),
                 ),
-                color: Theme.of(context).primaryColor,
+                color: kPrimaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                 ),
                 padding:
                     EdgeInsets.symmetric(horizontal: (size.width / 2) - 85),
-                onPressed: () {
+                onPressed: () async {
                   bool proba = true;
                   print("Naziv: " +
                       nazivController.text +
@@ -340,8 +337,9 @@ class _AddProductState extends State<AddProduct> {
                         cenaController.text +
                         "," +
                         opisController.text);
+
                     _openLoadingDialog(context);
-                    pModel.dodajProizvod(
+                    await pModel.dodajProizvod(
                         korisnikInfo.id,
                         selectedCat.id,
                         potkategorija.id,
@@ -351,12 +349,19 @@ class _AddProductState extends State<AddProduct> {
                         int.parse(cenaController.text),
                         slike,
                         opisController.text);
+                    nazivController.text = "";
+                    kolicinaController.text = "";
+                    cenaController.text = "";
+                    opisController.text = "";
+                    slike = [];
+                    slika = "";
                     Navigator.pop(context);
                     print("Uspesno dodavanje");
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text("Postavljen proizvod"),
                     ));
                   }
+
                   setState(() {});
                 },
               )
@@ -383,83 +388,83 @@ class _AddProductState extends State<AddProduct> {
 
   bool loading = false;
   static final String uploadEndPoint = 'http://147.91.204.116:11099/upload';
-
-  Future<File> file;
-  String status = '';
-  String base64Image;
-  File tmpFile;
-  String errMessage = 'Greška pri otpremanju slike';
-
-  File _image;
+  var uploadFilesCount;
   String message = '';
-  List<File> f = List();
-
-  List<Asset> imagesAsset = List<Asset>();
-  //replace the url by your url
-  // your rest api url 'http://your_ip_adress/project_path' ///adresa racunara
-  // bool loading1 = false;
-
-  Future<void> pickImages() async {
-    List<Asset> resultList = List<Asset>();
-    slike.clear();
-    try {
-      resultList = await MultiImagePicker.pickImages(
-        maxImages: 10,
-        enableCamera: true,
-        selectedAssets: imagesAsset,
-      );
-    } on Exception catch (e) {
-      print(e);
-    }
-    //asset to image
-    for (int i = 0; i < resultList.length; i++) {
-      var path =
-          await FlutterAbsolutePath.getAbsolutePath(resultList[i].identifier);
-      f.add(File(path));
-    }
-
-    for (int i = 0; i < f.length; i++) {
-      upload(f[i]);
-    }
-
-    setState(() {
-      imagesAsset = resultList;
-    });
-  }
-
-  upload(File file) async {
-    if (file == null) return;
-    setState(() {
-      loading = true;
-    });
-    Map<String, String> headers = {
-      "Accept": "multipart/form-data",
-    };
+  Future<void> pickImage() async {
+    bool multiple = true;
     var uri = Uri.parse(uploadEndPoint);
-    var length = await file.length();
-    http.MultipartRequest request = new http.MultipartRequest('POST', uri)
-      ..headers.addAll(headers)
-      ..files.add(
-        // replace file with your field name exampe: image
-        http.MultipartFile('avatar', file.openRead(), length,
-            filename: 'test.png'),
-      );
-    var respons = await http.Response.fromStream(await request.send());
-    slika = respons.body;
-    slike.add(respons.body);
+    if (!multiple) //1 file
+    {
+      FilePickerResult result =
+          await FilePicker.platform.pickFiles(type: FileType.image);
+      if (result != null) {
+        PlatformFile file = result.files.first;
+
+        await upload(uri, file, multiple);
+      } else {
+        print("User canceled the picker");
+      }
+      setState(() {
+        loading = false;
+      });
+    } else //Multiple files
+    {
+      FilePickerResult result = await FilePicker.platform
+          .pickFiles(allowMultiple: true, type: FileType.image);
+      if (result != null) {
+        uploadFilesCount = result.files.length;
+        if (uploadFilesCount > 10)
+          print("VISE OD 10 SLIKA");
+        else {
+          for (var i in result.files) {
+            int sizeInBytes = i.bytes.lengthInBytes;
+            double sizeInMb = sizeInBytes / (1024 * 1024);
+            if (sizeInMb > 8) {
+              print("Predjen limit velicine fajla");
+            } else
+              await upload(uri, i, multiple);
+          }
+        }
+      } else {
+        print("User canceled the picker");
+      }
+    }
     setState(() {
       loading = false;
     });
+  }
+
+  upload(Uri uri, PlatformFile file, bool multiple) async {
+    setState(() {
+      loading = true;
+    });
+    if (file == null) return;
+
+    Map<String, String> headers = {
+      "Accept": "multipart/form-data",
+    };
+
+    var length = uploadFilesCount;
+    http.MultipartRequest request = new http.MultipartRequest('POST', uri)
+      ..headers.addAll(headers)
+      ..files.add(
+          // replace file with your field name exampe: image
+          http.MultipartFile.fromBytes('avatar', file.bytes,
+              filename: file.name));
+
+    var respons = await http.Response.fromStream(await request.send());
+
     if (respons.statusCode == 200) {
-      setState(() {
-        message = ' image upload with success';
-        print(message);
-      });
+      message = ' image upload with success';
+      print(message);
+
+      slike.add(respons.body);
+      slika = respons.body;
       return;
-    } else
-      setState(() {
-        message = ' image not upload';
-      });
+    } else {
+      message = ' image not upload';
+      print(message);
+    }
   }
 }
 
