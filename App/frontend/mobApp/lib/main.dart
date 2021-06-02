@@ -44,7 +44,7 @@ void main() {
   runApp(MyApp());
 }
 
-//ListaZeljaModel listaZeljaModelMain = new ListaZeljaModel();
+ListaZeljaModel listaZeljaModelMain = new ListaZeljaModel();
 Korisnik korisnikInfo;
 String url = '';
 bool isWeb;
@@ -75,13 +75,11 @@ class MyApp extends StatelessWidget {
     //var ocene = OceneModel();
     //var lista = NotifikacijeModel();
     // setujSesiju();
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => Carts()),
         ChangeNotifierProvider(
           create: (context) => KorisniciModel(),
-          lazy: true,
         ),
         ChangeNotifierProvider(create: (context) => ProizvodiModel()),
         ChangeNotifierProvider(create: (context) => KategorijeModel()),
@@ -144,7 +142,7 @@ class AppRoot extends StatefulWidget {
 }
 
 class _AppRootState extends State<AppRoot> {
-  String _url = "http://147.91.204.116:11094/Notification";
+  String _url = "http://147.91.204.116:11098/NotificationHub";
   void _initConnection() async {
     hubConnection = HubConnectionBuilder()
         .withUrl(_url, HttpConnectionOptions(logging: (l, m) => {print(m)}))
