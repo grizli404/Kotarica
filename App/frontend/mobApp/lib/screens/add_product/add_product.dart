@@ -69,7 +69,7 @@ class _AddProductState extends State<AddProduct> {
     selectedCat = listaRoditeljKategorija[0];
     subcategory = kModel.dajPotkategorije(selectedCat.id);
     potkategorija = subcategory[0];
-    slika = "0";
+    slika = "";
     jediniceMere = ["kg", "l", "kom", "cm"];
     jedinicaMere = jediniceMere[0];
   }
@@ -109,9 +109,8 @@ class _AddProductState extends State<AddProduct> {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           fit: BoxFit.fill,
-                          image: slike.isNotEmpty
-                              ? NetworkImage(
-                                  "https://ipfs.io/ipfs/" + slike.first)
+                          image: slika != ""
+                              ? NetworkImage("https://ipfs.io/ipfs/" + slika)
                               : AssetImage(
                                   "assets/images/defaultProductPhoto.jpg"))),
                 ),
@@ -170,7 +169,7 @@ class _AddProductState extends State<AddProduct> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                    margin: EdgeInsets.fromLTRB(0, 0, 40, 0),
                     child: DropdownButton<String>(
                       value: jedinicaMere,
                       items: jediniceMere.map((String value) {
@@ -282,13 +281,13 @@ class _AddProductState extends State<AddProduct> {
                   "Postavi proizvod",
                   style: TextStyle(color: Colors.white),
                 ),
-                color: Theme.of(context).primaryColor,
+                color: kPrimaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                 ),
                 padding:
                     EdgeInsets.symmetric(horizontal: (size.width / 2) - 85),
-                onPressed: () {
+                onPressed: () async {
                   bool proba = true;
                   print("Naziv: " +
                       nazivController.text +
@@ -340,8 +339,9 @@ class _AddProductState extends State<AddProduct> {
                         cenaController.text +
                         "," +
                         opisController.text);
+
                     _openLoadingDialog(context);
-                    pModel.dodajProizvod(
+                    await pModel.dodajProizvod(
                         korisnikInfo.id,
                         selectedCat.id,
                         potkategorija.id,
@@ -351,12 +351,19 @@ class _AddProductState extends State<AddProduct> {
                         int.parse(cenaController.text),
                         slike,
                         opisController.text);
+                    nazivController.text = "";
+                    kolicinaController.text = "";
+                    cenaController.text = "";
+                    opisController.text = "";
+                    slike = [];
+                    slika = "";
                     Navigator.pop(context);
                     print("Uspesno dodavanje");
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text("Postavljen proizvod"),
                     ));
                   }
+
                   setState(() {});
                 },
               )

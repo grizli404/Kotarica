@@ -285,7 +285,7 @@ class _AddProductState extends State<AddProduct> {
                 ),
                 padding:
                     EdgeInsets.symmetric(horizontal: (size.width / 2) - 85),
-                onPressed: () {
+                onPressed: () async {
                   bool proba = true;
                   print("Naziv: " +
                       nazivController.text +
@@ -339,7 +339,7 @@ class _AddProductState extends State<AddProduct> {
                         opisController.text);
 
                     _openLoadingDialog(context);
-                    pModel.dodajProizvod(
+                    await pModel.dodajProizvod(
                         korisnikInfo.id,
                         selectedCat.id,
                         potkategorija.id,
@@ -349,6 +349,12 @@ class _AddProductState extends State<AddProduct> {
                         int.parse(cenaController.text),
                         slike,
                         opisController.text);
+                    nazivController.text = "";
+                    kolicinaController.text = "";
+                    cenaController.text = "";
+                    opisController.text = "";
+                    slike = [];
+                    slika = "";
                     Navigator.pop(context);
                     print("Uspesno dodavanje");
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
