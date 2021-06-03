@@ -417,7 +417,7 @@ class _BodyState extends State<Body> {
         if (proizvod.slika.isNotEmpty && proizvod.slika[0] != "") {
           // for (int i = 0; i < proizvod.slika.length; i++) {
           return new Image.network(
-            "https://ipfs.io/ipfs/" + widget.proizvod.slika[index],
+            "http://147.91.204.116:11099/ipfs/" + widget.proizvod.slika[index],
             //  fit: BoxFit.fill,
           );
           //}

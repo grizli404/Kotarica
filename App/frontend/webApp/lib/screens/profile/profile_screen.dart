@@ -65,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                               image: DecorationImage(
                                 fit: BoxFit.fill,
                                 image: korisnik.slika != null
-                                    ? NetworkImage("https://ipfs.io/ipfs/" +
+                                    ? NetworkImage("http://147.91.204.116:11099/ipfs/" +
                                         korisnik.slika)
                                     : AssetImage(
                                         "assets/images/defaultProfilePhoto.png"),

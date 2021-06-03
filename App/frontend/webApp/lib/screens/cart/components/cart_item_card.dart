@@ -42,7 +42,7 @@ class _CartItemCardState extends State<CartItemCard> {
                     clipBehavior: Clip.hardEdge,
                     // clipBehavior: Clip.hardEdge,
                     child: Image.network(
-                      "https://ipfs.io/ipfs/" + widget.cart.product.slika[0],
+                      "http://147.91.204.116:11099/ipfs/" + widget.cart.product.slika[0],
                       errorBuilder: (context, error, stackTrace) {
                         return SvgPicture.asset(
                             Theme.of(context).colorScheme == ColorScheme.dark()
