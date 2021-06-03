@@ -108,12 +108,16 @@ class TestState extends State<NumberSelector> {
                   fontSize: 12.0),
             ),
             IconButton(
-              color: Theme.of(context).iconTheme.color,
-              onPressed: () {
-                setState(() {
-                  ++counter;
-                });
-              },
+              color: counter < widget.proizvod.kolicina
+                  ? Theme.of(context).iconTheme.color
+                  : Colors.grey,
+              onPressed: counter < widget.proizvod.kolicina
+                  ? () {
+                      setState(() {
+                        counter++;
+                      });
+                    }
+                  : () {},
               icon: Icon(
                 Icons.add_circle_outline,
                 size: 12.0,
