@@ -44,7 +44,7 @@ void main() {
   runApp(MyApp());
 }
 
-ListaZeljaModel listaZeljaModelMain = new ListaZeljaModel();
+//ListaZeljaModel listaZeljaModelMain = new ListaZeljaModel();
 Korisnik korisnikInfo;
 String url = '';
 bool isWeb;
