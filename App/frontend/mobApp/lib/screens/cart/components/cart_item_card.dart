@@ -118,20 +118,26 @@ class _CartItemCardState extends State<CartItemCard> {
                         ),
                       ),
                       IconButton(
-                        color:
-                            Theme.of(context).colorScheme == ColorScheme.dark()
+                        color: widget.cart.numOfItems <
+                                widget.cart.product.kolicina
+                            ? (Theme.of(context).colorScheme ==
+                                    ColorScheme.dark()
                                 ? Colors.yellow
-                                : Theme.of(context).accentColor,
+                                : Theme.of(context).accentColor)
+                            : Colors.grey,
                         icon: Icon(
                           Icons.add_circle_outline,
                           size: 16.0,
                         ),
-                        onPressed: () {
-                          setState(() {
-                            widget.cart.numOfItems++;
-                            widget.rebuild(() {});
-                          });
-                        },
+                        onPressed: widget.cart.numOfItems <
+                                widget.cart.product.kolicina
+                            ? () {
+                                setState(() {
+                                  widget.cart.numOfItems++;
+                                  widget.rebuild(() {});
+                                });
+                              }
+                            : () {},
                       )
                     ]),
               ],
