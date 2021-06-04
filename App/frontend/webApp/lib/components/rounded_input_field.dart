@@ -10,8 +10,10 @@ class RoundedInputField extends StatelessWidget {
   final Color color;
   final String value;
   final double sizeQ;
+  final Function onFieldSubmit;
   const RoundedInputField({
     Key key,
+    this.onFieldSubmit,
     this.hintText,
     this.icon = Icons.person,
     this.onChanged,
@@ -27,6 +29,7 @@ class RoundedInputField extends StatelessWidget {
       sizeQ: sizeQ,
       color: color,
       child: TextFormField(
+        onFieldSubmitted: onFieldSubmit,
         initialValue: value,
         validator: validator,
         onChanged: onChanged,

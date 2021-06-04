@@ -10,8 +10,10 @@ class RoundedPasswordField extends StatefulWidget {
   final Color color;
   final String value;
   final double sizeQ;
+  final Function onFieldSubmit;
   const RoundedPasswordField({
     Key key,
+    this.onFieldSubmit,
     this.onChanged,
     this.validator,
     this.hintText,
@@ -23,6 +25,7 @@ class RoundedPasswordField extends StatefulWidget {
 
   @override
   _RoundedPasswordFieldState createState() => _RoundedPasswordFieldState(
+      onFieldSubmit: onFieldSubmit,
       onChanged: onChanged,
       validator: validator,
       hintText: hintText,
@@ -39,8 +42,9 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
   final Color color;
   final String value;
   final double sizeQ;
-
+  final Function onFieldSubmit;
   _RoundedPasswordFieldState({
+    this.onFieldSubmit,
     this.hintText = 'Password',
     this.icon,
     this.color,
@@ -56,6 +60,7 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
           ? Theme.of(context).primaryColor
           : kPrimaryLightColor,
       child: TextFormField(
+        onFieldSubmitted: onFieldSubmit,
         initialValue: value,
         validator: validator,
         onChanged: widget.onChanged,
