@@ -257,8 +257,8 @@ class _BodyState extends State<Body> {
       var jwt = '';
       try {
         response = await korisnik
-            .dodavanjeNovogKorisnika(
-                _email, _password, _ime, _prezime, _kontakt, _adresa)
+            .dodavanjeNovogKorisnika(_email.trim(), _password.trim(),
+                _ime.trim(), _prezime.trim(), _kontakt.trim(), _adresa.trim())
             .timeout(const Duration(seconds: 10));
         // await FlutterSession().set('email', _email);
         jwt = await KorisniciModel.checkUser(_email, _password);

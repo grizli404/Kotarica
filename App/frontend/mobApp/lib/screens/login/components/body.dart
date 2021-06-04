@@ -119,7 +119,7 @@ class _BodyState extends State<Body> {
       });
       int id = 0;
       try {
-        id = await korisnik.login(_email, _password).timeout(
+        id = await korisnik.login(_email.trim(), _password.trim()).timeout(
               const Duration(seconds: 10),
             );
       } on TimeoutException catch (e) {
