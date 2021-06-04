@@ -24,9 +24,9 @@ class ConversationScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircleAvatar(
-            backgroundImage: AssetImage("assets/images/cookiechoco.jpg"),
-          ),
+          // CircleAvatar(
+          //   backgroundImage: AssetImage("assets/images/cookiechoco.jpg"),
+          // ),
           SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

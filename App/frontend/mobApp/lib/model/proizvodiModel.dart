@@ -28,6 +28,7 @@ class ProizvodiModel extends ChangeNotifier {
   ContractFunction _dodajProizvod;
   ContractFunction proizvodiKorisnika;
   ContractFunction _smanjiPrilikomKupovine;
+  ContractFunction _daLiMozeDaSeSmanji;
 
   ContractEvent _smanji;
 
@@ -46,7 +47,10 @@ class ProizvodiModel extends ChangeNotifier {
 
     await dajSveProizvode();
 
-    //await smanjiPrilikomKupovine(1, 1);
+    // print("Dosao sam dovde");
+    // bool p = await smanjiPrilikomKupovine(1, 100);
+    // print(p);
+    // print("zavrsio sam");
 
     notifyListeners();
   }
@@ -92,6 +96,7 @@ class ProizvodiModel extends ChangeNotifier {
     _dodajProizvod = ugovor.function("dodajProizvod");
     proizvodiKorisnika = ugovor.function("dajProizvodeZaKorisnika");
     _smanjiPrilikomKupovine = ugovor.function("smanjiPrilikomKupovine");
+    _daLiMozeDaSeSmanji = ugovor.function("daLiMozeDaSeSmanji");
     //Event
     _smanji = ugovor.event("smanji");
   }
@@ -114,7 +119,7 @@ class ProizvodiModel extends ChangeNotifier {
     for (var i = 0; i < _slike.length; i++) {
       _slika += _slike[i] + "|";
     }
-    print(_slika);
+
     await client.sendTransaction(
         credentials,
         Transaction.callContract(
@@ -168,13 +173,11 @@ class ProizvodiModel extends ChangeNotifier {
       List<String> s = [];
       var slike = proizvod[6];
       slike = slike.split("|");
-      // print('slike ' + slike);
       for (var i = 0; i < slike.length; i++) {
-        // print('slika[i]' + slike[i]);
         s.add(slike[i]);
       }
 
-      if(s.length > 1) {
+      if (s.length > 1) {
         s.removeAt(s.length - 1);
       }
 
@@ -271,18 +274,28 @@ class ProizvodiModel extends ChangeNotifier {
   }
 
   Future<bool> smanjiPrilikomKupovine(int _idProizoda, int _kolicina) async {
-    var povratna = await client.sendTransaction(
-        credentials,
-        Transaction.callContract(
-            maxGas: 6721975,
-            contract: ugovor,
-            function: _smanjiPrilikomKupovine,
-            parameters: [
-              BigInt.from(_idProizoda),
-              BigInt.from(_kolicina),
-            ]));
+    var daLiMoze = await client.call(
+        contract: ugovor,
+        function: _daLiMozeDaSeSmanji,
+        params: [BigInt.from(_idProizoda), BigInt.from(_kolicina)]);
 
-    print(povratna.hashCode);
+    BigInt tempInt = daLiMoze[0];
+    int temp = tempInt.toInt();
+
+    if (temp == 1) {
+      await client.sendTransaction(
+          credentials,
+          Transaction.callContract(
+              maxGas: 6721975,
+              contract: ugovor,
+              function: _smanjiPrilikomKupovine,
+              parameters: [
+                BigInt.from(_idProizoda),
+                BigInt.from(_kolicina),
+              ]));
+      return true;
+    }
+    return false;
   }
 }
 

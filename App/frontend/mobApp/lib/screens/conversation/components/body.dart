@@ -22,7 +22,7 @@ class _BodyState extends State<Body> {
   List<ChatMessage> messages = [];
   List<ChatMessage> sending = [];
   bool inAsyncCall = true;
-  String _url = "http://147.91.204.116:11094/ChatHub";
+  String _url = "http://147.91.204.116:11098/ChatHub";
   // Widget chatInputField;
   @override
   void initState() {

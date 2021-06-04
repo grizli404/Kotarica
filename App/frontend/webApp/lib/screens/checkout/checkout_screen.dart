@@ -13,6 +13,7 @@ import 'package:app/screens/home/homeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:signalr_core/signalr_core.dart';
 
 import '../../main.dart';
 
@@ -316,6 +317,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 .daLiPostojiKupovinaZaOcenjivanjeProizvoda(korisnikInfo.id,
                     index.product.idKorisnika, index.product.id)
                 .timeout(const Duration(seconds: 30));
+            if (hubConnection.state == HubConnectionState.disconnected) {
+              print("Startujem konekciju");
+              await hubConnection.start();
+              print("STARTED CONNECTION");
+            } else {
+              print("Connection is open");
+            }
             await hubConnection.invoke('Notifikacija', args: <dynamic>[
               korisnikInfo.ime,
               korisnikInfo.brojTelefona,
@@ -338,30 +346,45 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         string += element.product.naziv;
         string += ', ';
       });
-      showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-                title: Center(child: Text("Narudžbina poslata:")),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.check_circle_outline_rounded,
-                      size: 150,
-                    ),
-                    Text(
-                      string,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    if (character == payment.onArrival)
+      if (kupljeni.length != 0)
+        showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+                  title: Center(child: Text("Narudžbina poslata:")),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.check_circle_outline_rounded,
+                        size: 150,
+                      ),
+                      Text(
+                        string,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       Text("Plaća se pouzećem!")
-                    else if (character == payment.online)
-                      Text("Naplaćeno sa Ethereum naloga")
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-          barrierDismissible: true);
+            barrierDismissible: true);
+      else
+        showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+                  title: Center(child: Text("Narudžbina nije poslata")),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.cancel_outlined,
+                        size: 150,
+                      ),
+                      Text("Nema dovoljno proizvoda na stanju!")
+                    ],
+                  ),
+                ),
+            barrierDismissible: true);
     }
   }
 
