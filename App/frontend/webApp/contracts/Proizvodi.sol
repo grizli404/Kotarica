@@ -59,7 +59,7 @@ contract Proizvodi{
         if((proizvodi[_id].kolicina - _kolicina) >= 0) {
             return 1;
         }
-        return 0;        
+        return 0;
     }
     
 }

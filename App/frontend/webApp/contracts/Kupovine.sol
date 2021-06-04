@@ -43,5 +43,4 @@ contract Kupovine{
         return 0;
     }
 
-
 }
