@@ -70,6 +70,9 @@ class _BodyState extends State<Body> {
                 height: size.height * 0.03,
               ),
               RoundedInputField(
+                onFieldSubmit: (value) {
+                  loginAction(korisnik);
+                },
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Theme.of(context).primaryColor
                     : kPrimaryLightColor,
@@ -79,6 +82,9 @@ class _BodyState extends State<Body> {
                     !input.contains("@") ? "Nedostaje @" : null,
               ),
               RoundedPasswordField(
+                onFieldSubmit: (value) {
+                  loginAction(korisnik);
+                },
                 hintText: 'Lozinka',
                 onChanged: (input) => _password = input,
                 validator: (input) => !(input.contains(RegExp(
