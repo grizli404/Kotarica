@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import '../model/listaZeljaModel.dart';
 import 'number_selector.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   ProductCard({
     Key key,
     @required this.name,
@@ -28,9 +28,52 @@ class ProductCard extends StatelessWidget {
   final String price;
   final String imgPath;
   final bool added;
-  final bool isFavorite;
+  bool isFavorite;
   final context;
   final Proizvod proizvod;
+
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
+  bool inAsyncCall = true;
+
+  Future setup() async {
+    //   print("here1");
+
+    try {
+      if (inAsyncCall == false)
+        setState(() {
+          inAsyncCall = true;
+        });
+      await widget.lzModel.dajLajkove(korisnikInfo.id);
+      //  print('1');
+      List<int> omiljeniProizvodiIndeks =
+          widget.lzModel.listaLajkovanihProizvoda;
+      for (int i = 0; i < omiljeniProizvodiIndeks.length; i++) {
+        if (omiljeniProizvodiIndeks[i] == widget.proizvod.id) {
+          widget.isFavorite = true;
+          break;
+        }
+      }
+
+      //  widget.isFavorite = false;
+
+      setState(() {
+        inAsyncCall = false;
+      });
+    } catch (e) {
+      print(e);
+    }
+    // print(listaOmiljenihProizvoda[i].naziv);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (korisnikInfo != null) setup();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +89,8 @@ class ProductCard extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) {
                     return ProductDetail(
-                      proizvod: proizvod,
-                      assetPath: imgPath,
+                      proizvod: widget.proizvod,
+                      assetPath: widget.imgPath,
                       //  name: name,
                       //   price: price,
                     );
@@ -57,7 +100,7 @@ class ProductCard extends StatelessWidget {
             },
             child: Container(
                 width: ResponsiveLayout.isIphone(context) ? 180 : 180,
-             //   height: ResponsiveLayout.isIphone(context) ? 210 : 250,
+                //   height: ResponsiveLayout.isIphone(context) ? 210 : 250,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
                     border: Border.all(
@@ -76,8 +119,33 @@ class ProductCard extends StatelessWidget {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              isFavorite
-                                  ? Icon(Icons.favorite, color: kPrimaryColor)
+                              widget.isFavorite
+                                  ? (korisnikInfo != null
+                                      ? IconButton(
+                                          icon: Icon(Icons.favorite,
+                                              color: Theme.of(context)
+                                                  .iconTheme
+                                                  .color),
+                                          onPressed: () async {
+                                            if (korisnikInfo != null) {
+                                              // print("Stavljen u omiljene");
+                                              await widget.lzModel
+                                                  .dislajkovanje(
+                                                      korisnikInfo.id,
+                                                      widget.proizvod.id);
+                                              print("Proso");
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                content: Text(
+                                                    "Proizvod izbačen iz liste želja."),
+                                              ));
+                                              setState(() {
+                                                widget.isFavorite = false;
+                                              });
+                                            }
+                                          })
+                                      : Icon(Icons.favorite,
+                                          color: kPrimaryColor))
                                   : IconButton(
                                       icon: Icon(Icons.favorite_border,
                                           color: Theme.of(context)
@@ -86,14 +154,18 @@ class ProductCard extends StatelessWidget {
                                       onPressed: () async {
                                         if (korisnikInfo != null) {
                                           print("Stavljen u omiljene");
-                                          await lzModel.lajkovanje(
-                                              korisnikInfo.id, proizvod.id);
+                                          await widget.lzModel.lajkovanje(
+                                              korisnikInfo.id,
+                                              widget.proizvod.id);
                                           print("Proso");
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(SnackBar(
                                             content: Text(
-                                                "Proizvod dodat u omiljene"),
+                                                "Proizvod dodat u listu želja."),
                                           ));
+                                          setState(() {
+                                            widget.isFavorite = true;
+                                          });
                                         } else {
                                           print("Niste ulogovani");
                                           ScaffoldMessenger.of(context)
@@ -104,16 +176,16 @@ class ProductCard extends StatelessWidget {
                                       })
                             ])),
                     Hero(
-                        tag: imgPath,
+                        tag: widget.imgPath,
                         child: Container(
                           height: 75.0,
                           width: 75.0,
                           //  decoration: BoxDecoration(
                           //      image: DecorationImage(
-                          child: proizvod.slika.isNotEmpty
+                          child: widget.proizvod.slika.isNotEmpty
                               ? Image.network(
                                   "http://147.91.204.116:11099/ipfs/" +
-                                      proizvod.slika.first,
+                                      widget.proizvod.slika.first,
                                   fit: BoxFit.contain,
                                   loadingBuilder: (BuildContext context,
                                       Widget child,
@@ -133,15 +205,15 @@ class ProductCard extends StatelessWidget {
                                     );
                                   },
                                 )
-                              : Image.asset(imgPath),
+                              : Image.asset(widget.imgPath),
                         )),
                     SizedBox(height: 7.0),
-                    Text(price + ' RSD',
+                    Text(widget.price + ' RSD',
                         style: TextStyle(
                             color: Theme.of(context).iconTheme.color,
                             fontFamily: 'Varela',
                             fontSize: 14.0)),
-                    Text(name,
+                    Text(widget.name,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
                         maxLines: 1,
@@ -154,7 +226,7 @@ class ProductCard extends StatelessWidget {
                     //     child:
                     //         Container(color: Color(0xFFEBEBEB), height: 1.0)),
                     NumberSelector(
-                      proizvod: proizvod,
+                      proizvod: widget.proizvod,
                     ),
                   ],
                 ))));
