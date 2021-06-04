@@ -63,9 +63,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (kIsWeb) {
-      url = 'http://147.91.204.116:11094/';
+      url = 'http://147.91.204.116:11098/';
     } else {
-      url = 'http://147.91.204.116:11094/';
+      url = 'http://147.91.204.116:11098/';
     }
     kIsWeb ? isWeb = true : isWeb = false;
     // print(FlutterSession().get('email').toString());

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class Rating extends StatefulWidget {
   final int maximumRating;
   final Function(int) onRatingSelected;
-
-  Rating(this.onRatingSelected, [this.maximumRating = 5]);
+  final bool korisnik;
+  Rating(this.onRatingSelected, this.korisnik, [this.maximumRating = 5]);
 
   @override
   _Rating createState() => _Rating();
@@ -15,7 +15,7 @@ class _Rating extends State<Rating> {
   int _currentRating = 0;
 
   Widget _buildRatingStar(int index) {
-    if (index < _currentRating) {
+    if (index < _currentRating && widget.korisnik != true) {
       return Icon(Icons.star, color: Theme.of(context).iconTheme.color);
     } else {
       return Icon(Icons.star_border_outlined);
