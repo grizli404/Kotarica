@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import '../constants.dart';
 import '../main.dart';
+import '../model/cart.dart';
 import '../model/kategorijeModel.dart';
 import '../token.dart';
 import 'changeThemeButton.dart';
@@ -43,8 +44,10 @@ class ListenToDrawerEventState extends State<ListenToDrawerEvent> {
 }
 
 Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
+  Carts carts = Provider.of<Carts>(context, listen: false);
   // var tokenWeb;
   zatvoriSesiju() async {
+    carts.removeAll();
     korisnikInfo = null;
     //  print('jwt  ' + Token.jwt);
     // !isWeb
