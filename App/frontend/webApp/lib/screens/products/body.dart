@@ -204,27 +204,74 @@ class _BodyState extends State<Body> {
                 children: [
                   InkWell(
                     // dodaj u korpu
-                    onTap: () {
-                      cart.dodajJedanProizvodUKorpu(widget.proizvod);
+                    onTap: korisnikInfo != null
+                        ? korisnikInfo.id == widget.proizvod.idKorisnika
+                            ? () {
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                        "Ne možete dodati sopstveni proizvod u korpu!"),
+                                    duration:
+                                        const Duration(milliseconds: 4000),
+                                    width: MediaQuery.of(context).size.width *
+                                        0.9, // Width of the SnackBar.
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal:
+                                          8.0, // Inner padding for SnackBar content.
+                                    ),
+                                    behavior: SnackBarBehavior.floating,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  ),
+                                );
+                              }
+                            : () {
+                                cart.dodajJedanProizvodUKorpu(widget.proizvod);
 
-                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text("Dodat 1 proizvod u korpu"),
-                          duration: const Duration(milliseconds: 1500),
-                          width: MediaQuery.of(context).size.width *
-                              0.9, // Width of the SnackBar.
-                          padding: const EdgeInsets.symmetric(
-                            horizontal:
-                                8.0, // Inner padding for SnackBar content.
-                          ),
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                      );
-                    },
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text("Dodat 1 proizvod u korpu"),
+                                    duration:
+                                        const Duration(milliseconds: 4000),
+                                    width: MediaQuery.of(context).size.width *
+                                        0.9, // Width of the SnackBar.
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal:
+                                          8.0, // Inner padding for SnackBar content.
+                                    ),
+                                    behavior: SnackBarBehavior.floating,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  ),
+                                );
+                              }
+                        : () {
+                            cart.dodajJedanProizvodUKorpu(widget.proizvod);
+
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text("Dodat 1 proizvod u korpu"),
+                                duration: const Duration(milliseconds: 1500),
+                                width: MediaQuery.of(context).size.width *
+                                    0.9, // Width of the SnackBar.
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal:
+                                      8.0, // Inner padding for SnackBar content.
+                                ),
+                                behavior: SnackBarBehavior.floating,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                              ),
+                            );
+                          },
                     child: Center(
                       child: Container(
                         width: ResponsiveLayout.isIphone(context)
@@ -308,15 +355,25 @@ class _BodyState extends State<Body> {
               _rating = rating;
               // Korisnik k = await uzmiPodatke();
               if (korisnikInfo != null) {
-                // unesi ocenu
-                unesiOcenu(korisnikInfo, widget.proizvod, _rating);
+                if (korisnikInfo.id != widget.proizvod.idKorisnika)
+                  // unesi ocenu
+                  unesiOcenu(korisnikInfo, widget.proizvod, _rating);
+                else
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Ne možete oceniti svoj proizvod!")));
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text(
                         "Morate biti prijavljeni da biste ocenili proizvod!")));
               }
             });
-          }, 5),
+          },
+              korisnikInfo != null
+                  ? korisnikInfo.id == widget.proizvod.idKorisnika
+                      ? true
+                      : false
+                  : true,
+              5),
           SizedBox(height: 30),
           Center(
             child: Container(

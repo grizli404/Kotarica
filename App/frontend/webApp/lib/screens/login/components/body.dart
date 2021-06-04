@@ -125,7 +125,7 @@ class _BodyState extends State<Body> {
       });
       int id = 0;
       try {
-        id = await korisnik.login(_email, _password).timeout(
+        id = await korisnik.login(_email.trim(), _password.trim()).timeout(
               const Duration(seconds: 10),
             );
       } on TimeoutException catch (e) {
@@ -140,7 +140,7 @@ class _BodyState extends State<Body> {
         // jwt = 'true';
         korisnikInfo = await korisnik
             .vratiKorisnikaMail(_email)
-            .timeout(const Duration(seconds: 10));
+            .timeout(const Duration(seconds: 15));
       } on TimeoutException catch (e) {
         print("TIMED OUT ON LOGIN 2!");
         id = 0;
