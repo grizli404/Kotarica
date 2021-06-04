@@ -88,6 +88,9 @@ class _BodyState extends State<Body> {
                 height: size.height * 0.03,
               ),
               RoundedInputField(
+                onFieldSubmit: (value) {
+                  signUpAction(korisnik);
+                },
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Theme.of(context).primaryColor
                     : kPrimaryLightColor,
@@ -98,6 +101,9 @@ class _BodyState extends State<Body> {
                 icon: Icons.mail_rounded,
               ),
               RoundedPasswordField(
+                onFieldSubmit: (value) {
+                  signUpAction(korisnik);
+                },
                 hintText: 'Lozinka',
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Theme.of(context).primaryColor
@@ -112,6 +118,9 @@ class _BodyState extends State<Body> {
                       MediaQuery.of(context).size.height <
                   1) ...[
                 RoundedInputField(
+                  onFieldSubmit: (value) {
+                    signUpAction(korisnik);
+                  },
                   color: Theme.of(context).colorScheme == ColorScheme.dark()
                       ? Theme.of(context).primaryColor
                       : kPrimaryLightColor,
@@ -123,6 +132,9 @@ class _BodyState extends State<Body> {
                       : null,
                 ),
                 RoundedInputField(
+                  onFieldSubmit: (value) {
+                    signUpAction(korisnik);
+                  },
                   color: Theme.of(context).colorScheme == ColorScheme.dark()
                       ? Theme.of(context).primaryColor
                       : kPrimaryLightColor,
@@ -140,6 +152,9 @@ class _BodyState extends State<Body> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       RoundedInputField(
+                        onFieldSubmit: (value) {
+                          signUpAction(korisnik);
+                        },
                         sizeQ: 0.39,
                         color:
                             Theme.of(context).colorScheme == ColorScheme.dark()
@@ -153,6 +168,9 @@ class _BodyState extends State<Body> {
                             : null,
                       ),
                       RoundedInputField(
+                        onFieldSubmit: (value) {
+                          signUpAction(korisnik);
+                        },
                         sizeQ: 0.39,
                         color:
                             Theme.of(context).colorScheme == ColorScheme.dark()
@@ -170,6 +188,9 @@ class _BodyState extends State<Body> {
                 )
               ],
               RoundedInputField(
+                onFieldSubmit: (value) {
+                  signUpAction(korisnik);
+                },
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Theme.of(context).primaryColor
                     : kPrimaryLightColor,
@@ -182,6 +203,9 @@ class _BodyState extends State<Body> {
                 icon: Icons.phone,
               ),
               RoundedInputField(
+                onFieldSubmit: (value) {
+                  signUpAction(korisnik);
+                },
                 color: Theme.of(context).colorScheme == ColorScheme.dark()
                     ? Theme.of(context).primaryColor
                     : kPrimaryLightColor,
