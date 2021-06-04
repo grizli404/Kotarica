@@ -182,7 +182,8 @@ class _ProductCardState extends State<ProductCard> {
                           width: 75.0,
                           //  decoration: BoxDecoration(
                           //      image: DecorationImage(
-                          child: widget.proizvod.slika.isNotEmpty
+                          child: widget.proizvod.slika.isNotEmpty &&
+                                  widget.proizvod.slika[0] != ""
                               ? Image.network(
                                   "http://147.91.204.116:11099/ipfs/" +
                                       widget.proizvod.slika.first,
