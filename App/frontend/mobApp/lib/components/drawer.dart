@@ -349,7 +349,7 @@ Widget drawerContainer(BuildContext context, KategorijeModel kategorije) {
                         width: 5,
                       ),
                       Text(
-                        'Inboks',
+                        'Poruke',
                         style: TextStyle(
                             fontSize: 20,
                             color: (!isWeb &&

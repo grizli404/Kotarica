@@ -129,7 +129,7 @@ class TimeAgo {
       {bool numericDates = true}) {
     final date1 = DateTime.parse(dateString);
     final date2 = DateTime.now();
-    final difference = date2.difference(date1) - Duration(minutes: 732);
+    final difference = date2.difference(date1);
 
     if (difference.inDays > 8) {
       return dateString;

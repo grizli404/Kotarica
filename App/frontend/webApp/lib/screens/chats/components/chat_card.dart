@@ -1,6 +1,7 @@
 import 'package:app/model/chats.dart';
 import 'package:app/screens/conversation/conversation_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ChatCard extends StatelessWidget {
   const ChatCard({
@@ -25,9 +26,29 @@ class ChatCard extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Row(
           children: [
-            CircleAvatar(
-              radius: 24,
-              backgroundImage: AssetImage("assets/images/cookiechoco.jpg"),
+            SizedBox(
+              width: 25,
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: Container(
+                    clipBehavior: Clip.hardEdge,
+                    // clipBehavior: Clip.hardEdge,
+                    child: Image.network(
+                      "http://147.91.204.116:11099/ipfs/" +
+                          chat.sagovornik.slika,
+                      errorBuilder: (context, error, stackTrace) {
+                        return SvgPicture.asset(
+                            Theme.of(context).colorScheme == ColorScheme.dark()
+                                ? "assets/icons/shopping-basket-dark.svg"
+                                : "assets/icons/shopping-basket.svg");
+                      },
+                      fit: BoxFit.cover,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      borderRadius: BorderRadius.circular(20),
+                    )),
+              ),
             ),
             Expanded(
               child: Padding(
