@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html';
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
@@ -161,6 +162,33 @@ class KupovineModel extends ChangeNotifier {
 
     return prvihDvadeset;
   }
+
+
+  /***************MAJA***************/
+
+  Future<List<int>> maja(int id) async {
+
+    List<int> lista = [];
+
+
+    var endpointUrl = 'http://147.91.204.116:11094/a?id='+id.toString();
+    var uri = Uri.parse(endpointUrl);
+    var response = await http.get(uri);
+    var pom = response.body.split("\\r\\n");
+
+    for (var i = 1; i < pom.length - 1; i++) {
+      var pom2 = pom[i].split(" ");
+      for (var i = 1; i < pom2.length; i++) {
+        if(pom2[i] != "") {
+          var one = int.parse(pom2[i]);
+          lista.add(one);
+        }
+      }
+    }
+    return lista;      
+  }
+
+  /***************KRAJ MAJA***************/
 }
 
 class Kupovina {
