@@ -69,10 +69,10 @@ class MyApp extends StatelessWidget {
     }
     kIsWeb ? isWeb = true : isWeb = false;
     // print(FlutterSession().get('email').toString());
-    var korisnici = KorisniciModel();
+    //var korisnici = KorisniciModel();
     //var kategorije = KategorijeModel();
-    var proizvodi = ProizvodiModel();
-    //var ocene = OceneModel();
+    //var proizvodi = ProizvodiModel();
+    //var ocene = KupovineModel();
     //var lista = NotifikacijeModel();
     // setujSesiju();
     return MultiProvider(
