@@ -46,9 +46,7 @@ class ProizvodiModel extends ChangeNotifier {
 
     await dajSveProizvode();
 
-    print("Dosao sam dovde");
     //await smanjiPrilikomKupovine(1, 1);
-    print("zavrsio sam");
 
     notifyListeners();
   }

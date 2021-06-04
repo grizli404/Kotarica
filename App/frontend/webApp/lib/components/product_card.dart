@@ -113,7 +113,7 @@ class ProductCard extends StatelessWidget {
                           child: proizvod.slika.isNotEmpty &&
                                   proizvod.slika[0] != ""
                               ? Image.network(
-                                  "https://ipfs.io/ipfs/" +
+                                  "http://147.91.204.116:11099/ipfs/" +
                                       proizvod.slika.first,
                                   fit: BoxFit.contain,
                                   loadingBuilder: (BuildContext context,

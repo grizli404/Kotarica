@@ -108,7 +108,7 @@ class _AddProductState extends State<AddProduct> {
                       image: DecorationImage(
                           fit: BoxFit.fill,
                           image: slika != ""
-                              ? NetworkImage("https://ipfs.io/ipfs/" + slika)
+                              ? NetworkImage("http://147.91.204.116:11099/ipfs/" + slika)
                               : AssetImage(
                                   "assets/images/defaultProductPhoto.jpg"))),
                 ),
@@ -387,7 +387,7 @@ class _AddProductState extends State<AddProduct> {
   // }
 
   bool loading = false;
-  static final String uploadEndPoint = 'http://147.91.204.116:11099/upload';
+  static final String uploadEndPoint = 'http://147.91.204.116:11093/upload';
   var uploadFilesCount;
   String message = '';
   Future<void> pickImage() async {
