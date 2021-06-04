@@ -1,6 +1,7 @@
 //import 'dart:html';
 import 'dart:io';
 
+import 'package:app/components/progress_hud.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:app/components/navigationBar.dart';
@@ -9,6 +10,7 @@ import 'package:app/components/star_display.dart';
 import 'package:app/screens/add_product/add_product.dart';
 import 'package:app/screens/profile/update_profile.dart';
 import 'package:app/main.dart';
+import 'package:provider/provider.dart';
 
 import '../../components/product_card.dart';
 import '../../constants.dart';
@@ -16,75 +18,125 @@ import '../../constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
-import '../../main.dart';
+
 import '../../model/proizvodiModel.dart';
 
-class MyProfileScreen extends StatelessWidget {
+class MyProfileScreen extends StatefulWidget {
   String fName = "";
   String lName = "";
   String address = "";
   int reputationScore = 0;
   String profilePhoto;
   int id;
-  List<Proizvod> proizvodi = [];
-  List<Container> proizvodiKartice = [];
+  List<Proizvod> proizvodi;
+  List<Container> proizvodiKartice;
+  ProizvodiModel pModel;
+  @override
+  State<MyProfileScreen> createState() => _MyProfileScreenState();
+}
 
-  MyProfileScreen() {
-    if (korisnikInfo != null) {
-      this.fName = korisnikInfo.ime;
-      this.lName = korisnikInfo.prezime;
-      this.address = korisnikInfo.adresa;
-      this.id = korisnikInfo.id;
-      this.reputationScore = 1;
-      proizvodi = proizvodiModel.dajProizvodeZaKorisnika(this.id);
-      print("Ime:" + this.fName + " id:" + this.id.toString());
-      print("Broj proizvoda:" + proizvodi.length.toString());
-      for (Proizvod proizvod in proizvodi) {
-        print("Proizvod: " + proizvod.naziv);
-        proizvodiKartice.add(Container(
+class _MyProfileScreenState extends State<MyProfileScreen> {
+  bool inAsyncCall = true;
+
+  Future setupState() async {
+    try {
+      if (inAsyncCall == false)
+        setState(() {
+          inAsyncCall = true;
+        });
+      //    print("ovdeeeeeeeeeeeeee");
+      widget.fName = korisnikInfo.ime;
+      widget.lName = korisnikInfo.prezime;
+      widget.address = korisnikInfo.adresa;
+      widget.id = korisnikInfo.id;
+      widget.reputationScore = 1;
+      //   print("ovdeeeeeeeeeeeeee");
+      widget.pModel = Provider.of<ProizvodiModel>(context);
+      widget.proizvodi = widget.pModel.dajProizvodeZaKorisnika(widget.id);
+      widget.proizvodiKartice = [];
+      print("Ime:" + widget.fName + " id:" + widget.id.toString());
+      print("Broj proizvoda:" + widget.proizvodi.length.toString());
+      for (int i = 0; i < widget.proizvodi.length; i++) {
+        print("Proizvod: " + widget.proizvodi[i].naziv);
+        widget.proizvodiKartice.add(Container(
             height: 290,
             child: ProductCard(
               added: true,
-              context: "",
+              context: context,
               isFavorite: false,
-              name: proizvod.naziv,
-              price: proizvod.cena.toString(),
-              proizvod: proizvod,
-              imgPath: proizvod.slika[0],
+              name: widget.proizvodi[i].naziv,
+              price: widget.proizvodi[i].cena.toString(),
+              proizvod: widget.proizvodi[i],
+              imgPath: widget.proizvodi[i].slika.isNotEmpty &&
+                      widget.proizvodi[i].slika.first != ""
+                  ? widget.proizvodi[i].slika[0]
+                  : 'assets/images/default_product_image.png',
             )));
       }
-    } else {
-      print("Nije ulogovan korisnik");
-      //na login.
+      setState(() {
+        inAsyncCall = false;
+      });
+    } catch (e) {
+      print(e);
     }
+  }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   if (widget.proizvodi == null || widget.proizvodiKartice == null)
+  //     setupState();
+  // }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget.proizvodi == null || widget.proizvodiKartice == null)
+      setupState();
+  }
+
+  @override
+  void didUpdateWidget(covariant MyProfileScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    widget.proizvodi = oldWidget.proizvodi;
+    widget.proizvodiKartice = oldWidget.proizvodiKartice;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (korisnikInfo != null) print(korisnikInfo.ime);
+    return ProgressHUD(child: _build(context), inAsyncCall: inAsyncCall);
+  }
 
-    Size size = MediaQuery.maybeOf(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Profil"),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
-        // shape: RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.vertical(
-        //   bottom: Radius.circular(36),
-        // )),
-      ),
-      body: ProfileBody(
-        proizvodiKartice: proizvodiKartice,
-        size: size,
-        id: id,
-        fName: fName,
-        address: address,
-        lName: lName,
-        reputationScore: reputationScore,
-      ),
-      bottomNavigationBar: !isWeb ? NavigationBarWidget() : null,
-    );
+  Widget _build(BuildContext context) {
+    if (inAsyncCall == true ||
+        widget.proizvodi == null ||
+        widget.proizvodiKartice == null) {
+      return Container();
+    } else {
+      if (korisnikInfo != null) print(korisnikInfo.ime);
+
+      Size size = MediaQuery.maybeOf(context).size;
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("Profil"),
+          centerTitle: true,
+          backgroundColor: Theme.of(context).primaryColor,
+          // shape: RoundedRectangleBorder(
+          //     borderRadius: BorderRadius.vertical(
+          //   bottom: Radius.circular(36),
+          // )),
+        ),
+        body: ProfileBody(
+          proizvodiKartice: widget.proizvodiKartice,
+          size: size,
+          id: widget.id,
+          fName: widget.fName,
+          address: widget.address,
+          lName: widget.lName,
+          reputationScore: widget.reputationScore,
+        ),
+        bottomNavigationBar: !isWeb ? NavigationBarWidget() : null,
+      );
+    }
   }
 }
 
