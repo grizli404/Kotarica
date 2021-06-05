@@ -145,7 +145,7 @@ class _BodyState extends State<Body> {
                   //ProductView(),
                   ProductContainer(naziv: 'Najnoviji proizvodi'),
                   ProductContainer(naziv: 'Popularni proizvodi'),
-                  ProductContainer(naziv: 'Preporuka'),
+                  //ProductContainer(naziv: 'Preporuka'),
                   SizedBox(
                     height: isWeb ? 30.0 : 70,
                   ),

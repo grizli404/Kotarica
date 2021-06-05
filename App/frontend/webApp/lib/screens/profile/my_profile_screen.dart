@@ -272,17 +272,17 @@ class ThinProfileBody extends StatelessWidget {
                   Divider(
                     color: kPrimaryColor,
                   ),
-                  Text(
-                    "Reputacija",
-                    style: TextStyle(fontSize: 32, color: kPrimaryColor),
-                  ),
-                  StarDisplayWidget(
-                      filledStar: Icon(Icons.star),
-                      unfilledStar: Icon(Icons.star_border),
-                      value: reputationScore),
-                  Divider(
-                    color: kPrimaryColor,
-                  ),
+                  // Text(
+                  //   "Reputacija",
+                  //   style: TextStyle(fontSize: 32, color: kPrimaryColor),
+                  // ),
+                  // StarDisplayWidget(
+                  //     filledStar: Icon(Icons.star),
+                  //     unfilledStar: Icon(Icons.star_border),
+                  //     value: reputationScore),
+                  // Divider(
+                  //   color: kPrimaryColor,
+                  // ),
                   ProfileButton(
                     fName: fName,
                     lName: lName,
@@ -525,17 +525,17 @@ class WideProfileBody extends StatelessWidget {
                     Divider(
                       color: kPrimaryColor,
                     ),
-                    Text(
-                      "Reputacija",
-                      style: TextStyle(fontSize: 32, color: kPrimaryColor),
-                    ),
-                    StarDisplayWidget(
-                        filledStar: Icon(Icons.star),
-                        unfilledStar: Icon(Icons.star_border),
-                        value: reputationScore),
-                    Divider(
-                      color: kPrimaryColor,
-                    ),
+                    // Text(
+                    //   "Reputacija",
+                    //   style: TextStyle(fontSize: 32, color: kPrimaryColor),
+                    // ),
+                    // StarDisplayWidget(
+                    //     filledStar: Icon(Icons.star),
+                    //     unfilledStar: Icon(Icons.star_border),
+                    //     value: reputationScore),
+                    // Divider(
+                    //   color: kPrimaryColor,
+                    // ),
                     ProfileButton(
                       fName: fName,
                       lName: lName,

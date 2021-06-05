@@ -89,7 +89,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       Icons.favorite_outline_rounded,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/favorites');
+                      if (korisnikInfo != null)
+                        Navigator.pushNamed(context, '/favorites');
+                      else
+                        Navigator.pushNamed(context, '/login');
                     })
                 : Container(),
             if (isWeb) CartIcon(),
