@@ -135,6 +135,16 @@ class ProizvodiModel extends ChangeNotifier {
               _slika,
               _opis
             ]));
+
+    var temp = await client
+        .call(contract: ugovor, function: brojProizvoda, params: []);
+
+    BigInt tempInt = temp[0];
+    int brojP = tempInt.toInt();
+
+    var endpointUrl = 'http://147.91.204.116:11094/dodajProizvod?idProdavca='+_idKorisnika.toString()+'&idProizvoda='+brojP.toString();
+    var uri = Uri.parse(endpointUrl);
+    http.get(uri);        
   }
 
   Future<void> dajSveProizvode() async {

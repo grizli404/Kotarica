@@ -98,6 +98,8 @@ class KupovineModel extends ChangeNotifier {
               BigInt.from(_idProizvoda),
               BigInt.from(_kolicina)
             ]));
+
+      
   }
 
   Future<int> daLiPostojiKupovinaZaOcenjivanjeProizvoda(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:app/main.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
@@ -97,6 +98,14 @@ class OceneModel extends ChangeNotifier {
               BigInt.from(_idProizvoda),
               BigInt.from(_ocena)
             ]));
+
+    Proizvod p = proizvodiModel.dajProizvodZaId(_idProizvoda);
+    print(korisnikInfo.id);
+    print(_idProizvoda);
+    print(p.idKategorije);
+    var endpointUrl = 'http://147.91.204.116:11094/dodajKupovinu?idKorisnika='+korisnikInfo.id.toString()+'&idKategorije='+p.idKategorije.toString()+'&idProizvoda='+p.id.toString()+'&ocena='+_ocena.toString()+'&idProdavca='+_idProdavca.toString();
+    var uri = Uri.parse(endpointUrl);
+    http.get(uri);
   }
 
   Future<double> prosecnaOcenaZaProizvod(int _idProizvoda) async {
